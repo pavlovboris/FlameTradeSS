@@ -19,12 +19,26 @@ namespace FlameTradeSS
                     var restriction = (from rest in db.FunctionRoles where rest.FunctionID == f.ID && user.RoleID == rest.RoleID select rest).SingleOrDefault();
                     if (restriction != null)
                     {
-                       form.Controls.RemoveByKey(f.ControllName);
+                        switch (f.ControlAction)
+                        {
+                            case "Remove":
+                                try
+                                {
+                                    form.Controls[form.Controls.IndexOfKey(f.ControllName)].Dispose();
+                                } catch { }
+                                
+                                break;
+                            case "Disable":
+                                try
+                                {
+                                    form.Controls[form.Controls.IndexOfKey(f.ControllName)].Enabled = false;
+                                }
+                                catch { }
+                                break;
+                        }
                     }
                 }
             }
         }
-
-
     }
 }

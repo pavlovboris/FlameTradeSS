@@ -131,6 +131,7 @@
           <Property Name="FunctionName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FormName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ControllName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ControlAction" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1837,6 +1838,7 @@
           <Property Name="FormName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ControllName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="FunctionRoles" Relationship="Self.FK_FunctionRoles_FunctionID" FromRole="Functions" ToRole="FunctionRoles" />
+          <Property Name="ControlAction" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -3630,6 +3632,7 @@
           <EntitySetMapping Name="Functions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Functions">
               <MappingFragment StoreEntitySet="Functions">
+                <ScalarProperty Name="ControlAction" ColumnName="ControlAction" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
                 <ScalarProperty Name="FormName" ColumnName="FormName" />

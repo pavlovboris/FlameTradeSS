@@ -37,6 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxExit = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.btnTempResetUserLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).BeginInit();
@@ -143,6 +144,16 @@
             this.pictureBoxLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxLogo_MouseMove);
             this.pictureBoxLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxLogo_MouseUp);
             // 
+            // btnTempResetUserLogin
+            // 
+            this.btnTempResetUserLogin.Location = new System.Drawing.Point(12, 77);
+            this.btnTempResetUserLogin.Name = "btnTempResetUserLogin";
+            this.btnTempResetUserLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnTempResetUserLogin.TabIndex = 23;
+            this.btnTempResetUserLogin.Text = "resetLoggins";
+            this.btnTempResetUserLogin.UseVisualStyleBackColor = true;
+            this.btnTempResetUserLogin.Click += new System.EventHandler(this.btnTempResetUserLogin_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,6 +161,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(450, 226);
+            this.Controls.Add(this.btnTempResetUserLogin);
             this.Controls.Add(this.pictureBoxLogIn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblPassword);
@@ -185,6 +197,7 @@
         private System.Windows.Forms.Label lblUserName;
         public System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Button btnTempResetUserLogin;
     }
 }
 

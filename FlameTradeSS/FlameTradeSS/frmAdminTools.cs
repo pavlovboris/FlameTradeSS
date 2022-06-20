@@ -22,5 +22,11 @@ namespace FlameTradeSS
             frmUsersManagement usersManagement = new frmUsersManagement();
             usersManagement.Show();
         }
+
+        private void btnFunctions_Click(object sender, EventArgs e)
+        {
+            frmFunctions functions = new frmFunctions();
+            functions.Show();
+        }
     }
 }

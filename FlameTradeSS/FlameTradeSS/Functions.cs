@@ -24,6 +24,7 @@ namespace FlameTradeSS
         public string FunctionName { get; set; }
         public string FormName { get; set; }
         public string ControllName { get; set; }
+        public string ControlAction { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FunctionRoles> FunctionRoles { get; set; }

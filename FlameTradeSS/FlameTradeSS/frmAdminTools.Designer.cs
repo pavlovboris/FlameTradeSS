@@ -55,16 +55,17 @@
             // 
             // btnFunctions
             // 
-            this.btnFunctions.Location = new System.Drawing.Point(13, 71);
+            this.btnFunctions.Location = new System.Drawing.Point(13, 114);
             this.btnFunctions.Name = "btnFunctions";
             this.btnFunctions.Size = new System.Drawing.Size(75, 23);
             this.btnFunctions.TabIndex = 2;
             this.btnFunctions.Text = "Restrictions";
             this.btnFunctions.UseVisualStyleBackColor = true;
+            this.btnFunctions.Click += new System.EventHandler(this.btnFunctions_Click);
             // 
             // btnFunctionRoles
             // 
-            this.btnFunctionRoles.Location = new System.Drawing.Point(13, 100);
+            this.btnFunctionRoles.Location = new System.Drawing.Point(13, 71);
             this.btnFunctionRoles.Name = "btnFunctionRoles";
             this.btnFunctionRoles.Size = new System.Drawing.Size(75, 37);
             this.btnFunctionRoles.TabIndex = 3;

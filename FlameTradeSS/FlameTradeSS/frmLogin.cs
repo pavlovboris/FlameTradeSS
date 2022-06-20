@@ -139,5 +139,15 @@ namespace FlameTradeSS
                 txtUserName.Focus();
             }
         }
+
+        private  void btnTempResetUserLogin_Click(object sender, EventArgs e)
+        {
+            foreach (CurrentlyLoggedUsers usr in db.CurrentlyLoggedUsers)
+            {
+                FlameTradeDbEntities dbreset = securityService.NewDatabaseEntity();
+                usr.UserIsCurrentlyLogged = 0;
+                dbreset.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -55,11 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppForms.cs" />
     <Compile Include="frmAdminTools.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAdminTools.Designer.cs">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFunctions.Designer.cs">
+      <DependentUpon>frmFunctions.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsersManagement.cs">
       <SubType>Form</SubType>
@@ -256,6 +263,9 @@
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFunctions.resx">
+      <DependentUpon>frmFunctions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +293,7 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\Persons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
