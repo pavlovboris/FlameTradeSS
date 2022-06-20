@@ -13,6 +13,7 @@ namespace FlameTradeSS
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
             
@@ -20,6 +21,8 @@ namespace FlameTradeSS
             FlameTradeDbEntities db = getDb.NewDatabaseEntity();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.ThreadExit += Application_ThreadExit;
 
             if (SecurityService.ConnectionCheck(db))
             {
@@ -34,6 +37,12 @@ namespace FlameTradeSS
                     Application.Exit();
                 } ;
             }
+        }
+
+        private static void Application_ThreadExit(object sender, EventArgs e)
+        {
+            SecurityService securityService = new SecurityService();
+            securityService.userLogOut();
         }
     }
 }

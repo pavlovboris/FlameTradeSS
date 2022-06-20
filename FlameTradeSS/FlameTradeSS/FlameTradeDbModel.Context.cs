@@ -74,5 +74,7 @@ namespace FlameTradeSS
         public virtual DbSet<TransactionsTransformations> TransactionsTransformations { get; set; }
         public virtual DbSet<TransactionsType> TransactionsType { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UsersLogInLogs> UsersLogInLogs { get; set; }
+        public virtual DbSet<CurrentlyLoggedUsers> CurrentlyLoggedUsers { get; set; }
     }
 }

@@ -122,6 +122,10 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_ReceiptID" ManuallyRouted="false" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLinesTransformation_OriginTransactionLineID" ManuallyRouted="false" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLinesTransformation_TransactionLineID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.UsersLogInLogs" Width="1.5" PointX="8.25" PointY="21.5" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_UsersLogInLogs_Users" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.CurrentlyLoggedUsers" Width="1.5" PointX="8.25" PointY="24.5" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_CurrentlyLoggedUsers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

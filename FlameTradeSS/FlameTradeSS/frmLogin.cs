@@ -54,18 +54,89 @@ namespace FlameTradeSS
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            string userName = "su";
-            string password = "cscs";
+            _instance = this;
+        }
 
-            Users result = securityService.LoggedUser(db, userName, password);
+        private void pictureBoxExit_Click(object sender, EventArgs e)
+        {
+            CommonTasks.ExitApplication();
+        }
+
+        private bool draging = false;
+        private Point pointClicked;
+        private void pictureBoxLogo_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (draging)
+            {
+                Point pointMoveTo;
+                pointMoveTo = this.PointToScreen(new Point(e.X, e.Y));
+                pointMoveTo.Offset(-pointClicked.X, -pointClicked.Y);
+                this.Location = pointMoveTo;
+            }
+        }
+
+        private void pictureBoxLogo_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                draging = true;
+                pointClicked = new Point(e.X, e.Y);
+            }
+            else
+            {
+                draging = false;
+            }
+        }
+
+        private void pictureBoxLogo_MouseUp(object sender, MouseEventArgs e)
+        {
+            draging = false;
+        }
+
+        private  void pictureBoxLogIn_Click(object sender, EventArgs e)
+        {
+            Users result = securityService.LoggedUser(db, txtUserName.Text, txtPassword.Text);
 
             if (result != null)
             {
                 UserInfo = result;
+                frmMain frmMain = new frmMain();
+                CurrentSessionData.CurrentfrmMain = frmMain;
+                frmMain.Show();
+                Hide();
 
+            }
+            else
+            {
+                CommonTasks.SendErrorMsg("Потребителското име или паролата са изписани грешно, моля опитайте отново");
+                txtPassword.Focus();
+                txtPassword.SelectAll();
+            }
+        }
+
+        private void txtUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ( e.KeyCode != Keys.Enter)
+            {
+            } else if (e.KeyCode==Keys.Enter & txtPassword.Text!="")
+            {
+                pictureBoxLogIn_Click(sender, e);   
             } else
             {
-                MessageBox.Show("Потребителското име или паролата са изписани грешно, моля опитайте отново", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+            } else if (e.KeyCode==Keys.Enter & txtUserName.Text!="")
+            {
+                pictureBoxLogIn_Click(sender, e);
+            } else
+            {
+                txtUserName.Focus();
             }
         }
     }

@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,928 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Glossy_3d_blue_orbs2_109_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glossy-3d-blue-orbs2-124-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\glossy-3d-blue-orbs2-124-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glossy-3d-blue-orbs2-083-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\glossy-3d-blue-orbs2-083-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="3d-vector-glossy-icons_340289" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\3d-vector-glossy-icons_340289.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_093_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_053_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_053_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_131_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_131_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_hourglass_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_hourglass_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_shield_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_076_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_076_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_042_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_042_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_web_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_web_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_092_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_092_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_power_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_132_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_132_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_120_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_060_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_060_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_066_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_066_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_051_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_103_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_088_Icon_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_088_Icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_137_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_137_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_i_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_i_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_075_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_075_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_063_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_055_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_055_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_072_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_072_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_056_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_056_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="glossy-3d-blue-orbs2-117-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\glossy-3d-blue-orbs2-117-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_133_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_133_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Defined Solutions_LOGO-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DSlogo\Defined Solutions_LOGO-02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_043_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_043_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_058_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_058_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_045_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_045_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_071_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_071_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_129_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_129_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_fontsize_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_095_Icon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_095_Icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_delete_Icon_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_109_Icon_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_109_Icon_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_037_Icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_037_Icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glossy_3d_blue_orbs2_091_Icon_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_091_Icon_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons\Ico\httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
