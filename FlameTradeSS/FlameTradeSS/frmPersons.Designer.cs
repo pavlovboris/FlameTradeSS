@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPersons));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvPersons = new System.Windows.Forms.DataGridView();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.personNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personMiddleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personSureNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +41,9 @@
             this.personPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +88,62 @@
             this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersons.Size = new System.Drawing.Size(722, 328);
             this.dgvPersons.TabIndex = 27;
+            // 
+            // personNameDataGridViewTextBoxColumn
+            // 
+            this.personNameDataGridViewTextBoxColumn.DataPropertyName = "PersonName";
+            this.personNameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.personNameDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.personNameDataGridViewTextBoxColumn.Name = "personNameDataGridViewTextBoxColumn";
+            // 
+            // personMiddleNameDataGridViewTextBoxColumn
+            // 
+            this.personMiddleNameDataGridViewTextBoxColumn.DataPropertyName = "PersonMiddleName";
+            this.personMiddleNameDataGridViewTextBoxColumn.HeaderText = "Middle Name";
+            this.personMiddleNameDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.personMiddleNameDataGridViewTextBoxColumn.Name = "personMiddleNameDataGridViewTextBoxColumn";
+            // 
+            // personSureNameDataGridViewTextBoxColumn
+            // 
+            this.personSureNameDataGridViewTextBoxColumn.DataPropertyName = "PersonSureName";
+            this.personSureNameDataGridViewTextBoxColumn.HeaderText = "Sure Name";
+            this.personSureNameDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.personSureNameDataGridViewTextBoxColumn.Name = "personSureNameDataGridViewTextBoxColumn";
+            // 
+            // personAddressDataGridViewTextBoxColumn
+            // 
+            this.personAddressDataGridViewTextBoxColumn.DataPropertyName = "PersonAddress";
+            this.personAddressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.personAddressDataGridViewTextBoxColumn.MaxInputLength = 250;
+            this.personAddressDataGridViewTextBoxColumn.Name = "personAddressDataGridViewTextBoxColumn";
+            // 
+            // personEmailDataGridViewTextBoxColumn
+            // 
+            this.personEmailDataGridViewTextBoxColumn.DataPropertyName = "PersonEmail";
+            this.personEmailDataGridViewTextBoxColumn.HeaderText = "E-mail";
+            this.personEmailDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.personEmailDataGridViewTextBoxColumn.Name = "personEmailDataGridViewTextBoxColumn";
+            // 
+            // personPhoneDataGridViewTextBoxColumn
+            // 
+            this.personPhoneDataGridViewTextBoxColumn.DataPropertyName = "PersonPhone";
+            dataGridViewCellStyle1.Format = "+### #### ## ## ## ";
+            dataGridViewCellStyle1.NullValue = null;
+            this.personPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.personPhoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.personPhoneDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.personPhoneDataGridViewTextBoxColumn.Name = "personPhoneDataGridViewTextBoxColumn";
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.MaxInputLength = 250;
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            // 
+            // personsBindingSource
+            // 
+            this.personsBindingSource.DataSource = typeof(FlameTradeSS.Persons);
             // 
             // btnSave
             // 
@@ -139,62 +196,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // personNameDataGridViewTextBoxColumn
-            // 
-            this.personNameDataGridViewTextBoxColumn.DataPropertyName = "PersonName";
-            this.personNameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.personNameDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.personNameDataGridViewTextBoxColumn.Name = "personNameDataGridViewTextBoxColumn";
-            // 
-            // personMiddleNameDataGridViewTextBoxColumn
-            // 
-            this.personMiddleNameDataGridViewTextBoxColumn.DataPropertyName = "PersonMiddleName";
-            this.personMiddleNameDataGridViewTextBoxColumn.HeaderText = "Middle Name";
-            this.personMiddleNameDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.personMiddleNameDataGridViewTextBoxColumn.Name = "personMiddleNameDataGridViewTextBoxColumn";
-            // 
-            // personSureNameDataGridViewTextBoxColumn
-            // 
-            this.personSureNameDataGridViewTextBoxColumn.DataPropertyName = "PersonSureName";
-            this.personSureNameDataGridViewTextBoxColumn.HeaderText = "Sure Name";
-            this.personSureNameDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.personSureNameDataGridViewTextBoxColumn.Name = "personSureNameDataGridViewTextBoxColumn";
-            // 
-            // personAddressDataGridViewTextBoxColumn
-            // 
-            this.personAddressDataGridViewTextBoxColumn.DataPropertyName = "PersonAddress";
-            this.personAddressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.personAddressDataGridViewTextBoxColumn.MaxInputLength = 250;
-            this.personAddressDataGridViewTextBoxColumn.Name = "personAddressDataGridViewTextBoxColumn";
-            // 
-            // personEmailDataGridViewTextBoxColumn
-            // 
-            this.personEmailDataGridViewTextBoxColumn.DataPropertyName = "PersonEmail";
-            this.personEmailDataGridViewTextBoxColumn.HeaderText = "E-mail";
-            this.personEmailDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.personEmailDataGridViewTextBoxColumn.Name = "personEmailDataGridViewTextBoxColumn";
-            // 
-            // personPhoneDataGridViewTextBoxColumn
-            // 
-            this.personPhoneDataGridViewTextBoxColumn.DataPropertyName = "PersonPhone";
-            dataGridViewCellStyle3.Format = "+### #### ## ## ## ";
-            dataGridViewCellStyle3.NullValue = null;
-            this.personPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.personPhoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.personPhoneDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.personPhoneDataGridViewTextBoxColumn.Name = "personPhoneDataGridViewTextBoxColumn";
-            // 
-            // commentDataGridViewTextBoxColumn
-            // 
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn.MaxInputLength = 250;
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
-            // 
-            // personsBindingSource
-            // 
-            this.personsBindingSource.DataSource = typeof(FlameTradeSS.Persons);
-            // 
             // frmPersons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +208,7 @@
             this.Controls.Add(this.dgvPersons);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPersons";

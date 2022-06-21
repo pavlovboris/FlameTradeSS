@@ -71,17 +71,41 @@
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPartnerGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartnerGroups.Designer.cs">
+      <DependentUpon>frmPartnerGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPartners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartners.Designer.cs">
+      <DependentUpon>frmPartners.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPersons.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPersons.Designer.cs">
       <DependentUpon>frmPersons.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonsRoleOfPersons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonsRoleOfPersons.Designer.cs">
+      <DependentUpon>frmPersonsRoleOfPersons.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRolesFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRolesFunctions.Designer.cs">
       <DependentUpon>frmRolesFunctions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRolesOfPersons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRolesOfPersons.Designer.cs">
+      <DependentUpon>frmRolesOfPersons.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsersManagement.cs">
       <SubType>Form</SubType>
@@ -287,11 +311,23 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPartnerGroups.resx">
+      <DependentUpon>frmPartnerGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPartners.resx">
+      <DependentUpon>frmPartners.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPersons.resx">
       <DependentUpon>frmPersons.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonsRoleOfPersons.resx">
+      <DependentUpon>frmPersonsRoleOfPersons.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRolesFunctions.resx">
       <DependentUpon>frmRolesFunctions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRolesOfPersons.resx">
+      <DependentUpon>frmRolesOfPersons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsersManagement.resx">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
@@ -316,7 +352,13 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
+    <None Include="Properties\DataSources\PartnerCategory.datasource" />
+    <None Include="Properties\DataSources\PartnerGroups.datasource" />
+    <None Include="Properties\DataSources\Partners.datasource" />
+    <None Include="Properties\DataSources\PartnerStaticPriceGroup.datasource" />
     <None Include="Properties\DataSources\Persons.datasource" />
+    <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
+    <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">

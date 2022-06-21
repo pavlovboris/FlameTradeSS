@@ -23,7 +23,7 @@ namespace FlameTradeSS
         private static bool isLogout = false; 
 
         private const int cGrip = 10;      // Grip size
-        private const int cCaption = 300;   // Caption bar height;
+        private const int cCaption = 600;   // Caption bar height;
 
       /*  protected override void OnPaint(PaintEventArgs e)
         {
@@ -149,6 +149,30 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+        }
+
+        private void btnPartnersMng_Click(object sender, EventArgs e)
+        {
+            frmPartners frmPartners = new frmPartners();
+            frmPartners.Show();
+        }
+
+        private void treeViewPartners_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            switch (e.Node.Name)
+            {
+                case "PartnerGroup":
+                    frmPartnerGroups frmPartnerGroups = new frmPartnerGroups();
+                    frmPartnerGroups.Show();
+                    break;
+                case "PartnerCategory":
+                    CommonTasks.SendInfoMsg("works - category");
+                    break;
+                case "PartnerStaticPriceGroup":
+                    CommonTasks.SendInfoMsg("works - Price groups");
+                    break;
+                    
+            }
         }
     }
 }

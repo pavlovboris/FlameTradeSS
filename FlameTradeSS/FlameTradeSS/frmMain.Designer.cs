@@ -28,21 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Групи");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Ценови Групи");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
             this.btnAdminTools = new System.Windows.Forms.Button();
+            this.btnPartnersMng = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.treeViewPartners = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // lblCurentUserLabel
             // 
             this.lblCurentUserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurentUserLabel.AutoSize = true;
-            this.lblCurentUserLabel.Location = new System.Drawing.Point(51, 554);
+            this.lblCurentUserLabel.Location = new System.Drawing.Point(51, 708);
             this.lblCurentUserLabel.Name = "lblCurentUserLabel";
             this.lblCurentUserLabel.Size = new System.Drawing.Size(72, 13);
             this.lblCurentUserLabel.TabIndex = 17;
@@ -52,7 +62,7 @@
             // 
             this.lblCurrentUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentUserName.AutoSize = true;
-            this.lblCurrentUserName.Location = new System.Drawing.Point(122, 554);
+            this.lblCurrentUserName.Location = new System.Drawing.Point(122, 708);
             this.lblCurrentUserName.Name = "lblCurrentUserName";
             this.lblCurrentUserName.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentUserName.TabIndex = 18;
@@ -63,7 +73,7 @@
             this.btnAdminTools.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdminTools.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAdminTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdminTools.Location = new System.Drawing.Point(777, 544);
+            this.btnAdminTools.Location = new System.Drawing.Point(733, 698);
             this.btnAdminTools.Name = "btnAdminTools";
             this.btnAdminTools.Size = new System.Drawing.Size(75, 23);
             this.btnAdminTools.TabIndex = 21;
@@ -71,13 +81,29 @@
             this.btnAdminTools.UseVisualStyleBackColor = true;
             this.btnAdminTools.Click += new System.EventHandler(this.btnAdminTools_Click);
             // 
+            // btnPartnersMng
+            // 
+            this.btnPartnersMng.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPartnersMng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPartnersMng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnPartnersMng.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_109_Icon_48;
+            this.btnPartnersMng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPartnersMng.Location = new System.Drawing.Point(12, 49);
+            this.btnPartnersMng.Name = "btnPartnersMng";
+            this.btnPartnersMng.Size = new System.Drawing.Size(133, 52);
+            this.btnPartnersMng.TabIndex = 28;
+            this.btnPartnersMng.Text = "Партньори";
+            this.btnPartnersMng.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPartnersMng.UseVisualStyleBackColor = true;
+            this.btnPartnersMng.Click += new System.EventHandler(this.btnPartnersMng_Click);
+            // 
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogOut.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_076_Icon_48;
-            this.btnLogOut.Location = new System.Drawing.Point(3, 527);
+            this.btnLogOut.Location = new System.Drawing.Point(3, 681);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(49, 43);
             this.btnLogOut.TabIndex = 26;
@@ -90,7 +116,7 @@
             this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
-            this.btnMinimize.Location = new System.Drawing.Point(700, 3);
+            this.btnMinimize.Location = new System.Drawing.Point(656, 3);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(49, 43);
             this.btnMinimize.TabIndex = 25;
@@ -103,7 +129,7 @@
             this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
-            this.btnMaximize.Location = new System.Drawing.Point(755, 3);
+            this.btnMaximize.Location = new System.Drawing.Point(711, 3);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(49, 43);
             this.btnMaximize.TabIndex = 24;
@@ -116,19 +142,44 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(810, 3);
+            this.btnClose.Location = new System.Drawing.Point(766, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 43);
             this.btnClose.TabIndex = 23;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
+            // treeViewPartners
+            // 
+            this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeViewPartners.Location = new System.Drawing.Point(12, 107);
+            this.treeViewPartners.Name = "treeViewPartners";
+            treeNode1.Name = "PartnerGroup";
+            treeNode1.Text = "Групи";
+            treeNode2.Name = "PartnerCategory";
+            treeNode2.Text = "Категории";
+            treeNode3.Name = "PartnerStaticPriceGroup";
+            treeNode3.Text = "Ценови Групи";
+            treeNode4.Name = "PartnerSettings";
+            treeNode4.Text = "Настройки";
+            treeNode5.Name = "PartnerReports";
+            treeNode5.Text = "Отчети";
+            this.treeViewPartners.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            this.treeViewPartners.Size = new System.Drawing.Size(141, 146);
+            this.treeViewPartners.TabIndex = 29;
+            this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(861, 576);
+            this.ClientSize = new System.Drawing.Size(817, 730);
+            this.Controls.Add(this.treeViewPartners);
+            this.Controls.Add(this.btnPartnersMng);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnMaximize);
@@ -158,5 +209,7 @@
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Button btnPartnersMng;
+        private System.Windows.Forms.TreeView treeViewPartners;
     }
 }

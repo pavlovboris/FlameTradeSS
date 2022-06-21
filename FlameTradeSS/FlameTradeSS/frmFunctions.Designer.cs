@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFunctions));
             this.dgvFunctions = new System.Windows.Forms.DataGridView();
             this.functionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.formNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -185,7 +186,9 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvFunctions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFunctions";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Restrictions";
             this.Load += new System.EventHandler(this.frmFunctions_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmFunctions_Paint);

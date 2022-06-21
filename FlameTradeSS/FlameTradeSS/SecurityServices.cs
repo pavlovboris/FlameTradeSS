@@ -30,29 +30,16 @@ namespace FlameTradeSS
                 currentlyLoggedUsers = loginLogs.CurrentlyLoggedUsers.Where(c => c.UserID == usr.ID).SingleOrDefault();
                 if (currentlyLoggedUsers!=null)
                 {
-                    if (currentlyLoggedUsers.UserIsCurrentlyLogged==0)
-                    {
-                        CurrentSessionData.CurrentUser = usr;
-                        CurrentSessionData.UsedForLoggInEntity = db;
-                        currentlyLoggedUsers.UserIsCurrentlyLogged = 1;
-                        usrLogin.IsLogIn = 1;
-                        loginLogs.UsersLogInLogs.Add(usrLogin);
-                        loginLogs.SaveChanges();
-                        loginLogs.Dispose();
+                    CurrentSessionData.CurrentUser = usr;
+                    CurrentSessionData.UsedForLoggInEntity = db;
+                    currentlyLoggedUsers.UserIsCurrentlyLogged = 1;
+                    usrLogin.IsLogIn = 1;
+                    loginLogs.UsersLogInLogs.Add(usrLogin);
+                    loginLogs.SaveChanges();
+                    loginLogs.Dispose();
 
-                        return usr;
-                    }else
-                    {
-                        Users temp = db.Users.Where(u => u.ID == 3).SingleOrDefault();
-                        CurrentSessionData.CurrentUser = temp;
-                        CurrentSessionData.UsedForLoggInEntity = db;
-                        usrLogin.IsLogIn = 0;
-                        db.UsersLogInLogs.Add(usrLogin);
-                        db.SaveChanges();
-                        loginLogs.Dispose();
-
-                        return temp;
-                    }
+                    return usr;
+                 
                 } else
                 {
                     CurrentSessionData.CurrentUser = usr;
@@ -60,9 +47,9 @@ namespace FlameTradeSS
                     currentlyLoggedUsers = new CurrentlyLoggedUsers();
                     currentlyLoggedUsers.UserID = usr.ID;
                     currentlyLoggedUsers.UserIsCurrentlyLogged = 1;
-                   
                     db.CurrentlyLoggedUsers.Add(currentlyLoggedUsers);
-
+                    usrLogin.IsLogIn = 1;
+                    loginLogs.UsersLogInLogs.Add(usrLogin);
                     db.SaveChanges();
                     loginLogs.Dispose();
 

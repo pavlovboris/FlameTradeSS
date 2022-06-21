@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminTools));
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
             this.btnFunctions = new System.Windows.Forms.Button();
             this.btnFunctionRoles = new System.Windows.Forms.Button();
             this.grpBoxUsers = new System.Windows.Forms.GroupBox();
             this.grpBoxPersons = new System.Windows.Forms.GroupBox();
+            this.btnPersonsRoleOfPersons = new System.Windows.Forms.Button();
+            this.btnRolesOdPersons = new System.Windows.Forms.Button();
             this.btnPersons = new System.Windows.Forms.Button();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grpBoxUsers.SuspendLayout();
             this.grpBoxPersons.SuspendLayout();
@@ -104,6 +105,8 @@
             // 
             // grpBoxPersons
             // 
+            this.grpBoxPersons.Controls.Add(this.btnPersonsRoleOfPersons);
+            this.grpBoxPersons.Controls.Add(this.btnRolesOdPersons);
             this.grpBoxPersons.Controls.Add(this.btnPersons);
             this.grpBoxPersons.Location = new System.Drawing.Point(155, 13);
             this.grpBoxPersons.Name = "grpBoxPersons";
@@ -111,6 +114,30 @@
             this.grpBoxPersons.TabIndex = 5;
             this.grpBoxPersons.TabStop = false;
             this.grpBoxPersons.Text = "Persons";
+            // 
+            // btnPersonsRoleOfPersons
+            // 
+            this.btnPersonsRoleOfPersons.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPersonsRoleOfPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPersonsRoleOfPersons.Location = new System.Drawing.Point(24, 94);
+            this.btnPersonsRoleOfPersons.Name = "btnPersonsRoleOfPersons";
+            this.btnPersonsRoleOfPersons.Size = new System.Drawing.Size(75, 37);
+            this.btnPersonsRoleOfPersons.TabIndex = 4;
+            this.btnPersonsRoleOfPersons.Text = "Persons Roles";
+            this.btnPersonsRoleOfPersons.UseVisualStyleBackColor = true;
+            this.btnPersonsRoleOfPersons.Click += new System.EventHandler(this.btnPersonsRoleOfPersons_Click);
+            // 
+            // btnRolesOdPersons
+            // 
+            this.btnRolesOdPersons.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRolesOdPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRolesOdPersons.Location = new System.Drawing.Point(24, 65);
+            this.btnRolesOdPersons.Name = "btnRolesOdPersons";
+            this.btnRolesOdPersons.Size = new System.Drawing.Size(75, 23);
+            this.btnRolesOdPersons.TabIndex = 5;
+            this.btnRolesOdPersons.Text = "Roles";
+            this.btnRolesOdPersons.UseVisualStyleBackColor = true;
+            this.btnRolesOdPersons.Click += new System.EventHandler(this.btnRolesOdPersons_Click);
             // 
             // btnPersons
             // 
@@ -123,31 +150,6 @@
             this.btnPersons.Text = "Persons";
             this.btnPersons.UseVisualStyleBackColor = true;
             this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
-            this.btnMinimize.Location = new System.Drawing.Point(572, 6);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(49, 43);
-            this.btnMinimize.TabIndex = 28;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnMaximize
-            // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
-            this.btnMaximize.Location = new System.Drawing.Point(627, 6);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(49, 43);
-            this.btnMaximize.TabIndex = 27;
-            this.btnMaximize.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -168,12 +170,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
-            this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.grpBoxPersons);
-            this.Controls.Add(this.btnMaximize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.grpBoxUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAdminTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6";
@@ -194,8 +195,8 @@
         private System.Windows.Forms.GroupBox grpBoxUsers;
         private System.Windows.Forms.GroupBox grpBoxPersons;
         private System.Windows.Forms.Button btnPersons;
-        private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnRolesOdPersons;
+        private System.Windows.Forms.Button btnPersonsRoleOfPersons;
     }
 }

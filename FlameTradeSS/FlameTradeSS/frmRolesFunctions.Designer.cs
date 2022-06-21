@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRolesFunctions));
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblRole = new System.Windows.Forms.Label();
@@ -53,14 +54,15 @@
             // 
             // cmbRoles
             // 
+            this.cmbRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbRoles.DataSource = this.rolesBindingSource;
             this.cmbRoles.DisplayMember = "RoleName";
             this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(47, 30);
+            this.cmbRoles.Location = new System.Drawing.Point(852, 28);
             this.cmbRoles.Name = "cmbRoles";
-            this.cmbRoles.Size = new System.Drawing.Size(289, 21);
+            this.cmbRoles.Size = new System.Drawing.Size(279, 21);
             this.cmbRoles.TabIndex = 0;
             this.cmbRoles.ValueMember = "RoleID";
             this.cmbRoles.SelectionChangeCommitted += new System.EventHandler(this.cmbRoles_SelectionChangeCommitted);
@@ -71,8 +73,9 @@
             // 
             // lblRole
             // 
+            this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(12, 33);
+            this.lblRole.Location = new System.Drawing.Point(817, 31);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(29, 13);
             this.lblRole.TabIndex = 1;
@@ -198,6 +201,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
@@ -222,6 +226,7 @@
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.cmbRoles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRolesFunctions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Roles Restrictions";

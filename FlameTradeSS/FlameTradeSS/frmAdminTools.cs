@@ -68,11 +68,6 @@ namespace FlameTradeSS
             Close();
         }
 
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmAdminTools_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -83,6 +78,18 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+        }
+
+        private void btnRolesOdPersons_Click(object sender, EventArgs e)
+        {
+            frmRolesOfPersons frmRolesOfPersons = new frmRolesOfPersons();
+            frmRolesOfPersons.Show();
+        }
+
+        private void btnPersonsRoleOfPersons_Click(object sender, EventArgs e)
+        {
+            frmPersonsRoleOfPersons frmPersonsRoleOfPersons = new frmPersonsRoleOfPersons();
+            frmPersonsRoleOfPersons.Show();
         }
     }
 }
