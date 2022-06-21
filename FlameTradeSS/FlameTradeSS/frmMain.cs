@@ -25,13 +25,21 @@ namespace FlameTradeSS
         private const int cGrip = 10;      // Grip size
         private const int cCaption = 300;   // Caption bar height;
 
-        protected override void OnPaint(PaintEventArgs e)
+      /*  protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
             ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
             // rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
             //  e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
-        }
+            Graphics g = this.CreateGraphics();
+            // create  a  pen object with which to draw
+            Pen p = new Pen(Color.LightBlue, 2);  // draw the line
+                                            // call a member of the graphics class
+           // g.DrawLine(p,2,2, Size.Width-4,2);
+            //g.DrawLine(p,2,2,2,Size.Height-4);
+            Rectangle r = new Rectangle(2,2, Size.Width - 4, Size.Height - 4);
+            g.DrawRectangle(p, r);
+        }*/
 
         protected override void WndProc(ref Message m)
         {
@@ -55,15 +63,14 @@ namespace FlameTradeSS
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (isLogout==false)
-            {
-                CommonTasks.ExitApplication();
-            }
+            
+                //.ExitApplication();
+            
         }
 
         private void pictureBoxExit_Click(object sender, EventArgs e)
         {
-            Close();
+            CommonTasks.ExitApplication();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -97,6 +104,51 @@ namespace FlameTradeSS
         {
             frmAdminTools adminTools = new frmAdminTools();
             adminTools.Show();
+        }
+
+        private void pictureBoxLogout_Click(object sender, EventArgs e)
+        {
+            if(CommonTasks.SendWarningMsg(CurrentSessionData.CurrentUser.UserName.ToString()+" сигурни ли сте, че искате да излезете?") == true) 
+            {
+                isLogout = true;
+                
+                FormClosed -= frmMain_FormClosed;
+                this.Close();
+                SecurityService securityService = new SecurityService();
+                securityService.userLogOut();
+                frmLogin.Instance.Show();
+                frmLogin.Instance.txtPassword.Text = "";
+                List<Form> forms = new List<Form>();
+                
+                foreach (Form frm in Application.OpenForms)
+                {
+                    if (frm.Name != "frmLogin" && frm.Name != "frmMain")
+                    {
+                        forms.Add(frm);
+                    }
+                }
+
+                foreach (Form frm in forms)
+                {
+                    frm.Close();
+                }
+            }
+        }
+
+        private void frmMain_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
+            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
+            // rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
+            //  e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
+            Graphics g = this.CreateGraphics();
+            // create  a  pen object with which to draw
+            Pen p = new Pen(Color.LightBlue, 2);  // draw the line
+                                                  // call a member of the graphics class
+                                                  // g.DrawLine(p,2,2, Size.Width-4,2);
+                                                  //g.DrawLine(p,2,2,2,Size.Height-4);
+            Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
+            g.DrawRectangle(p, r);
         }
     }
 }

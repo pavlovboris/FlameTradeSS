@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Defined Solutions_LOGO-08.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -67,6 +70,18 @@
     </Compile>
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPersons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersons.Designer.cs">
+      <DependentUpon>frmPersons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRolesFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRolesFunctions.Designer.cs">
+      <DependentUpon>frmRolesFunctions.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsersManagement.cs">
       <SubType>Form</SubType>
@@ -272,6 +287,12 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPersons.resx">
+      <DependentUpon>frmPersons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRolesFunctions.resx">
+      <DependentUpon>frmRolesFunctions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUsersManagement.resx">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +314,7 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\Persons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
@@ -311,6 +333,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Defined Solutions_LOGO-08.ico" />
     <Content Include="FlameTradeDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FlameTradeDbModel.Context.cs</LastGenOutput>

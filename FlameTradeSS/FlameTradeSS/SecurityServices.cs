@@ -5,7 +5,7 @@ namespace FlameTradeSS
 {
     public class SecurityService
     {
-        readonly FlameTradeDbEntities securityDb = new FlameTradeDbEntities();
+        FlameTradeDbEntities securityDb = new FlameTradeDbEntities();
 
         public  FlameTradeDbEntities NewDatabaseEntity()
         {
@@ -25,9 +25,9 @@ namespace FlameTradeSS
                 UsersLogInLogs usrLogin = new UsersLogInLogs();
                 usrLogin.LogInTime = DateTime.Now;
                 usrLogin.UserID = usr.ID;
-               
-                
-                CurrentlyLoggedUsers currentlyLoggedUsers = db.CurrentlyLoggedUsers.Where(c => c.UserID == usr.ID).SingleOrDefault();
+
+                CurrentlyLoggedUsers currentlyLoggedUsers = new CurrentlyLoggedUsers();
+                currentlyLoggedUsers = loginLogs.CurrentlyLoggedUsers.Where(c => c.UserID == usr.ID).SingleOrDefault();
                 if (currentlyLoggedUsers!=null)
                 {
                     if (currentlyLoggedUsers.UserIsCurrentlyLogged==0)
@@ -36,8 +36,8 @@ namespace FlameTradeSS
                         CurrentSessionData.UsedForLoggInEntity = db;
                         currentlyLoggedUsers.UserIsCurrentlyLogged = 1;
                         usrLogin.IsLogIn = 1;
-                        db.UsersLogInLogs.Add(usrLogin);
-                        db.SaveChanges();
+                        loginLogs.UsersLogInLogs.Add(usrLogin);
+                        loginLogs.SaveChanges();
                         loginLogs.Dispose();
 
                         return usr;
@@ -78,6 +78,7 @@ namespace FlameTradeSS
         {
             if (CurrentSessionData.CurrentUser != null)
             {
+                //securityDb = new FlameTradeDbEntities();
                 securityDb.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=FlameTradeDb;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;Timeout=3;";
                 UsersLogInLogs usersLogInLogs = new UsersLogInLogs();
                 usersLogInLogs.UserID = CurrentSessionData.CurrentUser.ID;

@@ -28,34 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxExit = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
-            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
             this.btnAdminTools = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).BeginInit();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // pictureBoxExit
-            // 
-            this.pictureBoxExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxExit.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.pictureBoxExit.Location = new System.Drawing.Point(969, 0);
-            this.pictureBoxExit.Name = "pictureBoxExit";
-            this.pictureBoxExit.Size = new System.Drawing.Size(60, 49);
-            this.pictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxExit.TabIndex = 16;
-            this.pictureBoxExit.TabStop = false;
-            this.pictureBoxExit.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
             // lblCurentUserLabel
             // 
             this.lblCurentUserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurentUserLabel.AutoSize = true;
-            this.lblCurentUserLabel.Location = new System.Drawing.Point(13, 514);
+            this.lblCurentUserLabel.Location = new System.Drawing.Point(51, 554);
             this.lblCurentUserLabel.Name = "lblCurentUserLabel";
             this.lblCurentUserLabel.Size = new System.Drawing.Size(72, 13);
             this.lblCurentUserLabel.TabIndex = 17;
@@ -65,39 +52,18 @@
             // 
             this.lblCurrentUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentUserName.AutoSize = true;
-            this.lblCurrentUserName.Location = new System.Drawing.Point(84, 514);
+            this.lblCurrentUserName.Location = new System.Drawing.Point(122, 554);
             this.lblCurrentUserName.Name = "lblCurrentUserName";
             this.lblCurrentUserName.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentUserName.TabIndex = 18;
             this.lblCurrentUserName.Text = "?";
             // 
-            // pictureBoxMinimize
-            // 
-            this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_256;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(847, 0);
-            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(60, 49);
-            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMinimize.TabIndex = 19;
-            this.pictureBoxMinimize.TabStop = false;
-            this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
-            // 
-            // pictureBoxMaximize
-            // 
-            this.pictureBoxMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_256;
-            this.pictureBoxMaximize.Location = new System.Drawing.Point(908, 0);
-            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
-            this.pictureBoxMaximize.Size = new System.Drawing.Size(60, 49);
-            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMaximize.TabIndex = 20;
-            this.pictureBoxMaximize.TabStop = false;
-            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
-            // 
             // btnAdminTools
             // 
-            this.btnAdminTools.Location = new System.Drawing.Point(942, 503);
+            this.btnAdminTools.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdminTools.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnAdminTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdminTools.Location = new System.Drawing.Point(777, 544);
             this.btnAdminTools.Name = "btnAdminTools";
             this.btnAdminTools.Size = new System.Drawing.Size(75, 23);
             this.btnAdminTools.TabIndex = 21;
@@ -105,38 +71,92 @@
             this.btnAdminTools.UseVisualStyleBackColor = true;
             this.btnAdminTools.Click += new System.EventHandler(this.btnAdminTools_Click);
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_076_Icon_48;
+            this.btnLogOut.Location = new System.Drawing.Point(3, 527);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(49, 43);
+            this.btnLogOut.TabIndex = 26;
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.pictureBoxLogout_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
+            this.btnMinimize.Location = new System.Drawing.Point(700, 3);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(49, 43);
+            this.btnMinimize.TabIndex = 25;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
+            this.btnMaximize.Location = new System.Drawing.Point(755, 3);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(49, 43);
+            this.btnMaximize.TabIndex = 24;
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.btnClose.Location = new System.Drawing.Point(810, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.TabIndex = 23;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 539);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(861, 576);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.btnMinimize);
+            this.Controls.Add(this.btnMaximize);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAdminTools);
-            this.Controls.Add(this.pictureBoxMaximize);
-            this.Controls.Add(this.pictureBoxMinimize);
             this.Controls.Add(this.lblCurrentUserName);
             this.Controls.Add(this.lblCurentUserLabel);
-            this.Controls.Add(this.pictureBoxExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(350, 100);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBoxExit;
         private System.Windows.Forms.Label lblCurentUserLabel;
         private System.Windows.Forms.Label lblCurrentUserName;
-        private System.Windows.Forms.PictureBox pictureBoxMinimize;
-        private System.Windows.Forms.PictureBox pictureBoxMaximize;
         private System.Windows.Forms.Button btnAdminTools;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnMaximize;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
