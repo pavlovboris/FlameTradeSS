@@ -31,22 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsersManagement));
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.personIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.personsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.personsFullNameViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.personIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personsFullNameViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvUsers
@@ -76,68 +76,6 @@
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvUsers_CellFormatting);
             this.dgvUsers.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellValueChanged);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            this.userNameDataGridViewTextBoxColumn.Width = 101;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.Width = 102;
-            // 
-            // roleIDDataGridViewTextBoxColumn
-            // 
-            this.roleIDDataGridViewTextBoxColumn.DataPropertyName = "RoleID";
-            this.roleIDDataGridViewTextBoxColumn.DataSource = this.rolesBindingSource;
-            this.roleIDDataGridViewTextBoxColumn.DisplayMember = "RoleName";
-            this.roleIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.roleIDDataGridViewTextBoxColumn.HeaderText = "Role";
-            this.roleIDDataGridViewTextBoxColumn.Name = "roleIDDataGridViewTextBoxColumn";
-            this.roleIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.roleIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.roleIDDataGridViewTextBoxColumn.ValueMember = "RoleID";
-            this.roleIDDataGridViewTextBoxColumn.Width = 101;
-            // 
-            // rolesBindingSource
-            // 
-            this.rolesBindingSource.DataSource = typeof(FlameTradeSS.Roles);
-            // 
-            // personIDDataGridViewTextBoxColumn
-            // 
-            this.personIDDataGridViewTextBoxColumn.DataPropertyName = "PersonID";
-            this.personIDDataGridViewTextBoxColumn.DataSource = this.personsBindingSource;
-            this.personIDDataGridViewTextBoxColumn.DisplayMember = "PersonName";
-            this.personIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.personIDDataGridViewTextBoxColumn.HeaderText = "Person";
-            this.personIDDataGridViewTextBoxColumn.Name = "personIDDataGridViewTextBoxColumn";
-            this.personIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.personIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.personIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.personIDDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // personsBindingSource
-            // 
-            this.personsBindingSource.DataSource = typeof(FlameTradeSS.Persons);
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
             // 
             // btnAdd
             // 
@@ -200,6 +138,68 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // rolesBindingSource
+            // 
+            this.rolesBindingSource.DataSource = typeof(FlameTradeSS.Roles);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
+            // 
+            // personsFullNameViewBindingSource
+            // 
+            this.personsFullNameViewBindingSource.DataSource = typeof(FlameTradeSS.PersonsFullNameView);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.Width = 101;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.Width = 102;
+            // 
+            // roleIDDataGridViewTextBoxColumn
+            // 
+            this.roleIDDataGridViewTextBoxColumn.DataPropertyName = "RoleID";
+            this.roleIDDataGridViewTextBoxColumn.DataSource = this.rolesBindingSource;
+            this.roleIDDataGridViewTextBoxColumn.DisplayMember = "RoleName";
+            this.roleIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.roleIDDataGridViewTextBoxColumn.HeaderText = "Role";
+            this.roleIDDataGridViewTextBoxColumn.Name = "roleIDDataGridViewTextBoxColumn";
+            this.roleIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.roleIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.roleIDDataGridViewTextBoxColumn.ValueMember = "RoleID";
+            this.roleIDDataGridViewTextBoxColumn.Width = 101;
+            // 
+            // personIDDataGridViewTextBoxColumn
+            // 
+            this.personIDDataGridViewTextBoxColumn.DataPropertyName = "PersonID";
+            this.personIDDataGridViewTextBoxColumn.DataSource = this.personsFullNameViewBindingSource;
+            this.personIDDataGridViewTextBoxColumn.DisplayMember = "Person_Name";
+            this.personIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.personIDDataGridViewTextBoxColumn.HeaderText = "Person";
+            this.personIDDataGridViewTextBoxColumn.Name = "personIDDataGridViewTextBoxColumn";
+            this.personIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.personIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.personIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.personIDDataGridViewTextBoxColumn.Width = 150;
+            // 
             // frmUsersManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,8 +220,8 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmUsersManagement_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personsFullNameViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -230,16 +230,16 @@
 
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.BindingSource rolesBindingSource;
-        private System.Windows.Forms.BindingSource personsBindingSource;
         private System.Windows.Forms.BindingSource usersBindingSource;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn roleIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn personIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.BindingSource personsFullNameViewBindingSource;
     }
 }

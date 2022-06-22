@@ -37,5 +37,31 @@ namespace FlameTradeSS
                 return false;
             }
         }
+
+        public static void OpenForm(Form form)
+        {
+            List<Form> openForms = new List<Form>();
+
+            bool isOpen = false;
+
+            foreach (Form f in Application.OpenForms)
+            {
+                openForms.Add(f);
+            }
+
+            foreach(Form f in openForms)
+            {
+                if (f.Name == form.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+            if (isOpen==false)
+            {
+                form.Show();
+            }
+        }
     }
 }

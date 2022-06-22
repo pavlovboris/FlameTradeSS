@@ -20,7 +20,7 @@ namespace FlameTradeSS
             InitializeComponent();
         }
 
-        private static bool isLogout = false; 
+       // private static bool isLogout = false; 
 
         private const int cGrip = 10;      // Grip size
         private const int cCaption = 600;   // Caption bar height;
@@ -103,14 +103,14 @@ namespace FlameTradeSS
         private void btnAdminTools_Click(object sender, EventArgs e)
         {
             frmAdminTools adminTools = new frmAdminTools();
-            adminTools.Show();
+            CommonTasks.OpenForm(adminTools);
         }
 
         private void pictureBoxLogout_Click(object sender, EventArgs e)
         {
             if(CommonTasks.SendWarningMsg(CurrentSessionData.CurrentUser.UserName.ToString()+" сигурни ли сте, че искате да излезете?") == true) 
             {
-                isLogout = true;
+                //isLogout = true;
                 
                 FormClosed -= frmMain_FormClosed;
                 this.Close();
@@ -154,7 +154,7 @@ namespace FlameTradeSS
         private void btnPartnersMng_Click(object sender, EventArgs e)
         {
             frmPartners frmPartners = new frmPartners();
-            frmPartners.Show();
+            CommonTasks.OpenForm(frmPartners);
         }
 
         private void treeViewPartners_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -163,15 +163,21 @@ namespace FlameTradeSS
             {
                 case "PartnerGroup":
                     frmPartnerGroups frmPartnerGroups = new frmPartnerGroups();
-                    frmPartnerGroups.Show();
+                    CommonTasks.OpenForm(frmPartnerGroups);
                     break;
                 case "PartnerCategory":
-                    CommonTasks.SendInfoMsg("works - category");
+                    frmPartnerCategory frmPartnerCategory = new frmPartnerCategory();
+                    CommonTasks.OpenForm(frmPartnerCategory);
                     break;
                 case "PartnerStaticPriceGroup":
                     CommonTasks.SendInfoMsg("works - Price groups");
                     break;
-                    
+                case "PersonPartners":
+                    frmPartnersPersons frmPartnersPersons = new frmPartnersPersons();
+                    CommonTasks.OpenForm(frmPartnersPersons);
+                    break;
+
+
             }
         }
     }

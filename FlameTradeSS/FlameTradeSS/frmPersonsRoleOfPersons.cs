@@ -58,10 +58,10 @@ namespace FlameTradeSS
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
-            personsBindingSource.DataSource = db.Persons.ToList();
+            personsFullNameViewBindingSource.DataSource = db.PersonsFullNameView.ToList();
             roleOfPersonsBindingSource.DataSource = db.RoleOfPersons.ToList();
 
-            Persons persons = cmbPerson.SelectedItem as Persons;
+            PersonsFullNameView persons = cmbPerson.SelectedItem as PersonsFullNameView;
             if (persons!=null)
             {
                 personsRolesOfPersonsBindingSource.DataSource = db.PersonsRolesOfPersons.Where(pr=> pr.PersonsID==persons.ID).ToList();
@@ -70,7 +70,7 @@ namespace FlameTradeSS
 
         private void cmbPerson_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Persons persons = cmbPerson.SelectedItem as Persons;
+            PersonsFullNameView persons = cmbPerson.SelectedItem as PersonsFullNameView;
             if (persons!=null)
             {
                 personsRolesOfPersonsBindingSource.DataSource = db.PersonsRolesOfPersons.Where(pr => pr.PersonsID == persons.ID).ToList();
@@ -81,7 +81,7 @@ namespace FlameTradeSS
         {
             if (personsRolesOfPersonsBindingSource.DataSource!=null)
             {
-                Persons persons = cmbPerson.SelectedItem as Persons;
+                PersonsFullNameView persons = cmbPerson.SelectedItem as PersonsFullNameView;
                 if (persons!=null)
                 {
                     foreach (DataGridViewRow dgvr in dgvLeft.SelectedRows)
@@ -107,7 +107,7 @@ namespace FlameTradeSS
         {
             if (personsRolesOfPersonsBindingSource.DataSource!=null)
             {
-                Persons persons = cmbPerson.SelectedItem as Persons;
+                PersonsFullNameView persons = cmbPerson.SelectedItem as PersonsFullNameView;
                 if (persons!=null)
                 {
                     foreach (DataGridViewRow dgvr in dgvRight.SelectedRows)

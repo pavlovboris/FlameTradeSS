@@ -37,25 +37,25 @@ namespace FlameTradeSS
         private void btnUsers_Click(object sender, EventArgs e)
         {
             frmUsersManagement usersManagement = new frmUsersManagement();
-            usersManagement.Show();
+            CommonTasks.OpenForm(usersManagement);
         }
 
         private void btnFunctions_Click(object sender, EventArgs e)
         {
             frmFunctions functions = new frmFunctions();
-            functions.Show();
+            CommonTasks.OpenForm(functions);
         }
 
         private void btnFunctionRoles_Click(object sender, EventArgs e)
         {
             frmRolesFunctions frmRolesFunctions = new frmRolesFunctions();
-            frmRolesFunctions.Show();
+            CommonTasks.OpenForm(frmRolesFunctions);
         }
 
         private void btnPersons_Click(object sender, EventArgs e)
         {
             frmPersons frmPersons = new frmPersons();
-            frmPersons.Show();
+            CommonTasks.OpenForm(frmPersons);
         }
 
         private void frmAdminTools_Load(object sender, EventArgs e)
@@ -83,13 +83,13 @@ namespace FlameTradeSS
         private void btnRolesOdPersons_Click(object sender, EventArgs e)
         {
             frmRolesOfPersons frmRolesOfPersons = new frmRolesOfPersons();
-            frmRolesOfPersons.Show();
+            CommonTasks.OpenForm(frmRolesOfPersons);
         }
 
         private void btnPersonsRoleOfPersons_Click(object sender, EventArgs e)
         {
             frmPersonsRoleOfPersons frmPersonsRoleOfPersons = new frmPersonsRoleOfPersons();
-            frmPersonsRoleOfPersons.Show();
+            CommonTasks.OpenForm(frmPersonsRoleOfPersons);
         }
     }
 }

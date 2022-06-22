@@ -33,7 +33,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPerson = new System.Windows.Forms.Label();
             this.cmbPerson = new System.Windows.Forms.ComboBox();
-            this.personsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.personsFullNameViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnMoveLeft = new System.Windows.Forms.Button();
             this.btnMoveRight = new System.Windows.Forms.Button();
             this.dgvRight = new System.Windows.Forms.DataGridView();
@@ -43,7 +43,7 @@
             this.dgvLeft = new System.Windows.Forms.DataGridView();
             this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.personsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personsFullNameViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roleOfPersonsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personsRolesOfPersonsBindingSource)).BeginInit();
@@ -76,8 +76,8 @@
             // cmbPerson
             // 
             this.cmbPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbPerson.DataSource = this.personsBindingSource;
-            this.cmbPerson.DisplayMember = "PersonName";
+            this.cmbPerson.DataSource = this.personsFullNameViewBindingSource;
+            this.cmbPerson.DisplayMember = "Person_Name";
             this.cmbPerson.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbPerson.FormattingEnabled = true;
@@ -88,9 +88,9 @@
             this.cmbPerson.ValueMember = "ID";
             this.cmbPerson.SelectionChangeCommitted += new System.EventHandler(this.cmbPerson_SelectionChangeCommitted);
             // 
-            // personsBindingSource
+            // personsFullNameViewBindingSource
             // 
-            this.personsBindingSource.DataSource = typeof(FlameTradeSS.Persons);
+            this.personsFullNameViewBindingSource.DataSource = typeof(FlameTradeSS.PersonsFullNameView);
             // 
             // btnMoveLeft
             // 
@@ -211,9 +211,10 @@
             this.Name = "frmPersonsRoleOfPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPersonsRoleOfPersons";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmPersonsRoleOfPersons_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPersonsRoleOfPersons_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.personsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.personsFullNameViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roleOfPersonsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personsRolesOfPersonsBindingSource)).EndInit();
@@ -228,7 +229,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblPerson;
         private System.Windows.Forms.ComboBox cmbPerson;
-        private System.Windows.Forms.BindingSource personsBindingSource;
         private System.Windows.Forms.Button btnMoveLeft;
         private System.Windows.Forms.Button btnMoveRight;
         private System.Windows.Forms.DataGridView dgvRight;
@@ -238,5 +238,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn roleOfPersonIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleDescriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource personsFullNameViewBindingSource;
     }
 }

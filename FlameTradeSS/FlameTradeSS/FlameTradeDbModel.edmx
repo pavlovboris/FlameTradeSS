@@ -509,6 +509,15 @@
           <Property Name="IsLogIn" Type="int" Nullable="false" />
           <Property Name="LogOutTime" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonsFullNameView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Person_Name" Type="varchar" MaxLength="201" />
+        </EntityType>
         <Association Name="FK_CurrentlyLoggedUsers_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CurrentlyLoggedUsers" Type="Self.CurrentlyLoggedUsers" Multiplicity="*" />
@@ -1401,6 +1410,12 @@
           <EntitySet Name="TransactionsType" EntityType="Self.TransactionsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersLogInLogs" EntityType="Self.UsersLogInLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonsFullNameView" EntityType="Self.PersonsFullNameView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PersonsFullNameView].[ID] AS [ID], 
+    [PersonsFullNameView].[Person_Name] AS [Person_Name]
+    FROM [dbo].[PersonsFullNameView] AS [PersonsFullNameView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_CurrentlyLoggedUsers_Users" Association="Self.FK_CurrentlyLoggedUsers_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="CurrentlyLoggedUsers" EntitySet="CurrentlyLoggedUsers" />
@@ -3458,6 +3473,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="CurrentlyLoggedUsers" EntitySet="CurrentlyLoggedUsers" />
           </AssociationSet>
+          <EntitySet Name="PersonsFullNameView" EntityType="FlameTradeDbModel.PersonsFullNameView" />
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3503,6 +3519,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PersonsFullNameView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Person_Name" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4060,6 +4083,14 @@
               <MappingFragment StoreEntitySet="CurrentlyLoggedUsers">
                 <ScalarProperty Name="UserIsCurrentlyLogged" ColumnName="UserIsCurrentlyLogged" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonsFullNameView">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PersonsFullNameView">
+              <MappingFragment StoreEntitySet="PersonsFullNameView">
+                <ScalarProperty Name="Person_Name" ColumnName="Person_Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

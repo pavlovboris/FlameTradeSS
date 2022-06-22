@@ -71,6 +71,12 @@
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPartnerCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartnerCategory.Designer.cs">
+      <DependentUpon>frmPartnerCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPartnerGroups.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,12 @@
     </Compile>
     <Compile Include="frmPartners.Designer.cs">
       <DependentUpon>frmPartners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPartnersPersons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPartnersPersons.Designer.cs">
+      <DependentUpon>frmPartnersPersons.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPersons.cs">
       <SubType>Form</SubType>
@@ -112,6 +124,9 @@
     </Compile>
     <Compile Include="frmUsersManagement.Designer.cs">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonsFullNameView.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserRestrictions.cs" />
     <Compile Include="CurrentlyLoggedUsers.cs">
@@ -311,11 +326,17 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPartnerCategory.resx">
+      <DependentUpon>frmPartnerCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPartnerGroups.resx">
       <DependentUpon>frmPartnerGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPartners.resx">
       <DependentUpon>frmPartners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPartnersPersons.resx">
+      <DependentUpon>frmPartnersPersons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPersons.resx">
       <DependentUpon>frmPersons.cs</DependentUpon>
@@ -354,9 +375,11 @@
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\PartnerCategory.datasource" />
     <None Include="Properties\DataSources\PartnerGroups.datasource" />
+    <None Include="Properties\DataSources\PartnerPersons.datasource" />
     <None Include="Properties\DataSources\Partners.datasource" />
     <None Include="Properties\DataSources\PartnerStaticPriceGroup.datasource" />
     <None Include="Properties\DataSources\Persons.datasource" />
+    <None Include="Properties\DataSources\PersonsFullNameView.datasource" />
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />

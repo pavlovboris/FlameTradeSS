@@ -51,7 +51,7 @@ namespace FlameTradeSS
             }
  
             rolesBindingSource.DataSource = db.Roles.ToList();
-            personsBindingSource.DataSource = db.Persons.ToList();
+            personsFullNameViewBindingSource.DataSource = db.PersonsFullNameView.ToList();
             
         }
 
