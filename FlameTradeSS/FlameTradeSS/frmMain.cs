@@ -81,6 +81,8 @@ namespace FlameTradeSS
             {
                 lblCurrentUserName.Text = CurrentSessionData.CurrentUser.UserName.ToString();
             }
+
+            CommonTasks.RestoreForm(this, Properties.Settings.Default.frmMainSize, Properties.Settings.Default.frmMainState, Properties.Settings.Default.frmMainLocation);
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -176,9 +178,27 @@ namespace FlameTradeSS
                     frmPartnersPersons frmPartnersPersons = new frmPartnersPersons();
                     CommonTasks.OpenForm(frmPartnersPersons);
                     break;
-
-
             }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.frmMainState = this.WindowState;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                // save location and size if the state is normal
+                Properties.Settings.Default.frmMainLocation = this.Location;
+                Properties.Settings.Default.frmMainSize = this.Size;
+            }
+            else
+            {
+                // save the RestoreBounds if the form is minimized or maximized!
+                Properties.Settings.Default.frmMainLocation = this.RestoreBounds.Location;
+                Properties.Settings.Default.frmMainSize = this.RestoreBounds.Size;
+            }
+
+            // don't forget to save the settings
+            Properties.Settings.Default.Save();
         }
     }
 }

@@ -91,5 +91,17 @@ namespace FlameTradeSS
             frmPersonsRoleOfPersons frmPersonsRoleOfPersons = new frmPersonsRoleOfPersons();
             CommonTasks.OpenForm(frmPersonsRoleOfPersons);
         }
+
+        private void btnSequenceType_Click(object sender, EventArgs e)
+        {
+            frmSequenceTypes frmSequenceTypes = new frmSequenceTypes();
+            CommonTasks.OpenForm(frmSequenceTypes);
+        }
+
+        private void btnSequences_Click(object sender, EventArgs e)
+        {
+            frmDocumentsSequences frmDocumentsSequences = new frmDocumentsSequences();
+            CommonTasks.OpenForm(frmDocumentsSequences);
+        }
     }
 }

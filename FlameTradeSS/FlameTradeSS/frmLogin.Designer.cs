@@ -189,7 +189,7 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUserName;
         public System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtUserName;
+        public System.Windows.Forms.TextBox txtUserName;
     }
 }
 

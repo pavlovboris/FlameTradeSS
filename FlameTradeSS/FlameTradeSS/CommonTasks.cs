@@ -15,6 +15,24 @@ namespace FlameTradeSS
         {
             if (MessageBox.Show("Сигурни ли сте, че искате да затворите " + Application.ProductName.ToString(), "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                List<Form> openForms = new List<Form>();
+
+                foreach(Form frm in Application.OpenForms)
+                {
+                    openForms.Add(frm);
+                }
+
+                foreach(Form f in openForms)
+                {
+                    if (f.Name != "frmLogin")
+                    {
+                        f.Close();
+                    } else
+                    {
+                        Properties.Settings.Default.frmLoginUserName = frmLogin.Instance.txtUserName.Text;
+                        Properties.Settings.Default.Save();
+                    }
+                }
                 Application.ExitThread();
             }
         }
@@ -160,6 +178,25 @@ namespace FlameTradeSS
             settingwriter.WriteEndDocument();
             //the close the wriiter  
             settingwriter.Close();
+        }
+
+        public static void RestoreForm(Form form, System.Drawing.Size size, FormWindowState state,System.Drawing.Point location) 
+        {
+            if (size.Width == 0 || size.Height == 0)
+            {
+                // first start
+                // optional: add default values
+            }
+            else
+            {
+                form.WindowState = state;
+
+                // we don't want a minimized window at startup
+                if (form.WindowState ==FormWindowState.Minimized) form.WindowState = FormWindowState.Normal;
+
+                form.Location = location;
+                form.Size = size;
+            }
         }
     }
 }

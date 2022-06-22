@@ -36,6 +36,8 @@
             this.btnPersonsRoleOfPersons = new System.Windows.Forms.Button();
             this.btnRolesOdPersons = new System.Windows.Forms.Button();
             this.btnPersons = new System.Windows.Forms.Button();
+            this.btnSequenceType = new System.Windows.Forms.Button();
+            this.btnSequences = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -122,6 +124,30 @@
             this.btnPersons.UseVisualStyleBackColor = true;
             this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
             // 
+            // btnSequenceType
+            // 
+            this.btnSequenceType.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSequenceType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSequenceType.Location = new System.Drawing.Point(189, 94);
+            this.btnSequenceType.Name = "btnSequenceType";
+            this.btnSequenceType.Size = new System.Drawing.Size(75, 41);
+            this.btnSequenceType.TabIndex = 27;
+            this.btnSequenceType.Text = "Sequences Types";
+            this.btnSequenceType.UseVisualStyleBackColor = true;
+            this.btnSequenceType.Click += new System.EventHandler(this.btnSequenceType_Click);
+            // 
+            // btnSequences
+            // 
+            this.btnSequences.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSequences.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSequences.Location = new System.Drawing.Point(189, 49);
+            this.btnSequences.Name = "btnSequences";
+            this.btnSequences.Size = new System.Drawing.Size(75, 39);
+            this.btnSequences.TabIndex = 28;
+            this.btnSequences.Text = "Documents Sequences";
+            this.btnSequences.UseVisualStyleBackColor = true;
+            this.btnSequences.Click += new System.EventHandler(this.btnSequences_Click);
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -142,6 +168,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSequences);
+            this.Controls.Add(this.btnSequenceType);
             this.Controls.Add(this.btnPersonsRoleOfPersons);
             this.Controls.Add(this.btnRolesOdPersons);
             this.Controls.Add(this.btnFunctionRoles);
@@ -173,5 +201,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRolesOdPersons;
         private System.Windows.Forms.Button btnPersonsRoleOfPersons;
+        private System.Windows.Forms.Button btnSequenceType;
+        private System.Windows.Forms.Button btnSequences;
     }
 }

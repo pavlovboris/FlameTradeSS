@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
+
+
 namespace FlameTradeSS
 {
     public partial class frmPartners : Form
@@ -72,6 +74,8 @@ namespace FlameTradeSS
             {
 
             }
+
+            CommonTasks.RestoreForm(this, Properties.Settings.Default.frmPartnersSize, Properties.Settings.Default.frmPartnersState, Properties.Settings.Default.frmPartnersLocation);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -126,6 +130,182 @@ namespace FlameTradeSS
                 CommonTasks.WriteGrideViewSetting(dgvPartners, Name + dgvPartners.Name + CurrentSessionData.CurrentUser.UserName);
             }
             catch { }
+
+            Properties.Settings.Default.frmPartnersState = this.WindowState;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                // save location and size if the state is normal
+                Properties.Settings.Default.frmPartnersLocation = this.Location;
+                Properties.Settings.Default.frmPartnersSize = this.Size;
+            }
+            else
+            {
+                // save the RestoreBounds if the form is minimized or maximized!
+                Properties.Settings.Default.frmPartnersLocation = this.RestoreBounds.Location;
+                Properties.Settings.Default.frmPartnersSize = this.RestoreBounds.Size;
+            }
+
+            // don't forget to save the settings
+            Properties.Settings.Default.Save();
+        }
+
+        private void contextMenuDgv_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void contextMenuDgv_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvPartners.CurrentCell.ColumnIndex== -1 )
+            {
+                e.Cancel = true;
+            } else
+            {
+                e.Cancel = false;
+            }
+
+            if (dgvPartners.CurrentRow != null && dgvPartners.CurrentRow.Index != -1)
+            {
+                Partners selectedPartner = dgvPartners.CurrentRow.DataBoundItem as Partners;
+
+                Customers isCustomer = db.Customers.Where(c => c.PartnerID == selectedPartner.ID).SingleOrDefault();
+                Suppliers isSupplier = db.Suppliers.Where(s => s.PartnerID == selectedPartner.ID).SingleOrDefault();
+
+                ToolStripMenuItem customer = new ToolStripMenuItem();
+                ToolStripMenuItem supplier = new ToolStripMenuItem();
+
+
+                if (isCustomer!=null)
+                {
+                    customer.Text = "Remove from Customers";
+
+                    customer.Click += Customer_RemoveClick;
+                } else
+                {
+                    customer.Text = "Add to Customers";
+
+                    customer.Click += Customer_AddClick;
+                }
+
+                if (isSupplier != null)
+                {
+                    supplier.Text = "Remove from Suppliers";
+
+                    supplier.Click += Supplier_RemoveClick;
+                } else
+                {
+                    supplier.Text = "Add to Suppliers";
+
+                    supplier.Click += Supplier_AddClick;
+                }
+
+                contextMenuDgv.Items.Add(supplier);
+                contextMenuDgv.Items.Add(customer);
+            }
+        }
+
+        private async void Supplier_AddClick(object sender, EventArgs e)
+        {
+            Suppliers suppliers = new Suppliers();
+            Partners partners = dgvPartners.CurrentRow.DataBoundItem as Partners;
+
+            if (partners != null)
+            {
+                try
+                {
+                    suppliers.PartnerID = partners.ID;
+                    db.Suppliers.Add(suppliers);
+                    await db.SaveChangesAsync();
+                }
+                catch { CommonTasks.SendErrorMsg("Партньора не е добавен!!!"); }
+
+            }
+        }
+
+        private async void Supplier_RemoveClick(object sender, EventArgs e)
+        {
+            Partners partners = dgvPartners.CurrentRow.DataBoundItem as Partners;
+
+            if (partners != null)
+            {
+                try
+                {
+                    Suppliers suppliers = db.Suppliers.Where(s => s.PartnerID == partners.ID).SingleOrDefault();
+
+                    if (suppliers != null)
+                    {
+                        db.Suppliers.Remove(suppliers);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                catch { CommonTasks.SendErrorMsg("Партньора не е премахнат!!!"); }
+            }
+        }
+
+        private async void Customer_RemoveClick(object sender, EventArgs e)
+        {
+            Partners partners = dgvPartners.CurrentRow.DataBoundItem as Partners;
+
+            if (partners != null)
+            {
+                try
+                {
+                    Customers customers = db.Customers.Where(c => c.PartnerID == partners.ID).SingleOrDefault();
+
+                    if (customers!=null)
+                    {
+                        db.Customers.Remove(customers);
+                        await db.SaveChangesAsync();
+                    }
+                } catch { CommonTasks.SendErrorMsg("Партньора не е премахнат!!!"); }
+            }
+        }
+
+        private async  void Customer_AddClick(object sender, EventArgs e)
+        {
+            Customers customers = new Customers();
+            Partners partners = dgvPartners.CurrentRow.DataBoundItem as Partners;
+
+            if (partners!=null)
+            {
+                try
+                {
+                    customers.PartnerID = partners.ID;
+                    db.Customers.Add(customers);
+                    await db.SaveChangesAsync();
+                }
+                catch { CommonTasks.SendErrorMsg("Партньора не е добавен!!!"); }
+                
+            }
+        }
+
+        private  void contextMenuDgv_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            contextMenuDgv.Items.Clear();
+        }
+
+        private void dgvPartners_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                
+                if (e.RowIndex != -1 && dgvPartners.Rows[e.RowIndex].DataBoundItem != null)
+                {
+                    dgvPartners.CurrentCell = dgvPartners.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    dgvPartners.Rows[e.RowIndex].Selected = true;
+                }
+            }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtFilter.Text))
+            {
+                partnersBindingSource.DataSource = db.Partners.Where(p => p.Partner_name.Contains(txtFilter.Text)).ToList();
+            } else
+            {
+                partnersBindingSource.DataSource = db.Partners.ToList();
+            }
         }
     }
 }

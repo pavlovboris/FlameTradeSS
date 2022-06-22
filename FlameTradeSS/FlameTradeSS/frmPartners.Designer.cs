@@ -34,6 +34,9 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvPartners = new System.Windows.Forms.DataGridView();
+            this.contextMenuDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.partnernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +63,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(1090, 6);
+            this.btnClose.Location = new System.Drawing.Point(1094, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 49);
             this.btnClose.TabIndex = 8;
@@ -75,7 +78,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1040, 460);
+            this.btnSave.Location = new System.Drawing.Point(1044, 596);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 12;
@@ -92,7 +95,7 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_133_Icon_48;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(98, 460);
+            this.btnRemove.Location = new System.Drawing.Point(98, 596);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 52);
             this.btnRemove.TabIndex = 11;
@@ -109,7 +112,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(12, 460);
+            this.btnAdd.Location = new System.Drawing.Point(12, 596);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 52);
             this.btnAdd.TabIndex = 10;
@@ -140,13 +143,43 @@
             this.groupIDDataGridViewTextBoxColumn,
             this.categoryIDDataGridViewTextBoxColumn,
             this.staticPriceGroupIDDataGridViewTextBoxColumn});
+            this.dgvPartners.ContextMenuStrip = this.contextMenuDgv;
             this.dgvPartners.DataSource = this.partnersBindingSource;
-            this.dgvPartners.Location = new System.Drawing.Point(12, 61);
+            this.dgvPartners.Location = new System.Drawing.Point(12, 82);
+            this.dgvPartners.MultiSelect = false;
             this.dgvPartners.Name = "dgvPartners";
             this.dgvPartners.RowHeadersWidth = 20;
             this.dgvPartners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPartners.Size = new System.Drawing.Size(1121, 399);
+            this.dgvPartners.Size = new System.Drawing.Size(1125, 514);
             this.dgvPartners.TabIndex = 9;
+            this.dgvPartners.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPartners_CellMouseDown);
+            // 
+            // contextMenuDgv
+            // 
+            this.contextMenuDgv.Name = "contextMenuDgv";
+            this.contextMenuDgv.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuDgv.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuDgv_Closing);
+            this.contextMenuDgv.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuDgv_Opening);
+            this.contextMenuDgv.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuDgv_ItemClicked);
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(13, 56);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(35, 13);
+            this.lblFilter.TabIndex = 13;
+            this.lblFilter.Text = "Filter :";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtFilter.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFilter.Location = new System.Drawing.Point(54, 56);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(381, 13);
+            this.txtFilter.TabIndex = 14;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // partnernameDataGridViewTextBoxColumn
             // 
@@ -249,7 +282,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1145, 524);
+            this.ClientSize = new System.Drawing.Size(1149, 660);
+            this.Controls.Add(this.txtFilter);
+            this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -268,6 +303,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.partnerStaticPriceGroupBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -279,6 +315,9 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dgvPartners;
         private System.Windows.Forms.BindingSource partnersBindingSource;
+        private System.Windows.Forms.BindingSource partnerGroupsBindingSource;
+        private System.Windows.Forms.BindingSource partnerCategoryBindingSource;
+        private System.Windows.Forms.BindingSource partnerStaticPriceGroupBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn partnernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
@@ -286,10 +325,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn groupIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource partnerGroupsBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn categoryIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource partnerCategoryBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn staticPriceGroupIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource partnerStaticPriceGroupBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDgv;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox txtFilter;
     }
 }

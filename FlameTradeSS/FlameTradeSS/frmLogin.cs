@@ -55,10 +55,12 @@ namespace FlameTradeSS
         private void frmLogin_Load(object sender, EventArgs e)
         {
             _instance = this;
+
+            txtUserName.Text = Properties.Settings.Default.frmLoginUserName;
         }
 
         private void pictureBoxExit_Click(object sender, EventArgs e)
-        {
+        {           
             CommonTasks.ExitApplication();
         }
 

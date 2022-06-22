@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -76,6 +91,18 @@
     </Compile>
     <Compile Include="frmPartnerCategory.Designer.cs">
       <DependentUpon>frmPartnerCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentsSequences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentsSequences.Designer.cs">
+      <DependentUpon>frmDocumentsSequences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSequenceTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSequenceTypes.Designer.cs">
+      <DependentUpon>frmSequenceTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPartnerGroups.cs">
       <SubType>Form</SubType>
@@ -329,6 +356,12 @@
     <EmbeddedResource Include="frmPartnerCategory.resx">
       <DependentUpon>frmPartnerCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentsSequences.resx">
+      <DependentUpon>frmDocumentsSequences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSequenceTypes.resx">
+      <DependentUpon>frmSequenceTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPartnerGroups.resx">
       <DependentUpon>frmPartnerGroups.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +404,7 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DocumentSequences.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\PartnerCategory.datasource" />
@@ -383,6 +417,7 @@
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
+    <None Include="Properties\DataSources\SequenceType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -718,6 +753,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
