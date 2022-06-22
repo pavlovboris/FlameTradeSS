@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace FlameTradeSS
 {
@@ -52,12 +54,20 @@ namespace FlameTradeSS
  
             rolesBindingSource.DataSource = db.Roles.ToList();
             personsFullNameViewBindingSource.DataSource = db.PersonsFullNameView.ToList();
-            
+
+            try
+            {
+                CommonTasks.ReadDataGridViewSetting(dgvUsers, Name + dgvUsers.Name + CurrentSessionData.CurrentUser.UserName);
+
+            } catch { }
+
+
         }
 
         private void dgvUsers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 2)
+            
+            if (e.ColumnIndex == passwordDataGridViewTextBoxColumn.Index)
             {
                 if (e.Value != null)
                 {
@@ -133,6 +143,11 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+        }
+
+        private void frmUsersManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CommonTasks.WriteGrideViewSetting(dgvUsers, Name + dgvUsers.Name + CurrentSessionData.CurrentUser.UserName);
         }
     }
 }

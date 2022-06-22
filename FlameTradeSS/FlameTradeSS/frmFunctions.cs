@@ -78,6 +78,11 @@ namespace FlameTradeSS
             controllNameDataGridViewTextBoxColumn.DataSource = controlsList;
             controllNameDataGridViewTextBoxColumn.ValueMember = "Name";
             controllNameDataGridViewTextBoxColumn.DisplayMember= "Name";
+
+            try
+            {
+                CommonTasks.ReadDataGridViewSetting(dgvFunctions, Name + dgvFunctions.Name + CurrentSessionData.CurrentUser.UserName);
+            } catch { }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -137,6 +142,14 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+        }
+
+        private void frmFunctions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvFunctions, Name + dgvFunctions.Name + CurrentSessionData.CurrentUser.UserName);
+            } catch { }
         }
     }
 }

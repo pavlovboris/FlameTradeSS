@@ -56,7 +56,7 @@
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.btnClose.Location = new System.Drawing.Point(692, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 47);
             this.btnClose.TabIndex = 26;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -81,7 +81,7 @@
             this.personPhoneDataGridViewTextBoxColumn,
             this.commentDataGridViewTextBoxColumn});
             this.dgvPersons.DataSource = this.personsBindingSource;
-            this.dgvPersons.Location = new System.Drawing.Point(12, 53);
+            this.dgvPersons.Location = new System.Drawing.Point(12, 57);
             this.dgvPersons.MultiSelect = false;
             this.dgvPersons.Name = "dgvPersons";
             this.dgvPersons.RowHeadersWidth = 20;

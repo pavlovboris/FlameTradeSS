@@ -16,7 +16,7 @@ namespace FlameTradeSS
             {
                 if (f.FormName==form.Name)
                 {
-                    var restriction = (from rest in db.FunctionRoles where rest.FunctionID == f.ID && user.RoleID == rest.RoleID select rest).SingleOrDefault();
+                    var restriction = (from rest in db.FunctionRoles where rest.FunctionID == f.ID && user.RoleID == rest.RoleID && user.RoleID!=1 select rest).SingleOrDefault();
                     if (restriction != null)
                     {
                         switch (f.ControlAction)

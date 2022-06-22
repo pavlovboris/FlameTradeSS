@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace FlameTradeSS
 {
@@ -62,6 +64,14 @@ namespace FlameTradeSS
             partnerGroupsBindingSource.DataSource = db.PartnerGroups.ToList();
             partnerCategoryBindingSource.DataSource = db.PartnerCategory.ToList();
             partnerStaticPriceGroupBindingSource.DataSource = db.PartnerStaticPriceGroup.ToList();
+
+            try
+            {
+                CommonTasks.ReadDataGridViewSetting(dgvPartners, Name + dgvPartners.Name + CurrentSessionData.CurrentUser.UserName);
+            } catch
+            {
+
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -106,6 +116,16 @@ namespace FlameTradeSS
                     }
                 }
             }
+        }
+
+
+        private void frmPartners_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvPartners, Name + dgvPartners.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
         }
     }
 }

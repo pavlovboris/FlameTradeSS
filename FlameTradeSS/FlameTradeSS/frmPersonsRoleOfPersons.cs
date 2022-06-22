@@ -56,7 +56,7 @@ namespace FlameTradeSS
 
         private void frmPersonsRoleOfPersons_Load(object sender, EventArgs e)
         {
-            UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+            //UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
             personsFullNameViewBindingSource.DataSource = db.PersonsFullNameView.ToList();
             roleOfPersonsBindingSource.DataSource = db.RoleOfPersons.ToList();

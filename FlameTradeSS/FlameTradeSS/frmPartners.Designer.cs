@@ -60,9 +60,9 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(993, 6);
+            this.btnClose.Location = new System.Drawing.Point(1090, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 49);
             this.btnClose.TabIndex = 8;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -75,7 +75,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(943, 460);
+            this.btnSave.Location = new System.Drawing.Point(1040, 460);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 12;
@@ -122,6 +122,7 @@
             // 
             this.dgvPartners.AllowUserToAddRows = false;
             this.dgvPartners.AllowUserToDeleteRows = false;
+            this.dgvPartners.AllowUserToOrderColumns = true;
             this.dgvPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -140,11 +141,11 @@
             this.categoryIDDataGridViewTextBoxColumn,
             this.staticPriceGroupIDDataGridViewTextBoxColumn});
             this.dgvPartners.DataSource = this.partnersBindingSource;
-            this.dgvPartners.Location = new System.Drawing.Point(12, 55);
+            this.dgvPartners.Location = new System.Drawing.Point(12, 61);
             this.dgvPartners.Name = "dgvPartners";
             this.dgvPartners.RowHeadersWidth = 20;
             this.dgvPartners.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPartners.Size = new System.Drawing.Size(1024, 399);
+            this.dgvPartners.Size = new System.Drawing.Size(1121, 399);
             this.dgvPartners.TabIndex = 9;
             // 
             // partnernameDataGridViewTextBoxColumn
@@ -248,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1048, 524);
+            this.ClientSize = new System.Drawing.Size(1145, 524);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -258,6 +259,7 @@
             this.Name = "frmPartners";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartners";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPartners_FormClosing);
             this.Load += new System.EventHandler(this.frmPartners_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartners_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartners)).EndInit();

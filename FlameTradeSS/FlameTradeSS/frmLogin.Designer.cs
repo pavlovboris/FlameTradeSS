@@ -124,7 +124,7 @@
             this.pictureBoxExit.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.pictureBoxExit.Location = new System.Drawing.Point(-1, 0);
             this.pictureBoxExit.Name = "pictureBoxExit";
-            this.pictureBoxExit.Size = new System.Drawing.Size(60, 49);
+            this.pictureBoxExit.Size = new System.Drawing.Size(60, 54);
             this.pictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxExit.TabIndex = 15;
             this.pictureBoxExit.TabStop = false;
@@ -151,6 +151,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(450, 226);
+            this.ControlBox = false;
             this.Controls.Add(this.pictureBoxLogIn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblPassword);
@@ -163,6 +164,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(450, 226);
+            this.MinimumSize = new System.Drawing.Size(450, 226);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User Login Form";

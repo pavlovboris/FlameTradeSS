@@ -60,7 +60,7 @@ namespace FlameTradeSS
 
         private void frmAdminTools_Load(object sender, EventArgs e)
         {
-            UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+            //UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -50,7 +50,7 @@
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.btnClose.Location = new System.Drawing.Point(395, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 49);
             this.btnClose.TabIndex = 27;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -70,7 +70,7 @@
             this.roleNameDataGridViewTextBoxColumn,
             this.roleDescriptionDataGridViewTextBoxColumn});
             this.dgvRolesOfPersons.DataSource = this.roleOfPersonsBindingSource;
-            this.dgvRolesOfPersons.Location = new System.Drawing.Point(12, 53);
+            this.dgvRolesOfPersons.Location = new System.Drawing.Point(12, 59);
             this.dgvRolesOfPersons.Name = "dgvRolesOfPersons";
             this.dgvRolesOfPersons.RowHeadersWidth = 20;
             this.dgvRolesOfPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

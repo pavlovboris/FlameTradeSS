@@ -61,11 +61,11 @@
             this.controllNameDataGridViewTextBoxColumn,
             this.controlActionDataGridViewTextBoxColumn});
             this.dgvFunctions.DataSource = this.functionsBindingSource;
-            this.dgvFunctions.Location = new System.Drawing.Point(13, 55);
+            this.dgvFunctions.Location = new System.Drawing.Point(13, 65);
             this.dgvFunctions.Name = "dgvFunctions";
             this.dgvFunctions.RowHeadersWidth = 20;
             this.dgvFunctions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFunctions.Size = new System.Drawing.Size(522, 320);
+            this.dgvFunctions.Size = new System.Drawing.Size(754, 338);
             this.dgvFunctions.TabIndex = 0;
             // 
             // functionNameDataGridViewTextBoxColumn
@@ -118,7 +118,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(442, 386);
+            this.btnSave.Location = new System.Drawing.Point(674, 404);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 6;
@@ -135,7 +135,7 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_133_Icon_48;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(99, 386);
+            this.btnRemove.Location = new System.Drawing.Point(99, 404);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 52);
             this.btnRemove.TabIndex = 5;
@@ -152,7 +152,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(13, 386);
+            this.btnAdd.Location = new System.Drawing.Point(13, 404);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 52);
             this.btnAdd.TabIndex = 4;
@@ -167,9 +167,9 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(492, 6);
+            this.btnClose.Location = new System.Drawing.Point(724, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 7;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -179,7 +179,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(547, 450);
+            this.ClientSize = new System.Drawing.Size(779, 468);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
@@ -190,6 +190,7 @@
             this.Name = "frmFunctions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Restrictions";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFunctions_FormClosing);
             this.Load += new System.EventHandler(this.frmFunctions_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmFunctions_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunctions)).EndInit();

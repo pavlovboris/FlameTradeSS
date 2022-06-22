@@ -33,21 +33,17 @@
             this.btnRoles = new System.Windows.Forms.Button();
             this.btnFunctions = new System.Windows.Forms.Button();
             this.btnFunctionRoles = new System.Windows.Forms.Button();
-            this.grpBoxUsers = new System.Windows.Forms.GroupBox();
-            this.grpBoxPersons = new System.Windows.Forms.GroupBox();
             this.btnPersonsRoleOfPersons = new System.Windows.Forms.Button();
             this.btnRolesOdPersons = new System.Windows.Forms.Button();
             this.btnPersons = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.grpBoxUsers.SuspendLayout();
-            this.grpBoxPersons.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUsers
             // 
             this.btnUsers.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsers.Location = new System.Drawing.Point(17, 36);
+            this.btnUsers.Location = new System.Drawing.Point(27, 49);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(75, 23);
             this.btnUsers.TabIndex = 0;
@@ -59,7 +55,7 @@
             // 
             this.btnRoles.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRoles.Location = new System.Drawing.Point(17, 65);
+            this.btnRoles.Location = new System.Drawing.Point(27, 78);
             this.btnRoles.Name = "btnRoles";
             this.btnRoles.Size = new System.Drawing.Size(75, 23);
             this.btnRoles.TabIndex = 1;
@@ -70,7 +66,7 @@
             // 
             this.btnFunctions.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnFunctions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunctions.Location = new System.Drawing.Point(17, 137);
+            this.btnFunctions.Location = new System.Drawing.Point(27, 150);
             this.btnFunctions.Name = "btnFunctions";
             this.btnFunctions.Size = new System.Drawing.Size(75, 23);
             this.btnFunctions.TabIndex = 2;
@@ -82,7 +78,7 @@
             // 
             this.btnFunctionRoles.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnFunctionRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFunctionRoles.Location = new System.Drawing.Point(17, 94);
+            this.btnFunctionRoles.Location = new System.Drawing.Point(27, 107);
             this.btnFunctionRoles.Name = "btnFunctionRoles";
             this.btnFunctionRoles.Size = new System.Drawing.Size(75, 37);
             this.btnFunctionRoles.TabIndex = 3;
@@ -90,36 +86,11 @@
             this.btnFunctionRoles.UseVisualStyleBackColor = true;
             this.btnFunctionRoles.Click += new System.EventHandler(this.btnFunctionRoles_Click);
             // 
-            // grpBoxUsers
-            // 
-            this.grpBoxUsers.Controls.Add(this.btnFunctionRoles);
-            this.grpBoxUsers.Controls.Add(this.btnUsers);
-            this.grpBoxUsers.Controls.Add(this.btnFunctions);
-            this.grpBoxUsers.Controls.Add(this.btnRoles);
-            this.grpBoxUsers.Location = new System.Drawing.Point(13, 13);
-            this.grpBoxUsers.Name = "grpBoxUsers";
-            this.grpBoxUsers.Size = new System.Drawing.Size(122, 291);
-            this.grpBoxUsers.TabIndex = 4;
-            this.grpBoxUsers.TabStop = false;
-            this.grpBoxUsers.Text = "Users";
-            // 
-            // grpBoxPersons
-            // 
-            this.grpBoxPersons.Controls.Add(this.btnPersonsRoleOfPersons);
-            this.grpBoxPersons.Controls.Add(this.btnRolesOdPersons);
-            this.grpBoxPersons.Controls.Add(this.btnPersons);
-            this.grpBoxPersons.Location = new System.Drawing.Point(155, 13);
-            this.grpBoxPersons.Name = "grpBoxPersons";
-            this.grpBoxPersons.Size = new System.Drawing.Size(122, 291);
-            this.grpBoxPersons.TabIndex = 5;
-            this.grpBoxPersons.TabStop = false;
-            this.grpBoxPersons.Text = "Persons";
-            // 
             // btnPersonsRoleOfPersons
             // 
             this.btnPersonsRoleOfPersons.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnPersonsRoleOfPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersonsRoleOfPersons.Location = new System.Drawing.Point(24, 94);
+            this.btnPersonsRoleOfPersons.Location = new System.Drawing.Point(108, 107);
             this.btnPersonsRoleOfPersons.Name = "btnPersonsRoleOfPersons";
             this.btnPersonsRoleOfPersons.Size = new System.Drawing.Size(75, 37);
             this.btnPersonsRoleOfPersons.TabIndex = 4;
@@ -131,7 +102,7 @@
             // 
             this.btnRolesOdPersons.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnRolesOdPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRolesOdPersons.Location = new System.Drawing.Point(24, 65);
+            this.btnRolesOdPersons.Location = new System.Drawing.Point(108, 78);
             this.btnRolesOdPersons.Name = "btnRolesOdPersons";
             this.btnRolesOdPersons.Size = new System.Drawing.Size(75, 23);
             this.btnRolesOdPersons.TabIndex = 5;
@@ -143,7 +114,7 @@
             // 
             this.btnPersons.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersons.Location = new System.Drawing.Point(24, 36);
+            this.btnPersons.Location = new System.Drawing.Point(108, 49);
             this.btnPersons.Name = "btnPersons";
             this.btnPersons.Size = new System.Drawing.Size(75, 23);
             this.btnPersons.TabIndex = 4;
@@ -159,7 +130,7 @@
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.btnClose.Location = new System.Drawing.Point(682, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 48);
             this.btnClose.TabIndex = 26;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -170,18 +141,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
-            this.Controls.Add(this.grpBoxPersons);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnPersonsRoleOfPersons);
+            this.Controls.Add(this.btnRolesOdPersons);
+            this.Controls.Add(this.btnFunctionRoles);
+            this.Controls.Add(this.btnPersons);
+            this.Controls.Add(this.btnUsers);
+            this.Controls.Add(this.btnFunctions);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.grpBoxUsers);
+            this.Controls.Add(this.btnRoles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(735, 316);
+            this.MinimumSize = new System.Drawing.Size(735, 316);
             this.Name = "frmAdminTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6";
             this.Load += new System.EventHandler(this.frmAdminTools_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmAdminTools_Paint);
-            this.grpBoxUsers.ResumeLayout(false);
-            this.grpBoxPersons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,8 +169,6 @@
         private System.Windows.Forms.Button btnRoles;
         private System.Windows.Forms.Button btnFunctions;
         private System.Windows.Forms.Button btnFunctionRoles;
-        private System.Windows.Forms.GroupBox grpBoxUsers;
-        private System.Windows.Forms.GroupBox grpBoxPersons;
         private System.Windows.Forms.Button btnPersons;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRolesOdPersons;

@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPartnerGroups));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvPartnerGroups = new System.Windows.Forms.DataGridView();
+            this.groupNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partnerGroupsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.partnerGroupsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartnerGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnerGroupsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +49,7 @@
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.btnClose.Location = new System.Drawing.Point(292, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 45);
+            this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -74,6 +74,18 @@
             this.dgvPartnerGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPartnerGroups.Size = new System.Drawing.Size(323, 346);
             this.dgvPartnerGroups.TabIndex = 10;
+            // 
+            // groupNameDataGridViewTextBoxColumn
+            // 
+            this.groupNameDataGridViewTextBoxColumn.DataPropertyName = "GroupName";
+            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Име на Група";
+            this.groupNameDataGridViewTextBoxColumn.MaxInputLength = 20;
+            this.groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
+            this.groupNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // partnerGroupsBindingSource
+            // 
+            this.partnerGroupsBindingSource.DataSource = typeof(FlameTradeSS.PartnerGroups);
             // 
             // btnAdd
             // 
@@ -125,18 +137,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // partnerGroupsBindingSource
-            // 
-            this.partnerGroupsBindingSource.DataSource = typeof(FlameTradeSS.PartnerGroups);
-            // 
-            // groupNameDataGridViewTextBoxColumn
-            // 
-            this.groupNameDataGridViewTextBoxColumn.DataPropertyName = "GroupName";
-            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Име на Група";
-            this.groupNameDataGridViewTextBoxColumn.MaxInputLength = 20;
-            this.groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
-            this.groupNameDataGridViewTextBoxColumn.Width = 300;
             // 
             // frmPartnerGroups
             // 

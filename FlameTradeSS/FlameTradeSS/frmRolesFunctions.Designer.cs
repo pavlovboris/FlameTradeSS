@@ -180,9 +180,9 @@
             this.btnMoveRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveRight.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_055_Icon_64;
-            this.btnMoveRight.Location = new System.Drawing.Point(759, 191);
+            this.btnMoveRight.Location = new System.Drawing.Point(759, 180);
             this.btnMoveRight.Name = "btnMoveRight";
-            this.btnMoveRight.Size = new System.Drawing.Size(75, 56);
+            this.btnMoveRight.Size = new System.Drawing.Size(75, 67);
             this.btnMoveRight.TabIndex = 4;
             this.btnMoveRight.UseVisualStyleBackColor = true;
             this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
@@ -194,7 +194,7 @@
             this.btnMoveLeft.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_056_Icon_64;
             this.btnMoveLeft.Location = new System.Drawing.Point(759, 253);
             this.btnMoveLeft.Name = "btnMoveLeft";
-            this.btnMoveLeft.Size = new System.Drawing.Size(75, 56);
+            this.btnMoveLeft.Size = new System.Drawing.Size(75, 66);
             this.btnMoveLeft.TabIndex = 5;
             this.btnMoveLeft.UseVisualStyleBackColor = true;
             this.btnMoveLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
@@ -207,7 +207,7 @@
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
             this.btnClose.Location = new System.Drawing.Point(1137, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 43);
+            this.btnClose.Size = new System.Drawing.Size(49, 45);
             this.btnClose.TabIndex = 6;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);

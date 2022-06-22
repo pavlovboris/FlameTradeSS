@@ -57,7 +57,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(719, 6);
+            this.btnClose.Location = new System.Drawing.Point(858, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 7;
@@ -68,7 +68,7 @@
             // 
             this.lblPartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPartner.AutoSize = true;
-            this.lblPartner.Location = new System.Drawing.Point(378, 31);
+            this.lblPartner.Location = new System.Drawing.Point(517, 31);
             this.lblPartner.Name = "lblPartner";
             this.lblPartner.Size = new System.Drawing.Size(50, 13);
             this.lblPartner.TabIndex = 9;
@@ -82,7 +82,7 @@
             this.cmbPartner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPartner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbPartner.FormattingEnabled = true;
-            this.cmbPartner.Location = new System.Drawing.Point(434, 28);
+            this.cmbPartner.Location = new System.Drawing.Point(573, 28);
             this.cmbPartner.Name = "cmbPartner";
             this.cmbPartner.Size = new System.Drawing.Size(279, 21);
             this.cmbPartner.TabIndex = 8;
@@ -110,7 +110,7 @@
             this.dgvLeft.ReadOnly = true;
             this.dgvLeft.RowHeadersWidth = 20;
             this.dgvLeft.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLeft.Size = new System.Drawing.Size(327, 382);
+            this.dgvLeft.Size = new System.Drawing.Size(450, 382);
             this.dgvLeft.TabIndex = 10;
             // 
             // Person_Name
@@ -147,7 +147,7 @@
             this.btnMoveLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveLeft.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_056_Icon_64;
-            this.btnMoveLeft.Location = new System.Drawing.Point(354, 230);
+            this.btnMoveLeft.Location = new System.Drawing.Point(481, 233);
             this.btnMoveLeft.Name = "btnMoveLeft";
             this.btnMoveLeft.Size = new System.Drawing.Size(75, 67);
             this.btnMoveLeft.TabIndex = 12;
@@ -159,7 +159,7 @@
             this.btnMoveRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveRight.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_055_Icon_64;
-            this.btnMoveRight.Location = new System.Drawing.Point(354, 147);
+            this.btnMoveRight.Location = new System.Drawing.Point(481, 150);
             this.btnMoveRight.Name = "btnMoveRight";
             this.btnMoveRight.Size = new System.Drawing.Size(75, 68);
             this.btnMoveRight.TabIndex = 11;
@@ -177,7 +177,7 @@
             this.dgvRight.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.personIDDataGridViewTextBoxColumn});
             this.dgvRight.DataSource = this.partnerPersonsBindingSource;
-            this.dgvRight.Location = new System.Drawing.Point(435, 65);
+            this.dgvRight.Location = new System.Drawing.Point(574, 65);
             this.dgvRight.Name = "dgvRight";
             this.dgvRight.ReadOnly = true;
             this.dgvRight.RowHeadersWidth = 20;
@@ -208,7 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(774, 480);
+            this.ClientSize = new System.Drawing.Size(913, 480);
             this.Controls.Add(this.dgvRight);
             this.Controls.Add(this.btnMoveLeft);
             this.Controls.Add(this.btnMoveRight);
@@ -221,6 +221,7 @@
             this.Name = "frmPartnersPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartnersPersons";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPartnersPersons_FormClosing);
             this.Load += new System.EventHandler(this.frmPartnersPersons_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnersPersons_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();

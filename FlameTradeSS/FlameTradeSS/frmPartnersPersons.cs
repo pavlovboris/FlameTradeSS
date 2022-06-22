@@ -63,6 +63,16 @@ namespace FlameTradeSS
             {
                 partnerPersonsBindingSource.DataSource = db.PartnerPersons.Where(pp=> pp.PartnerID == partners.ID).ToList();
             }
+
+            try
+            {
+                CommonTasks.ReadDataGridViewSetting(dgvLeft, Name + dgvLeft.Name + CurrentSessionData.CurrentUser.UserName);
+                CommonTasks.ReadDataGridViewSetting(dgvRight, Name + dgvRight.Name + CurrentSessionData.CurrentUser.UserName);
+            } catch
+            {
+
+            }
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -100,7 +110,11 @@ namespace FlameTradeSS
                             }
                         }
                     }
-                    await db.SaveChangesAsync();
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                    catch { CommonTasks.SendErrorMsg("Нещо се обърка, промените НЕ са запаметени"); }
                 }
             }
         }
@@ -121,8 +135,24 @@ namespace FlameTradeSS
                             partnerPersonsBindingSource.Remove(partnerPersons);
                         }
                     }
-                    await db.SaveChangesAsync();
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    } catch { CommonTasks.SendErrorMsg("Нещо се обърка, промените НЕ са запаметени"); }
                 }
+            }
+        }
+
+        private void frmPartnersPersons_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvLeft, Name + dgvLeft.Name + CurrentSessionData.CurrentUser.UserName);
+                CommonTasks.WriteGrideViewSetting(dgvRight, Name + dgvRight.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch
+            {
+
             }
         }
     }
