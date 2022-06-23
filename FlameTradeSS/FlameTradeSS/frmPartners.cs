@@ -177,24 +177,24 @@ namespace FlameTradeSS
 
                 if (isCustomer!=null)
                 {
-                    customer.Text = "Remove from Customers";
+                    customer.Text = "Премахни от КЛИЕНТИ";
 
                     customer.Click += Customer_RemoveClick;
                 } else
                 {
-                    customer.Text = "Add to Customers";
+                    customer.Text = "Добави към КЛИЕНТИ";
 
                     customer.Click += Customer_AddClick;
                 }
 
                 if (isSupplier != null)
                 {
-                    supplier.Text = "Remove from Suppliers";
+                    supplier.Text = "Премахни от ДОСТАВЧИЦИ";
 
                     supplier.Click += Supplier_RemoveClick;
                 } else
                 {
-                    supplier.Text = "Add to Suppliers";
+                    supplier.Text = "Добави към ДОСТАВЧИЦИ";
 
                     supplier.Click += Supplier_AddClick;
                 }

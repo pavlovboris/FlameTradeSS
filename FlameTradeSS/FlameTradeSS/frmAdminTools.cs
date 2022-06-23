@@ -103,5 +103,11 @@ namespace FlameTradeSS
             frmDocumentsSequences frmDocumentsSequences = new frmDocumentsSequences();
             CommonTasks.OpenForm(frmDocumentsSequences);
         }
+
+        private void btnTransactionType_Click(object sender, EventArgs e)
+        {
+            frmTransactionTypes frmTransactionTypes = new frmTransactionTypes();
+            CommonTasks.OpenForm(frmTransactionTypes);
+        }
     }
 }

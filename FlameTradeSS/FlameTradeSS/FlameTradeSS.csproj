@@ -86,6 +86,12 @@
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjects.Designer.cs">
+      <DependentUpon>frmProjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPartnerCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,12 @@
     </Compile>
     <Compile Include="frmDocumentsSequences.Designer.cs">
       <DependentUpon>frmDocumentsSequences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTransactionTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTransactionTypes.Designer.cs">
+      <DependentUpon>frmTransactionTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSequenceTypes.cs">
       <SubType>Form</SubType>
@@ -353,11 +365,17 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProjects.resx">
+      <DependentUpon>frmProjects.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPartnerCategory.resx">
       <DependentUpon>frmPartnerCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentsSequences.resx">
       <DependentUpon>frmDocumentsSequences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTransactionTypes.resx">
+      <DependentUpon>frmTransactionTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSequenceTypes.resx">
       <DependentUpon>frmSequenceTypes.cs</DependentUpon>
@@ -407,6 +425,7 @@
     <None Include="Properties\DataSources\DocumentSequences.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
+    <None Include="Properties\DataSources\LinesType.datasource" />
     <None Include="Properties\DataSources\PartnerCategory.datasource" />
     <None Include="Properties\DataSources\PartnerGroups.datasource" />
     <None Include="Properties\DataSources\PartnerPersons.datasource" />
@@ -415,9 +434,11 @@
     <None Include="Properties\DataSources\Persons.datasource" />
     <None Include="Properties\DataSources\PersonsFullNameView.datasource" />
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
+    <None Include="Properties\DataSources\Project.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequenceType.datasource" />
+    <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

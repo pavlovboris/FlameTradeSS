@@ -137,7 +137,7 @@ namespace FlameTradeSS
             }
         }
 
-        private void frmMain_Paint(object sender, PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
             ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
@@ -151,6 +151,11 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+        }
+
+        private void frmMain_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
 
         private void btnPartnersMng_Click(object sender, EventArgs e)
@@ -199,6 +204,12 @@ namespace FlameTradeSS
 
             // don't forget to save the settings
             Properties.Settings.Default.Save();
+        }
+
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            frmProjects frmProjects = new frmProjects();
+            CommonTasks.OpenForm(frmProjects);
         }
     }
 }

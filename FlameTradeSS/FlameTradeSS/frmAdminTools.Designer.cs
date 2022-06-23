@@ -39,6 +39,7 @@
             this.btnSequenceType = new System.Windows.Forms.Button();
             this.btnSequences = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnTransactionType = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -161,6 +162,18 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnTransactionType
+            // 
+            this.btnTransactionType.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnTransactionType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransactionType.Location = new System.Drawing.Point(189, 141);
+            this.btnTransactionType.Name = "btnTransactionType";
+            this.btnTransactionType.Size = new System.Drawing.Size(75, 41);
+            this.btnTransactionType.TabIndex = 29;
+            this.btnTransactionType.Text = "Transaction Types";
+            this.btnTransactionType.UseVisualStyleBackColor = true;
+            this.btnTransactionType.Click += new System.EventHandler(this.btnTransactionType_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,6 +181,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
             this.ControlBox = false;
+            this.Controls.Add(this.btnTransactionType);
             this.Controls.Add(this.btnSequences);
             this.Controls.Add(this.btnSequenceType);
             this.Controls.Add(this.btnPersonsRoleOfPersons);
@@ -203,5 +217,6 @@
         private System.Windows.Forms.Button btnPersonsRoleOfPersons;
         private System.Windows.Forms.Button btnSequenceType;
         private System.Windows.Forms.Button btnSequences;
+        private System.Windows.Forms.Button btnTransactionType;
     }
 }
