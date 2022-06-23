@@ -58,6 +58,18 @@ namespace FlameTradeSS
             }
         }
 
+        public static DialogResult SendQuestionMsg(string message)
+        {
+            DialogResult dialog = MessageBox.Show(message, "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
+            {
+                return DialogResult.Yes;
+            } else if (dialog==DialogResult.No)
+            {
+                return DialogResult.No;
+            } else { return DialogResult.Cancel; }
+        }
+
         public static void OpenForm(Form form)
         {
             List<Form> openForms = new List<Form>();
