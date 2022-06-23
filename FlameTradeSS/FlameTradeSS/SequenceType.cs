@@ -24,6 +24,7 @@ namespace FlameTradeSS
         public string TypeName { get; set; }
         public string TypeDescription { get; set; }
         public string PartnerType { get; set; }
+        public string NumberingReference { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentSequences> DocumentSequences { get; set; }

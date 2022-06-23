@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSequenceTypes));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSequenceTypes = new System.Windows.Forms.DataGridView();
+            this.sequenceTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.sequenceTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partnerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.NumberingReference = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSequenceTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceTypeBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(340, 6);
+            this.btnClose.Location = new System.Drawing.Point(492, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
@@ -71,14 +72,19 @@
             this.dgvSequenceTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.typeNameDataGridViewTextBoxColumn,
             this.typeDescriptionDataGridViewTextBoxColumn,
-            this.partnerTypeDataGridViewTextBoxColumn});
+            this.partnerTypeDataGridViewTextBoxColumn,
+            this.NumberingReference});
             this.dgvSequenceTypes.DataSource = this.sequenceTypeBindingSource;
             this.dgvSequenceTypes.Location = new System.Drawing.Point(12, 65);
             this.dgvSequenceTypes.Name = "dgvSequenceTypes";
             this.dgvSequenceTypes.RowHeadersWidth = 20;
             this.dgvSequenceTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSequenceTypes.Size = new System.Drawing.Size(371, 346);
+            this.dgvSequenceTypes.Size = new System.Drawing.Size(523, 346);
             this.dgvSequenceTypes.TabIndex = 10;
+            // 
+            // sequenceTypeBindingSource
+            // 
+            this.sequenceTypeBindingSource.DataSource = typeof(FlameTradeSS.SequenceType);
             // 
             // btnAdd
             // 
@@ -122,7 +128,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(290, 417);
+            this.btnSave.Location = new System.Drawing.Point(442, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -130,10 +136,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // sequenceTypeBindingSource
-            // 
-            this.sequenceTypeBindingSource.DataSource = typeof(FlameTradeSS.SequenceType);
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
@@ -163,12 +165,26 @@
             this.partnerTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.partnerTypeDataGridViewTextBoxColumn.ToolTipText = "Customers / Suppliers";
             // 
+            // NumberingReference
+            // 
+            this.NumberingReference.DataPropertyName = "NumberingReference";
+            this.NumberingReference.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.NumberingReference.HeaderText = "Numbering Reference";
+            this.NumberingReference.Items.AddRange(new object[] {
+            "Standart Numbering",
+            "Invoice Numbering ",
+            "none"});
+            this.NumberingReference.Name = "NumberingReference";
+            this.NumberingReference.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NumberingReference.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NumberingReference.Width = 150;
+            // 
             // frmSequenceTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(395, 481);
+            this.ClientSize = new System.Drawing.Size(547, 481);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
@@ -177,7 +193,7 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(395, 481);
+            this.MaximumSize = new System.Drawing.Size(547, 481);
             this.MinimumSize = new System.Drawing.Size(395, 481);
             this.Name = "frmSequenceTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -202,5 +218,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn typeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDescriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn partnerTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn NumberingReference;
     }
 }

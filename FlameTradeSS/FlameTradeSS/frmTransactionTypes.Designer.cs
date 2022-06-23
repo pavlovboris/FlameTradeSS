@@ -32,17 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransactionTypes));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvTransactionTypes = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.linesTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionMultiplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.linesRelationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.linesTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -81,6 +81,41 @@
             this.dgvTransactionTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTransactionTypes.Size = new System.Drawing.Size(379, 346);
             this.dgvTransactionTypes.TabIndex = 10;
+            // 
+            // typeNameDataGridViewTextBoxColumn
+            // 
+            this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
+            this.typeNameDataGridViewTextBoxColumn.HeaderText = "Type Name";
+            this.typeNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
+            // 
+            // transactionMultiplierDataGridViewTextBoxColumn
+            // 
+            this.transactionMultiplierDataGridViewTextBoxColumn.DataPropertyName = "TransactionMultiplier";
+            this.transactionMultiplierDataGridViewTextBoxColumn.HeaderText = "Transaction Multiplier";
+            this.transactionMultiplierDataGridViewTextBoxColumn.MaxInputLength = 100;
+            this.transactionMultiplierDataGridViewTextBoxColumn.Name = "transactionMultiplierDataGridViewTextBoxColumn";
+            this.transactionMultiplierDataGridViewTextBoxColumn.Width = 156;
+            // 
+            // linesRelationDataGridViewTextBoxColumn
+            // 
+            this.linesRelationDataGridViewTextBoxColumn.DataPropertyName = "LinesRelation";
+            this.linesRelationDataGridViewTextBoxColumn.DataSource = this.linesTypeBindingSource;
+            this.linesRelationDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.linesRelationDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.linesRelationDataGridViewTextBoxColumn.HeaderText = "Lines Type";
+            this.linesRelationDataGridViewTextBoxColumn.Name = "linesRelationDataGridViewTextBoxColumn";
+            this.linesRelationDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.linesRelationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.linesRelationDataGridViewTextBoxColumn.ValueMember = "ID";
+            // 
+            // linesTypeBindingSource
+            // 
+            this.linesTypeBindingSource.DataSource = typeof(FlameTradeSS.LinesType);
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // btnAdd
             // 
@@ -133,41 +168,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
-            // linesTypeBindingSource
-            // 
-            this.linesTypeBindingSource.DataSource = typeof(FlameTradeSS.LinesType);
-            // 
-            // typeNameDataGridViewTextBoxColumn
-            // 
-            this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
-            this.typeNameDataGridViewTextBoxColumn.HeaderText = "Type Name";
-            this.typeNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
-            // 
-            // transactionMultiplierDataGridViewTextBoxColumn
-            // 
-            this.transactionMultiplierDataGridViewTextBoxColumn.DataPropertyName = "TransactionMultiplier";
-            this.transactionMultiplierDataGridViewTextBoxColumn.HeaderText = "Transaction Multiplier";
-            this.transactionMultiplierDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.transactionMultiplierDataGridViewTextBoxColumn.Name = "transactionMultiplierDataGridViewTextBoxColumn";
-            this.transactionMultiplierDataGridViewTextBoxColumn.Width = 156;
-            // 
-            // linesRelationDataGridViewTextBoxColumn
-            // 
-            this.linesRelationDataGridViewTextBoxColumn.DataPropertyName = "LinesRelation";
-            this.linesRelationDataGridViewTextBoxColumn.DataSource = this.linesTypeBindingSource;
-            this.linesRelationDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.linesRelationDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.linesRelationDataGridViewTextBoxColumn.HeaderText = "Lines Type";
-            this.linesRelationDataGridViewTextBoxColumn.Name = "linesRelationDataGridViewTextBoxColumn";
-            this.linesRelationDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.linesRelationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.linesRelationDataGridViewTextBoxColumn.ValueMember = "ID";
-            // 
             // frmTransactionTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,8 +191,8 @@
             this.Load += new System.EventHandler(this.frmPartnerGroups_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
