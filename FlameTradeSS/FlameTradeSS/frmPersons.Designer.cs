@@ -212,6 +212,7 @@
             this.Name = "frmPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPersons";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmPersons_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPersons_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).EndInit();

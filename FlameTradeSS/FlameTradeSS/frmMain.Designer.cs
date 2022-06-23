@@ -194,6 +194,7 @@
             this.btnDocuments.Text = "Документи";
             this.btnDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDocuments.UseVisualStyleBackColor = true;
+            this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
             // 
             // btnProjects
             // 

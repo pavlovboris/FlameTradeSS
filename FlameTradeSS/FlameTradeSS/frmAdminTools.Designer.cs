@@ -199,6 +199,7 @@
             this.Name = "frmAdminTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAdminTools_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmAdminTools_Paint);
             this.ResumeLayout(false);

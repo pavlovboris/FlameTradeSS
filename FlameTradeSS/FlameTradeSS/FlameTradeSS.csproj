@@ -80,6 +80,12 @@
     <Compile Include="frmAdminTools.Designer.cs">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocuments.Designer.cs">
+      <DependentUpon>frmDocuments.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,7 @@
     <Compile Include="PersonsFullNameView.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="UserRestrictions.cs" />
     <Compile Include="CurrentlyLoggedUsers.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
@@ -356,6 +363,9 @@
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDocuments.resx">
+      <DependentUpon>frmDocuments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFunctions.resx">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </EmbeddedResource>
@@ -422,6 +432,8 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CostingModels.datasource" />
+    <None Include="Properties\DataSources\Documents.datasource" />
     <None Include="Properties\DataSources\DocumentSequences.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />

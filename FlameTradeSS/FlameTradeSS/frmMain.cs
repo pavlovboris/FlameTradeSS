@@ -211,5 +211,11 @@ namespace FlameTradeSS
             frmProjects frmProjects = new frmProjects();
             CommonTasks.OpenForm(frmProjects);
         }
+
+        private void btnDocuments_Click(object sender, EventArgs e)
+        {
+            frmDocuments frmDocuments = new frmDocuments();
+            CommonTasks.OpenForm(frmDocuments);
+        }
     }
 }

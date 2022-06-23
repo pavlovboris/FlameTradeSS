@@ -221,6 +221,7 @@
             this.Name = "frmPartnersPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartnersPersons";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPartnersPersons_FormClosing);
             this.Load += new System.EventHandler(this.frmPartnersPersons_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnersPersons_Paint);
