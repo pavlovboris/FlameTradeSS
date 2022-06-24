@@ -142,5 +142,41 @@ namespace FlameTradeSS.Properties {
                 this["frmDocumentsSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState frmNewDocumentState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["frmNewDocumentState"]));
+            }
+            set {
+                this["frmNewDocumentState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmNewDocumentLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmNewDocumentLocation"]));
+            }
+            set {
+                this["frmNewDocumentLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size frmNewDocumentSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmNewDocumentSize"]));
+            }
+            set {
+                this["frmNewDocumentSize"] = value;
+            }
+        }
     }
 }

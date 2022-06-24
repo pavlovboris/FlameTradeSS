@@ -93,6 +93,8 @@ namespace FlameTradeSS
 
         private void frmDocuments_Load(object sender, EventArgs e)
         {
+
+            
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmDocumentsSize, Properties.Settings.Default.frmDocumentsState, Properties.Settings.Default.frmDocumentsLocation);
 
             cmbIsCanceled.SelectedIndex= 0;
@@ -117,6 +119,8 @@ namespace FlameTradeSS
             {
 
             }
+
+          
 
         }
 

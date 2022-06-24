@@ -86,11 +86,23 @@
     <Compile Include="frmDocuments.Designer.cs">
       <DependentUpon>frmDocuments.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDocumentTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentTransactions.Designer.cs">
+      <DependentUpon>frmDocumentTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewDocument.Designer.cs">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProjects.cs">
       <SubType>Form</SubType>
@@ -366,6 +378,9 @@
     <EmbeddedResource Include="frmDocuments.resx">
       <DependentUpon>frmDocuments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentTransactions.resx">
+      <DependentUpon>frmDocumentTransactions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFunctions.resx">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewDocument.resx">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProjects.resx">
       <DependentUpon>frmProjects.cs</DependentUpon>

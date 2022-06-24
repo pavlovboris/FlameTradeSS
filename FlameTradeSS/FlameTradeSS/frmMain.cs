@@ -20,26 +20,8 @@ namespace FlameTradeSS
             InitializeComponent();
         }
 
-       // private static bool isLogout = false; 
-
         private const int cGrip = 10;      // Grip size
         private const int cCaption = 600;   // Caption bar height;
-
-      /*  protected override void OnPaint(PaintEventArgs e)
-        {
-            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
-            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
-            // rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
-            //  e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
-            Graphics g = this.CreateGraphics();
-            // create  a  pen object with which to draw
-            Pen p = new Pen(Color.LightBlue, 2);  // draw the line
-                                            // call a member of the graphics class
-           // g.DrawLine(p,2,2, Size.Width-4,2);
-            //g.DrawLine(p,2,2,2,Size.Height-4);
-            Rectangle r = new Rectangle(2,2, Size.Width - 4, Size.Height - 4);
-            g.DrawRectangle(p, r);
-        }*/
 
         protected override void WndProc(ref Message m)
         {
@@ -61,13 +43,6 @@ namespace FlameTradeSS
             base.WndProc(ref m);
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-                //.ExitApplication();
-            
-        }
-
         private void pictureBoxExit_Click(object sender, EventArgs e)
         {
             CommonTasks.ExitApplication();
@@ -81,7 +56,6 @@ namespace FlameTradeSS
             {
                 lblCurrentUserName.Text = CurrentSessionData.CurrentUser.UserName.ToString();
             }
-
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmMainSize, Properties.Settings.Default.frmMainState, Properties.Settings.Default.frmMainLocation);
         }
 
@@ -112,9 +86,6 @@ namespace FlameTradeSS
         {
             if(CommonTasks.SendWarningMsg(CurrentSessionData.CurrentUser.UserName.ToString()+" сигурни ли сте, че искате да излезете?") == true) 
             {
-                //isLogout = true;
-                
-                FormClosed -= frmMain_FormClosed;
                 this.Close();
                 SecurityService securityService = new SecurityService();
                 securityService.userLogOut();
@@ -151,11 +122,6 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
-        }
-
-        private void frmMain_Paint(object sender, PaintEventArgs e)
-        {
-            
         }
 
         private void btnPartnersMng_Click(object sender, EventArgs e)
@@ -201,7 +167,6 @@ namespace FlameTradeSS
                 Properties.Settings.Default.frmMainLocation = this.RestoreBounds.Location;
                 Properties.Settings.Default.frmMainSize = this.RestoreBounds.Size;
             }
-
             // don't forget to save the settings
             Properties.Settings.Default.Save();
         }
@@ -216,6 +181,27 @@ namespace FlameTradeSS
         {
             frmDocuments frmDocuments = new frmDocuments();
             CommonTasks.OpenForm(frmDocuments);
+        }
+
+        private void btnNewDocument_Click(object sender, EventArgs e)
+        {
+            frmNewDocument frmNewDocument = new frmNewDocument();
+            foreach (Control mdicontrol in frmNewDocument.Controls)
+            {
+                MdiClient mdiClient = mdicontrol as MdiClient;
+                if (mdiClient!=null)
+                {
+                    mdiClient.BackColor = Color.White;
+                    break;
+                }
+            }
+
+            Documents newDocument = new Documents();
+            newDocument.UserID = CurrentSessionData.CurrentUser.ID;
+            frmNewDocument.documentsBindingSource.DataSource = newDocument;
+            frmNewDocument.newDocument = newDocument;
+            frmNewDocument.dateTimeDocDate.Value = DateTime.Now;
+            CommonTasks.OpenForm(frmNewDocument);
         }
     }
 }

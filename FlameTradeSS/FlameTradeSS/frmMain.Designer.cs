@@ -42,16 +42,17 @@
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
             this.btnAdminTools = new System.Windows.Forms.Button();
+            this.treeViewPartners = new System.Windows.Forms.TreeView();
+            this.btnProduction = new System.Windows.Forms.Button();
+            this.btnWarehouse = new System.Windows.Forms.Button();
+            this.btnProjects = new System.Windows.Forms.Button();
+            this.btnDocuments = new System.Windows.Forms.Button();
             this.btnPartnersMng = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.treeViewPartners = new System.Windows.Forms.TreeView();
-            this.btnDocuments = new System.Windows.Forms.Button();
-            this.btnProjects = new System.Windows.Forms.Button();
-            this.btnWarehouse = new System.Windows.Forms.Button();
-            this.btnProduction = new System.Windows.Forms.Button();
+            this.btnNewDocument = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCurentUserLabel
@@ -86,6 +87,93 @@
             this.btnAdminTools.Text = "Admin Tools";
             this.btnAdminTools.UseVisualStyleBackColor = true;
             this.btnAdminTools.Click += new System.EventHandler(this.btnAdminTools_Click);
+            // 
+            // treeViewPartners
+            // 
+            this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeViewPartners.Location = new System.Drawing.Point(12, 131);
+            this.treeViewPartners.Name = "treeViewPartners";
+            treeNode1.Name = "PartnerGroup";
+            treeNode1.Text = "Групи";
+            treeNode2.Name = "PartnerCategory";
+            treeNode2.Text = "Категории";
+            treeNode3.Name = "PartnerStaticPriceGroup";
+            treeNode3.Text = "Ценови Групи";
+            treeNode4.Name = "PersonPartners";
+            treeNode4.Text = "Партньори-Хора";
+            treeNode5.Name = "PartnerSettings";
+            treeNode5.Text = "Настройки";
+            treeNode6.Name = "PartnerReports";
+            treeNode6.Text = "Отчети";
+            this.treeViewPartners.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6});
+            this.treeViewPartners.Size = new System.Drawing.Size(173, 146);
+            this.treeViewPartners.TabIndex = 29;
+            this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
+            // 
+            // btnProduction
+            // 
+            this.btnProduction.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnProduction.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_power_Icon_48;
+            this.btnProduction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProduction.Location = new System.Drawing.Point(728, 73);
+            this.btnProduction.Name = "btnProduction";
+            this.btnProduction.Size = new System.Drawing.Size(153, 52);
+            this.btnProduction.TabIndex = 33;
+            this.btnProduction.Text = "Производство";
+            this.btnProduction.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProduction.UseVisualStyleBackColor = true;
+            // 
+            // btnWarehouse
+            // 
+            this.btnWarehouse.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnWarehouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnWarehouse.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_132_Icon_48;
+            this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWarehouse.Location = new System.Drawing.Point(573, 73);
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.Size = new System.Drawing.Size(97, 52);
+            this.btnWarehouse.TabIndex = 32;
+            this.btnWarehouse.Text = "Склад";
+            this.btnWarehouse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnWarehouse.UseVisualStyleBackColor = true;
+            // 
+            // btnProjects
+            // 
+            this.btnProjects.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnProjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnProjects.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_web_Icon_48;
+            this.btnProjects.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProjects.Location = new System.Drawing.Point(384, 73);
+            this.btnProjects.Name = "btnProjects";
+            this.btnProjects.Size = new System.Drawing.Size(113, 52);
+            this.btnProjects.TabIndex = 31;
+            this.btnProjects.Text = "Проекти";
+            this.btnProjects.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProjects.UseVisualStyleBackColor = true;
+            this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
+            // 
+            // btnDocuments
+            // 
+            this.btnDocuments.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDocuments.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_095_Icon_48;
+            this.btnDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDocuments.Location = new System.Drawing.Point(191, 73);
+            this.btnDocuments.Name = "btnDocuments";
+            this.btnDocuments.Size = new System.Drawing.Size(130, 52);
+            this.btnDocuments.TabIndex = 30;
+            this.btnDocuments.Text = "Документи";
+            this.btnDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDocuments.UseVisualStyleBackColor = true;
+            this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
             // 
             // btnPartnersMng
             // 
@@ -155,92 +243,21 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
-            // treeViewPartners
+            // btnNewDocument
             // 
-            this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeViewPartners.Location = new System.Drawing.Point(12, 131);
-            this.treeViewPartners.Name = "treeViewPartners";
-            treeNode1.Name = "PartnerGroup";
-            treeNode1.Text = "Групи";
-            treeNode2.Name = "PartnerCategory";
-            treeNode2.Text = "Категории";
-            treeNode3.Name = "PartnerStaticPriceGroup";
-            treeNode3.Text = "Ценови Групи";
-            treeNode4.Name = "PersonPartners";
-            treeNode4.Text = "Партньори-Хора";
-            treeNode5.Name = "PartnerSettings";
-            treeNode5.Text = "Настройки";
-            treeNode6.Name = "PartnerReports";
-            treeNode6.Text = "Отчети";
-            this.treeViewPartners.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
-            this.treeViewPartners.Size = new System.Drawing.Size(173, 146);
-            this.treeViewPartners.TabIndex = 29;
-            this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
-            // 
-            // btnDocuments
-            // 
-            this.btnDocuments.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDocuments.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_095_Icon_48;
-            this.btnDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDocuments.Location = new System.Drawing.Point(191, 73);
-            this.btnDocuments.Name = "btnDocuments";
-            this.btnDocuments.Size = new System.Drawing.Size(130, 52);
-            this.btnDocuments.TabIndex = 30;
-            this.btnDocuments.Text = "Документи";
-            this.btnDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDocuments.UseVisualStyleBackColor = true;
-            this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
-            // 
-            // btnProjects
-            // 
-            this.btnProjects.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnProjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnProjects.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_web_Icon_48;
-            this.btnProjects.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProjects.Location = new System.Drawing.Point(384, 73);
-            this.btnProjects.Name = "btnProjects";
-            this.btnProjects.Size = new System.Drawing.Size(113, 52);
-            this.btnProjects.TabIndex = 31;
-            this.btnProjects.Text = "Проекти";
-            this.btnProjects.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnProjects.UseVisualStyleBackColor = true;
-            this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
-            // 
-            // btnWarehouse
-            // 
-            this.btnWarehouse.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnWarehouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnWarehouse.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_132_Icon_48;
-            this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWarehouse.Location = new System.Drawing.Point(573, 73);
-            this.btnWarehouse.Name = "btnWarehouse";
-            this.btnWarehouse.Size = new System.Drawing.Size(97, 52);
-            this.btnWarehouse.TabIndex = 32;
-            this.btnWarehouse.Text = "Склад";
-            this.btnWarehouse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnWarehouse.UseVisualStyleBackColor = true;
-            // 
-            // btnProduction
-            // 
-            this.btnProduction.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnProduction.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_power_Icon_48;
-            this.btnProduction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProduction.Location = new System.Drawing.Point(728, 73);
-            this.btnProduction.Name = "btnProduction";
-            this.btnProduction.Size = new System.Drawing.Size(153, 52);
-            this.btnProduction.TabIndex = 33;
-            this.btnProduction.Text = "Производство";
-            this.btnProduction.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnProduction.UseVisualStyleBackColor = true;
+            this.btnNewDocument.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNewDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNewDocument.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_051_Icon_48;
+            this.btnNewDocument.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewDocument.Location = new System.Drawing.Point(191, 131);
+            this.btnNewDocument.Name = "btnNewDocument";
+            this.btnNewDocument.Size = new System.Drawing.Size(153, 50);
+            this.btnNewDocument.TabIndex = 34;
+            this.btnNewDocument.Text = "Нов Документ";
+            this.btnNewDocument.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNewDocument.UseVisualStyleBackColor = true;
+            this.btnNewDocument.Click += new System.EventHandler(this.btnNewDocument_Click);
             // 
             // frmMain
             // 
@@ -248,6 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(993, 642);
+            this.Controls.Add(this.btnNewDocument);
             this.Controls.Add(this.btnProduction);
             this.Controls.Add(this.btnWarehouse);
             this.Controls.Add(this.btnProjects);
@@ -268,9 +286,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,5 +306,6 @@
         private System.Windows.Forms.Button btnProjects;
         private System.Windows.Forms.Button btnWarehouse;
         private System.Windows.Forms.Button btnProduction;
+        private System.Windows.Forms.Button btnNewDocument;
     }
 }
