@@ -271,8 +271,6 @@ namespace FlameTradeSS
                     }
                 }
                 catch { }
-
-                
             }
 
             if (listBoxProjects.SelectedItem != null)
@@ -291,7 +289,6 @@ namespace FlameTradeSS
             projectBindingSource.Remove(selectedProject);
             documentsProjectsBindingSource.Remove(documentsProjects);
             db.DocumentsProjects.Remove(documentsProjects);
-            
         }
     }
 }
