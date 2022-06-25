@@ -479,6 +479,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CostingModels.datasource" />
     <None Include="Properties\DataSources\Documents.datasource" />
+    <None Include="Properties\DataSources\DocumentsAttachments.datasource" />
     <None Include="Properties\DataSources\DocumentSequences.datasource" />
     <None Include="Properties\DataSources\DocumentsProjects.datasource" />
     <None Include="Properties\DataSources\DocumentTransactions.datasource" />

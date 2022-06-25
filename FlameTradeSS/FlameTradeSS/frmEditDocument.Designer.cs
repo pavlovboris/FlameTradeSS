@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditDocument));
             this.cmbPartners = new System.Windows.Forms.ComboBox();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -46,6 +46,14 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemoveFile = new System.Windows.Forms.Button();
+            this.btnAddFile = new System.Windows.Forms.Button();
+            this.lblAttachments = new System.Windows.Forms.Label();
+            this.dgvAttachments = new System.Windows.Forms.DataGridView();
+            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentsAttachmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblProjects = new System.Windows.Forms.Label();
+            this.lblPossibleTransactons = new System.Windows.Forms.Label();
             this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.contextMenuStripProjects = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,10 +86,14 @@
             this.lblDocumentNumber = new System.Windows.Forms.Label();
             this.txtDocumentNumber = new System.Windows.Forms.TextBox();
             this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentsAttachmentsBindingSource)).BeginInit();
             this.contextMenuStripProjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentsProjectsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
@@ -98,7 +110,7 @@
             this.cmbPartners.DataSource = this.partnersBindingSource;
             this.cmbPartners.DisplayMember = "Partner_name";
             this.cmbPartners.FormattingEnabled = true;
-            this.cmbPartners.Location = new System.Drawing.Point(27, 89);
+            this.cmbPartners.Location = new System.Drawing.Point(27, 67);
             this.cmbPartners.Name = "cmbPartners";
             this.cmbPartners.Size = new System.Drawing.Size(347, 21);
             this.cmbPartners.TabIndex = 1;
@@ -116,7 +128,7 @@
             // 
             this.lblCustomerName.AutoSize = true;
             this.lblCustomerName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCustomerName.Location = new System.Drawing.Point(25, 73);
+            this.lblCustomerName.Location = new System.Drawing.Point(25, 52);
             this.lblCustomerName.Name = "lblCustomerName";
             this.lblCustomerName.Size = new System.Drawing.Size(56, 13);
             this.lblCustomerName.TabIndex = 2;
@@ -126,7 +138,7 @@
             // 
             this.lblSequence.AutoSize = true;
             this.lblSequence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblSequence.Location = new System.Drawing.Point(25, 26);
+            this.lblSequence.Location = new System.Drawing.Point(25, 11);
             this.lblSequence.Name = "lblSequence";
             this.lblSequence.Size = new System.Drawing.Size(113, 13);
             this.lblSequence.TabIndex = 5;
@@ -142,7 +154,7 @@
             this.cmbDocumentSequence.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDocumentSequence.Enabled = false;
             this.cmbDocumentSequence.FormattingEnabled = true;
-            this.cmbDocumentSequence.Location = new System.Drawing.Point(27, 42);
+            this.cmbDocumentSequence.Location = new System.Drawing.Point(27, 27);
             this.cmbDocumentSequence.Name = "cmbDocumentSequence";
             this.cmbDocumentSequence.Size = new System.Drawing.Size(347, 21);
             this.cmbDocumentSequence.TabIndex = 4;
@@ -156,7 +168,7 @@
             // lblDocumentDate
             // 
             this.lblDocumentDate.AutoSize = true;
-            this.lblDocumentDate.Location = new System.Drawing.Point(423, 26);
+            this.lblDocumentDate.Location = new System.Drawing.Point(423, 11);
             this.lblDocumentDate.Name = "lblDocumentDate";
             this.lblDocumentDate.Size = new System.Drawing.Size(108, 13);
             this.lblDocumentDate.TabIndex = 7;
@@ -166,7 +178,7 @@
             // 
             this.dateTimeDocDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentsBindingSource, "DocumentDate", true));
             this.dateTimeDocDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeDocDate.Location = new System.Drawing.Point(421, 42);
+            this.dateTimeDocDate.Location = new System.Drawing.Point(421, 27);
             this.dateTimeDocDate.Name = "dateTimeDocDate";
             this.dateTimeDocDate.Size = new System.Drawing.Size(110, 20);
             this.dateTimeDocDate.TabIndex = 8;
@@ -174,6 +186,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnRemoveFile);
+            this.panel1.Controls.Add(this.btnAddFile);
+            this.panel1.Controls.Add(this.lblAttachments);
+            this.panel1.Controls.Add(this.dgvAttachments);
+            this.panel1.Controls.Add(this.lblProjects);
+            this.panel1.Controls.Add(this.lblPossibleTransactons);
             this.panel1.Controls.Add(this.listBoxProjects);
             this.panel1.Controls.Add(this.dgvDocumentTransactions);
             this.panel1.Controls.Add(this.lblDocumentNumber);
@@ -191,6 +209,92 @@
             this.panel1.Size = new System.Drawing.Size(1618, 239);
             this.panel1.TabIndex = 12;
             // 
+            // btnRemoveFile
+            // 
+            this.btnRemoveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveFile.Location = new System.Drawing.Point(1559, 199);
+            this.btnRemoveFile.Name = "btnRemoveFile";
+            this.btnRemoveFile.Size = new System.Drawing.Size(47, 23);
+            this.btnRemoveFile.TabIndex = 23;
+            this.btnRemoveFile.Text = "-";
+            this.btnRemoveFile.UseVisualStyleBackColor = true;
+            this.btnRemoveFile.Click += new System.EventHandler(this.btnRemoveFile_Click);
+            // 
+            // btnAddFile
+            // 
+            this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddFile.Location = new System.Drawing.Point(1462, 199);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(47, 23);
+            this.btnAddFile.TabIndex = 22;
+            this.btnAddFile.Text = "+";
+            this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            // 
+            // lblAttachments
+            // 
+            this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAttachments.AutoSize = true;
+            this.lblAttachments.Location = new System.Drawing.Point(1459, 6);
+            this.lblAttachments.Name = "lblAttachments";
+            this.lblAttachments.Size = new System.Drawing.Size(54, 13);
+            this.lblAttachments.TabIndex = 21;
+            this.lblAttachments.Text = "Файлове";
+            // 
+            // dgvAttachments
+            // 
+            this.dgvAttachments.AllowUserToAddRows = false;
+            this.dgvAttachments.AllowUserToDeleteRows = false;
+            this.dgvAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAttachments.AutoGenerateColumns = false;
+            this.dgvAttachments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvAttachments.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAttachments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fileNameDataGridViewTextBoxColumn});
+            this.dgvAttachments.DataSource = this.documentsAttachmentsBindingSource;
+            this.dgvAttachments.Location = new System.Drawing.Point(1462, 25);
+            this.dgvAttachments.MultiSelect = false;
+            this.dgvAttachments.Name = "dgvAttachments";
+            this.dgvAttachments.ReadOnly = true;
+            this.dgvAttachments.RowHeadersWidth = 20;
+            this.dgvAttachments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAttachments.Size = new System.Drawing.Size(144, 168);
+            this.dgvAttachments.TabIndex = 20;
+            this.dgvAttachments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAttachments_CellDoubleClick);
+            // 
+            // fileNameDataGridViewTextBoxColumn
+            // 
+            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.HeaderText = "File Name";
+            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
+            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fileNameDataGridViewTextBoxColumn.Width = 79;
+            // 
+            // documentsAttachmentsBindingSource
+            // 
+            this.documentsAttachmentsBindingSource.DataSource = typeof(FlameTradeSS.DocumentsAttachments);
+            // 
+            // lblProjects
+            // 
+            this.lblProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProjects.AutoSize = true;
+            this.lblProjects.Location = new System.Drawing.Point(1241, 9);
+            this.lblProjects.Name = "lblProjects";
+            this.lblProjects.Size = new System.Drawing.Size(50, 13);
+            this.lblProjects.TabIndex = 16;
+            this.lblProjects.Text = "Проекти";
+            // 
+            // lblPossibleTransactons
+            // 
+            this.lblPossibleTransactons.AutoSize = true;
+            this.lblPossibleTransactons.Location = new System.Drawing.Point(551, 12);
+            this.lblPossibleTransactons.Name = "lblPossibleTransactons";
+            this.lblPossibleTransactons.Size = new System.Drawing.Size(125, 13);
+            this.lblPossibleTransactons.TabIndex = 15;
+            this.lblPossibleTransactons.Text = "Възможни Транзакции";
+            // 
             // listBoxProjects
             // 
             this.listBoxProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -199,9 +303,9 @@
             this.listBoxProjects.DataSource = this.projectBindingSource;
             this.listBoxProjects.DisplayMember = "ProjectName";
             this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.Location = new System.Drawing.Point(1394, 12);
+            this.listBoxProjects.Location = new System.Drawing.Point(1244, 29);
             this.listBoxProjects.Name = "listBoxProjects";
-            this.listBoxProjects.Size = new System.Drawing.Size(212, 43);
+            this.listBoxProjects.Size = new System.Drawing.Size(212, 56);
             this.listBoxProjects.TabIndex = 14;
             this.listBoxProjects.ValueMember = "ID";
             // 
@@ -211,20 +315,20 @@
             this.toolStripMenuItemAdd,
             this.toolStripSeparator1});
             this.contextMenuStripProjects.Name = "contextMenuStripProjects";
-            this.contextMenuStripProjects.Size = new System.Drawing.Size(181, 54);
+            this.contextMenuStripProjects.Size = new System.Drawing.Size(159, 32);
             this.contextMenuStripProjects.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripProjects_Opening);
             this.contextMenuStripProjects.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripProjects_ItemClicked);
             // 
             // toolStripMenuItemAdd
             // 
             this.toolStripMenuItemAdd.Name = "toolStripMenuItemAdd";
-            this.toolStripMenuItemAdd.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemAdd.Size = new System.Drawing.Size(158, 22);
             this.toolStripMenuItemAdd.Text = "Добави Проект";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // documentsProjectsBindingSource
             // 
@@ -271,7 +375,7 @@
             this.dgvDocumentTransactions.Name = "dgvDocumentTransactions";
             this.dgvDocumentTransactions.RowHeadersWidth = 20;
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1579, 105);
+            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1429, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -295,44 +399,44 @@
             // transactionDateDataGridViewTextBoxColumn
             // 
             this.transactionDateDataGridViewTextBoxColumn.DataPropertyName = "TransactionDate";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.transactionDateDataGridViewTextBoxColumn.HeaderText = "TransactionDate";
             this.transactionDateDataGridViewTextBoxColumn.Name = "transactionDateDataGridViewTextBoxColumn";
             // 
             // expectedMatDateDataGridViewTextBoxColumn
             // 
             this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = null;
+            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
             this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
             // 
             // requestedDateDataGridViewTextBoxColumn
             // 
             this.requestedDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDate";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Format = "d";
+            dataGridViewCellStyle9.NullValue = null;
+            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.requestedDateDataGridViewTextBoxColumn.HeaderText = "RequestedDate";
             this.requestedDateDataGridViewTextBoxColumn.Name = "requestedDateDataGridViewTextBoxColumn";
             // 
             // receivedDateDataGridViewTextBoxColumn
             // 
             this.receivedDateDataGridViewTextBoxColumn.DataPropertyName = "ReceivedDate";
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Format = "d";
+            dataGridViewCellStyle10.NullValue = null;
+            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.receivedDateDataGridViewTextBoxColumn.HeaderText = "ReceivedDate";
             this.receivedDateDataGridViewTextBoxColumn.Name = "receivedDateDataGridViewTextBoxColumn";
             // 
             // requestedDeliveryDateDataGridViewTextBoxColumn
             // 
             this.requestedDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDeliveryDate";
-            dataGridViewCellStyle5.Format = "d";
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Format = "d";
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.requestedDeliveryDateDataGridViewTextBoxColumn.HeaderText = "RequestedDeliveryDate";
             this.requestedDeliveryDateDataGridViewTextBoxColumn.Name = "requestedDeliveryDateDataGridViewTextBoxColumn";
             // 
@@ -412,8 +516,8 @@
             // creationDateTimeDataGridViewTextBoxColumn
             // 
             this.creationDateTimeDataGridViewTextBoxColumn.DataPropertyName = "CreationDateTime";
-            dataGridViewCellStyle6.Format = "d";
-            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Format = "d";
+            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.creationDateTimeDataGridViewTextBoxColumn.HeaderText = "CreationDateTime";
             this.creationDateTimeDataGridViewTextBoxColumn.Name = "creationDateTimeDataGridViewTextBoxColumn";
             this.creationDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -437,7 +541,7 @@
             // lblDocumentNumber
             // 
             this.lblDocumentNumber.AutoSize = true;
-            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 73);
+            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 52);
             this.lblDocumentNumber.Name = "lblDocumentNumber";
             this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
             this.lblDocumentNumber.TabIndex = 11;
@@ -446,7 +550,7 @@
             // txtDocumentNumber
             // 
             this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
-            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 89);
+            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 68);
             this.txtDocumentNumber.MaxLength = 20;
             this.txtDocumentNumber.Name = "txtDocumentNumber";
             this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
@@ -455,15 +559,16 @@
             // listBoxTransactionsAdd
             // 
             this.listBoxTransactionsAdd.FormattingEnabled = true;
-            this.listBoxTransactionsAdd.Items.AddRange(new object[] {
-            "Добави Транзакция с Артикули",
-            "Добави Транзакция с Машини",
-            "Добави Транзакция с Услуги"});
-            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(554, 39);
+            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(554, 29);
             this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
-            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(178, 69);
+            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(178, 56);
             this.listBoxTransactionsAdd.TabIndex = 9;
             this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
             // 
             // frmEditDocument
             // 
@@ -484,6 +589,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentsAttachmentsBindingSource)).EndInit();
             this.contextMenuStripProjects.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentsProjectsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
@@ -538,5 +645,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn creationDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblPossibleTransactons;
+        private System.Windows.Forms.Label lblProjects;
+        private System.Windows.Forms.Button btnRemoveFile;
+        private System.Windows.Forms.Button btnAddFile;
+        private System.Windows.Forms.Label lblAttachments;
+        private System.Windows.Forms.DataGridView dgvAttachments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource documentsAttachmentsBindingSource;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

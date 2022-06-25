@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,7 @@ namespace FlameTradeSS
             cmbPartners.Enabled = false;
             txtDocumentNumber.Enabled = false;
             listBoxTransactionsAdd.Enabled = false;
+            listBoxProjects.Enabled = false; 
             DocumentSequences nullDocumentSequence = new DocumentSequences();
             documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
             documentSequencesBindingSource.Add(nullDocumentSequence);
@@ -96,6 +99,8 @@ namespace FlameTradeSS
             if (cmbDocumentSequence.SelectedIndex != documentSequencesBindingSource.Count-1 )
             {
                 cmbPartners.Enabled = true;
+                listBoxProjects.Enabled = true;
+                documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
                 DocumentSequences selectedDocumentSequence = cmbDocumentSequence.SelectedItem as DocumentSequences;
 
                 if (selectedDocumentSequence.SequenceType.PartnerType =="Customer")
@@ -151,6 +156,9 @@ namespace FlameTradeSS
                     }
                 }
 
+            } else
+            {
+                listBoxTransactionsAdd.Items.Clear();
             }
         }
 
@@ -276,11 +284,102 @@ namespace FlameTradeSS
         private void RemoveProject_Click(object sender, EventArgs e)
         {
             Project selectedProject = listBoxProjects.SelectedItem as Project;
+            if (selectedProject != null)
+            {
+                DocumentsProjects documentsProjects = db.DocumentsProjects.Where(dp => dp.ProjectID == selectedProject.ID && dp.DocumentsID == newDocument.ID).FirstOrDefault();
+                if (documentsProjects != null)
+                {
+                    projectBindingSource.Remove(selectedProject);
+                    documentsProjectsBindingSource.Remove(documentsProjects);
+                    db.DocumentsProjects.Remove(documentsProjects);
+                }
+            }
+           
+        }
 
-            DocumentsProjects documentsProjects = db.DocumentsProjects.Where(dp => dp.ProjectID == selectedProject.ID && dp.DocumentsID == newDocument.ID).FirstOrDefault();
-            projectBindingSource.Remove(selectedProject);
-            documentsProjectsBindingSource.Remove(documentsProjects);
-            db.DocumentsProjects.Remove(documentsProjects);
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog.ShowDialog();
+        }
+
+        private void openFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            FileDialog dialog = (FileDialog)sender;
+
+            if (dialog.CheckFileExists == true)
+            {
+                try
+                {
+                    string filename = Path.GetFileName(dialog.FileName);
+                    byte[] data = File.ReadAllBytes(dialog.FileName);
+
+                    DocumentsAttachments uploadedFiles = new DocumentsAttachments();
+                    uploadedFiles.FileName = filename;
+                    uploadedFiles.FileData = data;
+                    uploadedFiles.DocumentsID = newDocument.ID;
+                    documentsAttachmentsBindingSource.Add(uploadedFiles);
+                    db.DocumentsAttachments.Add(uploadedFiles);
+
+                    MessageBox.Show("Файлът е качен успешно", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private void btnRemoveFile_Click(object sender, EventArgs e)
+        {
+            if (dgvAttachments.CurrentRow != null && dgvAttachments.CurrentRow.Index != -1 & dgvAttachments.CurrentRow.DataBoundItem != null)
+            {
+                if (MessageBox.Show("Сигурни ли сте, че искате да изтриете файл :" + dgvAttachments.CurrentRow.Cells[0].Value.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    DocumentsAttachments uploadedFile = dgvAttachments.CurrentRow.DataBoundItem as DocumentsAttachments;
+                    documentsAttachmentsBindingSource.Remove(uploadedFile);
+                    db.DocumentsAttachments.Remove(uploadedFile);
+                }
+            }
+        }
+
+        private void dgvAttachments_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && dgvAttachments.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                DocumentsAttachments uploadedFiles = new DocumentsAttachments();
+                uploadedFiles = dgvAttachments.Rows[e.RowIndex].DataBoundItem as DocumentsAttachments;
+                byte[] bytes = uploadedFiles.FileData;
+
+                saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.FileName = uploadedFiles.FileName;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    saveFileDialog1.FileName = saveFileDialog1.FileName;
+                    try
+                    {
+                        FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write);
+                        fs.Write(bytes, 0, bytes.Length);
+
+                        fs.Close();
+
+                        if (MessageBox.Show("Искате ли да стартирате файл : " + saveFileDialog1.FileName, "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                Process.Start(saveFileDialog1.FileName);
+                                MessageBox.Show("Файла е успешно записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Възникна грешка при записшане на файла, файла не записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
         }
     }
 }
