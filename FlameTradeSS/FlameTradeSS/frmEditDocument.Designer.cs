@@ -1,6 +1,6 @@
 ﻿namespace FlameTradeSS
 {
-    partial class frmNewDocument
+    partial class frmEditDocument
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewDocument));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditDocument));
             this.cmbPartners = new System.Windows.Forms.ComboBox();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -140,6 +140,7 @@
             this.cmbDocumentSequence.DataSource = this.documentSequencesBindingSource;
             this.cmbDocumentSequence.DisplayMember = "SequenceName";
             this.cmbDocumentSequence.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDocumentSequence.Enabled = false;
             this.cmbDocumentSequence.FormattingEnabled = true;
             this.cmbDocumentSequence.Location = new System.Drawing.Point(27, 42);
             this.cmbDocumentSequence.Name = "cmbDocumentSequence";
@@ -187,7 +188,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1611, 239);
+            this.panel1.Size = new System.Drawing.Size(1618, 239);
             this.panel1.TabIndex = 12;
             // 
             // listBoxProjects
@@ -198,10 +199,10 @@
             this.listBoxProjects.DataSource = this.projectBindingSource;
             this.listBoxProjects.DisplayMember = "ProjectName";
             this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.Location = new System.Drawing.Point(1387, 12);
+            this.listBoxProjects.Location = new System.Drawing.Point(1394, 12);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(212, 43);
-            this.listBoxProjects.TabIndex = 13;
+            this.listBoxProjects.TabIndex = 14;
             this.listBoxProjects.ValueMember = "ID";
             // 
             // contextMenuStripProjects
@@ -237,7 +238,6 @@
             // 
             this.dgvDocumentTransactions.AllowUserToAddRows = false;
             this.dgvDocumentTransactions.AllowUserToDeleteRows = false;
-            this.dgvDocumentTransactions.AllowUserToOrderColumns = true;
             this.dgvDocumentTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDocumentTransactions.AutoGenerateColumns = false;
@@ -271,7 +271,7 @@
             this.dgvDocumentTransactions.Name = "dgvDocumentTransactions";
             this.dgvDocumentTransactions.RowHeadersWidth = 20;
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1572, 105);
+            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1579, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -296,6 +296,7 @@
             // 
             this.transactionDateDataGridViewTextBoxColumn.DataPropertyName = "TransactionDate";
             dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
             this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.transactionDateDataGridViewTextBoxColumn.HeaderText = "TransactionDate";
             this.transactionDateDataGridViewTextBoxColumn.Name = "transactionDateDataGridViewTextBoxColumn";
@@ -304,6 +305,7 @@
             // 
             this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
             dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
             this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
             this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
@@ -312,6 +314,7 @@
             // 
             this.requestedDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDate";
             dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
             this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.requestedDateDataGridViewTextBoxColumn.HeaderText = "RequestedDate";
             this.requestedDateDataGridViewTextBoxColumn.Name = "requestedDateDataGridViewTextBoxColumn";
@@ -320,6 +323,7 @@
             // 
             this.receivedDateDataGridViewTextBoxColumn.DataPropertyName = "ReceivedDate";
             dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
             this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.receivedDateDataGridViewTextBoxColumn.HeaderText = "ReceivedDate";
             this.receivedDateDataGridViewTextBoxColumn.Name = "receivedDateDataGridViewTextBoxColumn";
@@ -461,18 +465,18 @@
             this.listBoxTransactionsAdd.TabIndex = 9;
             this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
             // 
-            // frmNewDocument
+            // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1611, 863);
+            this.ClientSize = new System.Drawing.Size(1618, 863);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Name = "frmNewDocument";
+            this.Name = "frmEditDocument";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Document";
+            this.Text = "Document";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNewDocument_FormClosing);
             this.Load += new System.EventHandler(this.frmNewDocument_Load);
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).EndInit();
@@ -509,8 +513,8 @@
         private System.Windows.Forms.BindingSource documentTransactionsBindingSource;
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource;
         private System.Windows.Forms.ListBox listBoxProjects;
-        private System.Windows.Forms.BindingSource projectBindingSource;
         private System.Windows.Forms.BindingSource documentsProjectsBindingSource;
+        private System.Windows.Forms.BindingSource projectBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripProjects;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAdd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

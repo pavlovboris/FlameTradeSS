@@ -23,7 +23,14 @@ namespace FlameTradeSS
         private void frmDocumentTransactions_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.White;
+            UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+            
+            documentTransactionsBindingSource.DataSource = documentTransactions;
         }
+
+        public  FlameTradeDbEntities db;
+
+        public  DocumentTransactions documentTransactions;
 
         /* private const int cGrip = 10;      // Grip size
          private const int cCaption = 600;   // Caption bar height;

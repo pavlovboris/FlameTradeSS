@@ -119,9 +119,6 @@ namespace FlameTradeSS
             {
 
             }
-
-          
-
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -499,6 +496,27 @@ namespace FlameTradeSS
             }
 
            
+        }
+
+        private void dgvDocuments_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && dgvDocuments.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                frmEditDocument frmEditDocument = new frmEditDocument();
+                frmEditDocument.newDocument = dgvDocuments.CurrentRow.DataBoundItem as Documents;
+                
+
+                foreach (Control mdicontrol in frmEditDocument.Controls)
+                {
+                    MdiClient mdiClient = mdicontrol as MdiClient;
+                    if (mdiClient != null)
+                    {
+                        mdiClient.BackColor = Color.White;
+                        break;
+                    }
+                }
+                CommonTasks.OpenForm(frmEditDocument);
+            }
         }
     }
 }

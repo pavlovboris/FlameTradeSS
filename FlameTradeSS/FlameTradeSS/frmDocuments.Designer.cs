@@ -142,6 +142,7 @@
             this.dgvDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocuments.Size = new System.Drawing.Size(1288, 578);
             this.dgvDocuments.TabIndex = 29;
+            this.dgvDocuments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocuments_CellDoubleClick);
             this.dgvDocuments.ColumnDisplayIndexChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocuments_ColumnDisplayIndexChanged);
             this.dgvDocuments.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocuments_ColumnWidthChanged);
             this.dgvDocuments.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvDocuments_Scroll);

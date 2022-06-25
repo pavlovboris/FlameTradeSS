@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmNewDocument : Form
+    public partial class frmEditDocument : Form
     {
-        public frmNewDocument()
+        public frmEditDocument()
         {
             InitializeComponent();
         }
@@ -21,35 +21,69 @@ namespace FlameTradeSS
         {
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
-            newDocument.DocumentDate = DateTime.Now;
-            db.Documents.Add(newDocument);
+           
+           
             partnersBindingSource.DataSource = db.Partners.ToList();
-            Partners nullPartner = new Partners();
-            partnersBindingSource.Add(nullPartner);
-            documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
-            cmbPartners.SelectedItem = nullPartner;
-            cmbPartners.Enabled = false;
-            txtDocumentNumber.Enabled = false;
-            listBoxTransactionsAdd.Enabled = false;
-            DocumentSequences nullDocumentSequence = new DocumentSequences();
+            documentsBindingSource.DataSource = newDocument;
+            documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID==newDocument.ID).ToList();
             documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
-            documentSequencesBindingSource.Add(nullDocumentSequence);
-            cmbDocumentSequence.SelectedItem = nullDocumentSequence;
+            
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
-
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
+
+           if (documentsProjectsBindingSource.DataSource!=null)
+            {
+                foreach(DocumentsProjects dp in documentsProjectsBindingSource)
+                {
+                    Project project = dp.Project;
+                    projectBindingSource.Add(project);
+                }
+                
+            }
+           
+
+            List<SequencesTransactions> lines = new List<SequencesTransactions>();
+
+            lines = db.SequencesTransactions.Where(sq => sq.SquenceID == newDocument.DocumentSequenceID).ToList();
+
+            if (lines != null)
+            {
+                listBoxTransactionsAdd.Enabled = true;
+                listBoxTransactionsAdd.Items.Clear();
+                foreach (SequencesTransactions possible in lines.ToList())
+                {
+                    listBoxTransactionsAdd.Items.Add(possible.TransactionsType);
+                    listBoxTransactionsAdd.DisplayMember = "TypeName";
+                }
+            }
+
+            if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
+            {
+                txtDocumentNumber.Enabled = false;
+                
+            }
+            else if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Standart Numbering")
+            {
+                txtDocumentNumber.Enabled = false;
+               
+            }
+            else
+            {
+                txtDocumentNumber.Enabled = true;
+            }
 
             try
             {
                 CommonTasks.ReadDataGridViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
-            
+
+            Text ="Document : "+newDocument.DocumentSequences.SequenceName+" "+ newDocument.DocumentNumber.ToString();
         }
 
         private static readonly SecurityService securityService = new SecurityService();
         FlameTradeDbEntities db = securityService.NewDatabaseEntity();
 
-        public static Documents newDocument;
+        public  Documents newDocument;
 
         private async void frmNewDocument_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -88,7 +122,7 @@ namespace FlameTradeSS
             {
                 CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
-            
+             
         }
 
         private void cmbDocumentSequence_SelectionChangeCommitted(object sender, EventArgs e)
@@ -136,30 +170,8 @@ namespace FlameTradeSS
                     txtDocumentNumber.Enabled = true;
                 }
 
-                List<SequencesTransactions> lines = new List<SequencesTransactions>();
-
-                lines = db.SequencesTransactions.Where(sq => sq.SquenceID == selectedDocumentSequence.ID).ToList();
-
-                if (lines!=null)
-                {
-                    listBoxTransactionsAdd.Enabled = true;
-                    listBoxTransactionsAdd.Items.Clear();
-                    foreach (SequencesTransactions possible in lines.ToList())
-                    {
-                        listBoxTransactionsAdd.Items.Add(possible.TransactionsType);
-                        listBoxTransactionsAdd.DisplayMember = "TypeName";
-                    }
-                }
-
+               
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmDocumentTransactions frmDocumentTransactions = new frmDocumentTransactions();
-            frmDocumentTransactions.MdiParent = this;
-            
-            frmDocumentTransactions.Show();
         }
 
         private void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
@@ -170,10 +182,8 @@ namespace FlameTradeSS
             newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
             newDocumentTransaction.DocumentsID = newDocument.ID;
             newDocumentTransaction.UserID = newDocument.UserID;
-            newDocumentTransaction.CreationDateTime = DateTime.Now;
             newDocumentTransaction.TransactionDate = DateTime.Now;
-
-
+            newDocumentTransaction.CreationDateTime = DateTime.Now;
             frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
             newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
             newfrmDocumentTransactions.db = db;
@@ -206,9 +216,7 @@ namespace FlameTradeSS
 
                 newfrmDocumentTransactions.Show();
 
-
             }
-            
         }
 
         private void contextMenuStripProjects_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -246,7 +254,7 @@ namespace FlameTradeSS
         {
             ToolStripMenuItem removeProject = new ToolStripMenuItem();
             List<object> tsti = new List<object>();
-            foreach (object obj in contextMenuStripProjects.Items)
+            foreach(object obj in contextMenuStripProjects.Items)
             {
                 tsti.Add(obj);
             }
@@ -257,14 +265,14 @@ namespace FlameTradeSS
                 {
                     ToolStripMenuItem toolStrip = toolStripMenuItem as ToolStripMenuItem;
 
-                    if (toolStrip != null && toolStrip.Text == "Премахни Проект")
+                    if (toolStrip!=null && toolStrip.Text == "Премахни Проект")
                     {
                         contextMenuStripProjects.Items.Remove(toolStrip);
                     }
                 }
                 catch { }
 
-
+                
             }
 
             if (listBoxProjects.SelectedItem != null)
@@ -272,18 +280,18 @@ namespace FlameTradeSS
                 removeProject.Text = "Премахни Проект";
                 removeProject.Click += RemoveProject_Click;
                 contextMenuStripProjects.Items.Add(removeProject);
-            }
+            } 
         }
 
         private void RemoveProject_Click(object sender, EventArgs e)
         {
             Project selectedProject = listBoxProjects.SelectedItem as Project;
-
+            
             DocumentsProjects documentsProjects = db.DocumentsProjects.Where(dp => dp.ProjectID == selectedProject.ID && dp.DocumentsID == newDocument.ID).FirstOrDefault();
             projectBindingSource.Remove(selectedProject);
             documentsProjectsBindingSource.Remove(documentsProjects);
             db.DocumentsProjects.Remove(documentsProjects);
-
+            
         }
     }
 }

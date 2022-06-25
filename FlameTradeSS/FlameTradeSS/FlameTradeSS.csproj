@@ -98,11 +98,29 @@
     <Compile Include="frmFunctions.Designer.cs">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditDocument.Designer.cs">
+      <DependentUpon>frmEditDocument.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNewDocument.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmNewDocument.Designer.cs">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProjectSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectSelector.Designer.cs">
+      <DependentUpon>frmProjectSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSequenceTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSequenceTransactions.Designer.cs">
+      <DependentUpon>frmSequenceTransactions.cs</DependentUpon>
     </Compile>
     <Compile Include="frmProjects.cs">
       <SubType>Form</SubType>
@@ -390,8 +408,17 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditDocument.resx">
+      <DependentUpon>frmEditDocument.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNewDocument.resx">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectSelector.resx">
+      <DependentUpon>frmProjectSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSequenceTransactions.resx">
+      <DependentUpon>frmSequenceTransactions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProjects.resx">
       <DependentUpon>frmProjects.cs</DependentUpon>
@@ -453,6 +480,8 @@
     <None Include="Properties\DataSources\CostingModels.datasource" />
     <None Include="Properties\DataSources\Documents.datasource" />
     <None Include="Properties\DataSources\DocumentSequences.datasource" />
+    <None Include="Properties\DataSources\DocumentsProjects.datasource" />
+    <None Include="Properties\DataSources\DocumentTransactions.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
@@ -467,6 +496,7 @@
     <None Include="Properties\DataSources\Project.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
+    <None Include="Properties\DataSources\SequencesTransactions.datasource" />
     <None Include="Properties\DataSources\SequenceType.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
