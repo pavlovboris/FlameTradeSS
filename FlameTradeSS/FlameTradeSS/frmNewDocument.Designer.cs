@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewDocument));
             this.cmbPartners = new System.Windows.Forms.ComboBox();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -46,6 +46,10 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblIsCanceled = new System.Windows.Forms.Label();
+            this.checkBoxIsBlocked = new System.Windows.Forms.CheckBox();
+            this.lblComment = new System.Windows.Forms.Label();
+            this.txtComment = new System.Windows.Forms.TextBox();
             this.btnRemoveFile = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lblAttachments = new System.Windows.Forms.Label();
@@ -185,6 +189,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblIsCanceled);
+            this.panel1.Controls.Add(this.checkBoxIsBlocked);
+            this.panel1.Controls.Add(this.lblComment);
+            this.panel1.Controls.Add(this.txtComment);
             this.panel1.Controls.Add(this.btnRemoveFile);
             this.panel1.Controls.Add(this.btnAddFile);
             this.panel1.Controls.Add(this.lblAttachments);
@@ -207,6 +215,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1611, 239);
             this.panel1.TabIndex = 12;
+            // 
+            // lblIsCanceled
+            // 
+            this.lblIsCanceled.AutoSize = true;
+            this.lblIsCanceled.Location = new System.Drawing.Point(423, 91);
+            this.lblIsCanceled.Name = "lblIsCanceled";
+            this.lblIsCanceled.Size = new System.Drawing.Size(0, 13);
+            this.lblIsCanceled.TabIndex = 23;
+            // 
+            // checkBoxIsBlocked
+            // 
+            this.checkBoxIsBlocked.AutoSize = true;
+            this.checkBoxIsBlocked.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.documentsBindingSource, "IsBlocked", true));
+            this.checkBoxIsBlocked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxIsBlocked.Location = new System.Drawing.Point(552, 91);
+            this.checkBoxIsBlocked.Name = "checkBoxIsBlocked";
+            this.checkBoxIsBlocked.Size = new System.Drawing.Size(140, 17);
+            this.checkBoxIsBlocked.TabIndex = 22;
+            this.checkBoxIsBlocked.Text = "Документа е блокиран";
+            this.checkBoxIsBlocked.UseVisualStyleBackColor = true;
+            this.checkBoxIsBlocked.CheckStateChanged += new System.EventHandler(this.checkBoxIsBlocked_CheckedChanged);
+            // 
+            // lblComment
+            // 
+            this.lblComment.AutoSize = true;
+            this.lblComment.Location = new System.Drawing.Point(695, 9);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(125, 13);
+            this.lblComment.TabIndex = 21;
+            this.lblComment.Text = "Възможни Транзакции";
+            // 
+            // txtComment
+            // 
+            this.txtComment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "Comment", true));
+            this.txtComment.Location = new System.Drawing.Point(698, 29);
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(278, 56);
+            this.txtComment.TabIndex = 20;
             // 
             // btnRemoveFile
             // 
@@ -234,7 +281,7 @@
             // 
             this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttachments.AutoSize = true;
-            this.lblAttachments.Location = new System.Drawing.Point(1452, 6);
+            this.lblAttachments.Location = new System.Drawing.Point(1452, 9);
             this.lblAttachments.Name = "lblAttachments";
             this.lblAttachments.Size = new System.Drawing.Size(54, 13);
             this.lblAttachments.TabIndex = 17;
@@ -253,13 +300,13 @@
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
             this.dgvAttachments.DataSource = this.documentsAttachmentsBindingSource;
-            this.dgvAttachments.Location = new System.Drawing.Point(1455, 25);
+            this.dgvAttachments.Location = new System.Drawing.Point(1455, 29);
             this.dgvAttachments.MultiSelect = false;
             this.dgvAttachments.Name = "dgvAttachments";
             this.dgvAttachments.ReadOnly = true;
             this.dgvAttachments.RowHeadersWidth = 20;
             this.dgvAttachments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttachments.Size = new System.Drawing.Size(144, 168);
+            this.dgvAttachments.Size = new System.Drawing.Size(144, 164);
             this.dgvAttachments.TabIndex = 16;
             this.dgvAttachments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAttachments_CellDoubleClick);
             // 
@@ -304,7 +351,7 @@
             this.listBoxProjects.FormattingEnabled = true;
             this.listBoxProjects.Location = new System.Drawing.Point(1237, 28);
             this.listBoxProjects.Name = "listBoxProjects";
-            this.listBoxProjects.Size = new System.Drawing.Size(212, 56);
+            this.listBoxProjects.Size = new System.Drawing.Size(212, 82);
             this.listBoxProjects.TabIndex = 13;
             this.listBoxProjects.ValueMember = "ID";
             // 
@@ -399,40 +446,40 @@
             // transactionDateDataGridViewTextBoxColumn
             // 
             this.transactionDateDataGridViewTextBoxColumn.DataPropertyName = "TransactionDate";
-            dataGridViewCellStyle7.Format = "d";
-            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "d";
+            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.transactionDateDataGridViewTextBoxColumn.HeaderText = "TransactionDate";
             this.transactionDateDataGridViewTextBoxColumn.Name = "transactionDateDataGridViewTextBoxColumn";
             // 
             // expectedMatDateDataGridViewTextBoxColumn
             // 
             this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
-            dataGridViewCellStyle8.Format = "d";
-            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "d";
+            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
             this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
             // 
             // requestedDateDataGridViewTextBoxColumn
             // 
             this.requestedDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDate";
-            dataGridViewCellStyle9.Format = "d";
-            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "d";
+            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.requestedDateDataGridViewTextBoxColumn.HeaderText = "RequestedDate";
             this.requestedDateDataGridViewTextBoxColumn.Name = "requestedDateDataGridViewTextBoxColumn";
             // 
             // receivedDateDataGridViewTextBoxColumn
             // 
             this.receivedDateDataGridViewTextBoxColumn.DataPropertyName = "ReceivedDate";
-            dataGridViewCellStyle10.Format = "d";
-            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Format = "d";
+            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.receivedDateDataGridViewTextBoxColumn.HeaderText = "ReceivedDate";
             this.receivedDateDataGridViewTextBoxColumn.Name = "receivedDateDataGridViewTextBoxColumn";
             // 
             // requestedDeliveryDateDataGridViewTextBoxColumn
             // 
             this.requestedDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDeliveryDate";
-            dataGridViewCellStyle11.Format = "d";
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Format = "d";
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.requestedDeliveryDateDataGridViewTextBoxColumn.HeaderText = "RequestedDeliveryDate";
             this.requestedDeliveryDateDataGridViewTextBoxColumn.Name = "requestedDeliveryDateDataGridViewTextBoxColumn";
             // 
@@ -512,8 +559,8 @@
             // creationDateTimeDataGridViewTextBoxColumn
             // 
             this.creationDateTimeDataGridViewTextBoxColumn.DataPropertyName = "CreationDateTime";
-            dataGridViewCellStyle12.Format = "d";
-            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Format = "d";
+            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.creationDateTimeDataGridViewTextBoxColumn.HeaderText = "CreationDateTime";
             this.creationDateTimeDataGridViewTextBoxColumn.Name = "creationDateTimeDataGridViewTextBoxColumn";
             this.creationDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -557,7 +604,7 @@
             this.listBoxTransactionsAdd.FormattingEnabled = true;
             this.listBoxTransactionsAdd.Location = new System.Drawing.Point(552, 29);
             this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
-            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(178, 56);
+            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(140, 56);
             this.listBoxTransactionsAdd.TabIndex = 9;
             this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
             // 
@@ -651,5 +698,9 @@
         private System.Windows.Forms.Label lblProjects;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label lblComment;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.Label lblIsCanceled;
+        private System.Windows.Forms.CheckBox checkBoxIsBlocked;
     }
 }

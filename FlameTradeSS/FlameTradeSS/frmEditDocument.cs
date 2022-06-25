@@ -383,5 +383,19 @@ namespace FlameTradeSS
                 }
             }
         }
+
+        private void checkBoxIsBlocked_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxIsBlocked.DataBindings!=null)
+            {
+                if (checkBoxIsBlocked.Checked == true)
+                {
+                    newDocument.IsBlocked = 1;
+                }  else
+                {
+                    newDocument.IsBlocked=0;
+                }
+            }
+        }
     }
 }
