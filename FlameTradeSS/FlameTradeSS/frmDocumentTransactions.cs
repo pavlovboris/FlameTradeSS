@@ -25,13 +25,16 @@ namespace FlameTradeSS
         {
             this.BackColor = Color.White;
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+
+
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
-           /* if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
+            
+            if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
             {
                 TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
                 transactionLines.TransactionsID = documentTransactions.ID;
-            }*/
+            }
 
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
@@ -58,15 +61,29 @@ namespace FlameTradeSS
         public  DocumentTransactions documentTransactions;
 
 
-        private void dgvTransactionLines_Click(object sender, EventArgs e)
+        private async void dgvTransactionLines_Click(object sender, EventArgs e)
         {
-            if (dgvTransactionLines.RowCount==0)
+            if (documentTransactions.Documents.Issued == 0)
             {
-                TransactionLines transaction = new TransactionLines();
-                transaction.TransactionsID = documentTransactions.ID;
-                transactionLinesBindingSource.Add(transaction);
-                db.TransactionLines.Add(transaction);
-            }
+                if (documentTransactions.ID == 0)
+                {
+                    await db.SaveChangesAsync();
+                }
+
+                if (transactionLinesBindingSource.Count == 0)
+                {
+                    TransactionLines transaction = new TransactionLines();
+                    transaction.TransactionsID = documentTransactions.ID;
+                    transactionLinesBindingSource.Add(transaction);
+                    db.TransactionLines.Add(transaction);
+                }
+            } 
+        }
+
+        private void frmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           // e.Cancel = true;
+           // Hide();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace FlameTradeSS
     
         public int ID { get; set; }
         public int DocumentSequenceID { get; set; }
-        public int DocumentNumber { get; set; }
+        public Nullable<int> DocumentNumber { get; set; }
         public int PartnerID { get; set; }
         public int UserID { get; set; }
         public System.DateTime DocumentDate { get; set; }
@@ -38,6 +38,7 @@ namespace FlameTradeSS
         public Nullable<int> CostingModelID { get; set; }
         public Nullable<int> PricingModelID { get; set; }
         public int IsCanceled { get; set; }
+        public int Issued { get; set; }
     
         public virtual DocumentSequences DocumentSequences { get; set; }
         public virtual Partners Partners { get; set; }

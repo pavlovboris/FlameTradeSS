@@ -25,5 +25,11 @@ namespace FlameTradeSS
                 return false;
             }
         }
+
+        public static int Counter
+        {
+            get;
+            set;
+        }
     }
 }

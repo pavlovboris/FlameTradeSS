@@ -46,6 +46,7 @@ namespace FlameTradeSS
         public System.DateTime CreationDateTime { get; set; }
         public Nullable<int> ColorID { get; set; }
         public int IsCanceled { get; set; }
+        public Nullable<int> tempID { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Documents Documents { get; set; }

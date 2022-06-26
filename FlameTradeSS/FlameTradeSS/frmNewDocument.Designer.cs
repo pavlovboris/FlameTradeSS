@@ -46,6 +46,8 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnIssueDocument = new System.Windows.Forms.Button();
             this.lblIsCanceled = new System.Windows.Forms.Label();
             this.checkBoxIsBlocked = new System.Windows.Forms.CheckBox();
             this.lblComment = new System.Windows.Forms.Label();
@@ -189,6 +191,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnIssueDocument);
             this.panel1.Controls.Add(this.lblIsCanceled);
             this.panel1.Controls.Add(this.checkBoxIsBlocked);
             this.panel1.Controls.Add(this.lblComment);
@@ -216,6 +220,29 @@
             this.panel1.Size = new System.Drawing.Size(1611, 239);
             this.panel1.TabIndex = 12;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Enabled = false;
+            this.btnCancel.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnCancel.Location = new System.Drawing.Point(1061, 58);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 36);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Анулирай Документа";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnIssueDocument
+            // 
+            this.btnIssueDocument.Enabled = false;
+            this.btnIssueDocument.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnIssueDocument.Location = new System.Drawing.Point(1061, 12);
+            this.btnIssueDocument.Name = "btnIssueDocument";
+            this.btnIssueDocument.Size = new System.Drawing.Size(75, 36);
+            this.btnIssueDocument.TabIndex = 29;
+            this.btnIssueDocument.Text = "Издай Документа";
+            this.btnIssueDocument.UseVisualStyleBackColor = true;
+            this.btnIssueDocument.Click += new System.EventHandler(this.btnIssueDocument_Click);
+            // 
             // lblIsCanceled
             // 
             this.lblIsCanceled.AutoSize = true;
@@ -242,9 +269,9 @@
             this.lblComment.AutoSize = true;
             this.lblComment.Location = new System.Drawing.Point(695, 9);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(125, 13);
+            this.lblComment.Size = new System.Drawing.Size(57, 13);
             this.lblComment.TabIndex = 21;
-            this.lblComment.Text = "Възможни Транзакции";
+            this.lblComment.Text = "Коментар";
             // 
             // txtComment
             // 
@@ -592,12 +619,13 @@
             // 
             // txtDocumentNumber
             // 
-            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
+            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
             this.txtDocumentNumber.Location = new System.Drawing.Point(421, 64);
             this.txtDocumentNumber.MaxLength = 20;
             this.txtDocumentNumber.Name = "txtDocumentNumber";
             this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
             this.txtDocumentNumber.TabIndex = 10;
+            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
             // 
             // listBoxTransactionsAdd
             // 
@@ -702,5 +730,7 @@
         private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Label lblIsCanceled;
         private System.Windows.Forms.CheckBox checkBoxIsBlocked;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnIssueDocument;
     }
 }

@@ -18,17 +18,20 @@ namespace FlameTradeSS
         {
             InitializeComponent();
         }
-
+        int maxID;
+        bool issued;
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
-           
+            maxID = db.DocumentTransactions.Max(dt => (int)dt.tempID);
+
+            CurrentSessionData.Counter = maxID;
            
             partnersBindingSource.DataSource = db.Partners.ToList();
             documentsBindingSource.DataSource = newDocument;
             documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID==newDocument.ID).ToList();
-            documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
+            documentSequencesBindingSource.DataSource = newDocument.DocumentSequences;
             
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
@@ -38,12 +41,15 @@ namespace FlameTradeSS
             {
                 foreach(DocumentsProjects dp in documentsProjectsBindingSource)
                 {
+                    
                     Project project = dp.Project;
                     projectBindingSource.Add(project);
                 }
-                
             }
-           
+            
+            
+
+            
 
             List<SequencesTransactions> lines = new List<SequencesTransactions>();
 
@@ -58,6 +64,22 @@ namespace FlameTradeSS
                     listBoxTransactionsAdd.Items.Add(possible.TransactionsType);
                     listBoxTransactionsAdd.DisplayMember = "TypeName";
                 }
+            }
+
+            if (newDocument.Issued == 0)
+            {
+                issued = false;
+            }
+            else
+            {
+                listBoxTransactionsAdd.Enabled = false;
+                btnIssueDocument.Enabled = false;
+                btnCancel.Enabled = true;
+                cmbDocumentSequence.Enabled = false;
+                cmbPartners.Enabled = false;
+                dateTimeDocDate.Enabled = false;
+                dgvDocumentTransactions.ReadOnly = true;
+                issued = true;
             }
 
             if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
@@ -117,27 +139,38 @@ namespace FlameTradeSS
             // don't forget to save the settings
             Properties.Settings.Default.Save();
 
-            DialogResult dialogResult = CommonTasks.SendQuestionMsg("Искате ли да запазите документа?");
 
-            if (dialogResult == DialogResult.Yes)
+            if (newDocument.Issued == 0)
             {
-                try 
+                DialogResult dialogResult = CommonTasks.SendQuestionMsg("Искате ли да запазите документа?");
+
+                if (dialogResult == DialogResult.Yes)
                 {
-                    await db.SaveChangesAsync(); 
-                } catch (Exception ex) { MessageBox.Show(ex.Message); } 
-            } else if (dialogResult == DialogResult.No)
-            {
-                
-            } else
-            {
-                e.Cancel = true ;
+                    try
+                    {
+                        foreach (Form form in this.MdiChildren)
+                        {
+                            form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                        }
+
+                        await db.SaveChangesAsync();
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
 
             try
             {
                 CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
-             
         }
 
         private void cmbDocumentSequence_SelectionChangeCommitted(object sender, EventArgs e)
@@ -189,26 +222,39 @@ namespace FlameTradeSS
             }
         }
 
+        
+
         private void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
             TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
             DocumentTransactions newDocumentTransaction = new DocumentTransactions();
-            
+
+            int tempID = CurrentSessionData.Counter + 1;
+
+
+            CurrentSessionData.Counter = tempID;
+           
             newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
             newDocumentTransaction.DocumentsID = newDocument.ID;
             newDocumentTransaction.UserID = newDocument.UserID;
             newDocumentTransaction.TransactionDate = DateTime.Now;
             newDocumentTransaction.CreationDateTime = DateTime.Now;
             frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
-            newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
-            newfrmDocumentTransactions.db = db;
-            db.DocumentTransactions.Add(newDocumentTransaction);
-            newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
+            newDocumentTransaction.tempID = tempID;
+
+            newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + newDocumentTransaction.tempID;
+            
+            
+           
+           // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
             newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             newfrmDocumentTransactions.MdiParent = this;
             documentTransactionsBindingSource.Add(newDocumentTransaction);
             documentTransactionsBindingSource.MoveLast();
-
+            db.DocumentTransactions.Add(newDocumentTransaction);
+            newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
+            newfrmDocumentTransactions.db = db;
+            newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
             newfrmDocumentTransactions.Show();
 
             newDocument.IsBlocked = 1;
@@ -217,19 +263,54 @@ namespace FlameTradeSS
 
         }
 
+        private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmDocumentTransactions closingForm = (frmDocumentTransactions)sender;
+            e.Cancel = true;
+            closingForm.Hide();
+
+        }
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null )
+            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
             {
+                bool isOpened = false;
+                
+                
                 DocumentTransactions documentTransactions = new DocumentTransactions();
                 documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
-                newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
-                newfrmDocumentTransactions.MdiParent = this;
-                newfrmDocumentTransactions.documentTransactions = documentTransactions;
-                newfrmDocumentTransactions.db = db;
-             
-                newfrmDocumentTransactions.Show();
+                
+                newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name  + documentTransactions.tempID.ToString();
+
+                foreach (Form form in MdiChildren)
+                {
+                    if (form.Name == newfrmDocumentTransactions.Name)
+                    {
+                        isOpened = true;
+                        form.Show();
+                        newfrmDocumentTransactions.Dispose();
+                        break;
+                    }
+                }
+         
+                if (newDocument.Issued==1)
+                {
+                    newfrmDocumentTransactions.dgvTransactionLines.ReadOnly = true;
+                }
+
+                if(!isOpened)
+                {
+                    newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
+                    newfrmDocumentTransactions.MdiParent = this;
+                    newfrmDocumentTransactions.documentTransactions = documentTransactions;
+                    newfrmDocumentTransactions.db = db;
+                    newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+                    newfrmDocumentTransactions.Show();
+                }
+
+                
             }
         }
 
@@ -405,6 +486,48 @@ namespace FlameTradeSS
                 }  else
                 {
                     newDocument.IsBlocked=0;
+                }
+            }
+        }
+
+        private void txtDocumentNumber_EnabledChanged(object sender, EventArgs e)
+        {
+            if (newDocument.Issued==0 && txtDocumentNumber.Enabled == false)
+            {
+                btnIssueDocument.Enabled = true;
+            } else
+            {
+                btnIssueDocument.Enabled = false;
+            }
+        }
+
+        private async void btnIssueDocument_Click(object sender, EventArgs e)
+        {
+            if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
+            {
+               if ( CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете фактура?") == true) 
+               {
+                    try
+                    {
+                        int maxInvoiceN = db.InvoiceNumbering.Max(inv => inv.number);
+                        newDocument.DocumentNumber = maxInvoiceN + 1;
+                        InvoiceNumbering invoiceNumbering = new InvoiceNumbering();
+
+                        invoiceNumbering.documentID = newDocument.ID;
+                        invoiceNumbering.number = (int)newDocument.DocumentNumber;
+                        db.InvoiceNumbering.Add(invoiceNumbering);
+                        newDocument.Issued = 1;
+                        btnIssueDocument.Enabled = false;
+                        btnCancel.Enabled = true;
+                        cmbDocumentSequence.Enabled = false;
+                        cmbPartners.Enabled = false;
+                        dateTimeDocDate.Enabled = false;
+                        dgvDocumentTransactions.ReadOnly = true;
+                        listBoxTransactionsAdd.Enabled = false;
+                        issued = true;
+                        await db.SaveChangesAsync();
+                        CommonTasks.SendInfoMsg("Фактурата е успешно издадена");
+                    } catch { CommonTasks.SendErrorMsg("Фактурата НЕ е издадена"); }
                 }
             }
         }

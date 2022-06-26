@@ -41,7 +41,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentSequenceID" Type="int" Nullable="false" />
-          <Property Name="DocumentNumber" Type="int" Nullable="false" />
+          <Property Name="DocumentNumber" Type="int" />
           <Property Name="PartnerID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="DocumentDate" Type="date" Nullable="false" />
@@ -52,6 +52,7 @@
           <Property Name="CostingModelID" Type="int" />
           <Property Name="PricingModelID" Type="int" />
           <Property Name="IsCanceled" Type="int" Nullable="false" />
+          <Property Name="Issued" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -106,6 +107,7 @@
           <Property Name="CreationDateTime" Type="datetime" Nullable="false" />
           <Property Name="ColorID" Type="int" />
           <Property Name="IsCanceled" Type="int" Nullable="false" />
+          <Property Name="tempID" Type="int" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -1737,7 +1739,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DocumentSequenceID" Type="Int32" Nullable="false" />
-          <Property Name="DocumentNumber" Type="Int32" Nullable="false" />
+          <Property Name="DocumentNumber" Type="Int32" />
           <Property Name="PartnerID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="DocumentDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -1757,6 +1759,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentTransformation" Relationship="Self.FK_DocumentTransformation_DocID" FromRole="Documents" ToRole="DocumentTransformation" />
           <NavigationProperty Name="DocumentTransformation1" Relationship="Self.FK_DocumentTransformation_OriginDocID" FromRole="Documents" ToRole="DocumentTransformation" />
           <NavigationProperty Name="InvoiceNumbering" Relationship="Self.FK_InvoiceNumbering_documentID" FromRole="Documents" ToRole="InvoiceNumbering" />
+          <Property Name="Issued" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -1827,6 +1830,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionPersons" Relationship="Self.FK_TransactionPersons_DocumentTransactionsID" FromRole="DocumentTransactions" ToRole="TransactionPersons" />
           <NavigationProperty Name="TransactionsTransformations" Relationship="Self.FK_TransactionsTransformations_OriginTransactionID" FromRole="DocumentTransactions" ToRole="TransactionsTransformations" />
           <NavigationProperty Name="TransactionsTransformations1" Relationship="Self.FK_TransactionsTransformations_TransactionID" FromRole="DocumentTransactions" ToRole="TransactionsTransformations" />
+          <Property Name="tempID" Type="Int32" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -3568,6 +3572,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Documents">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Documents">
               <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
                 <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
@@ -3617,6 +3622,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="tempID" ColumnName="tempID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
                 <ScalarProperty Name="DocumentsID" ColumnName="DocumentsID" />

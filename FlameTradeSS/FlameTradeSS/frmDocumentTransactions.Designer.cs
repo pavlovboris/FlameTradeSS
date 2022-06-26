@@ -34,7 +34,6 @@
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
             this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
-            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +63,7 @@
             this.costPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costPrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
@@ -151,10 +151,6 @@
             this.dgvTransactionLines.Size = new System.Drawing.Size(692, 329);
             this.dgvTransactionLines.TabIndex = 2;
             this.dgvTransactionLines.Click += new System.EventHandler(this.dgvTransactionLines_Click);
-            // 
-            // transactionLinesBindingSource
-            // 
-            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
             // transactionsIDDataGridViewTextBoxColumn
             // 
@@ -389,6 +385,10 @@
             this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
             this.isCanceledDataGridViewTextBoxColumn.Width = 200;
             // 
+            // transactionLinesBindingSource
+            // 
+            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
+            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +403,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmDocumentTransactions";
             this.Text = "Document Transactions";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
             this.Load += new System.EventHandler(this.frmDocumentTransactions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
