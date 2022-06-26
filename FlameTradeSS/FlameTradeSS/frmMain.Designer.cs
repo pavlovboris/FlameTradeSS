@@ -38,14 +38,19 @@
             treeNode3,
             treeNode4});
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Отчети");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Групи");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Партиди");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Добави Артикул");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Списък с Артикули");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Артикули", new System.Windows.Forms.TreeNode[] {
             treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Отчети");
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Групи");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Партиди");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
@@ -274,21 +279,29 @@
             this.treeViewInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeViewInventory.Location = new System.Drawing.Point(573, 131);
             this.treeViewInventory.Name = "treeViewInventory";
-            treeNode7.Name = "InvenotryGroup";
-            treeNode7.Text = "Групи";
-            treeNode8.Name = "InventoryCategory";
-            treeNode8.Text = "Категории";
-            treeNode9.Name = "InventoryPartitions";
-            treeNode9.Text = "Партиди";
-            treeNode10.Name = "InventorySettings";
-            treeNode10.Text = "Настройки";
-            treeNode11.Name = "InventoryReports";
-            treeNode11.Text = "Отчети";
+            treeNode7.Name = "ItemsNewItem";
+            treeNode7.Text = "Добави Артикул";
+            treeNode8.Name = "ItemsList";
+            treeNode8.Text = "Списък с Артикули";
+            treeNode9.Name = "InventoryItems";
+            treeNode9.Text = "Артикули";
+            treeNode10.Name = "InvenotryGroup";
+            treeNode10.Text = "Групи";
+            treeNode11.Name = "InventoryCategory";
+            treeNode11.Text = "Категории";
+            treeNode12.Name = "InventoryPartitions";
+            treeNode12.Text = "Партиди";
+            treeNode13.Name = "InventorySettings";
+            treeNode13.Text = "Настройки";
+            treeNode14.Name = "InventoryReports";
+            treeNode14.Text = "Отчети";
             this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode11});
+            treeNode9,
+            treeNode13,
+            treeNode14});
             this.treeViewInventory.Size = new System.Drawing.Size(173, 146);
             this.treeViewInventory.TabIndex = 35;
+            this.treeViewInventory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewInventory_NodeMouseDoubleClick);
             // 
             // frmMain
             // 

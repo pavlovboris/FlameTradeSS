@@ -21,6 +21,9 @@ namespace FlameTradeSS
         }
     
         public int ID { get; set; }
+        public string CategoryCode { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Items> Items { get; set; }

@@ -203,5 +203,28 @@ namespace FlameTradeSS
             frmNewDocument.dateTimeDocDate.Value = DateTime.Now;
             CommonTasks.OpenForm(frmNewDocument);
         }
+
+        private void treeViewInventory_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            switch (e.Node.Name)
+            {
+                case "ItemsNewItem":
+
+                    break;
+                case "ItemsList":
+                    break;
+                case "InvenotryGroup":
+                    
+                    break;
+                case "InventoryCategory":
+                    frmItemsCategory frmItemsCategory = new frmItemsCategory();
+                    CommonTasks.OpenForm(frmItemsCategory);
+                    break;
+                case "InventoryPartitions":
+                    break;
+                case "":
+                    break;
+            }
+        }
     }
 }
