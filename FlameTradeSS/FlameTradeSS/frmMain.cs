@@ -214,13 +214,16 @@ namespace FlameTradeSS
                 case "ItemsList":
                     break;
                 case "InvenotryGroup":
-                    
+                    frmItemsGroups frmItemsGroups = new frmItemsGroups();
+                    CommonTasks.OpenForm(frmItemsGroups);
                     break;
                 case "InventoryCategory":
                     frmItemsCategory frmItemsCategory = new frmItemsCategory();
                     CommonTasks.OpenForm(frmItemsCategory);
                     break;
-                case "InventoryPartitions":
+                case "ItemsPartitionsTypes":
+                    frmPartitionsType frmPartitionsType = new frmPartitionsType();
+                    CommonTasks.OpenForm(frmPartitionsType);
                     break;
                 case "":
                     break;

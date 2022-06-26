@@ -45,17 +45,22 @@
             treeNode8});
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Групи");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Партиди");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Списък с Партиди");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Видове Партиди");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Партиди", new System.Windows.Forms.TreeNode[] {
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
             treeNode10,
             treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Отчети");
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
             this.btnAdminTools = new System.Windows.Forms.Button();
             this.treeViewPartners = new System.Windows.Forms.TreeView();
+            this.treeViewInventory = new System.Windows.Forms.TreeView();
             this.btnNewDocument = new System.Windows.Forms.Button();
             this.btnProduction = new System.Windows.Forms.Button();
             this.btnWarehouse = new System.Windows.Forms.Button();
@@ -66,7 +71,6 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.treeViewInventory = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // lblCurentUserLabel
@@ -127,6 +131,40 @@
             this.treeViewPartners.TabIndex = 29;
             this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
             // 
+            // treeViewInventory
+            // 
+            this.treeViewInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeViewInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeViewInventory.Location = new System.Drawing.Point(540, 131);
+            this.treeViewInventory.Name = "treeViewInventory";
+            treeNode7.Name = "ItemsNewItem";
+            treeNode7.Text = "Добави Артикул";
+            treeNode8.Name = "ItemsList";
+            treeNode8.Text = "Списък с Артикули";
+            treeNode9.Name = "InventoryItems";
+            treeNode9.Text = "Артикули";
+            treeNode10.Name = "InvenotryGroup";
+            treeNode10.Text = "Групи";
+            treeNode11.Name = "InventoryCategory";
+            treeNode11.Text = "Категории";
+            treeNode12.Name = "ItemsPartitionsTypeList";
+            treeNode12.Text = "Списък с Партиди";
+            treeNode13.Name = "ItemsPartitionsTypes";
+            treeNode13.Text = "Видове Партиди";
+            treeNode14.Name = "InventoryPartitions";
+            treeNode14.Text = "Партиди";
+            treeNode15.Name = "InventorySettings";
+            treeNode15.Text = "Настройки";
+            treeNode16.Name = "InventoryReports";
+            treeNode16.Text = "Отчети";
+            this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode15,
+            treeNode16});
+            this.treeViewInventory.Size = new System.Drawing.Size(195, 223);
+            this.treeViewInventory.TabIndex = 35;
+            this.treeViewInventory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewInventory_NodeMouseDoubleClick);
+            // 
             // btnNewDocument
             // 
             this.btnNewDocument.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -165,7 +203,7 @@
             this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnWarehouse.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_132_Icon_48;
             this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWarehouse.Location = new System.Drawing.Point(573, 73);
+            this.btnWarehouse.Location = new System.Drawing.Point(540, 73);
             this.btnWarehouse.Name = "btnWarehouse";
             this.btnWarehouse.Size = new System.Drawing.Size(97, 52);
             this.btnWarehouse.TabIndex = 32;
@@ -272,36 +310,6 @@
             this.btnClose.TabIndex = 23;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
-            // 
-            // treeViewInventory
-            // 
-            this.treeViewInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeViewInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeViewInventory.Location = new System.Drawing.Point(573, 131);
-            this.treeViewInventory.Name = "treeViewInventory";
-            treeNode7.Name = "ItemsNewItem";
-            treeNode7.Text = "Добави Артикул";
-            treeNode8.Name = "ItemsList";
-            treeNode8.Text = "Списък с Артикули";
-            treeNode9.Name = "InventoryItems";
-            treeNode9.Text = "Артикули";
-            treeNode10.Name = "InvenotryGroup";
-            treeNode10.Text = "Групи";
-            treeNode11.Name = "InventoryCategory";
-            treeNode11.Text = "Категории";
-            treeNode12.Name = "InventoryPartitions";
-            treeNode12.Text = "Партиди";
-            treeNode13.Name = "InventorySettings";
-            treeNode13.Text = "Настройки";
-            treeNode14.Name = "InventoryReports";
-            treeNode14.Text = "Отчети";
-            this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode13,
-            treeNode14});
-            this.treeViewInventory.Size = new System.Drawing.Size(173, 146);
-            this.treeViewInventory.TabIndex = 35;
-            this.treeViewInventory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewInventory_NodeMouseDoubleClick);
             // 
             // frmMain
             // 
