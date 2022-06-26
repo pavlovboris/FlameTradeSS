@@ -208,7 +208,7 @@ namespace FlameTradeSS
             newfrmDocumentTransactions.MdiParent = this;
             documentTransactionsBindingSource.Add(newDocumentTransaction);
             documentTransactionsBindingSource.MoveLast();
-           
+
             newfrmDocumentTransactions.Show();
 
             newDocument.IsBlocked = 1;
@@ -227,8 +227,8 @@ namespace FlameTradeSS
                 newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                 newfrmDocumentTransactions.MdiParent = this;
                 newfrmDocumentTransactions.documentTransactions = documentTransactions;
-               // newfrmDocumentTransactions.documentTransactionsBindingSource.DataSource = documentTransactions;
                 newfrmDocumentTransactions.db = db;
+             
                 newfrmDocumentTransactions.Show();
             }
         }

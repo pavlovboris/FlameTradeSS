@@ -20,17 +20,18 @@ namespace FlameTradeSS
             InitializeComponent();
         }
 
+
         private void frmDocumentTransactions_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.White;
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
-            if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
+           /* if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
             {
                 TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
                 transactionLines.TransactionsID = documentTransactions.ID;
-            }
+            }*/
 
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {

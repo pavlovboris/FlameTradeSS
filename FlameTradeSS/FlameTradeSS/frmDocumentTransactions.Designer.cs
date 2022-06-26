@@ -148,7 +148,7 @@
             this.dgvTransactionLines.Location = new System.Drawing.Point(12, 211);
             this.dgvTransactionLines.Name = "dgvTransactionLines";
             this.dgvTransactionLines.RowHeadersWidth = 20;
-            this.dgvTransactionLines.Size = new System.Drawing.Size(692, 366);
+            this.dgvTransactionLines.Size = new System.Drawing.Size(692, 329);
             this.dgvTransactionLines.TabIndex = 2;
             this.dgvTransactionLines.Click += new System.EventHandler(this.dgvTransactionLines_Click);
             // 
@@ -160,175 +160,234 @@
             // 
             this.transactionsIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionsID";
             this.transactionsIDDataGridViewTextBoxColumn.HeaderText = "TransactionsID";
+            this.transactionsIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.transactionsIDDataGridViewTextBoxColumn.Name = "transactionsIDDataGridViewTextBoxColumn";
+            this.transactionsIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.transactionsIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // itemIDDataGridViewTextBoxColumn
             // 
             this.itemIDDataGridViewTextBoxColumn.DataPropertyName = "ItemID";
             this.itemIDDataGridViewTextBoxColumn.HeaderText = "ItemID";
+            this.itemIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.itemIDDataGridViewTextBoxColumn.Name = "itemIDDataGridViewTextBoxColumn";
+            this.itemIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // machineIDDataGridViewTextBoxColumn
             // 
             this.machineIDDataGridViewTextBoxColumn.DataPropertyName = "MachineID";
             this.machineIDDataGridViewTextBoxColumn.HeaderText = "MachineID";
+            this.machineIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.machineIDDataGridViewTextBoxColumn.Name = "machineIDDataGridViewTextBoxColumn";
+            this.machineIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // serviceIDDataGridViewTextBoxColumn
             // 
             this.serviceIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceID";
             this.serviceIDDataGridViewTextBoxColumn.HeaderText = "ServiceID";
+            this.serviceIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.serviceIDDataGridViewTextBoxColumn.Name = "serviceIDDataGridViewTextBoxColumn";
+            this.serviceIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // startDateDataGridViewTextBoxColumn
             // 
             this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
             this.startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
+            this.startDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
+            this.startDateDataGridViewTextBoxColumn.Width = 200;
             // 
             // endDateDataGridViewTextBoxColumn
             // 
             this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
             this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
+            this.endDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
+            this.endDateDataGridViewTextBoxColumn.Width = 200;
             // 
             // durationHoursDataGridViewTextBoxColumn
             // 
             this.durationHoursDataGridViewTextBoxColumn.DataPropertyName = "DurationHours";
             this.durationHoursDataGridViewTextBoxColumn.HeaderText = "DurationHours";
+            this.durationHoursDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.durationHoursDataGridViewTextBoxColumn.Name = "durationHoursDataGridViewTextBoxColumn";
+            this.durationHoursDataGridViewTextBoxColumn.Width = 200;
             // 
             // cyclesDataGridViewTextBoxColumn
             // 
             this.cyclesDataGridViewTextBoxColumn.DataPropertyName = "Cycles";
             this.cyclesDataGridViewTextBoxColumn.HeaderText = "Cycles";
+            this.cyclesDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.cyclesDataGridViewTextBoxColumn.Name = "cyclesDataGridViewTextBoxColumn";
+            this.cyclesDataGridViewTextBoxColumn.Width = 200;
             // 
             // orderingDataGridViewTextBoxColumn
             // 
             this.orderingDataGridViewTextBoxColumn.DataPropertyName = "Ordering";
             this.orderingDataGridViewTextBoxColumn.HeaderText = "Ordering";
+            this.orderingDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.orderingDataGridViewTextBoxColumn.Name = "orderingDataGridViewTextBoxColumn";
+            this.orderingDataGridViewTextBoxColumn.Width = 200;
             // 
             // receiptIDDataGridViewTextBoxColumn
             // 
             this.receiptIDDataGridViewTextBoxColumn.DataPropertyName = "ReceiptID";
             this.receiptIDDataGridViewTextBoxColumn.HeaderText = "ReceiptID";
+            this.receiptIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.receiptIDDataGridViewTextBoxColumn.Name = "receiptIDDataGridViewTextBoxColumn";
+            this.receiptIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // muIDDataGridViewTextBoxColumn
             // 
             this.muIDDataGridViewTextBoxColumn.DataPropertyName = "MuID";
             this.muIDDataGridViewTextBoxColumn.HeaderText = "MuID";
+            this.muIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.muIDDataGridViewTextBoxColumn.Name = "muIDDataGridViewTextBoxColumn";
+            this.muIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // partitionIDDataGridViewTextBoxColumn
             // 
             this.partitionIDDataGridViewTextBoxColumn.DataPropertyName = "PartitionID";
             this.partitionIDDataGridViewTextBoxColumn.HeaderText = "PartitionID";
+            this.partitionIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.partitionIDDataGridViewTextBoxColumn.Name = "partitionIDDataGridViewTextBoxColumn";
+            this.partitionIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // secondPartitionIDDataGridViewTextBoxColumn
             // 
             this.secondPartitionIDDataGridViewTextBoxColumn.DataPropertyName = "SecondPartitionID";
             this.secondPartitionIDDataGridViewTextBoxColumn.HeaderText = "SecondPartitionID";
+            this.secondPartitionIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.secondPartitionIDDataGridViewTextBoxColumn.Name = "secondPartitionIDDataGridViewTextBoxColumn";
+            this.secondPartitionIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // qtyDataGridViewTextBoxColumn
             // 
             this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
             this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
+            this.qtyDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
+            this.qtyDataGridViewTextBoxColumn.Width = 200;
             // 
             // additionExpenseDataGridViewTextBoxColumn
             // 
             this.additionExpenseDataGridViewTextBoxColumn.DataPropertyName = "AdditionExpense";
             this.additionExpenseDataGridViewTextBoxColumn.HeaderText = "AdditionExpense";
+            this.additionExpenseDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.additionExpenseDataGridViewTextBoxColumn.Name = "additionExpenseDataGridViewTextBoxColumn";
+            this.additionExpenseDataGridViewTextBoxColumn.Width = 200;
             // 
             // salePrice1DataGridViewTextBoxColumn
             // 
             this.salePrice1DataGridViewTextBoxColumn.DataPropertyName = "SalePrice1";
             this.salePrice1DataGridViewTextBoxColumn.HeaderText = "SalePrice1";
+            this.salePrice1DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.salePrice1DataGridViewTextBoxColumn.Name = "salePrice1DataGridViewTextBoxColumn";
+            this.salePrice1DataGridViewTextBoxColumn.Width = 200;
             // 
             // salePrice2DataGridViewTextBoxColumn
             // 
             this.salePrice2DataGridViewTextBoxColumn.DataPropertyName = "SalePrice2";
             this.salePrice2DataGridViewTextBoxColumn.HeaderText = "SalePrice2";
+            this.salePrice2DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.salePrice2DataGridViewTextBoxColumn.Name = "salePrice2DataGridViewTextBoxColumn";
+            this.salePrice2DataGridViewTextBoxColumn.Width = 200;
             // 
             // salePrice3DataGridViewTextBoxColumn
             // 
             this.salePrice3DataGridViewTextBoxColumn.DataPropertyName = "SalePrice3";
             this.salePrice3DataGridViewTextBoxColumn.HeaderText = "SalePrice3";
+            this.salePrice3DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.salePrice3DataGridViewTextBoxColumn.Name = "salePrice3DataGridViewTextBoxColumn";
+            this.salePrice3DataGridViewTextBoxColumn.Width = 200;
             // 
             // remainingQTYDataGridViewTextBoxColumn
             // 
             this.remainingQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingQTY";
             this.remainingQTYDataGridViewTextBoxColumn.HeaderText = "RemainingQTY";
+            this.remainingQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingQTYDataGridViewTextBoxColumn.Name = "remainingQTYDataGridViewTextBoxColumn";
+            this.remainingQTYDataGridViewTextBoxColumn.Width = 200;
             // 
             // remainingInvoiceQTYDataGridViewTextBoxColumn
             // 
             this.remainingInvoiceQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingInvoiceQTY";
             this.remainingInvoiceQTYDataGridViewTextBoxColumn.HeaderText = "RemainingInvoiceQTY";
+            this.remainingInvoiceQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingInvoiceQTYDataGridViewTextBoxColumn.Name = "remainingInvoiceQTYDataGridViewTextBoxColumn";
+            this.remainingInvoiceQTYDataGridViewTextBoxColumn.Width = 200;
             // 
             // remainingProductionQTYDataGridViewTextBoxColumn
             // 
             this.remainingProductionQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingProductionQTY";
             this.remainingProductionQTYDataGridViewTextBoxColumn.HeaderText = "RemainingProductionQTY";
+            this.remainingProductionQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingProductionQTYDataGridViewTextBoxColumn.Name = "remainingProductionQTYDataGridViewTextBoxColumn";
+            this.remainingProductionQTYDataGridViewTextBoxColumn.Width = 200;
             // 
             // remainingPackagingQTYDataGridViewTextBoxColumn
             // 
             this.remainingPackagingQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingPackagingQTY";
             this.remainingPackagingQTYDataGridViewTextBoxColumn.HeaderText = "RemainingPackagingQTY";
+            this.remainingPackagingQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingPackagingQTYDataGridViewTextBoxColumn.Name = "remainingPackagingQTYDataGridViewTextBoxColumn";
+            this.remainingPackagingQTYDataGridViewTextBoxColumn.Width = 200;
             // 
             // remainingDeliveryQTYDataGridViewTextBoxColumn
             // 
             this.remainingDeliveryQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingDeliveryQTY";
             this.remainingDeliveryQTYDataGridViewTextBoxColumn.HeaderText = "RemainingDeliveryQTY";
+            this.remainingDeliveryQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingDeliveryQTYDataGridViewTextBoxColumn.Name = "remainingDeliveryQTYDataGridViewTextBoxColumn";
+            this.remainingDeliveryQTYDataGridViewTextBoxColumn.Width = 200;
             // 
             // expectedMatDateDataGridViewTextBoxColumn
             // 
             this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
             this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
+            this.expectedMatDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
+            this.expectedMatDateDataGridViewTextBoxColumn.Width = 200;
             // 
             // requestDateDataGridViewTextBoxColumn
             // 
             this.requestDateDataGridViewTextBoxColumn.DataPropertyName = "RequestDate";
             this.requestDateDataGridViewTextBoxColumn.HeaderText = "RequestDate";
+            this.requestDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.requestDateDataGridViewTextBoxColumn.Name = "requestDateDataGridViewTextBoxColumn";
+            this.requestDateDataGridViewTextBoxColumn.Width = 200;
             // 
             // costPrice1DataGridViewTextBoxColumn
             // 
             this.costPrice1DataGridViewTextBoxColumn.DataPropertyName = "CostPrice1";
             this.costPrice1DataGridViewTextBoxColumn.HeaderText = "CostPrice1";
+            this.costPrice1DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.costPrice1DataGridViewTextBoxColumn.Name = "costPrice1DataGridViewTextBoxColumn";
+            this.costPrice1DataGridViewTextBoxColumn.Width = 200;
             // 
             // costPrice2DataGridViewTextBoxColumn
             // 
             this.costPrice2DataGridViewTextBoxColumn.DataPropertyName = "CostPrice2";
             this.costPrice2DataGridViewTextBoxColumn.HeaderText = "CostPrice2";
+            this.costPrice2DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.costPrice2DataGridViewTextBoxColumn.Name = "costPrice2DataGridViewTextBoxColumn";
+            this.costPrice2DataGridViewTextBoxColumn.Width = 200;
             // 
             // costPrice3DataGridViewTextBoxColumn
             // 
             this.costPrice3DataGridViewTextBoxColumn.DataPropertyName = "CostPrice3";
             this.costPrice3DataGridViewTextBoxColumn.HeaderText = "CostPrice3";
+            this.costPrice3DataGridViewTextBoxColumn.MinimumWidth = 10;
             this.costPrice3DataGridViewTextBoxColumn.Name = "costPrice3DataGridViewTextBoxColumn";
+            this.costPrice3DataGridViewTextBoxColumn.Width = 200;
             // 
             // isCanceledDataGridViewTextBoxColumn
             // 
             this.isCanceledDataGridViewTextBoxColumn.DataPropertyName = "IsCanceled";
             this.isCanceledDataGridViewTextBoxColumn.HeaderText = "IsCanceled";
+            this.isCanceledDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
+            this.isCanceledDataGridViewTextBoxColumn.Width = 200;
             // 
             // frmDocumentTransactions
             // 
@@ -336,7 +395,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(716, 589);
+            this.ClientSize = new System.Drawing.Size(716, 552);
             this.Controls.Add(this.dgvTransactionLines);
             this.Controls.Add(this.dateTimeTransactionDate);
             this.Controls.Add(this.cmbTransactipnType);
@@ -360,7 +419,7 @@
         public System.Windows.Forms.BindingSource transactionsTypeBindingSource;
         private System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         public System.Windows.Forms.DataGridView dgvTransactionLines;
-        private System.Windows.Forms.BindingSource transactionLinesBindingSource;
+        public System.Windows.Forms.BindingSource transactionLinesBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionsIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn machineIDDataGridViewTextBoxColumn;
