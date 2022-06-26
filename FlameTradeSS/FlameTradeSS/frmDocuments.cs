@@ -504,6 +504,7 @@ namespace FlameTradeSS
             {
                 frmEditDocument frmEditDocument = new frmEditDocument();
                 frmEditDocument.newDocument = dgvDocuments.CurrentRow.DataBoundItem as Documents;
+                frmEditDocument.db = db;
                 
 
                 foreach (Control mdicontrol in frmEditDocument.Controls)

@@ -115,5 +115,11 @@ namespace FlameTradeSS
             frmSequenceTransactions frmSequenceTransactions = new frmSequenceTransactions();
             CommonTasks.OpenForm(frmSequenceTransactions);
         }
+
+        private void btnMu_Click(object sender, EventArgs e)
+        {
+            frmMu frmMu = new frmMu();
+            CommonTasks.OpenForm(frmMu);
+        }
     }
 }

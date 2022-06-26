@@ -1,6 +1,6 @@
 ﻿namespace FlameTradeSS
 {
-    partial class frmProjects
+    partial class frmMu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProjects));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMu));
             this.btnClose = new System.Windows.Forms.Button();
-            this.dgvProjects = new System.Windows.Forms.DataGridView();
+            this.dgvMu = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.projectNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -48,35 +48,34 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(339, 6);
+            this.btnClose.Location = new System.Drawing.Point(292, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // dgvProjects
+            // dgvMu
             // 
-            this.dgvProjects.AllowUserToAddRows = false;
-            this.dgvProjects.AllowUserToDeleteRows = false;
-            this.dgvProjects.AllowUserToOrderColumns = true;
-            this.dgvProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvMu.AllowUserToAddRows = false;
+            this.dgvMu.AllowUserToDeleteRows = false;
+            this.dgvMu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProjects.AutoGenerateColumns = false;
-            this.dgvProjects.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.projectNameDataGridViewTextBoxColumn,
-            this.projectDescriptionDataGridViewTextBoxColumn});
-            this.dgvProjects.DataSource = this.projectBindingSource;
-            this.dgvProjects.Location = new System.Drawing.Point(12, 65);
-            this.dgvProjects.Name = "dgvProjects";
-            this.dgvProjects.RowHeadersWidth = 20;
-            this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(370, 346);
-            this.dgvProjects.TabIndex = 10;
+            this.dgvMu.AutoGenerateColumns = false;
+            this.dgvMu.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codeDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.dgvMu.DataSource = this.muBindingSource;
+            this.dgvMu.Location = new System.Drawing.Point(12, 65);
+            this.dgvMu.Name = "dgvMu";
+            this.dgvMu.RowHeadersWidth = 20;
+            this.dgvMu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMu.Size = new System.Drawing.Size(323, 346);
+            this.dgvMu.TabIndex = 10;
             // 
             // btnAdd
             // 
@@ -120,7 +119,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(289, 417);
+            this.btnSave.Location = new System.Drawing.Point(242, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -129,50 +128,47 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // projectNameDataGridViewTextBoxColumn
+            // muBindingSource
             // 
-            this.projectNameDataGridViewTextBoxColumn.DataPropertyName = "ProjectName";
-            this.projectNameDataGridViewTextBoxColumn.HeaderText = "Име на проекта";
-            this.projectNameDataGridViewTextBoxColumn.MaxInputLength = 200;
-            this.projectNameDataGridViewTextBoxColumn.Name = "projectNameDataGridViewTextBoxColumn";
-            this.projectNameDataGridViewTextBoxColumn.Width = 150;
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
             // 
-            // projectDescriptionDataGridViewTextBoxColumn
+            // codeDataGridViewTextBoxColumn
             // 
-            this.projectDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProjectDescription";
-            this.projectDescriptionDataGridViewTextBoxColumn.HeaderText = "Описание на проекта";
-            this.projectDescriptionDataGridViewTextBoxColumn.MaxInputLength = 200;
-            this.projectDescriptionDataGridViewTextBoxColumn.Name = "projectDescriptionDataGridViewTextBoxColumn";
-            this.projectDescriptionDataGridViewTextBoxColumn.Width = 200;
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.Width = 150;
             // 
-            // projectBindingSource
+            // nameDataGridViewTextBoxColumn
             // 
-            this.projectBindingSource.DataSource = typeof(FlameTradeSS.Project);
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 150;
             // 
-            // frmProjects
+            // frmMu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(394, 481);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(347, 481);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dgvProjects);
+            this.Controls.Add(this.dgvMu);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(394, 481);
-            this.MinimumSize = new System.Drawing.Size(394, 481);
-            this.Name = "frmProjects";
+            this.Name = "frmMu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartnerGroups";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmPartnerGroups_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -180,12 +176,12 @@
         #endregion
 
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridViewTextBoxColumn projectNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn projectDescriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource projectBindingSource;
-        public System.Windows.Forms.DataGridView dgvProjects;
-        public System.Windows.Forms.Button btnAdd;
-        public System.Windows.Forms.Button btnRemove;
-        public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dgvMu;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource muBindingSource;
     }
 }

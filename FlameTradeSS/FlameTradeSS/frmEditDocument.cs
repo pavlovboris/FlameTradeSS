@@ -81,10 +81,19 @@ namespace FlameTradeSS
             } catch { }
 
             Text ="Document : "+newDocument.DocumentSequences.SequenceName+" "+ newDocument.DocumentNumber.ToString();
+
+            if (newDocument.IsBlocked == 0)
+            {
+                checkBoxIsBlocked.CheckState = System.Windows.Forms.CheckState.Unchecked;
+            }
+            else if (newDocument.IsBlocked == 1)
+            {
+                checkBoxIsBlocked.CheckState = CheckState.Checked;
+            }
         }
 
-        private static readonly SecurityService securityService = new SecurityService();
-        FlameTradeDbEntities db = securityService.NewDatabaseEntity();
+        //private static readonly SecurityService securityService = new SecurityService();
+        public FlameTradeDbEntities db ;
 
         public  Documents newDocument;
 
@@ -112,7 +121,10 @@ namespace FlameTradeSS
 
             if (dialogResult == DialogResult.Yes)
             {
-                try { await db.SaveChangesAsync(); } catch (Exception ex) { MessageBox.Show(ex.Message); } 
+                try 
+                {
+                    await db.SaveChangesAsync(); 
+                } catch (Exception ex) { MessageBox.Show(ex.Message); } 
             } else if (dialogResult == DialogResult.No)
             {
                 
@@ -209,16 +221,15 @@ namespace FlameTradeSS
         {
             if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null )
             {
-                DocumentTransactions documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                DocumentTransactions documentTransactions = new DocumentTransactions();
+                documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
                 newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                 newfrmDocumentTransactions.MdiParent = this;
                 newfrmDocumentTransactions.documentTransactions = documentTransactions;
-                //newfrmDocumentTransactions.documentTransactionsBindingSource.DataSource = documentTransactions;
+               // newfrmDocumentTransactions.documentTransactionsBindingSource.DataSource = documentTransactions;
                 newfrmDocumentTransactions.db = db;
-
                 newfrmDocumentTransactions.Show();
-
             }
         }
 

@@ -41,6 +41,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnTransactionType = new System.Windows.Forms.Button();
             this.btnSequenceTransactions = new System.Windows.Forms.Button();
+            this.btnMu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -187,6 +188,18 @@
             this.btnSequenceTransactions.UseVisualStyleBackColor = true;
             this.btnSequenceTransactions.Click += new System.EventHandler(this.btnSequenceTransactions_Click);
             // 
+            // btnMu
+            // 
+            this.btnMu.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMu.Location = new System.Drawing.Point(270, 49);
+            this.btnMu.Name = "btnMu";
+            this.btnMu.Size = new System.Drawing.Size(82, 39);
+            this.btnMu.TabIndex = 31;
+            this.btnMu.Text = "Measurement Units";
+            this.btnMu.UseVisualStyleBackColor = true;
+            this.btnMu.Click += new System.EventHandler(this.btnMu_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +207,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
             this.ControlBox = false;
+            this.Controls.Add(this.btnMu);
             this.Controls.Add(this.btnSequenceTransactions);
             this.Controls.Add(this.btnTransactionType);
             this.Controls.Add(this.btnSequences);
@@ -234,5 +248,6 @@
         private System.Windows.Forms.Button btnSequences;
         private System.Windows.Forms.Button btnTransactionType;
         private System.Windows.Forms.Button btnSequenceTransactions;
+        private System.Windows.Forms.Button btnMu;
     }
 }

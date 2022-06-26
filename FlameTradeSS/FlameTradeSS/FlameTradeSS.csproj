@@ -110,6 +110,12 @@
     <Compile Include="frmNewDocument.Designer.cs">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMu.Designer.cs">
+      <DependentUpon>frmMu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProjectSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -414,6 +420,9 @@
     <EmbeddedResource Include="frmNewDocument.resx">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMu.resx">
+      <DependentUpon>frmMu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProjectSelector.resx">
       <DependentUpon>frmProjectSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,6 +495,7 @@
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
+    <None Include="Properties\DataSources\Mu.datasource" />
     <None Include="Properties\DataSources\PartnerCategory.datasource" />
     <None Include="Properties\DataSources\PartnerGroups.datasource" />
     <None Include="Properties\DataSources\PartnerPersons.datasource" />
@@ -499,6 +509,7 @@
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequencesTransactions.datasource" />
     <None Include="Properties\DataSources\SequenceType.datasource" />
+    <None Include="Properties\DataSources\TransactionLines.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">

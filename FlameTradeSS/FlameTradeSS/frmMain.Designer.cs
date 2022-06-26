@@ -38,11 +38,20 @@
             treeNode3,
             treeNode4});
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Отчети");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Групи");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Партиди");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
             this.btnAdminTools = new System.Windows.Forms.Button();
             this.treeViewPartners = new System.Windows.Forms.TreeView();
+            this.btnNewDocument = new System.Windows.Forms.Button();
             this.btnProduction = new System.Windows.Forms.Button();
             this.btnWarehouse = new System.Windows.Forms.Button();
             this.btnProjects = new System.Windows.Forms.Button();
@@ -52,7 +61,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnNewDocument = new System.Windows.Forms.Button();
+            this.treeViewInventory = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // lblCurentUserLabel
@@ -112,6 +121,22 @@
             this.treeViewPartners.Size = new System.Drawing.Size(173, 146);
             this.treeViewPartners.TabIndex = 29;
             this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
+            // 
+            // btnNewDocument
+            // 
+            this.btnNewDocument.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNewDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNewDocument.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_051_Icon_48;
+            this.btnNewDocument.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewDocument.Location = new System.Drawing.Point(191, 131);
+            this.btnNewDocument.Name = "btnNewDocument";
+            this.btnNewDocument.Size = new System.Drawing.Size(153, 50);
+            this.btnNewDocument.TabIndex = 34;
+            this.btnNewDocument.Text = "Нов Документ";
+            this.btnNewDocument.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNewDocument.UseVisualStyleBackColor = true;
+            this.btnNewDocument.Click += new System.EventHandler(this.btnNewDocument_Click);
             // 
             // btnProduction
             // 
@@ -243,21 +268,27 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
-            // btnNewDocument
+            // treeViewInventory
             // 
-            this.btnNewDocument.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnNewDocument.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNewDocument.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_051_Icon_48;
-            this.btnNewDocument.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewDocument.Location = new System.Drawing.Point(191, 131);
-            this.btnNewDocument.Name = "btnNewDocument";
-            this.btnNewDocument.Size = new System.Drawing.Size(153, 50);
-            this.btnNewDocument.TabIndex = 34;
-            this.btnNewDocument.Text = "Нов Документ";
-            this.btnNewDocument.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNewDocument.UseVisualStyleBackColor = true;
-            this.btnNewDocument.Click += new System.EventHandler(this.btnNewDocument_Click);
+            this.treeViewInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeViewInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeViewInventory.Location = new System.Drawing.Point(573, 131);
+            this.treeViewInventory.Name = "treeViewInventory";
+            treeNode7.Name = "InvenotryGroup";
+            treeNode7.Text = "Групи";
+            treeNode8.Name = "InventoryCategory";
+            treeNode8.Text = "Категории";
+            treeNode9.Name = "InventoryPartitions";
+            treeNode9.Text = "Партиди";
+            treeNode10.Name = "InventorySettings";
+            treeNode10.Text = "Настройки";
+            treeNode11.Name = "InventoryReports";
+            treeNode11.Text = "Отчети";
+            this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11});
+            this.treeViewInventory.Size = new System.Drawing.Size(173, 146);
+            this.treeViewInventory.TabIndex = 35;
             // 
             // frmMain
             // 
@@ -265,6 +296,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(993, 642);
+            this.Controls.Add(this.treeViewInventory);
             this.Controls.Add(this.btnNewDocument);
             this.Controls.Add(this.btnProduction);
             this.Controls.Add(this.btnWarehouse);
@@ -307,5 +339,6 @@
         private System.Windows.Forms.Button btnWarehouse;
         private System.Windows.Forms.Button btnProduction;
         private System.Windows.Forms.Button btnNewDocument;
+        private System.Windows.Forms.TreeView treeViewInventory;
     }
 }

@@ -36,6 +36,7 @@
             this.projectNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btmProjectAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +79,7 @@
             this.dgvProjects.Size = new System.Drawing.Size(370, 228);
             this.dgvProjects.TabIndex = 13;
             this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
+            this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
             // 
             // txtFilter
             // 
@@ -87,6 +89,8 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(369, 20);
             this.txtFilter.TabIndex = 14;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilter_KeyDown);
             // 
             // projectNameDataGridViewTextBoxColumn
             // 
@@ -108,12 +112,27 @@
             // 
             this.projectBindingSource.DataSource = typeof(FlameTradeSS.Project);
             // 
+            // btmProjectAdd
+            // 
+            this.btmProjectAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btmProjectAdd.BackColor = System.Drawing.Color.White;
+            this.btmProjectAdd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btmProjectAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btmProjectAdd.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
+            this.btmProjectAdd.Location = new System.Drawing.Point(12, 7);
+            this.btmProjectAdd.Name = "btmProjectAdd";
+            this.btmProjectAdd.Size = new System.Drawing.Size(49, 53);
+            this.btmProjectAdd.TabIndex = 15;
+            this.btmProjectAdd.UseVisualStyleBackColor = false;
+            this.btmProjectAdd.Click += new System.EventHandler(this.btmProjectAdd_Click);
+            // 
             // frmProjectSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(394, 332);
+            this.Controls.Add(this.btmProjectAdd);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.dgvProjects);
             this.Controls.Add(this.btnClose);
@@ -141,5 +160,6 @@
         public System.Windows.Forms.BindingSource projectBindingSource;
         private System.Windows.Forms.TextBox txtFilter;
         public System.Windows.Forms.DataGridView dgvProjects;
+        private System.Windows.Forms.Button btmProjectAdd;
     }
 }

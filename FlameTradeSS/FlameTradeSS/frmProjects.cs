@@ -34,6 +34,8 @@ namespace FlameTradeSS
             base.WndProc(ref m);
         }
 
+        public string newProjectName;
+
         private void frmPartnerGroups_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -47,11 +49,16 @@ namespace FlameTradeSS
         }
 
         private static readonly SecurityService securityService = new SecurityService();
-        FlameTradeDbEntities db = securityService.NewDatabaseEntity();
+        public FlameTradeDbEntities db;
 
         private void frmPartnerGroups_Load(object sender, EventArgs e)
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+
+            if (db == null)
+            {
+                db = securityService.NewDatabaseEntity();
+            }
 
             projectBindingSource.DataSource = db.Project.ToList();
         }
@@ -64,28 +71,51 @@ namespace FlameTradeSS
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Project newProject = new Project();
+            if (!string.IsNullOrEmpty(newProjectName))
+            {
+                newProject.ProjectName = newProjectName;
+            }
             projectBindingSource.Add(newProject);
             projectBindingSource.MoveLast();
             db.Project.Add(newProject);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private async  void btnSave_Click(object sender, EventArgs e)
         {
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените") == true)
+            bool proceed = true;
+            int error = 0;
+            foreach (DataGridViewRow dgvr in dgvProjects.Rows)
             {
-                try
+                if (dgvr.Cells[0].Value == null || dgvr.Cells[1].Value == null)
                 {
-                    await db.SaveChangesAsync();
-                    CommonTasks.SendInfoMsg("Промените са запазени успешно");
+                    proceed = false;
+                    error = dgvr.Index;
                 }
-                catch (Exception ex)
+
+            }
+
+            if (proceed == true)
+            {
+                if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените") == true)
                 {
-                    CommonTasks.SendErrorMsg("Промените НЕ бяха запаметени!!!");
-                    if (CommonTasks.SendWarningMsg("Искате ли да видите детайлите") == true)
+                    try
                     {
-                        CommonTasks.SendErrorMsg(ex.Message);
+                        await db.SaveChangesAsync();
+                        CommonTasks.SendInfoMsg("Промените са запазени успешно");
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        CommonTasks.SendErrorMsg("Промените НЕ бяха запаметени!!!");
+                        if (CommonTasks.SendWarningMsg("Искате ли да видите детайлите") == true)
+                        {
+                            CommonTasks.SendErrorMsg(ex.Message);
+                        }
                     }
                 }
+            } else
+            {
+                CommonTasks.SendErrorMsg("Необходимо е да попълните Име и Описание на обекта : " + error.ToString());
             }
         }
 

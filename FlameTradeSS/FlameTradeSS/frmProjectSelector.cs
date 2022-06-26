@@ -40,7 +40,8 @@ namespace FlameTradeSS
 
         private void frmProjectSelector_Load(object sender, EventArgs e)
         {
-            projectBindingSource.DataSource = db.Project.ToList(); 
+            projectBindingSource.DataSource = db.Project.ToList();
+            txtFilter.Focus();
         }
 
         private void frmProjectSelector_Paint(object sender, PaintEventArgs e)
@@ -67,6 +68,82 @@ namespace FlameTradeSS
             {
                 Close();
             }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty( txtFilter.Text))
+            {
+                projectBindingSource.DataSource = db.Project.Where(p => p.ProjectName.Contains(txtFilter.Text)).ToList();
+            } else
+            {
+                projectBindingSource.DataSource = db.Project.ToList();
+            }
+        }
+
+        private void txtFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 40)
+            {
+                dgvProjects.Focus();
+            }
+            else if (e.KeyData == Keys.Escape)
+            {
+                xClicked = true;
+                Close();
+            } else if (e.KeyData == Keys.Escape)
+            {
+                dgvProjects.Focus();
+            }
+        }
+
+        private void dgvProjects_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(dgvProjects.CurrentRow.Index!= -1 && dgvProjects.CurrentRow.DataBoundItem!=null)
+            {
+                if (e.KeyValue == 13)
+                {
+                    Close();
+                }
+                else if (e.KeyData == Keys.Escape)
+                {
+                    xClicked = true;
+                    Close();
+                }
+            }
+        }
+
+        private void btmProjectAdd_Click(object sender, EventArgs e)
+        {
+            frmProjects frmProjects = new frmProjects();
+            frmProjects.FormClosed += FrmProjects_FormClosed;
+            frmProjects.db = db;
+            if (!string.IsNullOrEmpty(txtFilter.Text))
+            {
+                frmProjects.newProjectName = txtFilter.Text;
+            }
+            CommonTasks.OpenForm(frmProjects);
+            frmProjects.btnAdd.PerformClick();
+            frmProjects.btnRemove.Enabled = false;
+            frmProjects.btnAdd.Enabled = false;
+            frmProjects.btnSave.Click += BtnSave_Click;
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            frmProjects frm = btn.Parent as frmProjects;
+
+          //  frm.Close();
+        }
+
+        private  void FrmProjects_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string temptext = "";
+            temptext = txtFilter.Text;
+            txtFilter.Text = "";
+            txtFilter.Text = temptext;
         }
     }
 }

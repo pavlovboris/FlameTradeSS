@@ -24,7 +24,6 @@ namespace FlameTradeSS
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
             newDocument.DocumentDate = DateTime.Now;
-            db.Documents.Add(newDocument);
             partnersBindingSource.DataSource = db.Partners.ToList();
             Partners nullPartner = new Partners();
             partnersBindingSource.Add(nullPartner);
@@ -46,6 +45,14 @@ namespace FlameTradeSS
             {
                 CommonTasks.ReadDataGridViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
+
+            if( newDocument.IsBlocked == 0)
+            {
+                checkBoxIsBlocked.CheckState = System.Windows.Forms.CheckState.Unchecked;
+            } else if (newDocument.IsBlocked == 1)
+            {
+                checkBoxIsBlocked.CheckState = CheckState.Checked;
+            }
             
         }
 
@@ -78,7 +85,11 @@ namespace FlameTradeSS
 
             if (dialogResult == DialogResult.Yes)
             {
-                try { await db.SaveChangesAsync(); } catch (Exception ex) { MessageBox.Show(ex.Message); } 
+                try 
+                {
+                    db.Documents.Add(newDocument);
+                    await db.SaveChangesAsync();
+                } catch (Exception ex) { MessageBox.Show(ex.Message); } 
             } else if (dialogResult == DialogResult.No)
             {
                 
@@ -384,9 +395,10 @@ namespace FlameTradeSS
 
         private void checkBoxIsBlocked_CheckedChanged(object sender, EventArgs e)
         {
+            
             if (checkBoxIsBlocked.DataBindings != null)
             {
-                if (checkBoxIsBlocked.Checked == true)
+                if (checkBoxIsBlocked.CheckState == CheckState.Checked)
                 {
                     newDocument.IsBlocked = 1;
                 }
