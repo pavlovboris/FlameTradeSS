@@ -128,6 +128,8 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_CurrentlyLoggedUsers_Users" />
         <EntityTypeShape EntityType="FlameTradeDbModel.PersonsFullNameView" Width="1.5" PointX="3.375" PointY="0.75" />
         <AssociationConnector Association="FlameTradeDbModel.FK_Items_Partners" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.Surfaces" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Items_Surfaces" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

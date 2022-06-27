@@ -77,5 +77,6 @@ namespace FlameTradeSS
         public virtual DbSet<UsersLogInLogs> UsersLogInLogs { get; set; }
         public virtual DbSet<CurrentlyLoggedUsers> CurrentlyLoggedUsers { get; set; }
         public virtual DbSet<PersonsFullNameView> PersonsFullNameView { get; set; }
+        public virtual DbSet<Surfaces> Surfaces { get; set; }
     }
 }

@@ -53,6 +53,7 @@ namespace FlameTradeSS
         public Nullable<double> CostPrice2 { get; set; }
         public Nullable<double> CostPrice3 { get; set; }
         public int IsCanceled { get; set; }
+        public Nullable<int> SurfaceID { get; set; }
     
         public virtual DocumentTransactions DocumentTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

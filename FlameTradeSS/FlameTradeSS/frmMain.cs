@@ -210,9 +210,12 @@ namespace FlameTradeSS
             {
                 case "ItemsNewItem":
                     frmItemsAddEdit frmItemsAddEdit = new frmItemsAddEdit();
+                    frmItemsAddEdit.newItem = new Items();
                     CommonTasks.OpenForm(frmItemsAddEdit);
                     break;
                 case "ItemsList":
+                    frmItems frmItems = new frmItems();
+                    CommonTasks.OpenForm(frmItems);
                     break;
                 case "InvenotryGroup":
                     frmItemsGroups frmItemsGroups = new frmItemsGroups();

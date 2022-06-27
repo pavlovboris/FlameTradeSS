@@ -182,6 +182,15 @@
           <Property Name="ForeignItemID" Type="int" />
           <Property Name="SecondCode" Type="varchar" MaxLength="250" />
           <Property Name="DefaultSupplierID" Type="int" />
+          <Property Name="StaticWeigth" Type="float" Nullable="false" />
+          <Property Name="StaticSurface" Type="float" Nullable="false" />
+          <Property Name="StaticHeight" Type="float" Nullable="false" />
+          <Property Name="StaticWidth" Type="float" Nullable="false" />
+          <Property Name="StaticLength" Type="float" Nullable="false" />
+          <Property Name="PictureName" Type="varchar" MaxLength="250" />
+          <Property Name="PictureData" Type="image" />
+          <Property Name="IsInactive" Type="int" Nullable="false" />
+          <Property Name="DefaultSurfaceID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -413,6 +422,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PartnerID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Surfaces">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurfaceCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurfaceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurfaceDescription" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="TransactionAttachments">
           <Key>
             <PropertyRef Name="ID" />
@@ -456,6 +474,7 @@
           <Property Name="CostPrice2" Type="float" />
           <Property Name="CostPrice3" Type="float" />
           <Property Name="IsCanceled" Type="int" Nullable="false" />
+          <Property Name="SurfaceID" Type="int" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -861,6 +880,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Items">
               <PropertyRef Name="DefaultSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="DefaultSurfaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1423,6 +1454,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="SequenceType" EntityType="Self.SequenceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Surfaces" EntityType="Self.Surfaces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionAttachments" EntityType="Self.TransactionAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLines" EntityType="Self.TransactionLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLinesTransformation" EntityType="Self.TransactionLinesTransformation" Schema="dbo" store:Type="Tables" />
@@ -1548,6 +1580,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_Items_Partners" Association="Self.FK_Items_Partners">
             <End Role="Partners" EntitySet="Partners" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Surfaces" Association="Self.FK_Items_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
           <AssociationSet Name="FK_ItemsConfiguration_ItemID" Association="Self.FK_ItemsConfiguration_ItemID">
@@ -1948,6 +1984,16 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="SecondCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="DefaultSupplierID" Type="Int32" />
           <NavigationProperty Name="Partners" Relationship="FlameTradeDbModel.FK_Items_Partners" FromRole="Items" ToRole="Partners" />
+          <Property Name="StaticWeigth" Type="Double" Nullable="false" />
+          <Property Name="StaticSurface" Type="Double" Nullable="false" />
+          <Property Name="StaticHeight" Type="Double" Nullable="false" />
+          <Property Name="StaticWidth" Type="Double" Nullable="false" />
+          <Property Name="StaticLength" Type="Double" Nullable="false" />
+          <Property Name="PictureName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PictureData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsInactive" Type="Int32" Nullable="false" />
+          <Property Name="DefaultSurfaceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_Items_Surfaces" FromRole="Items" ToRole="Surfaces" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -2292,6 +2338,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionReceipt" Relationship="Self.FK_TransactionLines_ReceiptID" FromRole="TransactionLines" ToRole="TransactionReceipt" />
           <NavigationProperty Name="TransactionLinesTransformation" Relationship="Self.FK_TransactionLinesTransformation_OriginTransactionLineID" FromRole="TransactionLines" ToRole="TransactionLinesTransformation" />
           <NavigationProperty Name="TransactionLinesTransformation1" Relationship="Self.FK_TransactionLinesTransformation_TransactionLineID" FromRole="TransactionLines" ToRole="TransactionLinesTransformation" />
+          <Property Name="SurfaceID" Type="Int32" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -3516,6 +3563,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Partners" EntitySet="Partners" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <EntitySet Name="Surfaces" EntityType="FlameTradeDbModel.Surfaces" />
+          <AssociationSet Name="FK_Items_Surfaces" Association="FlameTradeDbModel.FK_Items_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3577,6 +3629,28 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Items">
               <PropertyRef Name="DefaultSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Surfaces">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurfaceCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SurfaceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SurfaceDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="FlameTradeDbModel.FK_Items_Surfaces" FromRole="Surfaces" ToRole="Items" />
+        </EntityType>
+        <Association Name="FK_Items_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Items" Role="Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="DefaultSurfaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3758,6 +3832,15 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Items">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="DefaultSurfaceID" ColumnName="DefaultSurfaceID" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="PictureData" ColumnName="PictureData" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="StaticLength" ColumnName="StaticLength" />
+                <ScalarProperty Name="StaticWidth" ColumnName="StaticWidth" />
+                <ScalarProperty Name="StaticHeight" ColumnName="StaticHeight" />
+                <ScalarProperty Name="StaticSurface" ColumnName="StaticSurface" />
+                <ScalarProperty Name="StaticWeigth" ColumnName="StaticWeigth" />
                 <ScalarProperty Name="DefaultSupplierID" ColumnName="DefaultSupplierID" />
                 <ScalarProperty Name="SecondCode" ColumnName="SecondCode" />
                 <ScalarProperty Name="ForeignItemID" ColumnName="ForeignItemID" />
@@ -4040,6 +4123,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionLines">
               <MappingFragment StoreEntitySet="TransactionLines">
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionsID" ColumnName="TransactionsID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
@@ -4155,6 +4239,16 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <EntityTypeMapping TypeName="FlameTradeDbModel.PersonsFullNameView">
               <MappingFragment StoreEntitySet="PersonsFullNameView">
                 <ScalarProperty Name="Person_Name" ColumnName="Person_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surfaces">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.Surfaces">
+              <MappingFragment StoreEntitySet="Surfaces">
+                <ScalarProperty Name="SurfaceDescription" ColumnName="SurfaceDescription" />
+                <ScalarProperty Name="SurfaceName" ColumnName="SurfaceName" />
+                <ScalarProperty Name="SurfaceCode" ColumnName="SurfaceCode" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -110,6 +110,12 @@
     <Compile Include="frmAdminTools.Designer.cs">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItems.Designer.cs">
+      <DependentUpon>frmItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDocuments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
     <Compile Include="Suppliers.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Surfaces.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TransactionAttachments.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -422,6 +431,9 @@
     </Compile>
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItems.resx">
+      <DependentUpon>frmItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocuments.resx">
       <DependentUpon>frmDocuments.cs</DependentUpon>
@@ -535,6 +547,7 @@
     <None Include="Properties\DataSources\ItemsGroups.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
     <None Include="Properties\DataSources\Mu.datasource" />
+    <None Include="Properties\DataSources\Partitions.datasource" />
     <None Include="Properties\DataSources\PartitionType.datasource" />
     <None Include="Properties\DataSources\PartnerCategory.datasource" />
     <None Include="Properties\DataSources\PartnerGroups.datasource" />
@@ -549,6 +562,7 @@
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequencesTransactions.datasource" />
     <None Include="Properties\DataSources\SequenceType.datasource" />
+    <None Include="Properties\DataSources\Surfaces.datasource" />
     <None Include="Properties\DataSources\TransactionLines.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />

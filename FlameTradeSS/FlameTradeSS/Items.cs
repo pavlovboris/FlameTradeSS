@@ -35,6 +35,15 @@ namespace FlameTradeSS
         public Nullable<int> ForeignItemID { get; set; }
         public string SecondCode { get; set; }
         public Nullable<int> DefaultSupplierID { get; set; }
+        public double StaticWeigth { get; set; }
+        public double StaticSurface { get; set; }
+        public double StaticHeight { get; set; }
+        public double StaticWidth { get; set; }
+        public double StaticLength { get; set; }
+        public string PictureName { get; set; }
+        public byte[] PictureData { get; set; }
+        public int IsInactive { get; set; }
+        public int DefaultSurfaceID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventory { get; set; }
@@ -53,5 +62,6 @@ namespace FlameTradeSS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionReceipt> TransactionReceipt { get; set; }
         public virtual Partners Partners { get; set; }
+        public virtual Surfaces Surfaces { get; set; }
     }
 }
