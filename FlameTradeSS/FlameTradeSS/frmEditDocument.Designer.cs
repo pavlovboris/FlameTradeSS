@@ -260,9 +260,9 @@
             this.lblComment.AutoSize = true;
             this.lblComment.Location = new System.Drawing.Point(702, 9);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(125, 13);
+            this.lblComment.Size = new System.Drawing.Size(57, 13);
             this.lblComment.TabIndex = 25;
-            this.lblComment.Text = "Възможни Транзакции";
+            this.lblComment.Text = "Коментар";
             // 
             // txtComment
             // 

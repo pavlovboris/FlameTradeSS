@@ -209,7 +209,8 @@ namespace FlameTradeSS
             switch (e.Node.Name)
             {
                 case "ItemsNewItem":
-
+                    frmItemsAddEdit frmItemsAddEdit = new frmItemsAddEdit();
+                    CommonTasks.OpenForm(frmItemsAddEdit);
                     break;
                 case "ItemsList":
                     break;

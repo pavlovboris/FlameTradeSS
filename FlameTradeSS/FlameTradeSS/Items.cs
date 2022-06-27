@@ -32,6 +32,9 @@ namespace FlameTradeSS
         public int DefaultPartition { get; set; }
         public int ItemsGroupID { get; set; }
         public int ItemCategory { get; set; }
+        public Nullable<int> ForeignItemID { get; set; }
+        public string SecondCode { get; set; }
+        public Nullable<int> DefaultSupplierID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventory { get; set; }
@@ -49,5 +52,6 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionLines> TransactionLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionReceipt> TransactionReceipt { get; set; }
+        public virtual Partners Partners { get; set; }
     }
 }

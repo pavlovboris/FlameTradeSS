@@ -508,34 +508,40 @@ namespace FlameTradeSS
             switch (newDocument.DocumentSequences.SequenceType.NumberingReference)
             {
                 case "Invoice Numbering ":
-                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете фактура?") == true)
+                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете Документ : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName) == true)
                     {
-                        try
+                        if(documentTransactionsBindingSource.Count==0 && cmbPartners.SelectedItem==null)
                         {
-                            int maxInvoiceN = db.InvoiceNumbering.Max(inv => inv.number);
-                            newDocument.DocumentNumber = maxInvoiceN + 1;
-                            InvoiceNumbering invoiceNumbering = new InvoiceNumbering();
+                            CommonTasks.SendErrorMsg("Не можете да издадете Документ без Редове и/или избран Партньор");
+                        } else
+                        {
+                            try
+                            {
+                                int maxInvoiceN = db.InvoiceNumbering.Max(inv => inv.number);
+                                newDocument.DocumentNumber = maxInvoiceN + 1;
+                                InvoiceNumbering invoiceNumbering = new InvoiceNumbering();
 
-                            invoiceNumbering.documentID = newDocument.ID;
-                            invoiceNumbering.number = (int)newDocument.DocumentNumber;
-                            db.InvoiceNumbering.Add(invoiceNumbering);
-                            newDocument.Issued = 1;
-                            btnIssueDocument.Enabled = false;
-                            btnCancel.Enabled = true;
-                            cmbDocumentSequence.Enabled = false;
-                            cmbPartners.Enabled = false;
-                            dateTimeDocDate.Enabled = false;
-                            dgvDocumentTransactions.ReadOnly = true;
-                            listBoxTransactionsAdd.Enabled = false;
-                            issued = true;
-                            await db.SaveChangesAsync();
-                            CommonTasks.SendInfoMsg("Фактурата е успешно издадена");
-                        }
-                        catch { CommonTasks.SendErrorMsg("Фактурата НЕ е издадена : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
+                                invoiceNumbering.documentID = newDocument.ID;
+                                invoiceNumbering.number = (int)newDocument.DocumentNumber;
+                                db.InvoiceNumbering.Add(invoiceNumbering);
+                                newDocument.Issued = 1;
+                                btnIssueDocument.Enabled = false;
+                                btnCancel.Enabled = true;
+                                cmbDocumentSequence.Enabled = false;
+                                cmbPartners.Enabled = false;
+                                dateTimeDocDate.Enabled = false;
+                                dgvDocumentTransactions.ReadOnly = true;
+                                listBoxTransactionsAdd.Enabled = false;
+                                issued = true;
+                                await db.SaveChangesAsync();
+                                CommonTasks.SendInfoMsg("Документа е успешно издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
+                            }
+                            catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
+                        }                        
                     }
                     break;
                 case "Standart Numbering":
-                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете фактура?") == true)
+                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете Документ : " + newDocument.DocumentSequences.SequenceName + "?") == true)
                     {
                         try
                         {

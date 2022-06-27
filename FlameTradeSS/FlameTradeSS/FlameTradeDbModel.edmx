@@ -108,6 +108,7 @@
           <Property Name="ColorID" Type="int" />
           <Property Name="IsCanceled" Type="int" Nullable="false" />
           <Property Name="tempID" Type="int" />
+          <Property Name="NotForInvoice" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -178,6 +179,9 @@
           <Property Name="DefaultPartition" Type="int" Nullable="false" />
           <Property Name="ItemsGroupID" Type="int" Nullable="false" />
           <Property Name="ItemCategory" Type="int" Nullable="false" />
+          <Property Name="ForeignItemID" Type="int" />
+          <Property Name="SecondCode" Type="varchar" MaxLength="250" />
+          <Property Name="DefaultSupplierID" Type="int" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -845,6 +849,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Items">
               <PropertyRef Name="ItemsGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Partners">
+          <End Role="Partners" Type="Self.Partners" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="DefaultSupplierID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1530,6 +1546,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="ItemsGroups" EntitySet="ItemsGroups" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_Items_Partners" Association="Self.FK_Items_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
           <AssociationSet Name="FK_ItemsConfiguration_ItemID" Association="Self.FK_ItemsConfiguration_ItemID">
             <End Role="Items" EntitySet="Items" />
             <End Role="ItemsConfiguration" EntitySet="ItemsConfiguration" />
@@ -1831,6 +1851,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionsTransformations" Relationship="Self.FK_TransactionsTransformations_OriginTransactionID" FromRole="DocumentTransactions" ToRole="TransactionsTransformations" />
           <NavigationProperty Name="TransactionsTransformations1" Relationship="Self.FK_TransactionsTransformations_TransactionID" FromRole="DocumentTransactions" ToRole="TransactionsTransformations" />
           <Property Name="tempID" Type="Int32" />
+          <Property Name="NotForInvoice" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -1923,6 +1944,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="ReceiptLines" Relationship="Self.FK_ReceiptLines_ItemID" FromRole="Items" ToRole="ReceiptLines" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_TransactionLines_ItemID" FromRole="Items" ToRole="TransactionLines" />
           <NavigationProperty Name="TransactionReceipt" Relationship="Self.FK_TransactionReceipt_ItemID" FromRole="Items" ToRole="TransactionReceipt" />
+          <Property Name="ForeignItemID" Type="Int32" />
+          <Property Name="SecondCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultSupplierID" Type="Int32" />
+          <NavigationProperty Name="Partners" Relationship="FlameTradeDbModel.FK_Items_Partners" FromRole="Items" ToRole="Partners" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -2077,6 +2102,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="PartnerPersons" Relationship="Self.FK_PartnerPersons_PartnerID" FromRole="Partners" ToRole="PartnerPersons" />
           <NavigationProperty Name="PartnerStaticPriceGroup" Relationship="Self.FK_Partners_StaticPriceGroupID" FromRole="Partners" ToRole="PartnerStaticPriceGroup" />
           <NavigationProperty Name="Suppliers" Relationship="Self.FK_Suppliers_PartnerID" FromRole="Partners" ToRole="Suppliers" />
+          <NavigationProperty Name="Items" Relationship="FlameTradeDbModel.FK_Items_Partners" FromRole="Partners" ToRole="Items" />
         </EntityType>
         <EntityType Name="PartnerStaticPriceGroup">
           <Key>
@@ -3486,6 +3512,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="CurrentlyLoggedUsers" EntitySet="CurrentlyLoggedUsers" />
           </AssociationSet>
           <EntitySet Name="PersonsFullNameView" EntityType="FlameTradeDbModel.PersonsFullNameView" />
+          <AssociationSet Name="FK_Items_Partners" Association="FlameTradeDbModel.FK_Items_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3538,6 +3568,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Person_Name" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK_Items_Partners">
+          <End Type="FlameTradeDbModel.Partners" Role="Partners" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.Items" Role="Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="DefaultSupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3622,6 +3664,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="NotForInvoice" ColumnName="NotForInvoice" />
                 <ScalarProperty Name="tempID" ColumnName="tempID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
@@ -3715,6 +3758,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Items">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="DefaultSupplierID" ColumnName="DefaultSupplierID" />
+                <ScalarProperty Name="SecondCode" ColumnName="SecondCode" />
+                <ScalarProperty Name="ForeignItemID" ColumnName="ForeignItemID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

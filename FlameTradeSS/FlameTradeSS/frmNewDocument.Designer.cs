@@ -69,6 +69,7 @@
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
             this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.transactionDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expectedMatDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requestedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +122,7 @@
             this.cmbPartners.Size = new System.Drawing.Size(347, 21);
             this.cmbPartners.TabIndex = 1;
             this.cmbPartners.ValueMember = "ID";
+            this.cmbPartners.SelectedIndexChanged += new System.EventHandler(this.cmbPartners_SelectedIndexChanged);
             // 
             // documentsBindingSource
             // 
@@ -424,6 +426,7 @@
             this.dgvDocumentTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDocumentTransactions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.transactionTypeIDDataGridViewTextBoxColumn,
+            this.NotForInvoice,
             this.transactionDateDataGridViewTextBoxColumn,
             this.expectedMatDateDataGridViewTextBoxColumn,
             this.requestedDateDataGridViewTextBoxColumn,
@@ -469,6 +472,14 @@
             // transactionsTypeBindingSource
             // 
             this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            // 
+            // NotForInvoice
+            // 
+            this.NotForInvoice.DataPropertyName = "NotForInvoice";
+            this.NotForInvoice.FalseValue = "0";
+            this.NotForInvoice.HeaderText = "!Фактура";
+            this.NotForInvoice.Name = "NotForInvoice";
+            this.NotForInvoice.TrueValue = "1";
             // 
             // transactionDateDataGridViewTextBoxColumn
             // 
@@ -696,7 +707,24 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripProjects;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAdd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Button btnRemoveFile;
+        private System.Windows.Forms.Button btnAddFile;
+        private System.Windows.Forms.Label lblAttachments;
+        private System.Windows.Forms.DataGridView dgvAttachments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource documentsAttachmentsBindingSource;
+        private System.Windows.Forms.Label lblPossibleTransactions;
+        private System.Windows.Forms.Label lblProjects;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label lblComment;
+        private System.Windows.Forms.TextBox txtComment;
+        private System.Windows.Forms.Label lblIsCanceled;
+        private System.Windows.Forms.CheckBox checkBoxIsBlocked;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnIssueDocument;
         private System.Windows.Forms.DataGridViewComboBoxColumn transactionTypeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn NotForInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expectedMatDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn requestedDateDataGridViewTextBoxColumn;
@@ -716,21 +744,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn creationDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnRemoveFile;
-        private System.Windows.Forms.Button btnAddFile;
-        private System.Windows.Forms.Label lblAttachments;
-        private System.Windows.Forms.DataGridView dgvAttachments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource documentsAttachmentsBindingSource;
-        private System.Windows.Forms.Label lblPossibleTransactions;
-        private System.Windows.Forms.Label lblProjects;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Label lblComment;
-        private System.Windows.Forms.TextBox txtComment;
-        private System.Windows.Forms.Label lblIsCanceled;
-        private System.Windows.Forms.CheckBox checkBoxIsBlocked;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnIssueDocument;
     }
 }

@@ -134,6 +134,12 @@
     <Compile Include="frmEditDocument.Designer.cs">
       <DependentUpon>frmEditDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItemsAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemsAddEdit.Designer.cs">
+      <DependentUpon>frmItemsAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPartitionsType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -426,6 +432,9 @@
     <EmbeddedResource Include="frmFunctions.resx">
       <DependentUpon>frmFunctions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmItemsAddEdit.resx">
+      <DependentUpon>frmItemsAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPartitionsType.resx">
       <DependentUpon>frmPartitionsType.cs</DependentUpon>
     </EmbeddedResource>
@@ -522,6 +531,7 @@
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\ItemCategory.datasource" />
+    <None Include="Properties\DataSources\Items.datasource" />
     <None Include="Properties\DataSources\ItemsGroups.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
     <None Include="Properties\DataSources\Mu.datasource" />

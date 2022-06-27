@@ -21,6 +21,7 @@ namespace FlameTradeSS
             this.Documents = new HashSet<Documents>();
             this.PartnerPersons = new HashSet<PartnerPersons>();
             this.Suppliers = new HashSet<Suppliers>();
+            this.Items = new HashSet<Items>();
         }
     
         public int ID { get; set; }
@@ -45,5 +46,7 @@ namespace FlameTradeSS
         public virtual PartnerStaticPriceGroup PartnerStaticPriceGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suppliers> Suppliers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Items> Items { get; set; }
     }
 }
