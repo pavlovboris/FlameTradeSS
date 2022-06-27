@@ -63,21 +63,24 @@ namespace FlameTradeSS
 
         private async void dgvTransactionLines_Click(object sender, EventArgs e)
         {
-            if (documentTransactions.Documents.Issued == 0)
-            {
-                if (documentTransactions.ID == 0)
+         
+                if (documentTransactions.Documents==null || documentTransactions.Documents.Issued == 0 )
                 {
-                    await db.SaveChangesAsync();
-                }
+                    if (documentTransactions.ID == 0)
+                    {
+                        await db.SaveChangesAsync();
+                    }
 
-                if (transactionLinesBindingSource.Count == 0)
-                {
-                    TransactionLines transaction = new TransactionLines();
-                    transaction.TransactionsID = documentTransactions.ID;
-                    transactionLinesBindingSource.Add(transaction);
-                    db.TransactionLines.Add(transaction);
+                    if (transactionLinesBindingSource.Count == 0)
+                    {
+                        TransactionLines transaction = new TransactionLines();
+                        transaction.TransactionsID = documentTransactions.ID;
+                        transactionLinesBindingSource.Add(transaction);
+                        db.TransactionLines.Add(transaction);
+                    }
                 }
-            } 
+            
+            
         }
 
         private void frmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)

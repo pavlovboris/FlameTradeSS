@@ -465,34 +465,73 @@ namespace FlameTradeSS
 
         private async void btnIssueDocument_Click(object sender, EventArgs e)
         {
-            if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
+            switch (newDocument.DocumentSequences.SequenceType.NumberingReference)
             {
-                if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете фактура?") == true)
-                {
-                    try
+                case "Invoice Numbering ":
+                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете фактура?") == true)
                     {
-                        int maxInvoiceN = db.InvoiceNumbering.Max(inv => inv.number);
-                        newDocument.DocumentNumber = maxInvoiceN + 1;
-                        InvoiceNumbering invoiceNumbering = new InvoiceNumbering();
+                        try
+                        {
+                            int maxInvoiceN = db.InvoiceNumbering.Max(inv => inv.number);
+                            newDocument.DocumentNumber = maxInvoiceN + 1;
+                            InvoiceNumbering invoiceNumbering = new InvoiceNumbering();
 
-                        invoiceNumbering.documentID = newDocument.ID;
-                        invoiceNumbering.number = (int)newDocument.DocumentNumber;
-                        db.InvoiceNumbering.Add(invoiceNumbering);
-                        newDocument.Issued = 1;
-                        btnIssueDocument.Enabled = false;
-                        btnCancel.Enabled = true;
-                        cmbDocumentSequence.Enabled = false;
-                        cmbPartners.Enabled = false;
-                        dateTimeDocDate.Enabled = false;
-                        dgvDocumentTransactions.ReadOnly = true;
-                        listBoxTransactionsAdd.Enabled = false;
-                        issued = true;
-                        await db.SaveChangesAsync();
-                        CommonTasks.SendInfoMsg("Фактурата е успешно издадена");
+                            invoiceNumbering.documentID = newDocument.ID;
+                            invoiceNumbering.number = (int)newDocument.DocumentNumber;
+                            db.InvoiceNumbering.Add(invoiceNumbering);
+                            newDocument.Issued = 1;
+                            btnIssueDocument.Enabled = false;
+                            btnCancel.Enabled = true;
+                            cmbDocumentSequence.Enabled = false;
+                            cmbPartners.Enabled = false;
+                            dateTimeDocDate.Enabled = false;
+                            dgvDocumentTransactions.ReadOnly = true;
+                            listBoxTransactionsAdd.Enabled = false;
+                            issued = true;
+                            await db.SaveChangesAsync();
+                            CommonTasks.SendInfoMsg("Фактурата е успешно издадена");
+                        }
+                        catch { CommonTasks.SendErrorMsg("Фактурата НЕ е издадена : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                     }
-                    catch { CommonTasks.SendErrorMsg("Фактурата НЕ е издадена"); }
+                    break;
+                case "Standart Numbering":
+                    if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да издадете Документ : "+newDocument.DocumentSequences.SequenceName+"?") == true)
+                    {
+                        try
+                        {
+                            List<Numbering> maxNumber = new List<Numbering>();
+                            maxNumber = db.Numbering.Where(n => n.SequenceID == newDocument.DocumentSequenceID).ToList();
+                            int maxSeqNumber;
+                            if (maxNumber.Count == 0)
+                            {
+                                maxSeqNumber = 0;
+                            }
+                            else
+                            {
+                                maxSeqNumber = maxNumber.Max(m => m.MaxSequenceNumber);
+                            }
 
-                }
+                            newDocument.DocumentNumber = maxSeqNumber + 1;
+                            Numbering numbering = new Numbering();
+                            numbering.MaxSequenceNumber = (int)newDocument.DocumentNumber;
+                            numbering.SequenceID = newDocument.DocumentSequenceID;
+                            db.Numbering.Add(numbering);
+                            documentsBindingSource.DataSource = newDocument;
+                            newDocument.Issued = 1;
+                            btnIssueDocument.Enabled = false;
+                            btnCancel.Enabled = true;
+                            cmbDocumentSequence.Enabled = false;
+                            cmbPartners.Enabled = false;
+                            dateTimeDocDate.Enabled = false;
+                            dgvDocumentTransactions.ReadOnly = true;
+                            listBoxTransactionsAdd.Enabled = false;
+                            issued = true;
+                            await db.SaveChangesAsync();
+                            CommonTasks.SendInfoMsg("Документа е издаден успешно : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
+                        }
+                        catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
+                    }
+                    break;
             }
         }
     }
