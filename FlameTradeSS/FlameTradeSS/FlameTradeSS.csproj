@@ -176,6 +176,12 @@
     <Compile Include="frmItemsCategory.Designer.cs">
       <DependentUpon>frmItemsCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReceiptSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceiptSelector.Designer.cs">
+      <DependentUpon>frmReceiptSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProjectSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,6 +477,9 @@
     <EmbeddedResource Include="frmItemsCategory.resx">
       <DependentUpon>frmItemsCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReceiptSelector.resx">
+      <DependentUpon>frmReceiptSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProjectSelector.resx">
       <DependentUpon>frmProjectSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -564,6 +573,7 @@
     <None Include="Properties\DataSources\SequenceType.datasource" />
     <None Include="Properties\DataSources\Surfaces.datasource" />
     <None Include="Properties\DataSources\TransactionLines.datasource" />
+    <None Include="Properties\DataSources\TransactionReceipt.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">

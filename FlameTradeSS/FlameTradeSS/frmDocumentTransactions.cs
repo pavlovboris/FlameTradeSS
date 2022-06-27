@@ -29,6 +29,8 @@ namespace FlameTradeSS
 
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
+            muBindingSource.DataSource = db.Mu.ToList();
+            itemsBindingSource.DataSource = db.Items.ToList();
             
             if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
             {
@@ -41,12 +43,21 @@ namespace FlameTradeSS
                 case "ItemID":
                     dgvTransactionLines.Columns[machineIDDataGridViewTextBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[serviceIDDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[startDateDataGridViewTextBoxColumn.Name].Visible=false;
+                    dgvTransactionLines.Columns[endDateDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[durationHoursDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[cyclesDataGridViewTextBoxColumn.Name].Visible = false;
+                    itemsBindingSource.DataSource = db.Items.ToList();
+                    transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
+                    
                     break;
                 case "MachineID":
+                    dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[itemIDDataGridViewTextBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[serviceIDDataGridViewTextBoxColumn.Name].Visible = false;
                     break;
                 case "ServiceID":
+                    dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[itemIDDataGridViewTextBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[machineIDDataGridViewTextBoxColumn.Name].Visible = false;
                     break;
@@ -87,6 +98,43 @@ namespace FlameTradeSS
         {
            // e.Cancel = true;
            // Hide();
+        }
+
+        private void dgvTransactionLines_CurrentCellChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void dgvTransactionLines_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == receiptIDDataGridViewTextBoxColumn.Index)
+            {
+                if (dgvTransactionLines.Rows[e.RowIndex].Cells[itemIDDataGridViewTextBoxColumn.Index].Value != null)
+                {
+                    frmReceiptSelector frmReceiptSelector = new frmReceiptSelector();
+                    frmReceiptSelector.db = db;
+                    frmReceiptSelector.FormClosing += FrmReceiptSelector_FormClosing;
+                    Items item = new Items();
+                    int itmId = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[itemIDDataGridViewTextBoxColumn.Index].Value;
+                    item = db.Items.Where(i => i.ID ==  itmId ).SingleOrDefault();
+                    frmReceiptSelector.item = item;
+                    CommonTasks.OpenForm(frmReceiptSelector);
+                }
+            } 
+        }
+
+        private void FrmReceiptSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmReceiptSelector frmReceiptSelector = (frmReceiptSelector)sender;
+
+            if (frmReceiptSelector.xClicked!=true)
+            {
+                if (frmReceiptSelector.dgvReceipts.CurrentRow.DataBoundItem!=null)
+                {
+                    TransactionReceipt transactionReceipt = frmReceiptSelector.dgvReceipts.CurrentRow.DataBoundItem as TransactionReceipt;
+                    dgvTransactionLines.CurrentCell.Value = transactionReceipt.ID;
+                }
+            }
         }
     }
 }

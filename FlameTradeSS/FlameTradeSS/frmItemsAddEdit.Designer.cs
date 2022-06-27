@@ -74,6 +74,7 @@
             this.lblDefaultSurface = new System.Windows.Forms.Label();
             this.cmbDefaultSurface = new System.Windows.Forms.ComboBox();
             this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.openFileDialogChangePicture = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
@@ -297,7 +298,7 @@
             this.picItemPicture.Location = new System.Drawing.Point(416, 118);
             this.picItemPicture.Name = "picItemPicture";
             this.picItemPicture.Size = new System.Drawing.Size(205, 133);
-            this.picItemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picItemPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picItemPicture.TabIndex = 31;
             this.picItemPicture.TabStop = false;
             // 
@@ -433,6 +434,7 @@
             this.btnChangePicture.TabIndex = 49;
             this.btnChangePicture.Text = "Смени Снимка";
             this.btnChangePicture.UseVisualStyleBackColor = true;
+            this.btnChangePicture.Click += new System.EventHandler(this.btnChangePicture_Click);
             // 
             // btnFiles
             // 
@@ -476,6 +478,11 @@
             // surfacesBindingSource
             // 
             this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
+            // 
+            // openFileDialogChangePicture
+            // 
+            this.openFileDialogChangePicture.FileName = "openFileDialog1";
+            this.openFileDialogChangePicture.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogChangePicture_FileOk);
             // 
             // frmItemsAddEdit
             // 
@@ -590,5 +597,6 @@
         private System.Windows.Forms.Label lblDefaultSurface;
         private System.Windows.Forms.ComboBox cmbDefaultSurface;
         private System.Windows.Forms.BindingSource surfacesBindingSource;
+        private System.Windows.Forms.OpenFileDialog openFileDialogChangePicture;
     }
 }

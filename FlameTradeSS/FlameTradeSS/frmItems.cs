@@ -505,6 +505,7 @@ namespace FlameTradeSS
             {
                 frmItemsAddEdit frmItemsAddEdit = new frmItemsAddEdit();
                 frmItemsAddEdit.newItem = dgvItems.CurrentRow.DataBoundItem as Items;
+                frmItemsAddEdit.db = db;
               
                 CommonTasks.OpenForm(frmItemsAddEdit);
             }

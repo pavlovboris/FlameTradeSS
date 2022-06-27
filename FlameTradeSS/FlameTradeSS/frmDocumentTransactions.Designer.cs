@@ -34,8 +34,12 @@
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
             this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
-            this.transactionsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ItemDescriptionDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.machineIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +47,8 @@
             this.durationHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cyclesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.muIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.muIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.partitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.secondPartitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,10 +67,12 @@
             this.costPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costPrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,8 +121,8 @@
             this.dgvTransactionLines.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTransactionLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransactionLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.transactionsIDDataGridViewTextBoxColumn,
             this.itemIDDataGridViewTextBoxColumn,
+            this.ItemDescriptionDataGridViewComboBoxColumn,
             this.machineIDDataGridViewTextBoxColumn,
             this.serviceIDDataGridViewTextBoxColumn,
             this.startDateDataGridViewTextBoxColumn,
@@ -150,24 +156,49 @@
             this.dgvTransactionLines.RowHeadersWidth = 20;
             this.dgvTransactionLines.Size = new System.Drawing.Size(692, 329);
             this.dgvTransactionLines.TabIndex = 2;
+            this.dgvTransactionLines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellClick);
+            this.dgvTransactionLines.CurrentCellChanged += new System.EventHandler(this.dgvTransactionLines_CurrentCellChanged);
             this.dgvTransactionLines.Click += new System.EventHandler(this.dgvTransactionLines_Click);
             // 
-            // transactionsIDDataGridViewTextBoxColumn
+            // itemsBindingSource
             // 
-            this.transactionsIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionsID";
-            this.transactionsIDDataGridViewTextBoxColumn.HeaderText = "TransactionsID";
-            this.transactionsIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.transactionsIDDataGridViewTextBoxColumn.Name = "transactionsIDDataGridViewTextBoxColumn";
-            this.transactionsIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.transactionsIDDataGridViewTextBoxColumn.Width = 200;
+            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
+            // 
+            // transactionReceiptBindingSource
+            // 
+            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
+            // 
+            // muBindingSource
+            // 
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
+            // 
+            // transactionLinesBindingSource
+            // 
+            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
             // itemIDDataGridViewTextBoxColumn
             // 
             this.itemIDDataGridViewTextBoxColumn.DataPropertyName = "ItemID";
-            this.itemIDDataGridViewTextBoxColumn.HeaderText = "ItemID";
+            this.itemIDDataGridViewTextBoxColumn.DataSource = this.itemsBindingSource;
+            this.itemIDDataGridViewTextBoxColumn.DisplayMember = "Code";
+            this.itemIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.itemIDDataGridViewTextBoxColumn.HeaderText = "Код";
             this.itemIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.itemIDDataGridViewTextBoxColumn.Name = "itemIDDataGridViewTextBoxColumn";
+            this.itemIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.itemIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.itemIDDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // ItemDescriptionDataGridViewComboBoxColumn
+            // 
+            this.ItemDescriptionDataGridViewComboBoxColumn.DataPropertyName = "ItemID";
+            this.ItemDescriptionDataGridViewComboBoxColumn.DataSource = this.itemsBindingSource;
+            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayMember = "Description";
+            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.ItemDescriptionDataGridViewComboBoxColumn.HeaderText = "Описание";
+            this.ItemDescriptionDataGridViewComboBoxColumn.Name = "ItemDescriptionDataGridViewComboBoxColumn";
+            this.ItemDescriptionDataGridViewComboBoxColumn.ValueMember = "ID";
             // 
             // machineIDDataGridViewTextBoxColumn
             // 
@@ -228,17 +259,30 @@
             // receiptIDDataGridViewTextBoxColumn
             // 
             this.receiptIDDataGridViewTextBoxColumn.DataPropertyName = "ReceiptID";
+            this.receiptIDDataGridViewTextBoxColumn.DataSource = this.transactionReceiptBindingSource;
+            this.receiptIDDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.receiptIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.receiptIDDataGridViewTextBoxColumn.HeaderText = "ReceiptID";
             this.receiptIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.receiptIDDataGridViewTextBoxColumn.Name = "receiptIDDataGridViewTextBoxColumn";
+            this.receiptIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.receiptIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.receiptIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.receiptIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.receiptIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // muIDDataGridViewTextBoxColumn
             // 
             this.muIDDataGridViewTextBoxColumn.DataPropertyName = "MuID";
-            this.muIDDataGridViewTextBoxColumn.HeaderText = "MuID";
+            this.muIDDataGridViewTextBoxColumn.DataSource = this.muBindingSource;
+            this.muIDDataGridViewTextBoxColumn.DisplayMember = "Code";
+            this.muIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.muIDDataGridViewTextBoxColumn.HeaderText = "МЕ";
             this.muIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.muIDDataGridViewTextBoxColumn.Name = "muIDDataGridViewTextBoxColumn";
+            this.muIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.muIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.muIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.muIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // partitionIDDataGridViewTextBoxColumn
@@ -385,10 +429,6 @@
             this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
             this.isCanceledDataGridViewTextBoxColumn.Width = 200;
             // 
-            // transactionLinesBindingSource
-            // 
-            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
-            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,6 +448,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -421,8 +464,11 @@
         private System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         public System.Windows.Forms.DataGridView dgvTransactionLines;
         public System.Windows.Forms.BindingSource transactionLinesBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transactionsIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource itemsBindingSource;
+        private System.Windows.Forms.BindingSource muBindingSource;
+        private System.Windows.Forms.BindingSource transactionReceiptBindingSource;
+        private System.Windows.Forms.DataGridViewComboBoxColumn itemIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ItemDescriptionDataGridViewComboBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn machineIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn serviceIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
@@ -430,8 +476,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn durationHoursDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cyclesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn receiptIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn muIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn receiptIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn muIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partitionIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn secondPartitionIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
