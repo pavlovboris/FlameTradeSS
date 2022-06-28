@@ -286,7 +286,6 @@
             // 
             // btnRemoveFile
             // 
-            this.btnRemoveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveFile.Location = new System.Drawing.Point(1552, 199);
             this.btnRemoveFile.Name = "btnRemoveFile";
             this.btnRemoveFile.Size = new System.Drawing.Size(47, 23);
@@ -297,7 +296,6 @@
             // 
             // btnAddFile
             // 
-            this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddFile.Location = new System.Drawing.Point(1455, 199);
             this.btnAddFile.Name = "btnAddFile";
             this.btnAddFile.Size = new System.Drawing.Size(47, 23);
@@ -308,7 +306,6 @@
             // 
             // lblAttachments
             // 
-            this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttachments.AutoSize = true;
             this.lblAttachments.Location = new System.Drawing.Point(1452, 9);
             this.lblAttachments.Name = "lblAttachments";
@@ -320,7 +317,6 @@
             // 
             this.dgvAttachments.AllowUserToAddRows = false;
             this.dgvAttachments.AllowUserToDeleteRows = false;
-            this.dgvAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAttachments.AutoGenerateColumns = false;
             this.dgvAttachments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAttachments.BackgroundColor = System.Drawing.Color.White;
@@ -362,7 +358,6 @@
             // 
             // lblProjects
             // 
-            this.lblProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProjects.AutoSize = true;
             this.lblProjects.Location = new System.Drawing.Point(1234, 9);
             this.lblProjects.Name = "lblProjects";
@@ -372,7 +367,6 @@
             // 
             // listBoxProjects
             // 
-            this.listBoxProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxProjects.ContextMenuStrip = this.contextMenuStripProjects;
             this.listBoxProjects.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.documentsProjectsBindingSource, "ProjectID", true));
             this.listBoxProjects.DataSource = this.projectBindingSource;
@@ -418,8 +412,6 @@
             this.dgvDocumentTransactions.AllowUserToAddRows = false;
             this.dgvDocumentTransactions.AllowUserToDeleteRows = false;
             this.dgvDocumentTransactions.AllowUserToOrderColumns = true;
-            this.dgvDocumentTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDocumentTransactions.AutoGenerateColumns = false;
             this.dgvDocumentTransactions.BackgroundColor = System.Drawing.Color.White;
             this.dgvDocumentTransactions.BorderStyle = System.Windows.Forms.BorderStyle.None;

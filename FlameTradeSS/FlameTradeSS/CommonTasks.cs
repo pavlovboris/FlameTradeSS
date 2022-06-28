@@ -210,5 +210,61 @@ namespace FlameTradeSS
                 form.Size = size;
             }
         }
+
+        public static async void DeleteDocument(FlameTradeDbEntities db, Documents documents) 
+        {
+            //To Be updated
+
+            try
+            {
+                if (documents.Issued == 0)
+                {
+                    List<DocumentTransactions> documentTransactionsList = db.DocumentTransactions.Where(dt1 => dt1.DocumentsID == documents.ID).ToList();
+                    foreach (DocumentTransactions dt in documentTransactionsList)
+                    {
+                        List<TransactionLines> transactionLinesList = db.TransactionLines.Where(tl => tl.TransactionsID == dt.ID).ToList();
+                        foreach (TransactionLines transactionLine in transactionLinesList)
+                        {
+                            db.TransactionLines.Remove(transactionLine);
+                        }
+
+                        List<TransactionPersons> transactionPersonsList = db.TransactionPersons.Where(tp => tp.DocumentTransactionsID == dt.ID).ToList();
+                        foreach (TransactionPersons transactionPerson in transactionPersonsList)
+                        {
+                            db.TransactionPersons.Remove(transactionPerson);
+                        }
+
+                        List<TransactionsTransformations> transactionsTransformationsList = db.TransactionsTransformations.Where(tt => tt.TransactionID == dt.ID || tt.OriginTransactionID == dt.ID).ToList();
+                        foreach (TransactionsTransformations transactionsTransformations in transactionsTransformationsList)
+                        {
+                            db.TransactionsTransformations.Remove(transactionsTransformations);
+                        }
+
+                        db.DocumentTransactions.Remove(dt);
+                    }
+
+                    List<DocumentsProjects> documentsProjectsList = db.DocumentsProjects.Where(dp => dp.DocumentsID == documents.ID).ToList();
+                    foreach (DocumentsProjects project in documentsProjectsList)
+                    {
+                        db.DocumentsProjects.Remove(project);
+                    }
+
+                    List<DocumentsAttachments> documentsAttachmentsList = db.DocumentsAttachments.Where(da => da.DocumentsID == documents.ID).ToList();
+                    foreach (DocumentsAttachments documentsAttachments in documentsAttachmentsList)
+                    {
+                        db.DocumentsAttachments.Remove(documentsAttachments);
+                    }
+
+                    List<DocumentTransformation> documentTransformationsList = db.DocumentTransformation.Where(dt1 => dt1.DocID == documents.ID || dt1.OriginDocID == documents.ID).ToList();
+                    foreach (DocumentTransformation documentTransformation in documentTransformationsList)
+                    {
+                        db.DocumentTransformation.Remove(documentTransformation);
+                    }
+                    db.Documents.Remove(documents);
+                    await db.SaveChangesAsync();
+                }
+                
+            } catch (Exception ex) { SendErrorMsg(ex.Message); }
+        }
     }
 }

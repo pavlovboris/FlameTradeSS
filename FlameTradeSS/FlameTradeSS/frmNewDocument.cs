@@ -96,7 +96,7 @@ namespace FlameTradeSS
                         {
                             frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
-                            frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                           // frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
                             foreach (DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
                             {
                                 if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem != null)
@@ -112,15 +112,23 @@ namespace FlameTradeSS
                         }
 
                         await db.SaveChangesAsync();
+                        dgvAttachments.Dispose();
+                        dgvDocumentTransactions.Dispose();
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    foreach (Form form in this.MdiChildren)
+                   // foreach (Form form in this.MdiChildren)
+                   // {
+                     //   form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                  //  }
+
+                    if (newDocument.IsBlocked==0)
                     {
-                        form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                        CommonTasks.DeleteDocument(db, newDocument);
                     }
+                    
                 }
                 else
                 {
@@ -235,12 +243,14 @@ namespace FlameTradeSS
             newfrmDocumentTransactions.MdiParent = this;
             documentTransactionsBindingSource.Add(newDocumentTransaction);
             documentTransactionsBindingSource.MoveLast();
-            newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+            //newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
             
             newfrmDocumentTransactions.Show();
 
-            newDocument.IsBlocked = 1;
+            //newDocument.IsBlocked = 1;
             cmbDocumentSequence.Enabled = false;
+
+            
 
             await db.SaveChangesAsync();
         }
@@ -282,7 +292,7 @@ namespace FlameTradeSS
                     newfrmDocumentTransactions.documentTransactions = documentTransactions;
                     //newfrmDocumentTransactions.documentTransactionsBindingSource.DataSource = documentTransactions;
                     newfrmDocumentTransactions.db = db;
-                    newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+                  //  newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
                     newfrmDocumentTransactions.Show();
                 }
             }

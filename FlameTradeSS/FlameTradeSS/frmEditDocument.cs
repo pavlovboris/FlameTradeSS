@@ -150,7 +150,7 @@ namespace FlameTradeSS
                         {
                             frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
-                            frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                            //frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
                             foreach(DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
                             {
                                 if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem!=null)
@@ -164,19 +164,23 @@ namespace FlameTradeSS
                                 }
                             }
                         }
-
+                        //make isBlocked=1;
                         await db.SaveChangesAsync();
+
+                        
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    foreach (Form form in MdiChildren)
-                    {
-                        frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
+                    //foreach (Form form in MdiChildren)
+                    //{
+                      //  frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
-                        frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                    } 
+                       // frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                   // } 
+
+                    // dispose what is isBlocked==0;
                 }
                 else
                 {
@@ -273,10 +277,10 @@ namespace FlameTradeSS
             db.DocumentTransactions.Add(newDocumentTransaction);
             newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
             newfrmDocumentTransactions.db = db;
-            newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+           // newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
             newfrmDocumentTransactions.Show();
 
-            newDocument.IsBlocked = 1;
+            //newDocument.IsBlocked = 1;
             cmbDocumentSequence.Enabled = false;
 
             await db.SaveChangesAsync();
@@ -326,7 +330,7 @@ namespace FlameTradeSS
                     newfrmDocumentTransactions.MdiParent = this;
                     newfrmDocumentTransactions.documentTransactions = documentTransactions;
                     newfrmDocumentTransactions.db = db;
-                    newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+                 //   newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
                     newfrmDocumentTransactions.Show();
                 }
 

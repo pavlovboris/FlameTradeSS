@@ -68,6 +68,7 @@
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnTasks = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
@@ -186,8 +187,10 @@
             this.ItemDescriptionDataGridViewComboBoxColumn.DisplayMember = "Description";
             this.ItemDescriptionDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.ItemDescriptionDataGridViewComboBoxColumn.HeaderText = "Описание";
+            this.ItemDescriptionDataGridViewComboBoxColumn.MinimumWidth = 10;
             this.ItemDescriptionDataGridViewComboBoxColumn.Name = "ItemDescriptionDataGridViewComboBoxColumn";
             this.ItemDescriptionDataGridViewComboBoxColumn.ValueMember = "ID";
+            this.ItemDescriptionDataGridViewComboBoxColumn.Width = 200;
             // 
             // machineIDDataGridViewTextBoxColumn
             // 
@@ -440,6 +443,19 @@
             this.btnTasks.UseVisualStyleBackColor = true;
             this.btnTasks.Click += new System.EventHandler(this.btnTasks_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.btnClose.Location = new System.Drawing.Point(655, 12);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 53);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,12 +463,13 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(716, 552);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnTasks);
             this.Controls.Add(this.dgvTransactionLines);
             this.Controls.Add(this.dateTimeTransactionDate);
             this.Controls.Add(this.cmbTransactipnType);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDocumentTransactions";
             this.Text = "Document Transactions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
@@ -509,5 +526,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
         public System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         private System.Windows.Forms.Button btnTasks;
+        private System.Windows.Forms.Button btnClose;
     }
 }
