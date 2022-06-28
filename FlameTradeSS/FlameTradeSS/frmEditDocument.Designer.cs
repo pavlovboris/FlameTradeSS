@@ -66,8 +66,16 @@
             this.documentsProjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
-            this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
+            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
+            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.transactionDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expectedMatDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,17 +92,10 @@
             this.isReadyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isConfirmedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isDeliveredDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.creationDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblDocumentNumber = new System.Windows.Forms.Label();
-            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
-            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -106,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentTransactions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -225,7 +227,7 @@
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnCancel.Location = new System.Drawing.Point(1067, 58);
+            this.btnCancel.Location = new System.Drawing.Point(989, 52);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 36);
             this.btnCancel.TabIndex = 28;
@@ -236,7 +238,7 @@
             // 
             this.btnIssueDocument.Enabled = false;
             this.btnIssueDocument.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnIssueDocument.Location = new System.Drawing.Point(1067, 12);
+            this.btnIssueDocument.Location = new System.Drawing.Point(989, 6);
             this.btnIssueDocument.Name = "btnIssueDocument";
             this.btnIssueDocument.Size = new System.Drawing.Size(75, 36);
             this.btnIssueDocument.TabIndex = 27;
@@ -446,168 +448,13 @@
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // transactionTypeIDDataGridViewTextBoxColumn
-            // 
-            this.transactionTypeIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionTypeID";
-            this.transactionTypeIDDataGridViewTextBoxColumn.DataSource = this.transactionsTypeBindingSource;
-            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
-            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.transactionTypeIDDataGridViewTextBoxColumn.HeaderText = "Транзакция";
-            this.transactionTypeIDDataGridViewTextBoxColumn.Name = "transactionTypeIDDataGridViewTextBoxColumn";
-            this.transactionTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.transactionTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.transactionTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.transactionTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            // 
             // transactionsTypeBindingSource
             // 
             this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
-            // NotForInvoice
+            // usersBindingSource
             // 
-            this.NotForInvoice.DataPropertyName = "NotForInvoice";
-            this.NotForInvoice.FalseValue = "0";
-            this.NotForInvoice.HeaderText = "!Фактура";
-            this.NotForInvoice.Name = "NotForInvoice";
-            this.NotForInvoice.TrueValue = "1";
-            // 
-            // transactionDateDataGridViewTextBoxColumn
-            // 
-            this.transactionDateDataGridViewTextBoxColumn.DataPropertyName = "TransactionDate";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.transactionDateDataGridViewTextBoxColumn.HeaderText = "TransactionDate";
-            this.transactionDateDataGridViewTextBoxColumn.Name = "transactionDateDataGridViewTextBoxColumn";
-            // 
-            // expectedMatDateDataGridViewTextBoxColumn
-            // 
-            this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
-            this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
-            // 
-            // requestedDateDataGridViewTextBoxColumn
-            // 
-            this.requestedDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDate";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.requestedDateDataGridViewTextBoxColumn.HeaderText = "RequestedDate";
-            this.requestedDateDataGridViewTextBoxColumn.Name = "requestedDateDataGridViewTextBoxColumn";
-            // 
-            // receivedDateDataGridViewTextBoxColumn
-            // 
-            this.receivedDateDataGridViewTextBoxColumn.DataPropertyName = "ReceivedDate";
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.receivedDateDataGridViewTextBoxColumn.HeaderText = "ReceivedDate";
-            this.receivedDateDataGridViewTextBoxColumn.Name = "receivedDateDataGridViewTextBoxColumn";
-            // 
-            // requestedDeliveryDateDataGridViewTextBoxColumn
-            // 
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDeliveryDate";
-            dataGridViewCellStyle5.Format = "d";
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.HeaderText = "RequestedDeliveryDate";
-            this.requestedDeliveryDateDataGridViewTextBoxColumn.Name = "requestedDeliveryDateDataGridViewTextBoxColumn";
-            // 
-            // qty1DataGridViewTextBoxColumn
-            // 
-            this.qty1DataGridViewTextBoxColumn.DataPropertyName = "Qty1";
-            this.qty1DataGridViewTextBoxColumn.HeaderText = "Qty1";
-            this.qty1DataGridViewTextBoxColumn.Name = "qty1DataGridViewTextBoxColumn";
-            this.qty1DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // qty2DataGridViewTextBoxColumn
-            // 
-            this.qty2DataGridViewTextBoxColumn.DataPropertyName = "Qty2";
-            this.qty2DataGridViewTextBoxColumn.HeaderText = "Qty2";
-            this.qty2DataGridViewTextBoxColumn.Name = "qty2DataGridViewTextBoxColumn";
-            this.qty2DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // qty3DataGridViewTextBoxColumn
-            // 
-            this.qty3DataGridViewTextBoxColumn.DataPropertyName = "Qty3";
-            this.qty3DataGridViewTextBoxColumn.HeaderText = "Qty3";
-            this.qty3DataGridViewTextBoxColumn.Name = "qty3DataGridViewTextBoxColumn";
-            this.qty3DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // value1DataGridViewTextBoxColumn
-            // 
-            this.value1DataGridViewTextBoxColumn.DataPropertyName = "Value1";
-            this.value1DataGridViewTextBoxColumn.HeaderText = "Value1";
-            this.value1DataGridViewTextBoxColumn.Name = "value1DataGridViewTextBoxColumn";
-            this.value1DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // value2DataGridViewTextBoxColumn
-            // 
-            this.value2DataGridViewTextBoxColumn.DataPropertyName = "Value2";
-            this.value2DataGridViewTextBoxColumn.HeaderText = "Value2";
-            this.value2DataGridViewTextBoxColumn.Name = "value2DataGridViewTextBoxColumn";
-            this.value2DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // value3DataGridViewTextBoxColumn
-            // 
-            this.value3DataGridViewTextBoxColumn.DataPropertyName = "Value3";
-            this.value3DataGridViewTextBoxColumn.HeaderText = "Value3";
-            this.value3DataGridViewTextBoxColumn.Name = "value3DataGridViewTextBoxColumn";
-            this.value3DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isCompleatedDataGridViewTextBoxColumn
-            // 
-            this.isCompleatedDataGridViewTextBoxColumn.DataPropertyName = "IsCompleated";
-            this.isCompleatedDataGridViewTextBoxColumn.HeaderText = "IsCompleated";
-            this.isCompleatedDataGridViewTextBoxColumn.Name = "isCompleatedDataGridViewTextBoxColumn";
-            // 
-            // isReadyDataGridViewTextBoxColumn
-            // 
-            this.isReadyDataGridViewTextBoxColumn.DataPropertyName = "IsReady";
-            this.isReadyDataGridViewTextBoxColumn.HeaderText = "IsReady";
-            this.isReadyDataGridViewTextBoxColumn.Name = "isReadyDataGridViewTextBoxColumn";
-            // 
-            // isConfirmedDataGridViewTextBoxColumn
-            // 
-            this.isConfirmedDataGridViewTextBoxColumn.DataPropertyName = "IsConfirmed";
-            this.isConfirmedDataGridViewTextBoxColumn.HeaderText = "IsConfirmed";
-            this.isConfirmedDataGridViewTextBoxColumn.Name = "isConfirmedDataGridViewTextBoxColumn";
-            // 
-            // isDeliveredDataGridViewTextBoxColumn
-            // 
-            this.isDeliveredDataGridViewTextBoxColumn.DataPropertyName = "IsDelivered";
-            this.isDeliveredDataGridViewTextBoxColumn.HeaderText = "IsDelivered";
-            this.isDeliveredDataGridViewTextBoxColumn.Name = "isDeliveredDataGridViewTextBoxColumn";
-            // 
-            // userIDDataGridViewTextBoxColumn
-            // 
-            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
-            this.userIDDataGridViewTextBoxColumn.HeaderText = "UserID";
-            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
-            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // creationDateTimeDataGridViewTextBoxColumn
-            // 
-            this.creationDateTimeDataGridViewTextBoxColumn.DataPropertyName = "CreationDateTime";
-            dataGridViewCellStyle6.Format = "d";
-            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.creationDateTimeDataGridViewTextBoxColumn.HeaderText = "CreationDateTime";
-            this.creationDateTimeDataGridViewTextBoxColumn.Name = "creationDateTimeDataGridViewTextBoxColumn";
-            this.creationDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // colorIDDataGridViewTextBoxColumn
-            // 
-            this.colorIDDataGridViewTextBoxColumn.DataPropertyName = "ColorID";
-            this.colorIDDataGridViewTextBoxColumn.HeaderText = "ColorID";
-            this.colorIDDataGridViewTextBoxColumn.Name = "colorIDDataGridViewTextBoxColumn";
-            // 
-            // isCanceledDataGridViewTextBoxColumn
-            // 
-            this.isCanceledDataGridViewTextBoxColumn.DataPropertyName = "IsCanceled";
-            this.isCanceledDataGridViewTextBoxColumn.HeaderText = "IsCanceled";
-            this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
+            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
             // 
             // documentTransactionsBindingSource
             // 
@@ -656,6 +503,173 @@
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
+            // transactionTypeIDDataGridViewTextBoxColumn
+            // 
+            this.transactionTypeIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionTypeID";
+            this.transactionTypeIDDataGridViewTextBoxColumn.DataSource = this.transactionsTypeBindingSource;
+            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
+            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.transactionTypeIDDataGridViewTextBoxColumn.HeaderText = "Транзакция";
+            this.transactionTypeIDDataGridViewTextBoxColumn.Name = "transactionTypeIDDataGridViewTextBoxColumn";
+            this.transactionTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.transactionTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.transactionTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.transactionTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            // 
+            // NotForInvoice
+            // 
+            this.NotForInvoice.DataPropertyName = "NotForInvoice";
+            this.NotForInvoice.FalseValue = "0";
+            this.NotForInvoice.HeaderText = "!Фактура";
+            this.NotForInvoice.Name = "NotForInvoice";
+            this.NotForInvoice.TrueValue = "1";
+            // 
+            // transactionDateDataGridViewTextBoxColumn
+            // 
+            this.transactionDateDataGridViewTextBoxColumn.DataPropertyName = "TransactionDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.transactionDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.transactionDateDataGridViewTextBoxColumn.HeaderText = "Дата";
+            this.transactionDateDataGridViewTextBoxColumn.Name = "transactionDateDataGridViewTextBoxColumn";
+            // 
+            // expectedMatDateDataGridViewTextBoxColumn
+            // 
+            this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.expectedMatDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "Очаквана Дата";
+            this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
+            this.expectedMatDateDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // requestedDateDataGridViewTextBoxColumn
+            // 
+            this.requestedDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDate";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.requestedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.requestedDateDataGridViewTextBoxColumn.HeaderText = "Искана Дата";
+            this.requestedDateDataGridViewTextBoxColumn.Name = "requestedDateDataGridViewTextBoxColumn";
+            // 
+            // receivedDateDataGridViewTextBoxColumn
+            // 
+            this.receivedDateDataGridViewTextBoxColumn.DataPropertyName = "ReceivedDate";
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.receivedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.receivedDateDataGridViewTextBoxColumn.HeaderText = "Дата на Получаване";
+            this.receivedDateDataGridViewTextBoxColumn.Name = "receivedDateDataGridViewTextBoxColumn";
+            this.receivedDateDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // requestedDeliveryDateDataGridViewTextBoxColumn
+            // 
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.DataPropertyName = "RequestedDeliveryDate";
+            dataGridViewCellStyle5.Format = "d";
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.HeaderText = "RequestedDeliveryDate";
+            this.requestedDeliveryDateDataGridViewTextBoxColumn.Name = "requestedDeliveryDateDataGridViewTextBoxColumn";
+            // 
+            // qty1DataGridViewTextBoxColumn
+            // 
+            this.qty1DataGridViewTextBoxColumn.DataPropertyName = "Qty1";
+            this.qty1DataGridViewTextBoxColumn.HeaderText = "К-ВО 1";
+            this.qty1DataGridViewTextBoxColumn.Name = "qty1DataGridViewTextBoxColumn";
+            this.qty1DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // qty2DataGridViewTextBoxColumn
+            // 
+            this.qty2DataGridViewTextBoxColumn.DataPropertyName = "Qty2";
+            this.qty2DataGridViewTextBoxColumn.HeaderText = "К-ВО 2";
+            this.qty2DataGridViewTextBoxColumn.Name = "qty2DataGridViewTextBoxColumn";
+            this.qty2DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // qty3DataGridViewTextBoxColumn
+            // 
+            this.qty3DataGridViewTextBoxColumn.DataPropertyName = "Qty3";
+            this.qty3DataGridViewTextBoxColumn.HeaderText = "К-ВО 3";
+            this.qty3DataGridViewTextBoxColumn.Name = "qty3DataGridViewTextBoxColumn";
+            this.qty3DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // value1DataGridViewTextBoxColumn
+            // 
+            this.value1DataGridViewTextBoxColumn.DataPropertyName = "Value1";
+            this.value1DataGridViewTextBoxColumn.HeaderText = "Стойност 1";
+            this.value1DataGridViewTextBoxColumn.Name = "value1DataGridViewTextBoxColumn";
+            this.value1DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // value2DataGridViewTextBoxColumn
+            // 
+            this.value2DataGridViewTextBoxColumn.DataPropertyName = "Value2";
+            this.value2DataGridViewTextBoxColumn.HeaderText = "Стойност 2";
+            this.value2DataGridViewTextBoxColumn.Name = "value2DataGridViewTextBoxColumn";
+            this.value2DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // value3DataGridViewTextBoxColumn
+            // 
+            this.value3DataGridViewTextBoxColumn.DataPropertyName = "Value3";
+            this.value3DataGridViewTextBoxColumn.HeaderText = "Стойност 3";
+            this.value3DataGridViewTextBoxColumn.Name = "value3DataGridViewTextBoxColumn";
+            this.value3DataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isCompleatedDataGridViewTextBoxColumn
+            // 
+            this.isCompleatedDataGridViewTextBoxColumn.DataPropertyName = "IsCompleated";
+            this.isCompleatedDataGridViewTextBoxColumn.HeaderText = "IsCompleated";
+            this.isCompleatedDataGridViewTextBoxColumn.Name = "isCompleatedDataGridViewTextBoxColumn";
+            // 
+            // isReadyDataGridViewTextBoxColumn
+            // 
+            this.isReadyDataGridViewTextBoxColumn.DataPropertyName = "IsReady";
+            this.isReadyDataGridViewTextBoxColumn.HeaderText = "IsReady";
+            this.isReadyDataGridViewTextBoxColumn.Name = "isReadyDataGridViewTextBoxColumn";
+            // 
+            // isConfirmedDataGridViewTextBoxColumn
+            // 
+            this.isConfirmedDataGridViewTextBoxColumn.DataPropertyName = "IsConfirmed";
+            this.isConfirmedDataGridViewTextBoxColumn.HeaderText = "IsConfirmed";
+            this.isConfirmedDataGridViewTextBoxColumn.Name = "isConfirmedDataGridViewTextBoxColumn";
+            // 
+            // isDeliveredDataGridViewTextBoxColumn
+            // 
+            this.isDeliveredDataGridViewTextBoxColumn.DataPropertyName = "IsDelivered";
+            this.isDeliveredDataGridViewTextBoxColumn.HeaderText = "IsDelivered";
+            this.isDeliveredDataGridViewTextBoxColumn.Name = "isDeliveredDataGridViewTextBoxColumn";
+            // 
+            // userIDDataGridViewTextBoxColumn
+            // 
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            this.userIDDataGridViewTextBoxColumn.DataSource = this.usersBindingSource;
+            this.userIDDataGridViewTextBoxColumn.DisplayMember = "UserName";
+            this.userIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.userIDDataGridViewTextBoxColumn.HeaderText = "Потребител";
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.userIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.userIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            // 
+            // creationDateTimeDataGridViewTextBoxColumn
+            // 
+            this.creationDateTimeDataGridViewTextBoxColumn.DataPropertyName = "CreationDateTime";
+            dataGridViewCellStyle6.Format = "d";
+            this.creationDateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.creationDateTimeDataGridViewTextBoxColumn.HeaderText = "CreationDateTime";
+            this.creationDateTimeDataGridViewTextBoxColumn.Name = "creationDateTimeDataGridViewTextBoxColumn";
+            this.creationDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // colorIDDataGridViewTextBoxColumn
+            // 
+            this.colorIDDataGridViewTextBoxColumn.DataPropertyName = "ColorID";
+            this.colorIDDataGridViewTextBoxColumn.HeaderText = "ColorID";
+            this.colorIDDataGridViewTextBoxColumn.Name = "colorIDDataGridViewTextBoxColumn";
+            // 
+            // isCanceledDataGridViewTextBoxColumn
+            // 
+            this.isCanceledDataGridViewTextBoxColumn.DataPropertyName = "IsCanceled";
+            this.isCanceledDataGridViewTextBoxColumn.HeaderText = "IsCanceled";
+            this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
+            // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -684,6 +698,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentTransactions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -728,6 +743,8 @@
         private System.Windows.Forms.CheckBox checkBoxIsBlocked;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnIssueDocument;
+        public System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.BindingSource usersBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn transactionTypeIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NotForInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionDateDataGridViewTextBoxColumn;
@@ -745,10 +762,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn isReadyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isConfirmedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isDeliveredDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn userIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn creationDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
-        public System.Windows.Forms.TabControl tabControlMain;
     }
 }

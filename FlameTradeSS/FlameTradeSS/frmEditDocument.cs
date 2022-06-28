@@ -36,6 +36,7 @@ namespace FlameTradeSS
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
             documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
+            usersBindingSource.DataSource = db.Users.ToList();
 
             if (documentsProjectsBindingSource.DataSource != null)
             {
@@ -258,7 +259,7 @@ namespace FlameTradeSS
 
                 newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
                 newDocumentTransaction.DocumentsID = newDocument.ID;
-                newDocumentTransaction.UserID = newDocument.UserID;
+                newDocumentTransaction.UserID = CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();

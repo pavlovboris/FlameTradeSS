@@ -45,6 +45,7 @@ namespace FlameTradeSS
             documentSequencesBindingSource.Add(nullDocumentSequence);
             cmbDocumentSequence.SelectedItem = nullDocumentSequence;
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
+            usersBindingSource.DataSource = db.Users.ToList();
 
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
 
@@ -234,7 +235,7 @@ namespace FlameTradeSS
 
                 newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
                 newDocumentTransaction.DocumentsID = newDocument.ID;
-                newDocumentTransaction.UserID = newDocument.UserID;
+                newDocumentTransaction.UserID =CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
 
