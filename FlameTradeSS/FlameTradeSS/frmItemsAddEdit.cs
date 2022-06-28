@@ -61,6 +61,9 @@ namespace FlameTradeSS
         public Items newItem;
         private void frmItemsAddEdit_Load(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            Hide();
+
             itemsBindingSource.DataSource = newItem;
             if (newItem.ID == 0)
             {
@@ -129,8 +132,9 @@ namespace FlameTradeSS
                // picItemPicture.SizeMode = PictureBoxSizeMode.Zoom;
                
             }
-             
 
+            Cursor.Current = Cursors.Default;
+            Show();
         }
 
         private async void btnSave_Click(object sender, EventArgs e)

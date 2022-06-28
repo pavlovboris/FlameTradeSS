@@ -21,6 +21,9 @@ namespace FlameTradeSS
         int maxID;
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            Hide();
+
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
             maxID = db.DocumentTransactions.Max(dt => (int)dt.tempID);
@@ -58,6 +61,9 @@ namespace FlameTradeSS
                 checkBoxIsBlocked.CheckState = CheckState.Checked;
             }
             db.Documents.Add(newDocument);
+
+            Cursor.Current = Cursors.Default;
+            Show();
         }
 
         private static readonly SecurityService securityService = new SecurityService();
@@ -124,7 +130,7 @@ namespace FlameTradeSS
                      //   form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
                   //  }
 
-                    if (newDocument.IsBlocked==0)
+                    if (newDocument.DocumentSequenceID!=0 && newDocument.PartnerID!=0 && newDocument.IsBlocked==0)
                     {
                         CommonTasks.DeleteDocument(db, newDocument);
                     }
@@ -275,25 +281,6 @@ namespace FlameTradeSS
             
         }
 
-        private void NewTabFrmDocumentTransactions_Click(object sender, EventArgs e)
-        {
-            TabPage tabPage = (TabPage)sender;
-            foreach (frmDocumentTransactions frm in MdiChildren)
-            {
-                if (frm.Name == tabPage.Name && frm.Visible == true)
-                {
-                    frm.Focus();
-                }
-            }
-        }
-
-        private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            frmDocumentTransactions closingForm = (frmDocumentTransactions)sender;
-            e.Cancel = true;
-            closingForm.Hide();
-
-        }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

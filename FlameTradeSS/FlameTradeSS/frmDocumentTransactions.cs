@@ -188,7 +188,7 @@ namespace FlameTradeSS
             taskNameDataGridViewColumn.DataSource = tasksDataBindingSource;
             taskNameDataGridViewColumn.DisplayMember = "TaskName";
             taskNameDataGridViewColumn.ValueMember = "ID";
-            
+            taskNameDataGridViewColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
             DataGridViewComboBoxColumn personNameDataGridViewColumn = new DataGridViewComboBoxColumn();
             personNameDataGridViewColumn.Name = "Person_Name";
@@ -198,6 +198,7 @@ namespace FlameTradeSS
             personNameDataGridViewColumn.DataSource = personsDataBindingSource;
             personNameDataGridViewColumn.DisplayMember = "Person_Name";
             personNameDataGridViewColumn.ValueMember = "ID";
+            personNameDataGridViewColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             personsDataBindingSource.Add(new PersonsFullNameView());
 
             dgvTasks.DataSource = transactionTasksDataBindingSource;

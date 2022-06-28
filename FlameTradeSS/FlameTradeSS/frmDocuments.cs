@@ -93,7 +93,8 @@ namespace FlameTradeSS
 
         private void frmDocuments_Load(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            Hide();
             
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmDocumentsSize, Properties.Settings.Default.frmDocumentsState, Properties.Settings.Default.frmDocumentsLocation);
 
@@ -119,6 +120,9 @@ namespace FlameTradeSS
             {
 
             }
+
+            Cursor.Current = Cursors.Default;
+            Show();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

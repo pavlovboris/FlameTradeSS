@@ -19,6 +19,9 @@ namespace FlameTradeSS
         bool issued;
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            Hide();
+
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
             maxID = db.DocumentTransactions.Max(dt => (int)dt.tempID);
@@ -110,6 +113,9 @@ namespace FlameTradeSS
             {
                 checkBoxIsBlocked.CheckState = CheckState.Checked;
             }
+
+            Cursor.Current = Cursors.Default;
+            Show();
         }
 
         //private static readonly SecurityService securityService = new SecurityService();

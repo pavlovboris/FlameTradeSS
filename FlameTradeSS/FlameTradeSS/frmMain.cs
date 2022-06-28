@@ -50,6 +50,8 @@ namespace FlameTradeSS
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            Hide();
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
             if (CurrentSessionData.CurrentUser!=null)
@@ -57,6 +59,9 @@ namespace FlameTradeSS
                 lblCurrentUserName.Text = CurrentSessionData.CurrentUser.UserName.ToString();
             }
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmMainSize, Properties.Settings.Default.frmMainState, Properties.Settings.Default.frmMainLocation);
+
+            Cursor.Current = Cursors.Default;
+            Show();
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
