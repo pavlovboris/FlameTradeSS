@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.cmbTransactipnType = new System.Windows.Forms.ComboBox();
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
             this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
+            this.ItemDescriptionDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.btnTasks = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ItemDescriptionDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.machineIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,15 +67,15 @@
             this.costPrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnTasks = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTransactipnType
@@ -88,25 +88,17 @@
             this.cmbTransactipnType.Enabled = false;
             this.cmbTransactipnType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbTransactipnType.FormattingEnabled = true;
-            this.cmbTransactipnType.Location = new System.Drawing.Point(12, 12);
+            this.cmbTransactipnType.Location = new System.Drawing.Point(12, 23);
             this.cmbTransactipnType.Name = "cmbTransactipnType";
             this.cmbTransactipnType.Size = new System.Drawing.Size(162, 21);
             this.cmbTransactipnType.TabIndex = 0;
             this.cmbTransactipnType.ValueMember = "ID";
             // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
             // dateTimeTransactionDate
             // 
             this.dateTimeTransactionDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentTransactionsBindingSource, "TransactionDate", true));
             this.dateTimeTransactionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeTransactionDate.Location = new System.Drawing.Point(180, 13);
+            this.dateTimeTransactionDate.Location = new System.Drawing.Point(179, 23);
             this.dateTimeTransactionDate.Name = "dateTimeTransactionDate";
             this.dateTimeTransactionDate.Size = new System.Drawing.Size(91, 20);
             this.dateTimeTransactionDate.TabIndex = 1;
@@ -158,9 +150,41 @@
             this.dgvTransactionLines.Size = new System.Drawing.Size(692, 329);
             this.dgvTransactionLines.TabIndex = 2;
             this.dgvTransactionLines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellClick);
-            this.dgvTransactionLines.CurrentCellChanged += new System.EventHandler(this.dgvTransactionLines_CurrentCellChanged);
-            this.dgvTransactionLines.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTransactionLines_RowsAdded);
-            this.dgvTransactionLines.Click += new System.EventHandler(this.dgvTransactionLines_Click);
+            // 
+            // ItemDescriptionDataGridViewComboBoxColumn
+            // 
+            this.ItemDescriptionDataGridViewComboBoxColumn.DataPropertyName = "ItemID";
+            this.ItemDescriptionDataGridViewComboBoxColumn.DataSource = this.itemsBindingSource;
+            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayMember = "Description";
+            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.ItemDescriptionDataGridViewComboBoxColumn.HeaderText = "Описание";
+            this.ItemDescriptionDataGridViewComboBoxColumn.MinimumWidth = 10;
+            this.ItemDescriptionDataGridViewComboBoxColumn.Name = "ItemDescriptionDataGridViewComboBoxColumn";
+            this.ItemDescriptionDataGridViewComboBoxColumn.ValueMember = "ID";
+            this.ItemDescriptionDataGridViewComboBoxColumn.Width = 200;
+            // 
+            // btnTasks
+            // 
+            this.btnTasks.Location = new System.Drawing.Point(276, 20);
+            this.btnTasks.Name = "btnTasks";
+            this.btnTasks.Size = new System.Drawing.Size(75, 23);
+            this.btnTasks.TabIndex = 3;
+            this.btnTasks.Text = "+ Задачи";
+            this.btnTasks.UseVisualStyleBackColor = true;
+            this.btnTasks.Click += new System.EventHandler(this.btnTasks_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.btnClose.Location = new System.Drawing.Point(661, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 53);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // itemIDDataGridViewTextBoxColumn
             // 
@@ -179,18 +203,6 @@
             // itemsBindingSource
             // 
             this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
-            // 
-            // ItemDescriptionDataGridViewComboBoxColumn
-            // 
-            this.ItemDescriptionDataGridViewComboBoxColumn.DataPropertyName = "ItemID";
-            this.ItemDescriptionDataGridViewComboBoxColumn.DataSource = this.itemsBindingSource;
-            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayMember = "Description";
-            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.ItemDescriptionDataGridViewComboBoxColumn.HeaderText = "Описание";
-            this.ItemDescriptionDataGridViewComboBoxColumn.MinimumWidth = 10;
-            this.ItemDescriptionDataGridViewComboBoxColumn.Name = "ItemDescriptionDataGridViewComboBoxColumn";
-            this.ItemDescriptionDataGridViewComboBoxColumn.ValueMember = "ID";
-            this.ItemDescriptionDataGridViewComboBoxColumn.Width = 200;
             // 
             // machineIDDataGridViewTextBoxColumn
             // 
@@ -433,28 +445,13 @@
             // 
             this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
-            // btnTasks
+            // documentTransactionsBindingSource
             // 
-            this.btnTasks.Location = new System.Drawing.Point(351, 12);
-            this.btnTasks.Name = "btnTasks";
-            this.btnTasks.Size = new System.Drawing.Size(75, 23);
-            this.btnTasks.TabIndex = 3;
-            this.btnTasks.Text = "+ Задачи";
-            this.btnTasks.UseVisualStyleBackColor = true;
-            this.btnTasks.Click += new System.EventHandler(this.btnTasks_Click);
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
             // 
-            // btnClose
+            // transactionsTypeBindingSource
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(655, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 53);
-            this.btnClose.TabIndex = 8;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // frmDocumentTransactions
             // 
@@ -474,13 +471,13 @@
             this.Text = "Document Transactions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
             this.Load += new System.EventHandler(this.frmDocumentTransactions_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

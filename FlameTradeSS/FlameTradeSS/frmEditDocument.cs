@@ -173,13 +173,6 @@ namespace FlameTradeSS
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    //foreach (Form form in MdiChildren)
-                    //{
-                      //  frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
-
-                       // frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                   // } 
-
                     // dispose what is isBlocked==0;
                 }
                 else
@@ -240,8 +233,6 @@ namespace FlameTradeSS
                 {
                     txtDocumentNumber.Enabled = true;
                 }
-
-
             }
         }
 
@@ -249,41 +240,62 @@ namespace FlameTradeSS
 
         private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
-            TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
-            DocumentTransactions newDocumentTransaction = new DocumentTransactions();
+            if (listBoxTransactionsAdd.SelectedItem != null)
+            {
+                TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
+                DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 
-            int tempID = CurrentSessionData.Counter + 1;
-
-
-            CurrentSessionData.Counter = tempID;
-
-            newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
-            newDocumentTransaction.DocumentsID = newDocument.ID;
-            newDocumentTransaction.UserID = newDocument.UserID;
-            newDocumentTransaction.TransactionDate = DateTime.Now;
-            newDocumentTransaction.CreationDateTime = DateTime.Now;
-            frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
-            newDocumentTransaction.tempID = tempID;
-
-            newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + newDocumentTransaction.tempID;
+                int tempID = CurrentSessionData.Counter + 1;
 
 
+                CurrentSessionData.Counter = tempID;
 
-            // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
-            newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
-            newfrmDocumentTransactions.MdiParent = this;
-            documentTransactionsBindingSource.Add(newDocumentTransaction);
-            documentTransactionsBindingSource.MoveLast();
-            db.DocumentTransactions.Add(newDocumentTransaction);
-            newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
-            newfrmDocumentTransactions.db = db;
-           // newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
-            newfrmDocumentTransactions.Show();
+                newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
+                newDocumentTransaction.DocumentsID = newDocument.ID;
+                newDocumentTransaction.UserID = newDocument.UserID;
+                newDocumentTransaction.TransactionDate = DateTime.Now;
+                newDocumentTransaction.CreationDateTime = DateTime.Now;
+                frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
+                newDocumentTransaction.tempID = tempID;
 
-            //newDocument.IsBlocked = 1;
-            cmbDocumentSequence.Enabled = false;
+                newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + newDocumentTransaction.tempID;
 
-            await db.SaveChangesAsync();
+
+
+                // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
+                newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
+                newfrmDocumentTransactions.MdiParent = this;
+                documentTransactionsBindingSource.Add(newDocumentTransaction);
+                documentTransactionsBindingSource.MoveLast();
+                db.DocumentTransactions.Add(newDocumentTransaction);
+                newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
+                newfrmDocumentTransactions.db = db;
+                // newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+
+
+                TabPage newTabFrmDocumentTransactions = new TabPage();
+
+                newTabFrmDocumentTransactions.Name = newfrmDocumentTransactions.Name;
+                newTabFrmDocumentTransactions.Text = selectedTransactionType.TypeName + " " + tempID.ToString();
+                //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
+                tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
+                newTabFrmDocumentTransactions.Parent = tabControlMain;
+
+                newTabFrmDocumentTransactions.Show();
+                newfrmDocumentTransactions.TabCtrl = tabControlMain;
+                newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
+                newfrmDocumentTransactions.Show();
+
+                //newDocument.IsBlocked = 1;
+                cmbDocumentSequence.Enabled = false;
+
+                await db.SaveChangesAsync();
+            }
+           
+        }
+
+        private void NewTabFrmDocumentTransactions_Click(object sender, EventArgs e)
+        {
         }
 
         private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
@@ -307,13 +319,23 @@ namespace FlameTradeSS
 
                 newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + documentTransactions.tempID.ToString();
 
-                foreach (Form form in MdiChildren)
+                foreach (frmDocumentTransactions form in MdiChildren)
                 {
                     if (form.Name == newfrmDocumentTransactions.Name)
                     {
                         isOpened = true;
                         form.Show();
-                        newfrmDocumentTransactions.Dispose();
+                        //newfrmDocumentTransactions.Dispose();
+
+
+                        foreach (TabPage tabPage in tabControlMain.TabPages)
+                        {
+                            if (tabPage.Name == form.Name)
+                            {
+                                form.TabCtrl = tabControlMain;
+                                form.TabPag = tabPage;
+                            }
+                        }
                         break;
                     }
                 }
@@ -330,8 +352,25 @@ namespace FlameTradeSS
                     newfrmDocumentTransactions.MdiParent = this;
                     newfrmDocumentTransactions.documentTransactions = documentTransactions;
                     newfrmDocumentTransactions.db = db;
-                 //   newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
+
+                    TabPage newTabFrmDocumentTransactions = new TabPage();
+                    DocumentTransactions selectedTransactionType = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+
+                    newTabFrmDocumentTransactions.Name = newfrmDocumentTransactions.Name;
+                    newTabFrmDocumentTransactions.Text = selectedTransactionType.TransactionsType.TypeName + " " + documentTransactions.tempID.ToString();
+                    //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
+                    tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
+                    newTabFrmDocumentTransactions.Parent = tabControlMain;
+
+                    newTabFrmDocumentTransactions.Show();
+                    newfrmDocumentTransactions.TabCtrl = tabControlMain;
+                    newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
+
+                    //   newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
                     newfrmDocumentTransactions.Show();
+                } else
+                {
+                   
                 }
 
 
@@ -603,6 +642,20 @@ namespace FlameTradeSS
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
                     }
                         break;
+            }
+        }
+
+        private void tabControlMain_Selected(object sender, TabControlEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+
+            foreach (frmDocumentTransactions form in MdiChildren)
+            {
+                if (e.TabPageIndex!=-1 && form.Name == tabControl.TabPages[e.TabPageIndex].Name)
+                {
+                    form.BringToFront();
+                    form.Focus();
+                } 
             }
         }
     }

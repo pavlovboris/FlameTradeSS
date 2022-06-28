@@ -18,10 +18,11 @@ namespace FlameTradeSS
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             InitializeComponent();
+            this.Enter += Form_Gotfocus;
         }
 
-        private const int cGrip = 10;      // Grip size
-        private const int cCaption = 600;   // Caption bar height;
+        private const int cGrip = 20;      // Grip size
+        private const int cCaption = 300;   // Caption bar height;
 
         protected override void WndProc(ref Message m)
         {
@@ -63,9 +64,15 @@ namespace FlameTradeSS
 
         private void frmDocumentTransactions_Load(object sender, EventArgs e)
         {
+            this.GotFocus += new EventHandler(Form_Gotfocus);
+            
             //this.BackColor = Color.White;
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
-
+            try
+            {
+                CommonTasks.ReadDataGridViewSetting(dgvTransactionLines, Name + dgvTransactionLines.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
 
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
@@ -105,29 +112,18 @@ namespace FlameTradeSS
             }
         }
 
+        private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)
+        {
+
+        }
+
         public  FlameTradeDbEntities db;
 
         public  DocumentTransactions documentTransactions;
 
-
-        private async void dgvTransactionLines_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void frmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           // e.Cancel = true;
-           // Hide();
-        }
-
-        private void dgvTransactionLines_CurrentCellChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         private void dgvTransactionLines_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == receiptIDDataGridViewTextBoxColumn.Index)
+            if (e.ColumnIndex!=-1 && e.ColumnIndex == receiptIDDataGridViewTextBoxColumn.Index)
             {
                 if (dgvTransactionLines.Rows[e.RowIndex].Cells[itemIDDataGridViewTextBoxColumn.Index].Value != null)
                 {
@@ -213,6 +209,7 @@ namespace FlameTradeSS
             dgvTasks.Columns.Add(taskNameDataGridViewColumn);
             dgvTasks.Columns.Add(personNameDataGridViewColumn);
             dgvTasks.Size = new System.Drawing.Size(100, 100);
+            dgvTasks.RowHeadersWidth = 20;
             
 
             Controls.Add(dgvTasks);
@@ -246,6 +243,8 @@ namespace FlameTradeSS
             Button cancel = (Button)sender;
             dgvTasks.Dispose();
             ok.Dispose();
+            transactionTasksDataBindingSource.Clear();
+            transactionTasksDataBindingSource = null;
             cancel.Dispose();
             btnTasks.Show();
         }
@@ -276,22 +275,79 @@ namespace FlameTradeSS
            
         }
 
-        private void dgvTransactionLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-          /*  DataGridView dgvr = (DataGridView)sender;
-            TransactionLines transactionLines = dgvr.Rows[e.RowIndex].DataBoundItem as TransactionLines;
-            if (e.RowIndex!=0 &&  transactionLines==null && dgvr.Rows[e.RowIndex].IsNewRow)
-            {
-                
-                transactionLines.TransactionsID = documentTransactions.ID;
-
-                db.TransactionLines.Add(transactionLines);
-            }*/
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Hide();
+
+           
+
+         /*   if (MdiParent.Name == "frmEditDocument")
+            {
+               frmEditDocument form = MdiParent as frmEditDocument;
+               
+                foreach (TabPage tabPage in form.tabControlMain.TabPages )
+                {
+                    if (tabPage.Name == Name)
+                    {
+                       // tabPage.Dispose();
+                    }
+                }
+            } else if (MdiParent.Name == "frmNewDocument")
+            {
+                frmNewDocument form = Parent as frmNewDocument;
+
+                foreach (TabPage tabPage in form.tabControlMain.TabPages)
+                {
+                    if (tabPage.Name == Name)
+                    {
+                        //tabPage.Dispose();
+                    }
+                }
+
+            }*/
+
+          
+        }
+
+        private TabControl tabCtrl;
+        private TabPage tabPag;
+        private void  Form_Gotfocus(object sender, EventArgs e)
+        {
+            tabCtrl.SelectedTab = tabPag;
+
+            if (!tabCtrl.Visible)
+            {
+                tabCtrl.Visible = true;
+            }
+        }
+
+        public TabPage TabPag
+        {
+            get
+            {
+                return tabPag;
+            }
+            set
+            {
+                tabPag = value;
+            }
+        }
+
+        public TabControl TabCtrl
+        {
+            set
+            {
+                tabCtrl = value;
+            }
+        }
+
+        private void frmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvTransactionLines, Name + dgvTransactionLines.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
         }
     }
 }

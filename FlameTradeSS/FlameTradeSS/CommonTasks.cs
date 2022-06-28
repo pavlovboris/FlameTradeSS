@@ -239,27 +239,32 @@ namespace FlameTradeSS
                         {
                             db.TransactionsTransformations.Remove(transactionsTransformations);
                         }
-
+                        await db.SaveChangesAsync();
                         db.DocumentTransactions.Remove(dt);
+                        
                     }
 
                     List<DocumentsProjects> documentsProjectsList = db.DocumentsProjects.Where(dp => dp.DocumentsID == documents.ID).ToList();
                     foreach (DocumentsProjects project in documentsProjectsList)
                     {
                         db.DocumentsProjects.Remove(project);
+                        
                     }
 
                     List<DocumentsAttachments> documentsAttachmentsList = db.DocumentsAttachments.Where(da => da.DocumentsID == documents.ID).ToList();
                     foreach (DocumentsAttachments documentsAttachments in documentsAttachmentsList)
                     {
                         db.DocumentsAttachments.Remove(documentsAttachments);
+                        
                     }
 
                     List<DocumentTransformation> documentTransformationsList = db.DocumentTransformation.Where(dt1 => dt1.DocID == documents.ID || dt1.OriginDocID == documents.ID).ToList();
                     foreach (DocumentTransformation documentTransformation in documentTransformationsList)
                     {
                         db.DocumentTransformation.Remove(documentTransformation);
+                        
                     }
+                    await db.SaveChangesAsync();
                     db.Documents.Remove(documents);
                     await db.SaveChangesAsync();
                 }

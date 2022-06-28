@@ -10,7 +10,7 @@ namespace FlameTradeSS
         public  FlameTradeDbEntities NewDatabaseEntity()
         {
             FlameTradeDbEntities db = new FlameTradeDbEntities();
-            db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=FlameTradeDb;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;Timeout=3;";
+            db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=FlameTradeDb;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;Timeout=10;";
             return db;
         }
 

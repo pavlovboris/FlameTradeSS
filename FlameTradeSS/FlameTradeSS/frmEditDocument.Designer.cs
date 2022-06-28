@@ -66,14 +66,8 @@
             this.documentsProjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblDocumentNumber = new System.Windows.Forms.Label();
-            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
-            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.transactionDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expectedMatDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +88,13 @@
             this.creationDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
+            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
+            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -217,7 +218,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1618, 239);
+            this.panel1.Size = new System.Drawing.Size(1866, 239);
             this.panel1.TabIndex = 12;
             // 
             // btnCancel
@@ -277,7 +278,7 @@
             // btnRemoveFile
             // 
             this.btnRemoveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveFile.Location = new System.Drawing.Point(1559, 199);
+            this.btnRemoveFile.Location = new System.Drawing.Point(1807, 199);
             this.btnRemoveFile.Name = "btnRemoveFile";
             this.btnRemoveFile.Size = new System.Drawing.Size(47, 23);
             this.btnRemoveFile.TabIndex = 23;
@@ -288,7 +289,7 @@
             // btnAddFile
             // 
             this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddFile.Location = new System.Drawing.Point(1462, 199);
+            this.btnAddFile.Location = new System.Drawing.Point(1710, 199);
             this.btnAddFile.Name = "btnAddFile";
             this.btnAddFile.Size = new System.Drawing.Size(47, 23);
             this.btnAddFile.TabIndex = 22;
@@ -300,7 +301,7 @@
             // 
             this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttachments.AutoSize = true;
-            this.lblAttachments.Location = new System.Drawing.Point(1459, 9);
+            this.lblAttachments.Location = new System.Drawing.Point(1707, 9);
             this.lblAttachments.Name = "lblAttachments";
             this.lblAttachments.Size = new System.Drawing.Size(54, 13);
             this.lblAttachments.TabIndex = 21;
@@ -319,7 +320,7 @@
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
             this.dgvAttachments.DataSource = this.documentsAttachmentsBindingSource;
-            this.dgvAttachments.Location = new System.Drawing.Point(1462, 29);
+            this.dgvAttachments.Location = new System.Drawing.Point(1710, 29);
             this.dgvAttachments.MultiSelect = false;
             this.dgvAttachments.Name = "dgvAttachments";
             this.dgvAttachments.ReadOnly = true;
@@ -345,7 +346,7 @@
             // 
             this.lblProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProjects.AutoSize = true;
-            this.lblProjects.Location = new System.Drawing.Point(1241, 9);
+            this.lblProjects.Location = new System.Drawing.Point(1489, 9);
             this.lblProjects.Name = "lblProjects";
             this.lblProjects.Size = new System.Drawing.Size(50, 13);
             this.lblProjects.TabIndex = 16;
@@ -368,7 +369,7 @@
             this.listBoxProjects.DataSource = this.projectBindingSource;
             this.listBoxProjects.DisplayMember = "ProjectName";
             this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.Location = new System.Drawing.Point(1244, 29);
+            this.listBoxProjects.Location = new System.Drawing.Point(1492, 29);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(212, 82);
             this.listBoxProjects.TabIndex = 14;
@@ -441,50 +442,9 @@
             this.dgvDocumentTransactions.Name = "dgvDocumentTransactions";
             this.dgvDocumentTransactions.RowHeadersWidth = 20;
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1429, 105);
+            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1677, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // lblDocumentNumber
-            // 
-            this.lblDocumentNumber.AutoSize = true;
-            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 52);
-            this.lblDocumentNumber.Name = "lblDocumentNumber";
-            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
-            this.lblDocumentNumber.TabIndex = 11;
-            this.lblDocumentNumber.Text = "Номер на Документа";
-            // 
-            // txtDocumentNumber
-            // 
-            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
-            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 68);
-            this.txtDocumentNumber.MaxLength = 20;
-            this.txtDocumentNumber.Name = "txtDocumentNumber";
-            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
-            this.txtDocumentNumber.TabIndex = 10;
-            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
-            // 
-            // listBoxTransactionsAdd
-            // 
-            this.listBoxTransactionsAdd.FormattingEnabled = true;
-            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(554, 29);
-            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
-            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(145, 56);
-            this.listBoxTransactionsAdd.TabIndex = 9;
-            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
             // 
             // transactionTypeIDDataGridViewTextBoxColumn
             // 
@@ -498,6 +458,10 @@
             this.transactionTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.transactionTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.transactionTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // NotForInvoice
             // 
@@ -645,15 +609,65 @@
             this.isCanceledDataGridViewTextBoxColumn.HeaderText = "IsCanceled";
             this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
             // 
+            // documentTransactionsBindingSource
+            // 
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
+            // lblDocumentNumber
+            // 
+            this.lblDocumentNumber.AutoSize = true;
+            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 52);
+            this.lblDocumentNumber.Name = "lblDocumentNumber";
+            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
+            this.lblDocumentNumber.TabIndex = 11;
+            this.lblDocumentNumber.Text = "Номер на Документа";
+            // 
+            // txtDocumentNumber
+            // 
+            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
+            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 68);
+            this.txtDocumentNumber.MaxLength = 20;
+            this.txtDocumentNumber.Name = "txtDocumentNumber";
+            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
+            this.txtDocumentNumber.TabIndex = 10;
+            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
+            // 
+            // listBoxTransactionsAdd
+            // 
+            this.listBoxTransactionsAdd.FormattingEnabled = true;
+            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(554, 29);
+            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
+            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(145, 56);
+            this.listBoxTransactionsAdd.TabIndex = 9;
+            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
+            // 
+            // tabControlMain
+            // 
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControlMain.Location = new System.Drawing.Point(0, 239);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(1866, 26);
+            this.tabControlMain.TabIndex = 14;
+            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.NewTabFrmDocumentTransactions_Click);
+            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
+            // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1618, 863);
+            this.ClientSize = new System.Drawing.Size(1866, 881);
+            this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.MinimumSize = new System.Drawing.Size(1543, 374);
             this.Name = "frmEditDocument";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Document";
@@ -736,5 +750,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn creationDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
+        public System.Windows.Forms.TabControl tabControlMain;
     }
 }
