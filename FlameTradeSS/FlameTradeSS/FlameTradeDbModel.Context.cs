@@ -78,5 +78,8 @@ namespace FlameTradeSS
         public virtual DbSet<CurrentlyLoggedUsers> CurrentlyLoggedUsers { get; set; }
         public virtual DbSet<PersonsFullNameView> PersonsFullNameView { get; set; }
         public virtual DbSet<Surfaces> Surfaces { get; set; }
+        public virtual DbSet<PersonsType> PersonsType { get; set; }
+        public virtual DbSet<Tasks> Tasks { get; set; }
+        public virtual DbSet<TaskStatuses> TaskStatuses { get; set; }
     }
 }

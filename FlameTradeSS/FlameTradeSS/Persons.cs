@@ -32,6 +32,7 @@ namespace FlameTradeSS
         public string PersonEmail { get; set; }
         public string PersonPhone { get; set; }
         public string Comment { get; set; }
+        public int PersonTypeID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartnerPersons> PartnerPersons { get; set; }
@@ -43,5 +44,6 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionPersons> TransactionPersons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        public virtual PersonsType PersonsType { get; set; }
     }
 }

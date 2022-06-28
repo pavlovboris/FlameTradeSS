@@ -55,6 +55,7 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[itemIDDataGridViewTextBoxColumn.Name].Visible = false;
                     dgvTransactionLines.Columns[serviceIDDataGridViewTextBoxColumn.Name].Visible = false;
+                    
                     break;
                 case "ServiceID":
                     dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
@@ -62,9 +63,6 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[machineIDDataGridViewTextBoxColumn.Name].Visible = false;
                     break;
             }
-            
-                
-        
         }
 
         public  FlameTradeDbEntities db;
@@ -74,24 +72,6 @@ namespace FlameTradeSS
 
         private async void dgvTransactionLines_Click(object sender, EventArgs e)
         {
-         
-                if (documentTransactions.Documents==null || documentTransactions.Documents.Issued == 0 )
-                {
-                    if (documentTransactions.ID == 0)
-                    {
-                        await db.SaveChangesAsync();
-                    }
-
-                    if (transactionLinesBindingSource.Count == 0)
-                    {
-                        TransactionLines transaction = new TransactionLines();
-                        transaction.TransactionsID = documentTransactions.ID;
-                        transactionLinesBindingSource.Add(transaction);
-                        db.TransactionLines.Add(transaction);
-                    }
-                }
-            
-            
         }
 
         private void frmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
@@ -135,6 +115,138 @@ namespace FlameTradeSS
                     dgvTransactionLines.CurrentCell.Value = transactionReceipt.ID;
                 }
             }
+        }
+        BindingSource transactionTasksDataBindingSource;
+        DataGridView dgvTasks;
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+            
+
+            
+
+            btnTasks.Visible = false;
+            dgvTasks = new DataGridView();
+            
+            if (transactionTasksDataBindingSource == null)
+            {
+                transactionTasksDataBindingSource = new BindingSource();
+                transactionTasksDataBindingSource.DataSource = db.TransactionPersons.Where(tp => tp.DocumentTransactionsID == documentTransactions.ID).ToList();
+            }
+           
+            BindingSource personsDataBindingSource = new BindingSource();
+            BindingSource tasksDataBindingSource = new BindingSource();
+            dgvTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTasks.AutoGenerateColumns = false;
+            dgvTasks.AutoSize = true;
+            
+            personsDataBindingSource.DataSource = db.PersonsFullNameView.ToList();
+            tasksDataBindingSource.DataSource = db.Tasks.ToList();
+
+            tasksDataBindingSource.Add(new Tasks());
+
+            DataGridViewComboBoxColumn taskNameDataGridViewColumn = new DataGridViewComboBoxColumn();
+            taskNameDataGridViewColumn.Name = "TaskName";
+            taskNameDataGridViewColumn.Width = 100;
+            taskNameDataGridViewColumn.HeaderText = "Task";
+            taskNameDataGridViewColumn.DataPropertyName = "TaskID";
+            taskNameDataGridViewColumn.DataSource = tasksDataBindingSource;
+            taskNameDataGridViewColumn.DisplayMember = "TaskName";
+            taskNameDataGridViewColumn.ValueMember = "ID";
+            
+
+            DataGridViewComboBoxColumn personNameDataGridViewColumn = new DataGridViewComboBoxColumn();
+            personNameDataGridViewColumn.Name = "Person_Name";
+            personNameDataGridViewColumn.Width = 100;
+            personNameDataGridViewColumn.HeaderText = "Responsible Person";
+            personNameDataGridViewColumn.DataPropertyName = "PersonID";
+            personNameDataGridViewColumn.DataSource = personsDataBindingSource;
+            personNameDataGridViewColumn.DisplayMember = "Person_Name";
+            personNameDataGridViewColumn.ValueMember = "ID";
+            personsDataBindingSource.Add(new PersonsFullNameView());
+
+            dgvTasks.DataSource = transactionTasksDataBindingSource;
+            Point pointDgvTasks = new Point();
+            pointDgvTasks.X = btnTasks.Location.X;
+            pointDgvTasks.Y = btnTasks.Location.Y+30;
+            dgvTasks.Location = pointDgvTasks;
+           
+            dgvTasks.Columns.Add(taskNameDataGridViewColumn);
+            dgvTasks.Columns.Add(personNameDataGridViewColumn);
+            dgvTasks.Size = new System.Drawing.Size(100, 100);
+            
+
+            Controls.Add(dgvTasks);
+            dgvTasks.BringToFront();
+
+            ok = new Button();
+            ok.Text = "Ok";
+            ok.Click += Ok_Click;
+            Point okPoint = new Point();
+            okPoint.X = dgvTasks.Location.X ;
+            okPoint.Y = btnTasks.Location.Y;
+            ok.Location = okPoint;
+            Controls.Add(ok);
+
+            cancel = new Button();   
+            cancel.Text = "Cancel";
+            cancel.Click += Cancel_Click;
+            Point cancelPoint = new Point();
+            cancelPoint.Y = okPoint.Y;
+            cancelPoint.X = okPoint.X + 150;
+            cancel.Location= cancelPoint;
+            Controls.Add(cancel);
+
+        }
+
+        Button ok;
+        Button cancel;
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Button cancel = (Button)sender;
+            dgvTasks.Dispose();
+            ok.Dispose();
+            cancel.Dispose();
+            btnTasks.Show();
+        }
+
+        private void Ok_Click(object sender, EventArgs e)
+        {
+            Button ok = (Button)sender;
+            foreach(DataGridViewRow row in dgvTasks.Rows )
+            {
+                if (row.Index != -1 && !row.IsNewRow)
+                {
+                     
+                    TransactionPersons transactionPersons = row.DataBoundItem as TransactionPersons;
+                    if (transactionPersons.ID==0)
+                    {
+                        transactionPersons.DocumentTransactionsID = documentTransactions.ID;
+                        transactionPersons.TaskStatusID = 1; // workaround till status is added to dgv
+
+                        db.TransactionPersons.Add(transactionPersons);
+                    }
+                }
+            }
+
+            ok.Dispose();
+            cancel.Dispose();
+            dgvTasks.Dispose();
+            btnTasks.Show();
+           
+        }
+
+        private void dgvTransactionLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+          /*  DataGridView dgvr = (DataGridView)sender;
+            TransactionLines transactionLines = dgvr.Rows[e.RowIndex].DataBoundItem as TransactionLines;
+            if (e.RowIndex!=0 &&  transactionLines==null && dgvr.Rows[e.RowIndex].IsNewRow)
+            {
+                
+                transactionLines.TransactionsID = documentTransactions.ID;
+
+                db.TransactionLines.Add(transactionLines);
+            }*/
         }
     }
 }

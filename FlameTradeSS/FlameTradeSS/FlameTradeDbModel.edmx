@@ -334,6 +334,7 @@
           <Property Name="PersonEmail" Type="varchar" MaxLength="100" />
           <Property Name="PersonPhone" Type="varchar" MaxLength="100" />
           <Property Name="Comment" Type="varchar" MaxLength="250" />
+          <Property Name="PersonTypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonsRolesOfPersons">
           <Key>
@@ -342,6 +343,14 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonsID" Type="int" Nullable="false" />
           <Property Name="RoleOfPersonID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonTypeDescription" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -431,6 +440,25 @@
           <Property Name="SurfaceName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SurfaceDescription" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaksCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskName" Type="varchar" MaxLength="50" />
+          <Property Name="TaskDescription" Type="varchar" MaxLength="250" />
+          <Property Name="TaskType" Type="int" Nullable="false" />
+          <Property Name="TaskCategory" Type="int" />
+          <Property Name="LineTypeDependacyID" Type="int" />
+        </EntityType>
+        <EntityType Name="TaskStatuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="TransactionAttachments">
           <Key>
             <PropertyRef Name="ID" />
@@ -491,6 +519,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentTransactionsID" Type="int" Nullable="false" />
           <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="TaskID" Type="int" />
+          <Property Name="TaskStatusID" Type="int" Nullable="false" />
+          <Property Name="TaskCompletionLevel" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TransactionReceipt">
           <Key>
@@ -1027,6 +1058,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Persons_PersonsType">
+          <End Role="PersonsType" Type="Self.PersonsType" Multiplicity="1" />
+          <End Role="Persons" Type="Self.Persons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Persons">
+              <PropertyRef Name="PersonTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PersonsRolesOfPersons_PersonsID">
           <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="PersonsRolesOfPersons" Type="Self.PersonsRolesOfPersons" Multiplicity="*" />
@@ -1168,6 +1211,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Suppliers">
               <PropertyRef Name="PartnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskTypes_LinesType">
+          <End Role="LinesType" Type="Self.LinesType" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinesType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="LineTypeDependacyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1327,6 +1382,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionPersons_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="TransactionPersons" Type="Self.TransactionPersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionPersons">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionPersons_TaskStatuses">
+          <End Role="TaskStatuses" Type="Self.TaskStatuses" Multiplicity="1" />
+          <End Role="TransactionPersons" Type="Self.TransactionPersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionPersons">
+              <PropertyRef Name="TaskStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionReceipt_ItemID">
           <End Role="Items" Type="Self.Items" Multiplicity="1" />
           <End Role="TransactionReceipt" Type="Self.TransactionReceipt" Multiplicity="*" />
@@ -1445,6 +1524,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="PartnerStaticPriceGroup" EntityType="Self.PartnerStaticPriceGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsRolesOfPersons" EntityType="Self.PersonsRolesOfPersons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonsType" EntityType="Self.PersonsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPersons" EntityType="Self.ProjectPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptLines" EntityType="Self.ReceiptLines" Schema="dbo" store:Type="Tables" />
@@ -1455,6 +1535,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Surfaces" EntityType="Self.Surfaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionAttachments" EntityType="Self.TransactionAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLines" EntityType="Self.TransactionLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLinesTransformation" EntityType="Self.TransactionLinesTransformation" Schema="dbo" store:Type="Tables" />
@@ -1630,6 +1712,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="PartnerStaticPriceGroup" EntitySet="PartnerStaticPriceGroup" />
             <End Role="Partners" EntitySet="Partners" />
           </AssociationSet>
+          <AssociationSet Name="FK_Persons_PersonsType" Association="Self.FK_Persons_PersonsType">
+            <End Role="PersonsType" EntitySet="PersonsType" />
+            <End Role="Persons" EntitySet="Persons" />
+          </AssociationSet>
           <AssociationSet Name="FK_PersonsRolesOfPersons_PersonsID" Association="Self.FK_PersonsRolesOfPersons_PersonsID">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="PersonsRolesOfPersons" EntitySet="PersonsRolesOfPersons" />
@@ -1677,6 +1763,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_Suppliers_PartnerID" Association="Self.FK_Suppliers_PartnerID">
             <End Role="Partners" EntitySet="Partners" />
             <End Role="Suppliers" EntitySet="Suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskTypes_LinesType" Association="Self.FK_TaskTypes_LinesType">
+            <End Role="LinesType" EntitySet="LinesType" />
+            <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionAttachments_TransactionID" Association="Self.FK_TransactionAttachments_TransactionID">
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
@@ -1728,6 +1818,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_TransactionPersons_PersonID" Association="Self.FK_TransactionPersons_PersonID">
             <End Role="Persons" EntitySet="Persons" />
+            <End Role="TransactionPersons" EntitySet="TransactionPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPersons_Tasks" Association="Self.FK_TransactionPersons_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TransactionPersons" EntitySet="TransactionPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPersons_TaskStatuses" Association="Self.FK_TransactionPersons_TaskStatuses">
+            <End Role="TaskStatuses" EntitySet="TaskStatuses" />
             <End Role="TransactionPersons" EntitySet="TransactionPersons" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionReceipt_ItemID" Association="Self.FK_TransactionReceipt_ItemID">
@@ -2021,6 +2119,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ToTable" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TransactionsType" Relationship="Self.FK_TransactionsType_LinesRelation" FromRole="LinesType" ToRole="TransactionsType" />
+          <NavigationProperty Name="Tasks" Relationship="FlameTradeDbModel.FK_TaskTypes_LinesType" FromRole="LinesType" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="Machines">
           <Key>
@@ -2175,6 +2274,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="ProjectPersons" Relationship="Self.FK_ProjectPersons_PersonsID" FromRole="Persons" ToRole="ProjectPersons" />
           <NavigationProperty Name="TransactionPersons" Relationship="Self.FK_TransactionPersons_PersonID" FromRole="Persons" ToRole="TransactionPersons" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_PersonID" FromRole="Persons" ToRole="Users" />
+          <Property Name="PersonTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PersonsType" Relationship="FlameTradeDbModel.FK_Persons_PersonsType" FromRole="Persons" ToRole="PersonsType" />
         </EntityType>
         <EntityType Name="PersonsRolesOfPersons">
           <Key>
@@ -2359,6 +2460,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="PersonID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DocumentTransactions" Relationship="Self.FK_TransactionPersons_DocumentTransactionsID" FromRole="TransactionPersons" ToRole="DocumentTransactions" />
           <NavigationProperty Name="Persons" Relationship="Self.FK_TransactionPersons_PersonID" FromRole="TransactionPersons" ToRole="Persons" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="TaskStatusID" Type="Int32" Nullable="false" />
+          <Property Name="TaskCompletionLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tasks" Relationship="FlameTradeDbModel.FK_TransactionPersons_Tasks" FromRole="TransactionPersons" ToRole="Tasks" />
+          <NavigationProperty Name="TaskStatuses" Relationship="FlameTradeDbModel.FK_TransactionPersons_TaskStatuses" FromRole="TransactionPersons" ToRole="TaskStatuses" />
         </EntityType>
         <EntityType Name="TransactionReceipt">
           <Key>
@@ -3568,6 +3674,25 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Surfaces" EntitySet="Surfaces" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <EntitySet Name="PersonsType" EntityType="FlameTradeDbModel.PersonsType" />
+          <EntitySet Name="Tasks" EntityType="FlameTradeDbModel.Tasks" />
+          <EntitySet Name="TaskStatuses" EntityType="FlameTradeDbModel.TaskStatuses" />
+          <AssociationSet Name="FK_TaskTypes_LinesType" Association="FlameTradeDbModel.FK_TaskTypes_LinesType">
+            <End Role="LinesType" EntitySet="LinesType" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persons_PersonsType" Association="FlameTradeDbModel.FK_Persons_PersonsType">
+            <End Role="PersonsType" EntitySet="PersonsType" />
+            <End Role="Persons" EntitySet="Persons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPersons_Tasks" Association="FlameTradeDbModel.FK_TransactionPersons_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TransactionPersons" EntitySet="TransactionPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionPersons_TaskStatuses" Association="FlameTradeDbModel.FK_TransactionPersons_TaskStatuses">
+            <End Role="TaskStatuses" EntitySet="TaskStatuses" />
+            <End Role="TransactionPersons" EntitySet="TransactionPersons" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3651,6 +3776,85 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Items">
               <PropertyRef Name="DefaultSurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonTypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persons" Relationship="FlameTradeDbModel.FK_Persons_PersonsType" FromRole="PersonsType" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaksCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaskDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TaskType" Type="Int32" Nullable="false" />
+          <Property Name="TaskCategory" Type="Int32" />
+          <Property Name="LineTypeDependacyID" Type="Int32" />
+          <NavigationProperty Name="LinesType" Relationship="FlameTradeDbModel.FK_TaskTypes_LinesType" FromRole="Tasks" ToRole="LinesType" />
+          <NavigationProperty Name="TransactionPersons" Relationship="FlameTradeDbModel.FK_TransactionPersons_Tasks" FromRole="Tasks" ToRole="TransactionPersons" />
+        </EntityType>
+        <EntityType Name="TaskStatuses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionPersons" Relationship="FlameTradeDbModel.FK_TransactionPersons_TaskStatuses" FromRole="TaskStatuses" ToRole="TransactionPersons" />
+        </EntityType>
+        <Association Name="FK_TaskTypes_LinesType">
+          <End Type="FlameTradeDbModel.LinesType" Role="LinesType" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinesType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="LineTypeDependacyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persons_PersonsType">
+          <End Type="FlameTradeDbModel.PersonsType" Role="PersonsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Persons" Role="Persons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Persons">
+              <PropertyRef Name="PersonTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionPersons_Tasks">
+          <End Type="FlameTradeDbModel.Tasks" Role="Tasks" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.TransactionPersons" Role="TransactionPersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionPersons">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionPersons_TaskStatuses">
+          <End Type="FlameTradeDbModel.TaskStatuses" Role="TaskStatuses" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionPersons" Role="TransactionPersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatuses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionPersons">
+              <PropertyRef Name="TaskStatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4002,6 +4206,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Persons">
               <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="PersonTypeID" ColumnName="PersonTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PersonName" ColumnName="PersonName" />
                 <ScalarProperty Name="PersonMiddleName" ColumnName="PersonMiddleName" />
@@ -4169,6 +4374,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionPersons">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionPersons">
               <MappingFragment StoreEntitySet="TransactionPersons">
+                <ScalarProperty Name="TaskCompletionLevel" ColumnName="TaskCompletionLevel" />
+                <ScalarProperty Name="TaskStatusID" ColumnName="TaskStatusID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DocumentTransactionsID" ColumnName="DocumentTransactionsID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
@@ -4249,6 +4457,36 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="SurfaceDescription" ColumnName="SurfaceDescription" />
                 <ScalarProperty Name="SurfaceName" ColumnName="SurfaceName" />
                 <ScalarProperty Name="SurfaceCode" ColumnName="SurfaceCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonsType">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PersonsType">
+              <MappingFragment StoreEntitySet="PersonsType">
+                <ScalarProperty Name="PersonTypeDescription" ColumnName="PersonTypeDescription" />
+                <ScalarProperty Name="PersonTypeName" ColumnName="PersonTypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.Tasks">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="LineTypeDependacyID" ColumnName="LineTypeDependacyID" />
+                <ScalarProperty Name="TaskCategory" ColumnName="TaskCategory" />
+                <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaksCode" ColumnName="TaksCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskStatuses">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.TaskStatuses">
+              <MappingFragment StoreEntitySet="TaskStatuses">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

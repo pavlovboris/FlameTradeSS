@@ -12,22 +12,19 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class LinesType
+    public partial class PersonsType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LinesType()
+        public PersonsType()
         {
-            this.TransactionsType = new HashSet<TransactionsType>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Persons = new HashSet<Persons>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string ToTable { get; set; }
+        public string PersonTypeName { get; set; }
+        public string PersonTypeDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TransactionsType> TransactionsType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Persons> Persons { get; set; }
     }
 }

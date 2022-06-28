@@ -17,8 +17,13 @@ namespace FlameTradeSS
         public int ID { get; set; }
         public int DocumentTransactionsID { get; set; }
         public int PersonID { get; set; }
+        public Nullable<int> TaskID { get; set; }
+        public int TaskStatusID { get; set; }
+        public string TaskCompletionLevel { get; set; }
     
         public virtual DocumentTransactions DocumentTransactions { get; set; }
         public virtual Persons Persons { get; set; }
+        public virtual Tasks Tasks { get; set; }
+        public virtual TaskStatuses TaskStatuses { get; set; }
     }
 }

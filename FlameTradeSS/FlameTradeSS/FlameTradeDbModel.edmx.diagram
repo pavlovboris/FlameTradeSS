@@ -130,6 +130,13 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_Items_Partners" />
         <EntityTypeShape EntityType="FlameTradeDbModel.Surfaces" Width="1.5" PointX="0.75" PointY="3.875" />
         <AssociationConnector Association="FlameTradeDbModel.FK_Items_Surfaces" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.PersonsType" Width="1.5" PointX="0.75" PointY="24.5" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.Tasks" Width="1.5" PointX="11.25" PointY="4.5" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.TaskStatuses" Width="1.5" PointX="3.75" PointY="8" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TaskTypes_LinesType" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Persons_PersonsType" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionPersons_Tasks" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionPersons_TaskStatuses" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

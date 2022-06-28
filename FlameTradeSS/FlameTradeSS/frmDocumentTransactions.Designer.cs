@@ -34,11 +34,8 @@
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
             this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ItemDescriptionDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.machineIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +45,9 @@
             this.cyclesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receiptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.muIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.partitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.secondPartitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +66,8 @@
             this.costPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costPrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnTasks = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
@@ -88,7 +89,7 @@
             this.cmbTransactipnType.FormattingEnabled = true;
             this.cmbTransactipnType.Location = new System.Drawing.Point(12, 12);
             this.cmbTransactipnType.Name = "cmbTransactipnType";
-            this.cmbTransactipnType.Size = new System.Drawing.Size(204, 21);
+            this.cmbTransactipnType.Size = new System.Drawing.Size(162, 21);
             this.cmbTransactipnType.TabIndex = 0;
             this.cmbTransactipnType.ValueMember = "ID";
             // 
@@ -104,14 +105,13 @@
             // 
             this.dateTimeTransactionDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentTransactionsBindingSource, "TransactionDate", true));
             this.dateTimeTransactionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeTransactionDate.Location = new System.Drawing.Point(240, 13);
+            this.dateTimeTransactionDate.Location = new System.Drawing.Point(180, 13);
             this.dateTimeTransactionDate.Name = "dateTimeTransactionDate";
             this.dateTimeTransactionDate.Size = new System.Drawing.Size(91, 20);
             this.dateTimeTransactionDate.TabIndex = 1;
             // 
             // dgvTransactionLines
             // 
-            this.dgvTransactionLines.AllowUserToAddRows = false;
             this.dgvTransactionLines.AllowUserToOrderColumns = true;
             this.dgvTransactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -158,23 +158,8 @@
             this.dgvTransactionLines.TabIndex = 2;
             this.dgvTransactionLines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellClick);
             this.dgvTransactionLines.CurrentCellChanged += new System.EventHandler(this.dgvTransactionLines_CurrentCellChanged);
+            this.dgvTransactionLines.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTransactionLines_RowsAdded);
             this.dgvTransactionLines.Click += new System.EventHandler(this.dgvTransactionLines_Click);
-            // 
-            // itemsBindingSource
-            // 
-            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
-            // 
-            // transactionReceiptBindingSource
-            // 
-            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
-            // 
-            // muBindingSource
-            // 
-            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
-            // 
-            // transactionLinesBindingSource
-            // 
-            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
             // itemIDDataGridViewTextBoxColumn
             // 
@@ -189,6 +174,10 @@
             this.itemIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.itemIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.itemIDDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // itemsBindingSource
+            // 
+            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
             // 
             // ItemDescriptionDataGridViewComboBoxColumn
             // 
@@ -271,6 +260,10 @@
             this.receiptIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.receiptIDDataGridViewTextBoxColumn.Width = 200;
             // 
+            // transactionReceiptBindingSource
+            // 
+            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
+            // 
             // muIDDataGridViewTextBoxColumn
             // 
             this.muIDDataGridViewTextBoxColumn.DataPropertyName = "MuID";
@@ -284,6 +277,10 @@
             this.muIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.muIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.muIDDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // muBindingSource
+            // 
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
             // 
             // partitionIDDataGridViewTextBoxColumn
             // 
@@ -429,6 +426,20 @@
             this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
             this.isCanceledDataGridViewTextBoxColumn.Width = 200;
             // 
+            // transactionLinesBindingSource
+            // 
+            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
+            // 
+            // btnTasks
+            // 
+            this.btnTasks.Location = new System.Drawing.Point(351, 12);
+            this.btnTasks.Name = "btnTasks";
+            this.btnTasks.Size = new System.Drawing.Size(75, 23);
+            this.btnTasks.TabIndex = 3;
+            this.btnTasks.Text = "+ Задачи";
+            this.btnTasks.UseVisualStyleBackColor = true;
+            this.btnTasks.Click += new System.EventHandler(this.btnTasks_Click);
+            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,6 +447,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(716, 552);
+            this.Controls.Add(this.btnTasks);
             this.Controls.Add(this.dgvTransactionLines);
             this.Controls.Add(this.dateTimeTransactionDate);
             this.Controls.Add(this.cmbTransactipnType);
@@ -461,7 +473,6 @@
         private System.Windows.Forms.ComboBox cmbTransactipnType;
         public System.Windows.Forms.BindingSource documentTransactionsBindingSource;
         public System.Windows.Forms.BindingSource transactionsTypeBindingSource;
-        private System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         public System.Windows.Forms.DataGridView dgvTransactionLines;
         public System.Windows.Forms.BindingSource transactionLinesBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
@@ -496,5 +507,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn costPrice2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn costPrice3DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
+        public System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
+        private System.Windows.Forms.Button btnTasks;
     }
 }

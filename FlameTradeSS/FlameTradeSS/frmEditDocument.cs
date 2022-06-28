@@ -148,16 +148,35 @@ namespace FlameTradeSS
                     {
                         foreach (Form form in this.MdiChildren)
                         {
-                            form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                            frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
+
+                            frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                            foreach(DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
+                            {
+                                if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem!=null)
+                                {
+                                    TransactionLines transactionLines = row.DataBoundItem as TransactionLines;
+                                    if (transactionLines.ID == 0)
+                                    {
+                                        transactionLines.TransactionsID = frmDocTrans.documentTransactions.ID;
+                                        db.TransactionLines.Add(transactionLines);
+                                    }
+                                }
+                            }
                         }
 
                         await db.SaveChangesAsync();
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
+                    foreach (Form form in MdiChildren)
+                    {
+                        frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
+                        frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
+                    } 
                 }
                 else
                 {
@@ -224,7 +243,7 @@ namespace FlameTradeSS
 
 
 
-        private void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
+        private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
             TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
             DocumentTransactions newDocumentTransaction = new DocumentTransactions();
@@ -260,7 +279,7 @@ namespace FlameTradeSS
             newDocument.IsBlocked = 1;
             cmbDocumentSequence.Enabled = false;
 
-
+            await db.SaveChangesAsync();
         }
 
         private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
@@ -298,6 +317,7 @@ namespace FlameTradeSS
                 if (newDocument.Issued == 1)
                 {
                     newfrmDocumentTransactions.dgvTransactionLines.ReadOnly = true;
+                    newfrmDocumentTransactions.dateTimeTransactionDate.Enabled = false;
                 }
 
                 if (!isOpened)
@@ -571,6 +591,7 @@ namespace FlameTradeSS
                             dateTimeDocDate.Enabled = false;
                             dgvDocumentTransactions.ReadOnly = true;
                             listBoxTransactionsAdd.Enabled = false;
+                            
                             issued = true;
                             await db.SaveChangesAsync();
                             CommonTasks.SendInfoMsg("Документа е издаден успешно : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);

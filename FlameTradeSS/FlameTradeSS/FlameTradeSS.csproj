@@ -344,6 +344,9 @@
     <Compile Include="PersonsRolesOfPersons.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonsType.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -373,6 +376,12 @@
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Surfaces.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskStatuses.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransactionAttachments.cs">
