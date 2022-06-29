@@ -137,6 +137,11 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_Persons_PersonsType" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionPersons_Tasks" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionPersons_TaskStatuses" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DgvFields" Width="1.5" PointX="13" PointY="26.125" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DocumentSequencesProperties" Width="1.5" PointX="15.25" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DgvFields" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

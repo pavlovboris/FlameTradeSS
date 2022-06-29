@@ -373,7 +373,6 @@
             this.TransactionReceipt_ReceiptID_Name_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.TransactionReceipt_ReceiptID_Name_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.TransactionReceipt_ReceiptID_Name_ID.ValueMember = "ID";
-            this.TransactionReceipt_ReceiptID_Name_ID.Visible = false;
             this.TransactionReceipt_ReceiptID_Name_ID.Width = 200;
             // 
             // Mu_MuID_Code_ID
@@ -416,7 +415,6 @@
             this.Partitions_SecondPartitionID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Partitions_SecondPartitionID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Partitions_SecondPartitionID_Code_ID.ValueMember = "ID";
-            this.Partitions_SecondPartitionID_Code_ID.Visible = false;
             this.Partitions_SecondPartitionID_Code_ID.Width = 200;
             // 
             // Qty
@@ -440,7 +438,6 @@
             this.AdditionExpense.MaxInputLength = 100;
             this.AdditionExpense.MinimumWidth = 10;
             this.AdditionExpense.Name = "AdditionExpense";
-            this.AdditionExpense.Visible = false;
             this.AdditionExpense.Width = 200;
             // 
             // SalePrice1
@@ -463,7 +460,6 @@
             this.SalePrice2.HeaderText = "Цена2";
             this.SalePrice2.MinimumWidth = 10;
             this.SalePrice2.Name = "SalePrice2";
-            this.SalePrice2.Visible = false;
             this.SalePrice2.Width = 200;
             // 
             // SalePrice3
@@ -475,7 +471,6 @@
             this.SalePrice3.HeaderText = "Цена3";
             this.SalePrice3.MinimumWidth = 10;
             this.SalePrice3.Name = "SalePrice3";
-            this.SalePrice3.Visible = false;
             this.SalePrice3.Width = 200;
             // 
             // RemainingQTY
@@ -487,7 +482,6 @@
             this.RemainingQTY.HeaderText = "Оставащо К-ВО";
             this.RemainingQTY.MinimumWidth = 10;
             this.RemainingQTY.Name = "RemainingQTY";
-            this.RemainingQTY.Visible = false;
             this.RemainingQTY.Width = 200;
             // 
             // RemainingInvoiceQTY
@@ -499,7 +493,6 @@
             this.RemainingInvoiceQTY.HeaderText = "ОставащоФ-Ра К-ВО";
             this.RemainingInvoiceQTY.MinimumWidth = 10;
             this.RemainingInvoiceQTY.Name = "RemainingInvoiceQTY";
-            this.RemainingInvoiceQTY.Visible = false;
             this.RemainingInvoiceQTY.Width = 200;
             // 
             // RemainingProductionQTY
@@ -511,7 +504,6 @@
             this.RemainingProductionQTY.HeaderText = "ОставащоПр-во К-ВО";
             this.RemainingProductionQTY.MinimumWidth = 10;
             this.RemainingProductionQTY.Name = "RemainingProductionQTY";
-            this.RemainingProductionQTY.Visible = false;
             this.RemainingProductionQTY.Width = 200;
             // 
             // RemainingPackagingQTY
@@ -523,7 +515,6 @@
             this.RemainingPackagingQTY.HeaderText = "ОставащоO-не К-ВО";
             this.RemainingPackagingQTY.MinimumWidth = 10;
             this.RemainingPackagingQTY.Name = "RemainingPackagingQTY";
-            this.RemainingPackagingQTY.Visible = false;
             this.RemainingPackagingQTY.Width = 200;
             // 
             // RemainingDeliveryQTY
@@ -535,7 +526,6 @@
             this.RemainingDeliveryQTY.HeaderText = "ОставащоД-ка К-ВО";
             this.RemainingDeliveryQTY.MinimumWidth = 10;
             this.RemainingDeliveryQTY.Name = "RemainingDeliveryQTY";
-            this.RemainingDeliveryQTY.Visible = false;
             this.RemainingDeliveryQTY.Width = 200;
             // 
             // ExpectedMatDate
@@ -569,7 +559,6 @@
             this.CostPrice1.HeaderText = "ЦенаС-ст1";
             this.CostPrice1.MinimumWidth = 10;
             this.CostPrice1.Name = "CostPrice1";
-            this.CostPrice1.Visible = false;
             this.CostPrice1.Width = 200;
             // 
             // CostPrice2
@@ -581,7 +570,6 @@
             this.CostPrice2.HeaderText = "ЦенаС-ст2";
             this.CostPrice2.MinimumWidth = 10;
             this.CostPrice2.Name = "CostPrice2";
-            this.CostPrice2.Visible = false;
             this.CostPrice2.Width = 200;
             // 
             // CostPrice3
@@ -593,7 +581,6 @@
             this.CostPrice3.HeaderText = "ЦенаС-ст3";
             this.CostPrice3.MinimumWidth = 10;
             this.CostPrice3.Name = "CostPrice3";
-            this.CostPrice3.Visible = false;
             this.CostPrice3.Width = 200;
             // 
             // IsCanceled

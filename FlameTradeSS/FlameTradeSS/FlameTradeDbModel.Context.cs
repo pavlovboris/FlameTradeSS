@@ -81,5 +81,7 @@ namespace FlameTradeSS
         public virtual DbSet<PersonsType> PersonsType { get; set; }
         public virtual DbSet<Tasks> Tasks { get; set; }
         public virtual DbSet<TaskStatuses> TaskStatuses { get; set; }
+        public virtual DbSet<DgvFields> DgvFields { get; set; }
+        public virtual DbSet<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
     }
 }

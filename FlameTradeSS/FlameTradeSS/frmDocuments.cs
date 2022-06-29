@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FlameTradeSS
 {
     public partial class frmDocuments : Form
@@ -19,6 +20,8 @@ namespace FlameTradeSS
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             InitializeComponent();
         }
+
+       
 
         private void frmDocuments_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -100,6 +103,11 @@ namespace FlameTradeSS
 
             cmbIsCanceled.SelectedIndex= 0;
 
+            dgvDocuments.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvDocuments.RowHeadersVisible = false;
+
+            
+
             documentsBindingSource.DataSource = db.Documents.ToList();
             partnersBindingSource.DataSource = db.Partners.ToList();
             costingModelsBindingSource.DataSource = db.CostingModels.ToList();
@@ -109,8 +117,18 @@ namespace FlameTradeSS
             DocumentSequences nullDocumentSequence = new DocumentSequences();
             nullDocumentSequence.SequenceName = "All";
             documentSequencesBindingSource1.Add(nullDocumentSequence);
-
+            //dgvDocuments.RowHeadersVisible = true;
+            
+            
+            
+            //dgvDocuments.Refresh();
+            
             cmbSequence.SelectedItem = nullDocumentSequence;
+
+           
+
+            Cursor.Current = Cursors.Default;
+            Show();
 
             try
             {
@@ -120,9 +138,6 @@ namespace FlameTradeSS
             {
 
             }
-
-            Cursor.Current = Cursors.Default;
-            Show();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

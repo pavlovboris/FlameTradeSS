@@ -138,7 +138,7 @@
             this.dgvDocuments.Location = new System.Drawing.Point(12, 135);
             this.dgvDocuments.Name = "dgvDocuments";
             this.dgvDocuments.ReadOnly = true;
-            this.dgvDocuments.RowHeadersWidth = 20;
+            this.dgvDocuments.RowHeadersWidth = 5;
             this.dgvDocuments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocuments.Size = new System.Drawing.Size(1288, 578);
             this.dgvDocuments.TabIndex = 29;

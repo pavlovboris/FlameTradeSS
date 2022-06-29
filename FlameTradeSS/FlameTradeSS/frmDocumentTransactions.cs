@@ -74,6 +74,9 @@ namespace FlameTradeSS
             }
             catch { }
 
+            DgvOperations dgvOperations = new DgvOperations();
+            dgvTransactionLines = dgvOperations.ConfigureDgv(dgvTransactionLines, db, documentTransactions.Documents.DocumentSequences,documentTransactions);
+
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
             muBindingSource.DataSource = db.Mu.ToList();
@@ -88,6 +91,8 @@ namespace FlameTradeSS
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
                 case "ItemID":
+
+
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
                    
@@ -109,9 +114,11 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
-                    
                     break;
             }
+
+            
+            
         }
 
         private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)

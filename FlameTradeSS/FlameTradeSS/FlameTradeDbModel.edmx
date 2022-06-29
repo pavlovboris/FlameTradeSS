@@ -35,6 +35,14 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PartnerID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DgvFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DataGridViewName" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="Documents">
           <Key>
             <PropertyRef Name="ID" />
@@ -72,6 +80,18 @@
           <Property Name="SequenceDescription" Type="varchar" MaxLength="250" />
           <Property Name="IsReal" Type="int" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentSequencesProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="int" Nullable="false" />
+          <Property Name="DgvFieldsID" Type="int" Nullable="false" />
+          <Property Name="InVisible" Type="int" Nullable="false" />
+          <Property Name="ReadOnly" Type="int" Nullable="false" />
+          <Property Name="Disabled" Type="int" Nullable="false" />
+          <Property Name="TransactonTypeID" Type="int" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -659,6 +679,42 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="DocumentSequences">
               <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentSequencesProperties_DgvFields">
+          <End Role="DgvFields" Type="Self.DgvFields" Multiplicity="1" />
+          <End Role="DocumentSequencesProperties" Type="Self.DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DgvFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="DgvFieldsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentSequencesProperties_DocumentSequences">
+          <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
+          <End Role="DocumentSequencesProperties" Type="Self.DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentSequencesProperties_TransactionsType">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="0..1" />
+          <End Role="DocumentSequencesProperties" Type="Self.DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="TransactonTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1495,9 +1551,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="CostingModels" EntityType="Self.CostingModels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentlyLoggedUsers" EntityType="Self.CurrentlyLoggedUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DgvFields" EntityType="Self.DgvFields" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsAttachments" EntityType="Self.DocumentsAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentSequences" EntityType="Self.DocumentSequences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentSequencesProperties" EntityType="Self.DocumentSequencesProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsProjects" EntityType="Self.DocumentsProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactions" EntityType="Self.DocumentTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransformation" EntityType="Self.DocumentTransformation" Schema="dbo" store:Type="Tables" />
@@ -1579,6 +1637,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_DocumentSequences_TypeID" Association="Self.FK_DocumentSequences_TypeID">
             <End Role="SequenceType" EntitySet="SequenceType" />
             <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentSequencesProperties_DgvFields" Association="Self.FK_DocumentSequencesProperties_DgvFields">
+            <End Role="DgvFields" EntitySet="DgvFields" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentSequencesProperties_DocumentSequences" Association="Self.FK_DocumentSequencesProperties_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentSequencesProperties_TransactionsType" Association="Self.FK_DocumentSequencesProperties_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentsProjects_DocumentsID" Association="Self.FK_DocumentsProjects_DocumentsID">
             <End Role="Documents" EntitySet="Documents" />
@@ -1938,6 +2008,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="SequenceType" Relationship="Self.FK_DocumentSequences_TypeID" FromRole="DocumentSequences" ToRole="SequenceType" />
           <NavigationProperty Name="Numbering" Relationship="Self.FK_Numbering_SequenceID" FromRole="DocumentSequences" ToRole="Numbering" />
           <NavigationProperty Name="SequencesTransactions" Relationship="Self.FK_SequencesTransactions_SquenceID" FromRole="DocumentSequences" ToRole="SequencesTransactions" />
+          <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentSequencesProperties" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -2499,6 +2570,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentTransactions" Relationship="Self.FK_DocumentTransactions_TransactionTypeID" FromRole="TransactionsType" ToRole="DocumentTransactions" />
           <NavigationProperty Name="LinesType" Relationship="Self.FK_TransactionsType_LinesRelation" FromRole="TransactionsType" ToRole="LinesType" />
           <NavigationProperty Name="SequencesTransactions" Relationship="Self.FK_SequencesTransactions_TransactionTypeID" FromRole="TransactionsType" ToRole="SequencesTransactions" />
+          <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType" FromRole="TransactionsType" ToRole="DocumentSequencesProperties" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -3693,6 +3765,20 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TaskStatuses" EntitySet="TaskStatuses" />
             <End Role="TransactionPersons" EntitySet="TransactionPersons" />
           </AssociationSet>
+          <EntitySet Name="DgvFields" EntityType="FlameTradeDbModel.DgvFields" />
+          <EntitySet Name="DocumentSequencesProperties" EntityType="FlameTradeDbModel.DocumentSequencesProperties" />
+          <AssociationSet Name="FK_DocumentSequencesProperties_DgvFields" Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DgvFields">
+            <End Role="DgvFields" EntitySet="DgvFields" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentSequencesProperties_DocumentSequences" Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentSequencesProperties_TransactionsType" Association="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3855,6 +3941,66 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="TransactionPersons">
               <PropertyRef Name="TaskStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DgvFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DataGridViewName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DgvFields" FromRole="DgvFields" ToRole="DocumentSequencesProperties" />
+        </EntityType>
+        <EntityType Name="DocumentSequencesProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentSequenceID" Type="Int32" Nullable="false" />
+          <Property Name="DgvFieldsID" Type="Int32" Nullable="false" />
+          <Property Name="InVisible" Type="Int32" Nullable="false" />
+          <Property Name="ReadOnly" Type="Int32" Nullable="false" />
+          <Property Name="Disabled" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DgvFields" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DgvFields" FromRole="DocumentSequencesProperties" ToRole="DgvFields" />
+          <NavigationProperty Name="DocumentSequences" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" FromRole="DocumentSequencesProperties" ToRole="DocumentSequences" />
+          <Property Name="TransactonTypeID" Type="Int32" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType" FromRole="DocumentSequencesProperties" ToRole="TransactionsType" />
+        </EntityType>
+        <Association Name="FK_DocumentSequencesProperties_DgvFields">
+          <End Type="FlameTradeDbModel.DgvFields" Role="DgvFields" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentSequencesProperties" Role="DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DgvFields">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="DgvFieldsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentSequencesProperties_DocumentSequences">
+          <End Type="FlameTradeDbModel.DocumentSequences" Role="DocumentSequences" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentSequencesProperties" Role="DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentSequencesProperties_TransactionsType">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.DocumentSequencesProperties" Role="DocumentSequencesProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentSequencesProperties">
+              <PropertyRef Name="TransactonTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4487,6 +4633,28 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <EntityTypeMapping TypeName="FlameTradeDbModel.TaskStatuses">
               <MappingFragment StoreEntitySet="TaskStatuses">
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DgvFields">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DgvFields">
+              <MappingFragment StoreEntitySet="DgvFields">
+                <ScalarProperty Name="DataGridViewName" ColumnName="DataGridViewName" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentSequencesProperties">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentSequencesProperties">
+              <MappingFragment StoreEntitySet="DocumentSequencesProperties">
+                <ScalarProperty Name="TransactonTypeID" ColumnName="TransactonTypeID" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="InVisible" ColumnName="InVisible" />
+                <ScalarProperty Name="DgvFieldsID" ColumnName="DgvFieldsID" />
+                <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

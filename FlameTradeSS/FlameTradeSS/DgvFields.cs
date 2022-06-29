@@ -12,26 +12,18 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class TransactionsType
+    public partial class DgvFields
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TransactionsType()
+        public DgvFields()
         {
-            this.DocumentTransactions = new HashSet<DocumentTransactions>();
-            this.SequencesTransactions = new HashSet<SequencesTransactions>();
             this.DocumentSequencesProperties = new HashSet<DocumentSequencesProperties>();
         }
     
         public int ID { get; set; }
-        public string TypeName { get; set; }
-        public int TransactionMultiplier { get; set; }
-        public int LinesRelation { get; set; }
+        public string FieldName { get; set; }
+        public string DataGridViewName { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
-        public virtual LinesType LinesType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SequencesTransactions> SequencesTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
     }

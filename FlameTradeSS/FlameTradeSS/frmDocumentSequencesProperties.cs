@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmDocumentsSequences : Form
+    public partial class frmDocumentSequencesProperties : Form
     {
-        public frmDocumentsSequences()
+        public frmDocumentSequencesProperties()
         {
             InitializeComponent();
         }
@@ -46,17 +46,21 @@ namespace FlameTradeSS
             g.DrawRectangle(p, r);
         }
 
-        private static readonly SecurityService securityService = new SecurityService();
-        FlameTradeDbEntities db = securityService.NewDatabaseEntity();
+        //private static readonly SecurityService securityService = new SecurityService();
+        public FlameTradeDbEntities db;
+        public DocumentSequences documentSequences;
+
+
 
         private void frmPartnerGroups_Load(object sender, EventArgs e)
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
-            sequenceTypeBindingSource.DataSource = db.SequenceType.ToList();
-            documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
-            SequenceType nullType = new SequenceType();
-            sequenceTypeBindingSource.Add(nullType);
+            documentSequencesPropertiesBindingSource.DataSource = db.DocumentSequencesProperties.Where(ds => ds.DocumentSequenceID == documentSequences.ID).ToList();
+            dgvFieldsBindingSource.DataSource = db.DgvFields.ToList();
+            dgvFieldsBindingSource.Add(new DgvFields());
+            transactionsTypeBindingSource.DataSource = db.TransactionsType.Where(tt => tt.SequencesTransactions.Where(st => st.SquenceID==documentSequences.ID).Any()).ToList();
+            lblDocumentSequenceName.Text = documentSequences.SequenceName;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -66,10 +70,11 @@ namespace FlameTradeSS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DocumentSequences newDocumentSequence = new DocumentSequences();
-            documentSequencesBindingSource.Add(newDocumentSequence);
-            documentSequencesBindingSource.MoveLast();
-            db.DocumentSequences.Add(newDocumentSequence);
+            DocumentSequencesProperties documentSequencesProperties = new DocumentSequencesProperties();
+            documentSequencesProperties.DocumentSequenceID = documentSequences.ID;
+            documentSequencesPropertiesBindingSource.Add(documentSequencesProperties);
+            documentSequencesPropertiesBindingSource.MoveLast();
+            db.DocumentSequencesProperties.Add(documentSequencesProperties);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -94,48 +99,17 @@ namespace FlameTradeSS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            DocumentSequences documentSequence = dgvDocumentSequences.CurrentRow.DataBoundItem as DocumentSequences;
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + documentSequence.SequenceName + "?") == true)
+            DocumentSequencesProperties documentSequencesProperties= dgvDocumentSequenceProperties.CurrentRow.DataBoundItem as DocumentSequencesProperties;
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + documentSequencesProperties.DgvFields.FieldName + "?") == true)
             {
-                if (dgvDocumentSequences.CurrentRow.Index != -1)
+                if (documentSequencesProperties!=null)
                 {
-                    if (documentSequence != null)
-                    {
-                        documentSequencesBindingSource.Remove(documentSequence);
-                        db.DocumentSequences.Remove(documentSequence);
-                    }
+                    
+                        documentSequencesPropertiesBindingSource.Remove(documentSequencesProperties);
+                        db.DocumentSequencesProperties.Remove(documentSequencesProperties);
+                    
                 }
             }
-        }
-
-        private void contextMenuStripDgv_Opening(object sender, CancelEventArgs e)
-        {
-
-            contextMenuStripDgv.Items.Clear();  
-            if (dgvDocumentSequences.CurrentRow.Index != -1)
-            {
-                DocumentSequences documentSequences = dgvDocumentSequences.CurrentRow.DataBoundItem as DocumentSequences;
-                if (documentSequences!=null && documentSequences.ID!= 0) 
-                {
-
-
-                    ToolStripMenuItem editSequencesPropertirs = new ToolStripMenuItem();
-                    editSequencesPropertirs.Text = "Редактиране на Свойствата на : " + documentSequences.SequenceName;
-                    editSequencesPropertirs.Click += EditSequencesPropertirs_Click;
-                    contextMenuStripDgv.Items.Add(editSequencesPropertirs);
-                }
-            }
-
-            
-        }
-
-        private void EditSequencesPropertirs_Click(object sender, EventArgs e)
-        {
-            DocumentSequences documentSequences = dgvDocumentSequences.CurrentRow.DataBoundItem as DocumentSequences;
-            frmDocumentSequencesProperties frm = new frmDocumentSequencesProperties();
-            frm.db = db;
-            frm.documentSequences = documentSequences;
-            CommonTasks.OpenForm(frm);
         }
     }
 }
