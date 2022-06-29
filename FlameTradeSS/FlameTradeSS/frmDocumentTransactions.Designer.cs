@@ -29,53 +29,84 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbTransactipnType = new System.Windows.Forms.ComboBox();
-            this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
-            this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
-            this.ItemDescriptionDataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.btnTasks = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.machineIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.durationHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cyclesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.muIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.partitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.secondPartitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.additionExpenseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salePrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salePrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salePrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainingQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainingProductionQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainingPackagingQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expectedMatDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPrice1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPrice2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPrice3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
+            this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
+            this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.machinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.servicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partitionsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnTasks = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.Items_ItemID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Items_ItemID_Description_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Machines_MachineID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Services_ServiceID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Surfaces_SurfaceID_SurfaceName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DurationHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ordering = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TransactionReceipt_ReceiptID_Name_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Mu_MuID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Partitions_PartitionID_code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Partitions_SecondPartitionID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdditionExpense = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePrice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePrice3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingInvoiceQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingProductionQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingPackagingQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemainingDeliveryQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpectedMatDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RequestDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostPrice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostPrice3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.machinesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTransactipnType
@@ -93,6 +124,14 @@
             this.cmbTransactipnType.Size = new System.Drawing.Size(162, 21);
             this.cmbTransactipnType.TabIndex = 0;
             this.cmbTransactipnType.ValueMember = "ID";
+            // 
+            // documentTransactionsBindingSource
+            // 
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // dateTimeTransactionDate
             // 
@@ -114,54 +153,79 @@
             this.dgvTransactionLines.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTransactionLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransactionLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.itemIDDataGridViewTextBoxColumn,
-            this.ItemDescriptionDataGridViewComboBoxColumn,
-            this.machineIDDataGridViewTextBoxColumn,
-            this.serviceIDDataGridViewTextBoxColumn,
-            this.startDateDataGridViewTextBoxColumn,
-            this.endDateDataGridViewTextBoxColumn,
-            this.durationHoursDataGridViewTextBoxColumn,
-            this.cyclesDataGridViewTextBoxColumn,
-            this.orderingDataGridViewTextBoxColumn,
-            this.receiptIDDataGridViewTextBoxColumn,
-            this.muIDDataGridViewTextBoxColumn,
-            this.partitionIDDataGridViewTextBoxColumn,
-            this.secondPartitionIDDataGridViewTextBoxColumn,
-            this.qtyDataGridViewTextBoxColumn,
-            this.additionExpenseDataGridViewTextBoxColumn,
-            this.salePrice1DataGridViewTextBoxColumn,
-            this.salePrice2DataGridViewTextBoxColumn,
-            this.salePrice3DataGridViewTextBoxColumn,
-            this.remainingQTYDataGridViewTextBoxColumn,
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn,
-            this.remainingProductionQTYDataGridViewTextBoxColumn,
-            this.remainingPackagingQTYDataGridViewTextBoxColumn,
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn,
-            this.expectedMatDateDataGridViewTextBoxColumn,
-            this.requestDateDataGridViewTextBoxColumn,
-            this.costPrice1DataGridViewTextBoxColumn,
-            this.costPrice2DataGridViewTextBoxColumn,
-            this.costPrice3DataGridViewTextBoxColumn,
-            this.isCanceledDataGridViewTextBoxColumn});
+            this.Items_ItemID_Code_ID,
+            this.Items_ItemID_Description_ID,
+            this.Machines_MachineID_Code_ID,
+            this.Services_ServiceID_Code_ID,
+            this.Surfaces_SurfaceID_SurfaceName_ID,
+            this.StartDate,
+            this.EndDate,
+            this.DurationHours,
+            this.Cycles,
+            this.Ordering,
+            this.TransactionReceipt_ReceiptID_Name_ID,
+            this.Mu_MuID_Code_ID,
+            this.Partitions_PartitionID_code_ID,
+            this.Partitions_SecondPartitionID_Code_ID,
+            this.Qty,
+            this.AdditionExpense,
+            this.SalePrice1,
+            this.SalePrice2,
+            this.SalePrice3,
+            this.RemainingQTY,
+            this.RemainingInvoiceQTY,
+            this.RemainingProductionQTY,
+            this.RemainingPackagingQTY,
+            this.RemainingDeliveryQTY,
+            this.ExpectedMatDate,
+            this.RequestDate,
+            this.CostPrice1,
+            this.CostPrice2,
+            this.CostPrice3,
+            this.IsCanceled});
             this.dgvTransactionLines.DataSource = this.transactionLinesBindingSource;
             this.dgvTransactionLines.Location = new System.Drawing.Point(12, 211);
             this.dgvTransactionLines.Name = "dgvTransactionLines";
             this.dgvTransactionLines.RowHeadersWidth = 20;
-            this.dgvTransactionLines.Size = new System.Drawing.Size(692, 329);
+            this.dgvTransactionLines.Size = new System.Drawing.Size(902, 329);
             this.dgvTransactionLines.TabIndex = 2;
             this.dgvTransactionLines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellClick);
             // 
-            // ItemDescriptionDataGridViewComboBoxColumn
+            // itemsBindingSource
             // 
-            this.ItemDescriptionDataGridViewComboBoxColumn.DataPropertyName = "ItemID";
-            this.ItemDescriptionDataGridViewComboBoxColumn.DataSource = this.itemsBindingSource;
-            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayMember = "Description";
-            this.ItemDescriptionDataGridViewComboBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.ItemDescriptionDataGridViewComboBoxColumn.HeaderText = "Описание";
-            this.ItemDescriptionDataGridViewComboBoxColumn.MinimumWidth = 10;
-            this.ItemDescriptionDataGridViewComboBoxColumn.Name = "ItemDescriptionDataGridViewComboBoxColumn";
-            this.ItemDescriptionDataGridViewComboBoxColumn.ValueMember = "ID";
-            this.ItemDescriptionDataGridViewComboBoxColumn.Width = 200;
+            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
+            // 
+            // machinesBindingSource
+            // 
+            this.machinesBindingSource.DataSource = typeof(FlameTradeSS.Machines);
+            // 
+            // servicesBindingSource
+            // 
+            this.servicesBindingSource.DataSource = typeof(FlameTradeSS.Services);
+            // 
+            // surfacesBindingSource
+            // 
+            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
+            // 
+            // transactionReceiptBindingSource
+            // 
+            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
+            // 
+            // muBindingSource
+            // 
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
+            // 
+            // partitionsBindingSource
+            // 
+            this.partitionsBindingSource.DataSource = typeof(FlameTradeSS.Partitions);
+            // 
+            // partitionsBindingSource1
+            // 
+            this.partitionsBindingSource1.DataSource = typeof(FlameTradeSS.Partitions);
+            // 
+            // transactionLinesBindingSource
+            // 
+            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
             // btnTasks
             // 
@@ -179,279 +243,370 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(661, 7);
+            this.btnClose.Location = new System.Drawing.Point(871, 7);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 8;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // itemIDDataGridViewTextBoxColumn
-            // 
-            this.itemIDDataGridViewTextBoxColumn.DataPropertyName = "ItemID";
-            this.itemIDDataGridViewTextBoxColumn.DataSource = this.itemsBindingSource;
-            this.itemIDDataGridViewTextBoxColumn.DisplayMember = "Code";
-            this.itemIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.itemIDDataGridViewTextBoxColumn.HeaderText = "Код";
-            this.itemIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.itemIDDataGridViewTextBoxColumn.Name = "itemIDDataGridViewTextBoxColumn";
-            this.itemIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.itemIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.itemIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.itemIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // itemsBindingSource
-            // 
-            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
-            // 
-            // machineIDDataGridViewTextBoxColumn
-            // 
-            this.machineIDDataGridViewTextBoxColumn.DataPropertyName = "MachineID";
-            this.machineIDDataGridViewTextBoxColumn.HeaderText = "MachineID";
-            this.machineIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.machineIDDataGridViewTextBoxColumn.Name = "machineIDDataGridViewTextBoxColumn";
-            this.machineIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // serviceIDDataGridViewTextBoxColumn
-            // 
-            this.serviceIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceID";
-            this.serviceIDDataGridViewTextBoxColumn.HeaderText = "ServiceID";
-            this.serviceIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.serviceIDDataGridViewTextBoxColumn.Name = "serviceIDDataGridViewTextBoxColumn";
-            this.serviceIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // startDateDataGridViewTextBoxColumn
-            // 
-            this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
-            this.startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
-            this.startDateDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
-            this.startDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // endDateDataGridViewTextBoxColumn
-            // 
-            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.HeaderText = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
-            this.endDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // durationHoursDataGridViewTextBoxColumn
-            // 
-            this.durationHoursDataGridViewTextBoxColumn.DataPropertyName = "DurationHours";
-            this.durationHoursDataGridViewTextBoxColumn.HeaderText = "DurationHours";
-            this.durationHoursDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.durationHoursDataGridViewTextBoxColumn.Name = "durationHoursDataGridViewTextBoxColumn";
-            this.durationHoursDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // cyclesDataGridViewTextBoxColumn
-            // 
-            this.cyclesDataGridViewTextBoxColumn.DataPropertyName = "Cycles";
-            this.cyclesDataGridViewTextBoxColumn.HeaderText = "Cycles";
-            this.cyclesDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.cyclesDataGridViewTextBoxColumn.Name = "cyclesDataGridViewTextBoxColumn";
-            this.cyclesDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // orderingDataGridViewTextBoxColumn
-            // 
-            this.orderingDataGridViewTextBoxColumn.DataPropertyName = "Ordering";
-            this.orderingDataGridViewTextBoxColumn.HeaderText = "Ordering";
-            this.orderingDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.orderingDataGridViewTextBoxColumn.Name = "orderingDataGridViewTextBoxColumn";
-            this.orderingDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // receiptIDDataGridViewTextBoxColumn
-            // 
-            this.receiptIDDataGridViewTextBoxColumn.DataPropertyName = "ReceiptID";
-            this.receiptIDDataGridViewTextBoxColumn.DataSource = this.transactionReceiptBindingSource;
-            this.receiptIDDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.receiptIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.receiptIDDataGridViewTextBoxColumn.HeaderText = "ReceiptID";
-            this.receiptIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.receiptIDDataGridViewTextBoxColumn.Name = "receiptIDDataGridViewTextBoxColumn";
-            this.receiptIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.receiptIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.receiptIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.receiptIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.receiptIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // transactionReceiptBindingSource
-            // 
-            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
-            // 
-            // muIDDataGridViewTextBoxColumn
-            // 
-            this.muIDDataGridViewTextBoxColumn.DataPropertyName = "MuID";
-            this.muIDDataGridViewTextBoxColumn.DataSource = this.muBindingSource;
-            this.muIDDataGridViewTextBoxColumn.DisplayMember = "Code";
-            this.muIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.muIDDataGridViewTextBoxColumn.HeaderText = "МЕ";
-            this.muIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.muIDDataGridViewTextBoxColumn.Name = "muIDDataGridViewTextBoxColumn";
-            this.muIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.muIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.muIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.muIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // muBindingSource
-            // 
-            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
-            // 
-            // partitionIDDataGridViewTextBoxColumn
-            // 
-            this.partitionIDDataGridViewTextBoxColumn.DataPropertyName = "PartitionID";
-            this.partitionIDDataGridViewTextBoxColumn.HeaderText = "PartitionID";
-            this.partitionIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.partitionIDDataGridViewTextBoxColumn.Name = "partitionIDDataGridViewTextBoxColumn";
-            this.partitionIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // secondPartitionIDDataGridViewTextBoxColumn
-            // 
-            this.secondPartitionIDDataGridViewTextBoxColumn.DataPropertyName = "SecondPartitionID";
-            this.secondPartitionIDDataGridViewTextBoxColumn.HeaderText = "SecondPartitionID";
-            this.secondPartitionIDDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.secondPartitionIDDataGridViewTextBoxColumn.Name = "secondPartitionIDDataGridViewTextBoxColumn";
-            this.secondPartitionIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // qtyDataGridViewTextBoxColumn
-            // 
-            this.qtyDataGridViewTextBoxColumn.DataPropertyName = "Qty";
-            this.qtyDataGridViewTextBoxColumn.HeaderText = "Qty";
-            this.qtyDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
-            this.qtyDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // additionExpenseDataGridViewTextBoxColumn
-            // 
-            this.additionExpenseDataGridViewTextBoxColumn.DataPropertyName = "AdditionExpense";
-            this.additionExpenseDataGridViewTextBoxColumn.HeaderText = "AdditionExpense";
-            this.additionExpenseDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.additionExpenseDataGridViewTextBoxColumn.Name = "additionExpenseDataGridViewTextBoxColumn";
-            this.additionExpenseDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // salePrice1DataGridViewTextBoxColumn
-            // 
-            this.salePrice1DataGridViewTextBoxColumn.DataPropertyName = "SalePrice1";
-            this.salePrice1DataGridViewTextBoxColumn.HeaderText = "SalePrice1";
-            this.salePrice1DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.salePrice1DataGridViewTextBoxColumn.Name = "salePrice1DataGridViewTextBoxColumn";
-            this.salePrice1DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // salePrice2DataGridViewTextBoxColumn
-            // 
-            this.salePrice2DataGridViewTextBoxColumn.DataPropertyName = "SalePrice2";
-            this.salePrice2DataGridViewTextBoxColumn.HeaderText = "SalePrice2";
-            this.salePrice2DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.salePrice2DataGridViewTextBoxColumn.Name = "salePrice2DataGridViewTextBoxColumn";
-            this.salePrice2DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // salePrice3DataGridViewTextBoxColumn
-            // 
-            this.salePrice3DataGridViewTextBoxColumn.DataPropertyName = "SalePrice3";
-            this.salePrice3DataGridViewTextBoxColumn.HeaderText = "SalePrice3";
-            this.salePrice3DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.salePrice3DataGridViewTextBoxColumn.Name = "salePrice3DataGridViewTextBoxColumn";
-            this.salePrice3DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // remainingQTYDataGridViewTextBoxColumn
-            // 
-            this.remainingQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingQTY";
-            this.remainingQTYDataGridViewTextBoxColumn.HeaderText = "RemainingQTY";
-            this.remainingQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.remainingQTYDataGridViewTextBoxColumn.Name = "remainingQTYDataGridViewTextBoxColumn";
-            this.remainingQTYDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // remainingInvoiceQTYDataGridViewTextBoxColumn
-            // 
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingInvoiceQTY";
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn.HeaderText = "RemainingInvoiceQTY";
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn.Name = "remainingInvoiceQTYDataGridViewTextBoxColumn";
-            this.remainingInvoiceQTYDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // remainingProductionQTYDataGridViewTextBoxColumn
-            // 
-            this.remainingProductionQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingProductionQTY";
-            this.remainingProductionQTYDataGridViewTextBoxColumn.HeaderText = "RemainingProductionQTY";
-            this.remainingProductionQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.remainingProductionQTYDataGridViewTextBoxColumn.Name = "remainingProductionQTYDataGridViewTextBoxColumn";
-            this.remainingProductionQTYDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // remainingPackagingQTYDataGridViewTextBoxColumn
-            // 
-            this.remainingPackagingQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingPackagingQTY";
-            this.remainingPackagingQTYDataGridViewTextBoxColumn.HeaderText = "RemainingPackagingQTY";
-            this.remainingPackagingQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.remainingPackagingQTYDataGridViewTextBoxColumn.Name = "remainingPackagingQTYDataGridViewTextBoxColumn";
-            this.remainingPackagingQTYDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // remainingDeliveryQTYDataGridViewTextBoxColumn
-            // 
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingDeliveryQTY";
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn.HeaderText = "RemainingDeliveryQTY";
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn.Name = "remainingDeliveryQTYDataGridViewTextBoxColumn";
-            this.remainingDeliveryQTYDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // expectedMatDateDataGridViewTextBoxColumn
-            // 
-            this.expectedMatDateDataGridViewTextBoxColumn.DataPropertyName = "ExpectedMatDate";
-            this.expectedMatDateDataGridViewTextBoxColumn.HeaderText = "ExpectedMatDate";
-            this.expectedMatDateDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
-            this.expectedMatDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // requestDateDataGridViewTextBoxColumn
-            // 
-            this.requestDateDataGridViewTextBoxColumn.DataPropertyName = "RequestDate";
-            this.requestDateDataGridViewTextBoxColumn.HeaderText = "RequestDate";
-            this.requestDateDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.requestDateDataGridViewTextBoxColumn.Name = "requestDateDataGridViewTextBoxColumn";
-            this.requestDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // costPrice1DataGridViewTextBoxColumn
-            // 
-            this.costPrice1DataGridViewTextBoxColumn.DataPropertyName = "CostPrice1";
-            this.costPrice1DataGridViewTextBoxColumn.HeaderText = "CostPrice1";
-            this.costPrice1DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.costPrice1DataGridViewTextBoxColumn.Name = "costPrice1DataGridViewTextBoxColumn";
-            this.costPrice1DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // costPrice2DataGridViewTextBoxColumn
-            // 
-            this.costPrice2DataGridViewTextBoxColumn.DataPropertyName = "CostPrice2";
-            this.costPrice2DataGridViewTextBoxColumn.HeaderText = "CostPrice2";
-            this.costPrice2DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.costPrice2DataGridViewTextBoxColumn.Name = "costPrice2DataGridViewTextBoxColumn";
-            this.costPrice2DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // costPrice3DataGridViewTextBoxColumn
-            // 
-            this.costPrice3DataGridViewTextBoxColumn.DataPropertyName = "CostPrice3";
-            this.costPrice3DataGridViewTextBoxColumn.HeaderText = "CostPrice3";
-            this.costPrice3DataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.costPrice3DataGridViewTextBoxColumn.Name = "costPrice3DataGridViewTextBoxColumn";
-            this.costPrice3DataGridViewTextBoxColumn.Width = 200;
-            // 
-            // isCanceledDataGridViewTextBoxColumn
-            // 
-            this.isCanceledDataGridViewTextBoxColumn.DataPropertyName = "IsCanceled";
-            this.isCanceledDataGridViewTextBoxColumn.HeaderText = "IsCanceled";
-            this.isCanceledDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.isCanceledDataGridViewTextBoxColumn.Name = "isCanceledDataGridViewTextBoxColumn";
-            this.isCanceledDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // transactionLinesBindingSource
-            // 
-            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
-            // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            // Items_ItemID_Code_ID
+            // 
+            this.Items_ItemID_Code_ID.DataPropertyName = "ItemID";
+            this.Items_ItemID_Code_ID.DataSource = this.itemsBindingSource;
+            this.Items_ItemID_Code_ID.DisplayMember = "Code";
+            this.Items_ItemID_Code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Items_ItemID_Code_ID.HeaderText = "Код";
+            this.Items_ItemID_Code_ID.MinimumWidth = 10;
+            this.Items_ItemID_Code_ID.Name = "Items_ItemID_Code_ID";
+            this.Items_ItemID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Items_ItemID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Items_ItemID_Code_ID.ValueMember = "ID";
+            // 
+            // Items_ItemID_Description_ID
+            // 
+            this.Items_ItemID_Description_ID.DataPropertyName = "ItemID";
+            this.Items_ItemID_Description_ID.DataSource = this.itemsBindingSource;
+            this.Items_ItemID_Description_ID.DisplayMember = "Description";
+            this.Items_ItemID_Description_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Items_ItemID_Description_ID.HeaderText = "Описание";
+            this.Items_ItemID_Description_ID.MinimumWidth = 10;
+            this.Items_ItemID_Description_ID.Name = "Items_ItemID_Description_ID";
+            this.Items_ItemID_Description_ID.ValueMember = "ID";
+            this.Items_ItemID_Description_ID.Width = 200;
+            // 
+            // Machines_MachineID_Code_ID
+            // 
+            this.Machines_MachineID_Code_ID.DataPropertyName = "MachineID";
+            this.Machines_MachineID_Code_ID.DataSource = this.machinesBindingSource;
+            this.Machines_MachineID_Code_ID.DisplayMember = "Code";
+            this.Machines_MachineID_Code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Machines_MachineID_Code_ID.HeaderText = "Машина";
+            this.Machines_MachineID_Code_ID.MinimumWidth = 10;
+            this.Machines_MachineID_Code_ID.Name = "Machines_MachineID_Code_ID";
+            this.Machines_MachineID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Machines_MachineID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Machines_MachineID_Code_ID.ValueMember = "ID";
+            // 
+            // Services_ServiceID_Code_ID
+            // 
+            this.Services_ServiceID_Code_ID.DataPropertyName = "ServiceID";
+            this.Services_ServiceID_Code_ID.DataSource = this.servicesBindingSource;
+            this.Services_ServiceID_Code_ID.DisplayMember = "Code";
+            this.Services_ServiceID_Code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Services_ServiceID_Code_ID.HeaderText = "Услуга";
+            this.Services_ServiceID_Code_ID.MinimumWidth = 10;
+            this.Services_ServiceID_Code_ID.Name = "Services_ServiceID_Code_ID";
+            this.Services_ServiceID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Services_ServiceID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Services_ServiceID_Code_ID.ValueMember = "ID";
+            // 
+            // Surfaces_SurfaceID_SurfaceName_ID
+            // 
+            this.Surfaces_SurfaceID_SurfaceName_ID.DataPropertyName = "SurfaceID";
+            this.Surfaces_SurfaceID_SurfaceName_ID.DataSource = this.surfacesBindingSource;
+            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayMember = "SurfaceName";
+            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Surfaces_SurfaceID_SurfaceName_ID.HeaderText = "Повърхност";
+            this.Surfaces_SurfaceID_SurfaceName_ID.Name = "Surfaces_SurfaceID_SurfaceName_ID";
+            this.Surfaces_SurfaceID_SurfaceName_ID.ValueMember = "ID";
+            // 
+            // StartDate
+            // 
+            this.StartDate.DataPropertyName = "StartDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.StartDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.StartDate.HeaderText = "Начална Дата";
+            this.StartDate.MinimumWidth = 10;
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Width = 110;
+            // 
+            // EndDate
+            // 
+            this.EndDate.DataPropertyName = "EndDate";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EndDate.HeaderText = "Крайна Дата";
+            this.EndDate.MinimumWidth = 10;
+            this.EndDate.Name = "EndDate";
+            // 
+            // DurationHours
+            // 
+            this.DurationHours.DataPropertyName = "DurationHours";
+            dataGridViewCellStyle3.Format = "N2";
+            this.DurationHours.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DurationHours.HeaderText = "Часове";
+            this.DurationHours.MinimumWidth = 10;
+            this.DurationHours.Name = "DurationHours";
+            // 
+            // Cycles
+            // 
+            this.Cycles.DataPropertyName = "Cycles";
+            dataGridViewCellStyle4.Format = "N0";
+            this.Cycles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Cycles.HeaderText = "Цикли";
+            this.Cycles.MinimumWidth = 10;
+            this.Cycles.Name = "Cycles";
+            this.Cycles.Width = 80;
+            // 
+            // Ordering
+            // 
+            this.Ordering.DataPropertyName = "Ordering";
+            dataGridViewCellStyle5.Format = "N0";
+            this.Ordering.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Ordering.HeaderText = "Подредба";
+            this.Ordering.MinimumWidth = 10;
+            this.Ordering.Name = "Ordering";
+            // 
+            // TransactionReceipt_ReceiptID_Name_ID
+            // 
+            this.TransactionReceipt_ReceiptID_Name_ID.DataPropertyName = "ReceiptID";
+            this.TransactionReceipt_ReceiptID_Name_ID.DataSource = this.transactionReceiptBindingSource;
+            this.TransactionReceipt_ReceiptID_Name_ID.DisplayMember = "Name";
+            this.TransactionReceipt_ReceiptID_Name_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.TransactionReceipt_ReceiptID_Name_ID.HeaderText = "Рецепта";
+            this.TransactionReceipt_ReceiptID_Name_ID.MinimumWidth = 10;
+            this.TransactionReceipt_ReceiptID_Name_ID.Name = "TransactionReceipt_ReceiptID_Name_ID";
+            this.TransactionReceipt_ReceiptID_Name_ID.ReadOnly = true;
+            this.TransactionReceipt_ReceiptID_Name_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TransactionReceipt_ReceiptID_Name_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TransactionReceipt_ReceiptID_Name_ID.ValueMember = "ID";
+            this.TransactionReceipt_ReceiptID_Name_ID.Visible = false;
+            this.TransactionReceipt_ReceiptID_Name_ID.Width = 200;
+            // 
+            // Mu_MuID_Code_ID
+            // 
+            this.Mu_MuID_Code_ID.DataPropertyName = "MuID";
+            this.Mu_MuID_Code_ID.DataSource = this.muBindingSource;
+            this.Mu_MuID_Code_ID.DisplayMember = "Code";
+            this.Mu_MuID_Code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Mu_MuID_Code_ID.HeaderText = "МЕ";
+            this.Mu_MuID_Code_ID.MinimumWidth = 10;
+            this.Mu_MuID_Code_ID.Name = "Mu_MuID_Code_ID";
+            this.Mu_MuID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Mu_MuID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Mu_MuID_Code_ID.ValueMember = "ID";
+            this.Mu_MuID_Code_ID.Width = 200;
+            // 
+            // Partitions_PartitionID_code_ID
+            // 
+            this.Partitions_PartitionID_code_ID.DataPropertyName = "PartitionID";
+            this.Partitions_PartitionID_code_ID.DataSource = this.partitionsBindingSource;
+            this.Partitions_PartitionID_code_ID.DisplayMember = "Code";
+            this.Partitions_PartitionID_code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Partitions_PartitionID_code_ID.HeaderText = "Партида1";
+            this.Partitions_PartitionID_code_ID.MinimumWidth = 10;
+            this.Partitions_PartitionID_code_ID.Name = "Partitions_PartitionID_code_ID";
+            this.Partitions_PartitionID_code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Partitions_PartitionID_code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Partitions_PartitionID_code_ID.ValueMember = "ID";
+            this.Partitions_PartitionID_code_ID.Width = 200;
+            // 
+            // Partitions_SecondPartitionID_Code_ID
+            // 
+            this.Partitions_SecondPartitionID_Code_ID.DataPropertyName = "SecondPartitionID";
+            this.Partitions_SecondPartitionID_Code_ID.DataSource = this.partitionsBindingSource1;
+            this.Partitions_SecondPartitionID_Code_ID.DisplayMember = "Code";
+            this.Partitions_SecondPartitionID_Code_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Partitions_SecondPartitionID_Code_ID.HeaderText = "Партида2";
+            this.Partitions_SecondPartitionID_Code_ID.MinimumWidth = 10;
+            this.Partitions_SecondPartitionID_Code_ID.Name = "Partitions_SecondPartitionID_Code_ID";
+            this.Partitions_SecondPartitionID_Code_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Partitions_SecondPartitionID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Partitions_SecondPartitionID_Code_ID.ValueMember = "ID";
+            this.Partitions_SecondPartitionID_Code_ID.Visible = false;
+            this.Partitions_SecondPartitionID_Code_ID.Width = 200;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Qty.HeaderText = "К-ВО";
+            this.Qty.MinimumWidth = 10;
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 200;
+            // 
+            // AdditionExpense
+            // 
+            this.AdditionExpense.DataPropertyName = "AdditionExpense";
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.AdditionExpense.DefaultCellStyle = dataGridViewCellStyle7;
+            this.AdditionExpense.HeaderText = "Допълнителен Разход";
+            this.AdditionExpense.MaxInputLength = 100;
+            this.AdditionExpense.MinimumWidth = 10;
+            this.AdditionExpense.Name = "AdditionExpense";
+            this.AdditionExpense.Visible = false;
+            this.AdditionExpense.Width = 200;
+            // 
+            // SalePrice1
+            // 
+            this.SalePrice1.DataPropertyName = "SalePrice1";
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.SalePrice1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.SalePrice1.HeaderText = "Цена1";
+            this.SalePrice1.MinimumWidth = 10;
+            this.SalePrice1.Name = "SalePrice1";
+            this.SalePrice1.Width = 200;
+            // 
+            // SalePrice2
+            // 
+            this.SalePrice2.DataPropertyName = "SalePrice2";
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.SalePrice2.DefaultCellStyle = dataGridViewCellStyle9;
+            this.SalePrice2.HeaderText = "Цена2";
+            this.SalePrice2.MinimumWidth = 10;
+            this.SalePrice2.Name = "SalePrice2";
+            this.SalePrice2.Visible = false;
+            this.SalePrice2.Width = 200;
+            // 
+            // SalePrice3
+            // 
+            this.SalePrice3.DataPropertyName = "SalePrice3";
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.SalePrice3.DefaultCellStyle = dataGridViewCellStyle10;
+            this.SalePrice3.HeaderText = "Цена3";
+            this.SalePrice3.MinimumWidth = 10;
+            this.SalePrice3.Name = "SalePrice3";
+            this.SalePrice3.Visible = false;
+            this.SalePrice3.Width = 200;
+            // 
+            // RemainingQTY
+            // 
+            this.RemainingQTY.DataPropertyName = "RemainingQTY";
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.RemainingQTY.DefaultCellStyle = dataGridViewCellStyle11;
+            this.RemainingQTY.HeaderText = "Оставащо К-ВО";
+            this.RemainingQTY.MinimumWidth = 10;
+            this.RemainingQTY.Name = "RemainingQTY";
+            this.RemainingQTY.Visible = false;
+            this.RemainingQTY.Width = 200;
+            // 
+            // RemainingInvoiceQTY
+            // 
+            this.RemainingInvoiceQTY.DataPropertyName = "RemainingInvoiceQTY";
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.RemainingInvoiceQTY.DefaultCellStyle = dataGridViewCellStyle12;
+            this.RemainingInvoiceQTY.HeaderText = "ОставащоФ-Ра К-ВО";
+            this.RemainingInvoiceQTY.MinimumWidth = 10;
+            this.RemainingInvoiceQTY.Name = "RemainingInvoiceQTY";
+            this.RemainingInvoiceQTY.Visible = false;
+            this.RemainingInvoiceQTY.Width = 200;
+            // 
+            // RemainingProductionQTY
+            // 
+            this.RemainingProductionQTY.DataPropertyName = "RemainingProductionQTY";
+            dataGridViewCellStyle13.Format = "N2";
+            dataGridViewCellStyle13.NullValue = null;
+            this.RemainingProductionQTY.DefaultCellStyle = dataGridViewCellStyle13;
+            this.RemainingProductionQTY.HeaderText = "ОставащоПр-во К-ВО";
+            this.RemainingProductionQTY.MinimumWidth = 10;
+            this.RemainingProductionQTY.Name = "RemainingProductionQTY";
+            this.RemainingProductionQTY.Visible = false;
+            this.RemainingProductionQTY.Width = 200;
+            // 
+            // RemainingPackagingQTY
+            // 
+            this.RemainingPackagingQTY.DataPropertyName = "RemainingPackagingQTY";
+            dataGridViewCellStyle14.Format = "N2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.RemainingPackagingQTY.DefaultCellStyle = dataGridViewCellStyle14;
+            this.RemainingPackagingQTY.HeaderText = "ОставащоO-не К-ВО";
+            this.RemainingPackagingQTY.MinimumWidth = 10;
+            this.RemainingPackagingQTY.Name = "RemainingPackagingQTY";
+            this.RemainingPackagingQTY.Visible = false;
+            this.RemainingPackagingQTY.Width = 200;
+            // 
+            // RemainingDeliveryQTY
+            // 
+            this.RemainingDeliveryQTY.DataPropertyName = "RemainingDeliveryQTY";
+            dataGridViewCellStyle15.Format = "N2";
+            dataGridViewCellStyle15.NullValue = null;
+            this.RemainingDeliveryQTY.DefaultCellStyle = dataGridViewCellStyle15;
+            this.RemainingDeliveryQTY.HeaderText = "ОставащоД-ка К-ВО";
+            this.RemainingDeliveryQTY.MinimumWidth = 10;
+            this.RemainingDeliveryQTY.Name = "RemainingDeliveryQTY";
+            this.RemainingDeliveryQTY.Visible = false;
+            this.RemainingDeliveryQTY.Width = 200;
+            // 
+            // ExpectedMatDate
+            // 
+            this.ExpectedMatDate.DataPropertyName = "ExpectedMatDate";
+            dataGridViewCellStyle16.Format = "d";
+            dataGridViewCellStyle16.NullValue = null;
+            this.ExpectedMatDate.DefaultCellStyle = dataGridViewCellStyle16;
+            this.ExpectedMatDate.HeaderText = "Очаквана Дата - Мат.";
+            this.ExpectedMatDate.MinimumWidth = 10;
+            this.ExpectedMatDate.Name = "ExpectedMatDate";
+            this.ExpectedMatDate.Width = 200;
+            // 
+            // RequestDate
+            // 
+            this.RequestDate.DataPropertyName = "RequestDate";
+            dataGridViewCellStyle17.Format = "d";
+            dataGridViewCellStyle17.NullValue = null;
+            this.RequestDate.DefaultCellStyle = dataGridViewCellStyle17;
+            this.RequestDate.HeaderText = "Искана Дата";
+            this.RequestDate.MinimumWidth = 10;
+            this.RequestDate.Name = "RequestDate";
+            this.RequestDate.Width = 200;
+            // 
+            // CostPrice1
+            // 
+            this.CostPrice1.DataPropertyName = "CostPrice1";
+            dataGridViewCellStyle18.Format = "C2";
+            dataGridViewCellStyle18.NullValue = "0";
+            this.CostPrice1.DefaultCellStyle = dataGridViewCellStyle18;
+            this.CostPrice1.HeaderText = "ЦенаС-ст1";
+            this.CostPrice1.MinimumWidth = 10;
+            this.CostPrice1.Name = "CostPrice1";
+            this.CostPrice1.Visible = false;
+            this.CostPrice1.Width = 200;
+            // 
+            // CostPrice2
+            // 
+            this.CostPrice2.DataPropertyName = "CostPrice2";
+            dataGridViewCellStyle19.Format = "C2";
+            dataGridViewCellStyle19.NullValue = "0";
+            this.CostPrice2.DefaultCellStyle = dataGridViewCellStyle19;
+            this.CostPrice2.HeaderText = "ЦенаС-ст2";
+            this.CostPrice2.MinimumWidth = 10;
+            this.CostPrice2.Name = "CostPrice2";
+            this.CostPrice2.Visible = false;
+            this.CostPrice2.Width = 200;
+            // 
+            // CostPrice3
+            // 
+            this.CostPrice3.DataPropertyName = "CostPrice3";
+            dataGridViewCellStyle20.Format = "C2";
+            dataGridViewCellStyle20.NullValue = "0";
+            this.CostPrice3.DefaultCellStyle = dataGridViewCellStyle20;
+            this.CostPrice3.HeaderText = "ЦенаС-ст3";
+            this.CostPrice3.MinimumWidth = 10;
+            this.CostPrice3.Name = "CostPrice3";
+            this.CostPrice3.Visible = false;
+            this.CostPrice3.Width = 200;
+            // 
+            // IsCanceled
+            // 
+            this.IsCanceled.DataPropertyName = "IsCanceled";
+            this.IsCanceled.FalseValue = "0";
+            this.IsCanceled.HeaderText = "Анулиран Ред";
+            this.IsCanceled.MinimumWidth = 10;
+            this.IsCanceled.Name = "IsCanceled";
+            this.IsCanceled.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsCanceled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsCanceled.TrueValue = "1";
+            this.IsCanceled.Width = 200;
             // 
             // frmDocumentTransactions
             // 
@@ -459,7 +614,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(716, 552);
+            this.ClientSize = new System.Drawing.Size(926, 552);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnTasks);
             this.Controls.Add(this.dgvTransactionLines);
@@ -471,13 +626,18 @@
             this.Text = "Document Transactions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
             this.Load += new System.EventHandler(this.frmDocumentTransactions_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.machinesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionReceiptBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -492,37 +652,43 @@
         private System.Windows.Forms.BindingSource itemsBindingSource;
         private System.Windows.Forms.BindingSource muBindingSource;
         private System.Windows.Forms.BindingSource transactionReceiptBindingSource;
-        private System.Windows.Forms.DataGridViewComboBoxColumn itemIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ItemDescriptionDataGridViewComboBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn machineIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serviceIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn durationHoursDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cyclesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn receiptIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn muIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partitionIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn secondPartitionIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn additionExpenseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salePrice1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salePrice2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salePrice3DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainingQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainingInvoiceQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainingProductionQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainingPackagingQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainingDeliveryQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expectedMatDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn requestDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costPrice1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costPrice2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costPrice3DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isCanceledDataGridViewTextBoxColumn;
         public System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         private System.Windows.Forms.Button btnTasks;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.BindingSource machinesBindingSource;
+        private System.Windows.Forms.BindingSource servicesBindingSource;
+        private System.Windows.Forms.BindingSource surfacesBindingSource;
+        private System.Windows.Forms.BindingSource partitionsBindingSource;
+        private System.Windows.Forms.BindingSource partitionsBindingSource1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Items_ItemID_Code_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Items_ItemID_Description_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Machines_MachineID_Code_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Services_ServiceID_Code_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Surfaces_SurfaceID_SurfaceName_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DurationHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cycles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ordering;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TransactionReceipt_ReceiptID_Name_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Mu_MuID_Code_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_PartitionID_code_ID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_SecondPartitionID_Code_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdditionExpense;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingInvoiceQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingProductionQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingPackagingQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemainingDeliveryQTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExpectedMatDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RequestDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostPrice1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostPrice2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostPrice3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
     }
 }

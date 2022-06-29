@@ -564,6 +564,7 @@
     <None Include="Properties\DataSources\Items.datasource" />
     <None Include="Properties\DataSources\ItemsGroups.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
+    <None Include="Properties\DataSources\Machines.datasource" />
     <None Include="Properties\DataSources\Mu.datasource" />
     <None Include="Properties\DataSources\Partitions.datasource" />
     <None Include="Properties\DataSources\PartitionType.datasource" />
@@ -580,6 +581,7 @@
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequencesTransactions.datasource" />
     <None Include="Properties\DataSources\SequenceType.datasource" />
+    <None Include="Properties\DataSources\Services.datasource" />
     <None Include="Properties\DataSources\Surfaces.datasource" />
     <None Include="Properties\DataSources\TransactionLines.datasource" />
     <None Include="Properties\DataSources\TransactionReceipt.datasource" />

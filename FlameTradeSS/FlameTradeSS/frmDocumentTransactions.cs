@@ -88,26 +88,28 @@ namespace FlameTradeSS
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
                 case "ItemID":
-                    dgvTransactionLines.Columns[machineIDDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[serviceIDDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[startDateDataGridViewTextBoxColumn.Name].Visible=false;
-                    dgvTransactionLines.Columns[endDateDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[durationHoursDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[cyclesDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
+                    dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
+                   
                     itemsBindingSource.DataSource = db.Items.ToList();
                     transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
-                    
+                    surfacesBindingSource.DataSource = db.Surfaces.ToList();
+                    partitionsBindingSource.DataSource = db.Partitions.ToList();
+                    partitionsBindingSource1.DataSource = db.Partitions.ToList();
+                    muBindingSource.DataSource = db.Mu.ToList();
                     break;
                 case "MachineID":
-                    dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[itemIDDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[serviceIDDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
+                    dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
+                    dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
+                    
                     
                     break;
                 case "ServiceID":
-                    dgvTransactionLines.Columns[ItemDescriptionDataGridViewComboBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[itemIDDataGridViewTextBoxColumn.Name].Visible = false;
-                    dgvTransactionLines.Columns[machineIDDataGridViewTextBoxColumn.Name].Visible = false;
+                    dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
+                    dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
+                    dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
+                    
                     break;
             }
         }
@@ -123,15 +125,15 @@ namespace FlameTradeSS
 
         private void dgvTransactionLines_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex!=-1 && e.ColumnIndex == receiptIDDataGridViewTextBoxColumn.Index)
+            if (e.ColumnIndex!=-1 && e.ColumnIndex == TransactionReceipt_ReceiptID_Name_ID.Index)
             {
-                if (dgvTransactionLines.Rows[e.RowIndex].Cells[itemIDDataGridViewTextBoxColumn.Index].Value != null)
+                if (dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value != null)
                 {
                     frmReceiptSelector frmReceiptSelector = new frmReceiptSelector();
                     frmReceiptSelector.db = db;
                     frmReceiptSelector.FormClosing += FrmReceiptSelector_FormClosing;
                     Items item = new Items();
-                    int itmId = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[itemIDDataGridViewTextBoxColumn.Index].Value;
+                    int itmId = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
                     item = db.Items.Where(i => i.ID ==  itmId ).SingleOrDefault();
                     frmReceiptSelector.item = item;
                     CommonTasks.OpenForm(frmReceiptSelector);
