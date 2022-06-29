@@ -37,18 +37,18 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblDocumentSequenceLabel = new System.Windows.Forms.Label();
             this.lblDocumentSequenceName = new System.Windows.Forms.Label();
-            this.dgvFieldsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentSequencesPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvFieldsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TransactonTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvFieldsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvFieldsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.inVisibleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.readOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.disabledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.documentSequencesPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -86,7 +86,7 @@
             this.dgvDocumentSequenceProperties.Name = "dgvDocumentSequenceProperties";
             this.dgvDocumentSequenceProperties.RowHeadersWidth = 20;
             this.dgvDocumentSequenceProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentSequenceProperties.Size = new System.Drawing.Size(672, 412);
+            this.dgvDocumentSequenceProperties.Size = new System.Drawing.Size(672, 796);
             this.dgvDocumentSequenceProperties.TabIndex = 10;
             // 
             // btnAdd
@@ -97,7 +97,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(12, 483);
+            this.btnAdd.Location = new System.Drawing.Point(12, 867);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 52);
             this.btnAdd.TabIndex = 11;
@@ -114,7 +114,7 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_133_Icon_48;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(98, 483);
+            this.btnRemove.Location = new System.Drawing.Point(98, 867);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 52);
             this.btnRemove.TabIndex = 12;
@@ -131,7 +131,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(591, 483);
+            this.btnSave.Location = new System.Drawing.Point(591, 867);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -158,17 +158,15 @@
             this.lblDocumentSequenceName.TabIndex = 15;
             this.lblDocumentSequenceName.Text = "?";
             // 
-            // dgvFieldsBindingSource
+            // TransactonTypeID
             // 
-            this.dgvFieldsBindingSource.DataSource = typeof(FlameTradeSS.DgvFields);
-            // 
-            // documentSequencesPropertiesBindingSource
-            // 
-            this.documentSequencesPropertiesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            this.TransactonTypeID.DataPropertyName = "TransactonTypeID";
+            this.TransactonTypeID.DataSource = this.transactionsTypeBindingSource;
+            this.TransactonTypeID.DisplayMember = "TypeName";
+            this.TransactonTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.TransactonTypeID.HeaderText = "Transacton Type";
+            this.TransactonTypeID.Name = "TransactonTypeID";
+            this.TransactonTypeID.ValueMember = "ID";
             // 
             // dgvFieldsIDDataGridViewTextBoxColumn
             // 
@@ -183,15 +181,13 @@
             this.dgvFieldsIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.dgvFieldsIDDataGridViewTextBoxColumn.Width = 250;
             // 
-            // TransactonTypeID
+            // dgvFieldsBindingSource
             // 
-            this.TransactonTypeID.DataPropertyName = "TransactonTypeID";
-            this.TransactonTypeID.DataSource = this.transactionsTypeBindingSource;
-            this.TransactonTypeID.DisplayMember = "TypeName";
-            this.TransactonTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.TransactonTypeID.HeaderText = "Transacton Type";
-            this.TransactonTypeID.Name = "TransactonTypeID";
-            this.TransactonTypeID.ValueMember = "ID";
+            this.dgvFieldsBindingSource.DataSource = typeof(FlameTradeSS.DgvFields);
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // inVisibleDataGridViewTextBoxColumn
             // 
@@ -223,12 +219,16 @@
             this.disabledDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.disabledDataGridViewTextBoxColumn.TrueValue = "1";
             // 
+            // documentSequencesPropertiesBindingSource
+            // 
+            this.documentSequencesPropertiesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
+            // 
             // frmDocumentSequencesProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(696, 547);
+            this.ClientSize = new System.Drawing.Size(696, 931);
             this.Controls.Add(this.lblDocumentSequenceName);
             this.Controls.Add(this.lblDocumentSequenceLabel);
             this.Controls.Add(this.btnSave);
@@ -246,8 +246,8 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
