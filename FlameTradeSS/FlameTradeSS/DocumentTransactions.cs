@@ -48,6 +48,8 @@ namespace FlameTradeSS
         public int IsCanceled { get; set; }
         public Nullable<int> tempID { get; set; }
         public int NotForInvoice { get; set; }
+        public int ReceiptModelID { get; set; }
+        public Nullable<int> TransactionSurfaceID { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Documents Documents { get; set; }
@@ -63,5 +65,7 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionsTransformations> TransactionsTransformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionsTransformations> TransactionsTransformations1 { get; set; }
+        public virtual ReceiptModels ReceiptModels { get; set; }
+        public virtual Surfaces Surfaces { get; set; }
     }
 }

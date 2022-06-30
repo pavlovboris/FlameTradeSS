@@ -369,6 +369,12 @@
     <Compile Include="ReceiptLines.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptModels.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptModelsItemCategories.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RoleOfPersons.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -595,6 +601,7 @@
     <None Include="Properties\DataSources\PersonsFullNameView.datasource" />
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
     <None Include="Properties\DataSources\Project.datasource" />
+    <None Include="Properties\DataSources\ReceiptModels.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequencesTransactions.datasource" />

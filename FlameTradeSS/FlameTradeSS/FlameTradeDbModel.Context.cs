@@ -83,5 +83,7 @@ namespace FlameTradeSS
         public virtual DbSet<TaskStatuses> TaskStatuses { get; set; }
         public virtual DbSet<DgvFields> DgvFields { get; set; }
         public virtual DbSet<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
+        public virtual DbSet<ReceiptModels> ReceiptModels { get; set; }
+        public virtual DbSet<ReceiptModelsItemCategories> ReceiptModelsItemCategories { get; set; }
     }
 }

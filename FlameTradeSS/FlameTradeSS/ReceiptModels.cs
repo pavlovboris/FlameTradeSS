@@ -12,23 +12,31 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemCategory
+    public partial class ReceiptModels
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ItemCategory()
+        public ReceiptModels()
         {
-            this.Items = new HashSet<Items>();
+            this.DocumentTransactions = new HashSet<DocumentTransactions>();
             this.ReceiptModelsItemCategories = new HashSet<ReceiptModelsItemCategories>();
+            this.TransactionReceipt = new HashSet<TransactionReceipt>();
         }
     
         public int ID { get; set; }
-        public string CategoryCode { get; set; }
-        public string CategoryName { get; set; }
-        public string CategoryDescription { get; set; }
+        public string ModelName { get; set; }
+        public string ModelDescription { get; set; }
+        public int HasGeneralItems { get; set; }
+        public int IsItemDirectRelated { get; set; }
+        public int IsColorDirectRelated { get; set; }
+        public int IsPartitionDIrectRelated { get; set; }
+        public int IsSecondPartitionDirectRelated { get; set; }
+        public int IsSurfaceDirectRelated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Items> Items { get; set; }
+        public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReceiptModelsItemCategories> ReceiptModelsItemCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionReceipt> TransactionReceipt { get; set; }
     }
 }

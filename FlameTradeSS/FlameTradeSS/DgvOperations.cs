@@ -12,7 +12,18 @@ namespace FlameTradeSS
 
         public DataGridView ConfigureDgv(DataGridView dgv, FlameTradeDbEntities db,DocumentSequences sequences, DocumentTransactions documentTransactions)
         {
-            List<DocumentSequencesProperties> documentSequencesProperties = db.DocumentSequencesProperties.Where(dsp => dsp.DocumentSequenceID == sequences.ID && dsp.TransactonTypeID==documentTransactions.TransactionTypeID).ToList();
+            string doctrams = null;
+            List<DocumentSequencesProperties> documentSequencesProperties;
+            if (documentTransactions.TransactionTypeID==0)
+            {
+                 documentSequencesProperties = db.DocumentSequencesProperties.Where(dsp => dsp.DocumentSequenceID == sequences.ID && dsp.TransactonTypeID == null).ToList();
+
+            } else
+            {
+                documentSequencesProperties = db.DocumentSequencesProperties.Where(dsp => dsp.DocumentSequenceID == sequences.ID && dsp.TransactonTypeID == documentTransactions.TransactionTypeID).ToList();
+
+            }
+
             List<DgvFields> dgvFields = db.DgvFields.Where(df => df.DataGridViewName == dgv.Name).ToList();
             List<DocumentSequencesProperties> sequencesDgvFields = new List<DocumentSequencesProperties>();
 

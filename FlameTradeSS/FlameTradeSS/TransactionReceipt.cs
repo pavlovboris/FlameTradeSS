@@ -25,11 +25,19 @@ namespace FlameTradeSS
         public string Name { get; set; }
         public string Description { get; set; }
         public int ItemID { get; set; }
+        public int ReceiptModelID { get; set; }
+        public int ColorID { get; set; }
+        public int PartitionID { get; set; }
+        public int SecondPartitionID { get; set; }
+        public int SurfaceID { get; set; }
     
         public virtual Items Items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReceiptLines> ReceiptLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLines> TransactionLines { get; set; }
+        public virtual Partitions Partitions { get; set; }
+        public virtual Partitions Partitions1 { get; set; }
+        public virtual ReceiptModels ReceiptModels { get; set; }
     }
 }

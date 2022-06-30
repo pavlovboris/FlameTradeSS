@@ -129,6 +129,8 @@
           <Property Name="IsCanceled" Type="int" Nullable="false" />
           <Property Name="tempID" Type="int" />
           <Property Name="NotForInvoice" Type="int" Nullable="false" />
+          <Property Name="ReceiptModelID" Type="int" Nullable="false" />
+          <Property Name="TransactionSurfaceID" Type="int" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -400,6 +402,29 @@
           <Property Name="ItemQTY" Type="float" Nullable="false" />
           <Property Name="ItemPartitionID" Type="int" Nullable="false" />
           <Property Name="SecondPartitionID" Type="int" Nullable="false" />
+          <Property Name="SurfaceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReceiptModels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModelDescription" Type="varchar" MaxLength="250" />
+          <Property Name="HasGeneralItems" Type="int" Nullable="false" />
+          <Property Name="IsItemDirectRelated" Type="int" Nullable="false" />
+          <Property Name="IsColorDirectRelated" Type="int" Nullable="false" />
+          <Property Name="IsPartitionDIrectRelated" Type="int" Nullable="false" />
+          <Property Name="IsSecondPartitionDirectRelated" Type="int" Nullable="false" />
+          <Property Name="IsSurfaceDirectRelated" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReceiptModelsItemCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReceiptModelID" Type="int" Nullable="false" />
+          <Property Name="ItemCategoryID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleOfPersons">
           <Key>
@@ -551,6 +576,11 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ReceiptModelID" Type="int" Nullable="false" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="PartitionID" Type="int" Nullable="false" />
+          <Property Name="SecondPartitionID" Type="int" Nullable="false" />
+          <Property Name="SurfaceID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TransactionsTransformations">
           <Key>
@@ -763,6 +793,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="DocumentTransactions">
               <PropertyRef Name="DocumentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactions_ReceiptModels">
+          <End Role="ReceiptModels" Type="Self.ReceiptModels" Multiplicity="1" />
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactions_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="0..1" />
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="TransactionSurfaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1234,6 +1288,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReceiptModelsItemCategories_ItemCategory">
+          <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="1" />
+          <End Role="ReceiptModelsItemCategories" Type="Self.ReceiptModelsItemCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptModelsItemCategories">
+              <PropertyRef Name="ItemCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptModelsItemCategories_ReceiptModels">
+          <End Role="ReceiptModels" Type="Self.ReceiptModels" Multiplicity="1" />
+          <End Role="ReceiptModelsItemCategories" Type="Self.ReceiptModelsItemCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptModelsItemCategories">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SequencesTransactions_SquenceID">
           <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
           <End Role="SequencesTransactions" Type="Self.SequencesTransactions" Multiplicity="*" />
@@ -1474,6 +1552,42 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionReceipt_Partitions">
+          <End Role="Partitions" Type="Self.Partitions" Multiplicity="1" />
+          <End Role="TransactionReceipt" Type="Self.TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partitions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="PartitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_Partitions1">
+          <End Role="Partitions" Type="Self.Partitions" Multiplicity="1" />
+          <End Role="TransactionReceipt" Type="Self.TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partitions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="SecondPartitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_ReceiptModels">
+          <End Role="ReceiptModels" Type="Self.ReceiptModels" Multiplicity="1" />
+          <End Role="TransactionReceipt" Type="Self.TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionsTransformations_OriginTransactionID">
           <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
           <End Role="TransactionsTransformations" Type="Self.TransactionsTransformations" Multiplicity="*" />
@@ -1586,6 +1700,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPersons" EntityType="Self.ProjectPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptLines" EntityType="Self.ReceiptLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptModels" EntityType="Self.ReceiptModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptModelsItemCategories" EntityType="Self.ReceiptModelsItemCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleOfPersons" EntityType="Self.RoleOfPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SequencesTransactions" EntityType="Self.SequencesTransactions" Schema="dbo" store:Type="Tables" />
@@ -1664,6 +1780,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_DocumentTransactions_DocumentsID" Association="Self.FK_DocumentTransactions_DocumentsID">
             <End Role="Documents" EntitySet="Documents" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactions_ReceiptModels" Association="Self.FK_DocumentTransactions_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactions_Surfaces" Association="Self.FK_DocumentTransactions_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentTransactions_TransactionTypeID" Association="Self.FK_DocumentTransactions_TransactionTypeID">
@@ -1822,6 +1946,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
             <End Role="ReceiptLines" EntitySet="ReceiptLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReceiptModelsItemCategories_ItemCategory" Association="Self.FK_ReceiptModelsItemCategories_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="ReceiptModelsItemCategories" EntitySet="ReceiptModelsItemCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptModelsItemCategories_ReceiptModels" Association="Self.FK_ReceiptModelsItemCategories_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="ReceiptModelsItemCategories" EntitySet="ReceiptModelsItemCategories" />
+          </AssociationSet>
           <AssociationSet Name="FK_SequencesTransactions_SquenceID" Association="Self.FK_SequencesTransactions_SquenceID">
             <End Role="DocumentSequences" EntitySet="DocumentSequences" />
             <End Role="SequencesTransactions" EntitySet="SequencesTransactions" />
@@ -1900,6 +2032,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_TransactionReceipt_ItemID" Association="Self.FK_TransactionReceipt_ItemID">
             <End Role="Items" EntitySet="Items" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Partitions" Association="Self.FK_TransactionReceipt_Partitions">
+            <End Role="Partitions" EntitySet="Partitions" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Partitions1" Association="Self.FK_TransactionReceipt_Partitions1">
+            <End Role="Partitions" EntitySet="Partitions" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_ReceiptModels" Association="Self.FK_TransactionReceipt_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
             <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionsTransformations_OriginTransactionID" Association="Self.FK_TransactionsTransformations_OriginTransactionID">
@@ -2057,6 +2201,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionsTransformations1" Relationship="Self.FK_TransactionsTransformations_TransactionID" FromRole="DocumentTransactions" ToRole="TransactionsTransformations" />
           <Property Name="tempID" Type="Int32" />
           <Property Name="NotForInvoice" Type="Int32" Nullable="false" />
+          <Property Name="ReceiptModelID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionSurfaceID" Type="Int32" />
+          <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_DocumentTransactions_ReceiptModels" FromRole="DocumentTransactions" ToRole="ReceiptModels" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="DocumentTransactions" ToRole="Surfaces" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -2127,6 +2275,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="CategoryCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoryDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ReceiptModelsItemCategories" Relationship="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ItemCategory" FromRole="ItemCategory" ToRole="ReceiptModelsItemCategories" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -2261,6 +2410,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="ReceiptLines1" Relationship="Self.FK_ReceiptLines_SecondPartitionID" FromRole="Partitions" ToRole="ReceiptLines" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_TransactionLines_PartitionID" FromRole="Partitions" ToRole="TransactionLines" />
           <NavigationProperty Name="TransactionLines1" Relationship="Self.FK_TransactionLines_SecondPartitionID" FromRole="Partitions" ToRole="TransactionLines" />
+          <NavigationProperty Name="TransactionReceipt" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions" FromRole="Partitions" ToRole="TransactionReceipt" />
+          <NavigationProperty Name="TransactionReceipt1" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions1" FromRole="Partitions" ToRole="TransactionReceipt" />
         </EntityType>
         <EntityType Name="PartitionType">
           <Key>
@@ -2395,6 +2546,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Partitions" Relationship="Self.FK_ReceiptLines_ItemPartitionID" FromRole="ReceiptLines" ToRole="Partitions" />
           <NavigationProperty Name="Partitions1" Relationship="Self.FK_ReceiptLines_SecondPartitionID" FromRole="ReceiptLines" ToRole="Partitions" />
           <NavigationProperty Name="TransactionReceipt" Relationship="Self.FK_ReceiptLines_TransactionReceiptID" FromRole="ReceiptLines" ToRole="TransactionReceipt" />
+          <Property Name="SurfaceID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleOfPersons">
           <Key>
@@ -2548,6 +2700,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Items" Relationship="Self.FK_TransactionReceipt_ItemID" FromRole="TransactionReceipt" ToRole="Items" />
           <NavigationProperty Name="ReceiptLines" Relationship="Self.FK_ReceiptLines_TransactionReceiptID" FromRole="TransactionReceipt" ToRole="ReceiptLines" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_TransactionLines_ReceiptID" FromRole="TransactionReceipt" ToRole="TransactionLines" />
+          <Property Name="ReceiptModelID" Type="Int32" Nullable="false" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="PartitionID" Type="Int32" Nullable="false" />
+          <Property Name="SecondPartitionID" Type="Int32" Nullable="false" />
+          <Property Name="SurfaceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Partitions" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions" FromRole="TransactionReceipt" ToRole="Partitions" />
+          <NavigationProperty Name="Partitions1" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions1" FromRole="TransactionReceipt" ToRole="Partitions" />
+          <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels" FromRole="TransactionReceipt" ToRole="ReceiptModels" />
         </EntityType>
         <EntityType Name="TransactionsTransformations">
           <Key>
@@ -3779,6 +3939,36 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="DocumentSequencesProperties" EntitySet="DocumentSequencesProperties" />
           </AssociationSet>
+          <EntitySet Name="ReceiptModels" EntityType="FlameTradeDbModel.ReceiptModels" />
+          <EntitySet Name="ReceiptModelsItemCategories" EntityType="FlameTradeDbModel.ReceiptModelsItemCategories" />
+          <AssociationSet Name="FK_DocumentTransactions_ReceiptModels" Association="FlameTradeDbModel.FK_DocumentTransactions_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactions_Surfaces" Association="FlameTradeDbModel.FK_DocumentTransactions_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptModelsItemCategories_ItemCategory" Association="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ItemCategory">
+            <End Role="ItemCategory" EntitySet="ItemCategory" />
+            <End Role="ReceiptModelsItemCategories" EntitySet="ReceiptModelsItemCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Partitions" Association="FlameTradeDbModel.FK_TransactionReceipt_Partitions">
+            <End Role="Partitions" EntitySet="Partitions" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Partitions1" Association="FlameTradeDbModel.FK_TransactionReceipt_Partitions1">
+            <End Role="Partitions" EntitySet="Partitions" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptModelsItemCategories_ReceiptModels" Association="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="ReceiptModelsItemCategories" EntitySet="ReceiptModelsItemCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_ReceiptModels" Association="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels">
+            <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -3852,6 +4042,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="SurfaceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SurfaceDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Items" Relationship="FlameTradeDbModel.FK_Items_Surfaces" FromRole="Surfaces" ToRole="Items" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="Surfaces" ToRole="DocumentTransactions" />
         </EntityType>
         <Association Name="FK_Items_Surfaces">
           <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
@@ -4004,6 +4195,117 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ReceiptModels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModelDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="HasGeneralItems" Type="Int32" Nullable="false" />
+          <Property Name="IsItemDirectRelated" Type="Int32" Nullable="false" />
+          <Property Name="IsColorDirectRelated" Type="Int32" Nullable="false" />
+          <Property Name="IsPartitionDIrectRelated" Type="Int32" Nullable="false" />
+          <Property Name="IsSecondPartitionDirectRelated" Type="Int32" Nullable="false" />
+          <Property Name="IsSurfaceDirectRelated" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactions_ReceiptModels" FromRole="ReceiptModels" ToRole="DocumentTransactions" />
+          <NavigationProperty Name="ReceiptModelsItemCategories" Relationship="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ReceiptModels" FromRole="ReceiptModels" ToRole="ReceiptModelsItemCategories" />
+          <NavigationProperty Name="TransactionReceipt" Relationship="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels" FromRole="ReceiptModels" ToRole="TransactionReceipt" />
+        </EntityType>
+        <EntityType Name="ReceiptModelsItemCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiptModelID" Type="Int32" Nullable="false" />
+          <Property Name="ItemCategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemCategory" Relationship="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ItemCategory" FromRole="ReceiptModelsItemCategories" ToRole="ItemCategory" />
+          <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ReceiptModels" FromRole="ReceiptModelsItemCategories" ToRole="ReceiptModels" />
+        </EntityType>
+        <Association Name="FK_DocumentTransactions_ReceiptModels">
+          <End Type="FlameTradeDbModel.ReceiptModels" Role="ReceiptModels" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactions_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="TransactionSurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptModelsItemCategories_ItemCategory">
+          <End Type="FlameTradeDbModel.ItemCategory" Role="ItemCategory" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.ReceiptModelsItemCategories" Role="ReceiptModelsItemCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptModelsItemCategories">
+              <PropertyRef Name="ItemCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_Partitions">
+          <End Type="FlameTradeDbModel.Partitions" Role="Partitions" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionReceipt" Role="TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partitions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="PartitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_Partitions1">
+          <End Type="FlameTradeDbModel.Partitions" Role="Partitions" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionReceipt" Role="TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partitions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="SecondPartitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptModelsItemCategories_ReceiptModels">
+          <End Type="FlameTradeDbModel.ReceiptModels" Role="ReceiptModels" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.ReceiptModelsItemCategories" Role="ReceiptModelsItemCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptModelsItemCategories">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_ReceiptModels">
+          <End Type="FlameTradeDbModel.ReceiptModels" Role="ReceiptModels" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionReceipt" Role="TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptModels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4088,6 +4390,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="TransactionSurfaceID" ColumnName="TransactionSurfaceID" />
+                <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
                 <ScalarProperty Name="NotForInvoice" ColumnName="NotForInvoice" />
                 <ScalarProperty Name="tempID" ColumnName="tempID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -4395,6 +4699,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="ReceiptLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.ReceiptLines">
               <MappingFragment StoreEntitySet="ReceiptLines">
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionReceiptID" ColumnName="TransactionReceiptID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
@@ -4532,6 +4837,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionReceipt">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionReceipt">
               <MappingFragment StoreEntitySet="TransactionReceipt">
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
+                <ScalarProperty Name="SecondPartitionID" ColumnName="SecondPartitionID" />
+                <ScalarProperty Name="PartitionID" ColumnName="PartitionID" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -4655,6 +4965,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="InVisible" ColumnName="InVisible" />
                 <ScalarProperty Name="DgvFieldsID" ColumnName="DgvFieldsID" />
                 <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiptModels">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.ReceiptModels">
+              <MappingFragment StoreEntitySet="ReceiptModels">
+                <ScalarProperty Name="IsSurfaceDirectRelated" ColumnName="IsSurfaceDirectRelated" />
+                <ScalarProperty Name="IsSecondPartitionDirectRelated" ColumnName="IsSecondPartitionDirectRelated" />
+                <ScalarProperty Name="IsPartitionDIrectRelated" ColumnName="IsPartitionDIrectRelated" />
+                <ScalarProperty Name="IsColorDirectRelated" ColumnName="IsColorDirectRelated" />
+                <ScalarProperty Name="IsItemDirectRelated" ColumnName="IsItemDirectRelated" />
+                <ScalarProperty Name="HasGeneralItems" ColumnName="HasGeneralItems" />
+                <ScalarProperty Name="ModelDescription" ColumnName="ModelDescription" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiptModelsItemCategories">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.ReceiptModelsItemCategories">
+              <MappingFragment StoreEntitySet="ReceiptModelsItemCategories">
+                <ScalarProperty Name="ItemCategoryID" ColumnName="ItemCategoryID" />
+                <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

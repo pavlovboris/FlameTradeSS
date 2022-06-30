@@ -56,9 +56,12 @@ namespace FlameTradeSS
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
-            documentSequencesPropertiesBindingSource.DataSource = db.DocumentSequencesProperties.Where(ds => ds.DocumentSequenceID == documentSequences.ID).ToList();
-            dgvFieldsBindingSource.DataSource = db.DgvFields.ToList();
+            documentSequencesPropertiesBindingSource.DataSource = db.DocumentSequencesProperties.Where(ds => ds.DocumentSequenceID == documentSequences.ID && ds.DgvFields.DataGridViewName== "dgvTransactionLines").ToList();
+            documentSequencesPropertiesBindingSource1.DataSource = db.DocumentSequencesProperties.Where(ds1 => ds1.DocumentSequenceID==documentSequences.ID &&  ds1.DgvFields.DataGridViewName== "dgvDocumentTransactions").ToList();
+            dgvFieldsBindingSource.DataSource = db.DgvFields.Where(dgvf1 => dgvf1.DataGridViewName == "dgvTransactionLines").ToList();
+            dgvFieldsBindingSource1.DataSource = db.DgvFields.Where(dgvf1 => dgvf1.DataGridViewName == "dgvDocumentTransactions").ToList();
             dgvFieldsBindingSource.Add(new DgvFields());
+            dgvFieldsBindingSource1.Add(new DgvFields());
             transactionsTypeBindingSource.DataSource = db.TransactionsType.Where(tt => tt.SequencesTransactions.Where(st => st.SquenceID==documentSequences.ID).Any()).ToList();
             lblDocumentSequenceName.Text = documentSequences.SequenceName;
         }
@@ -100,7 +103,7 @@ namespace FlameTradeSS
         private void btnRemove_Click(object sender, EventArgs e)
         {
             DocumentSequencesProperties documentSequencesProperties= dgvDocumentSequenceProperties.CurrentRow.DataBoundItem as DocumentSequencesProperties;
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + documentSequencesProperties.DgvFields.FieldName + "?") == true)
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : ?") == true)
             {
                 if (documentSequencesProperties!=null)
                 {
@@ -108,6 +111,30 @@ namespace FlameTradeSS
                         documentSequencesPropertiesBindingSource.Remove(documentSequencesProperties);
                         db.DocumentSequencesProperties.Remove(documentSequencesProperties);
                     
+                }
+            }
+        }
+
+        private void buttonAdd2_Click(object sender, EventArgs e)
+        {
+            DocumentSequencesProperties documentSequencesProperties = new DocumentSequencesProperties();
+            documentSequencesProperties.DocumentSequenceID = documentSequences.ID;
+            documentSequencesPropertiesBindingSource1.Add(documentSequencesProperties);
+            documentSequencesPropertiesBindingSource1.MoveLast();
+            db.DocumentSequencesProperties.Add(documentSequencesProperties);
+        }
+
+        private void buttonRemove2_Click(object sender, EventArgs e)
+        {
+            DocumentSequencesProperties documentSequencesProperties = dgvDocumentSequenceProperties2.CurrentRow.DataBoundItem as DocumentSequencesProperties;
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : ?") == true)
+            {
+                if (documentSequencesProperties != null)
+                {
+
+                    documentSequencesPropertiesBindingSource1.Remove(documentSequencesProperties);
+                    db.DocumentSequencesProperties.Remove(documentSequencesProperties);
+
                 }
             }
         }

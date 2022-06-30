@@ -28,11 +28,15 @@ namespace FlameTradeSS
 
             CurrentSessionData.Counter = maxID;
 
+            DgvOperations dgvOperations = new DgvOperations();
+
+
             partnersBindingSource.DataSource = db.Partners.ToList();
             documentsBindingSource.DataSource = newDocument;
             documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
             documentSequencesBindingSource.DataSource = newDocument.DocumentSequences;
-
+            receiptModelsBindingSource.DataSource = db.ReceiptModels.ToList();
+            surfacesBindingSource.DataSource = db.Surfaces.ToList();
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
             documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
@@ -47,10 +51,6 @@ namespace FlameTradeSS
                     projectBindingSource.Add(project);
                 }
             }
-
-
-
-
 
             List<SequencesTransactions> lines = new List<SequencesTransactions>();
 
@@ -117,6 +117,8 @@ namespace FlameTradeSS
 
             Cursor.Current = Cursors.Default;
             Show();
+            dgvDocumentTransactions = dgvOperations.ConfigureDgv(dgvDocumentTransactions, db, newDocument.DocumentSequences, new DocumentTransactions());
+
         }
 
         //private static readonly SecurityService securityService = new SecurityService();
@@ -173,7 +175,6 @@ namespace FlameTradeSS
                         }
                         //make isBlocked=1;
                         await db.SaveChangesAsync();
-
                         
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
@@ -243,8 +244,6 @@ namespace FlameTradeSS
             }
         }
 
-
-
         private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
             if (listBoxTransactionsAdd.SelectedItem != null)
@@ -253,7 +252,6 @@ namespace FlameTradeSS
                 DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 
                 int tempID = CurrentSessionData.Counter + 1;
-
 
                 CurrentSessionData.Counter = tempID;
 
@@ -267,8 +265,6 @@ namespace FlameTradeSS
 
                 newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + newDocumentTransaction.tempID;
 
-
-
                 // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
                 newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                 newfrmDocumentTransactions.MdiParent = this;
@@ -278,7 +274,6 @@ namespace FlameTradeSS
                 newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
                 newfrmDocumentTransactions.db = db;
                 // newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
-
 
                 TabPage newTabFrmDocumentTransactions = new TabPage();
 
@@ -297,8 +292,7 @@ namespace FlameTradeSS
                 cmbDocumentSequence.Enabled = false;
 
                 await db.SaveChangesAsync();
-            }
-           
+            }           
         }
 
         private void NewTabFrmDocumentTransactions_Click(object sender, EventArgs e)
@@ -310,7 +304,6 @@ namespace FlameTradeSS
             frmDocumentTransactions closingForm = (frmDocumentTransactions)sender;
             e.Cancel = true;
             closingForm.Hide();
-
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -318,7 +311,6 @@ namespace FlameTradeSS
             if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
             {
                 bool isOpened = false;
-
 
                 DocumentTransactions documentTransactions = new DocumentTransactions();
                 documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
@@ -376,11 +368,8 @@ namespace FlameTradeSS
                     //   newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
                     newfrmDocumentTransactions.Show();
                 } else
-                {
-                   
+                {                   
                 }
-
-
             }
         }
 

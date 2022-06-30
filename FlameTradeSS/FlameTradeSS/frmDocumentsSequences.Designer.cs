@@ -32,16 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentsSequences));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvDocumentSequences = new System.Windows.Forms.DataGridView();
-            this.sequenceNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sequenceDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isRealDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.typeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.sequenceTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contextMenuStripDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.documentSequencesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.contextMenuStripDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sequenceNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sequenceDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isRealDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.typeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -87,48 +87,15 @@
             this.dgvDocumentSequences.Size = new System.Drawing.Size(570, 346);
             this.dgvDocumentSequences.TabIndex = 10;
             // 
-            // sequenceNameDataGridViewTextBoxColumn
-            // 
-            this.sequenceNameDataGridViewTextBoxColumn.DataPropertyName = "SequenceName";
-            this.sequenceNameDataGridViewTextBoxColumn.HeaderText = "Sequence Name";
-            this.sequenceNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.sequenceNameDataGridViewTextBoxColumn.Name = "sequenceNameDataGridViewTextBoxColumn";
-            this.sequenceNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // sequenceDescriptionDataGridViewTextBoxColumn
-            // 
-            this.sequenceDescriptionDataGridViewTextBoxColumn.DataPropertyName = "SequenceDescription";
-            this.sequenceDescriptionDataGridViewTextBoxColumn.HeaderText = "SequenceDescription";
-            this.sequenceDescriptionDataGridViewTextBoxColumn.MaxInputLength = 250;
-            this.sequenceDescriptionDataGridViewTextBoxColumn.Name = "sequenceDescriptionDataGridViewTextBoxColumn";
-            this.sequenceDescriptionDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // isRealDataGridViewTextBoxColumn
-            // 
-            this.isRealDataGridViewTextBoxColumn.DataPropertyName = "IsReal";
-            this.isRealDataGridViewTextBoxColumn.FalseValue = "0";
-            this.isRealDataGridViewTextBoxColumn.HeaderText = "IsReal";
-            this.isRealDataGridViewTextBoxColumn.Name = "isRealDataGridViewTextBoxColumn";
-            this.isRealDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.isRealDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.isRealDataGridViewTextBoxColumn.TrueValue = "1";
-            // 
-            // typeIDDataGridViewTextBoxColumn
-            // 
-            this.typeIDDataGridViewTextBoxColumn.DataPropertyName = "TypeID";
-            this.typeIDDataGridViewTextBoxColumn.DataSource = this.sequenceTypeBindingSource;
-            this.typeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
-            this.typeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.typeIDDataGridViewTextBoxColumn.HeaderText = "Sequence Type";
-            this.typeIDDataGridViewTextBoxColumn.Name = "typeIDDataGridViewTextBoxColumn";
-            this.typeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.typeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.typeIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.typeIDDataGridViewTextBoxColumn.Width = 150;
-            // 
             // sequenceTypeBindingSource
             // 
             this.sequenceTypeBindingSource.DataSource = typeof(FlameTradeSS.SequenceType);
+            // 
+            // contextMenuStripDgv
+            // 
+            this.contextMenuStripDgv.Name = "contextMenuStripDgv";
+            this.contextMenuStripDgv.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStripDgv.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDgv_Opening);
             // 
             // documentSequencesBindingSource
             // 
@@ -185,11 +152,44 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // contextMenuStripDgv
+            // sequenceNameDataGridViewTextBoxColumn
             // 
-            this.contextMenuStripDgv.Name = "contextMenuStripDgv";
-            this.contextMenuStripDgv.Size = new System.Drawing.Size(181, 26);
-            this.contextMenuStripDgv.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDgv_Opening);
+            this.sequenceNameDataGridViewTextBoxColumn.DataPropertyName = "SequenceName";
+            this.sequenceNameDataGridViewTextBoxColumn.HeaderText = "Sequence Name";
+            this.sequenceNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.sequenceNameDataGridViewTextBoxColumn.Name = "sequenceNameDataGridViewTextBoxColumn";
+            this.sequenceNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // sequenceDescriptionDataGridViewTextBoxColumn
+            // 
+            this.sequenceDescriptionDataGridViewTextBoxColumn.DataPropertyName = "SequenceDescription";
+            this.sequenceDescriptionDataGridViewTextBoxColumn.HeaderText = "SequenceDescription";
+            this.sequenceDescriptionDataGridViewTextBoxColumn.MaxInputLength = 250;
+            this.sequenceDescriptionDataGridViewTextBoxColumn.Name = "sequenceDescriptionDataGridViewTextBoxColumn";
+            this.sequenceDescriptionDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // isRealDataGridViewTextBoxColumn
+            // 
+            this.isRealDataGridViewTextBoxColumn.DataPropertyName = "IsReal";
+            this.isRealDataGridViewTextBoxColumn.FalseValue = "0";
+            this.isRealDataGridViewTextBoxColumn.HeaderText = "IsReal";
+            this.isRealDataGridViewTextBoxColumn.Name = "isRealDataGridViewTextBoxColumn";
+            this.isRealDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isRealDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.isRealDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // typeIDDataGridViewTextBoxColumn
+            // 
+            this.typeIDDataGridViewTextBoxColumn.DataPropertyName = "TypeID";
+            this.typeIDDataGridViewTextBoxColumn.DataSource = this.sequenceTypeBindingSource;
+            this.typeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
+            this.typeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.typeIDDataGridViewTextBoxColumn.HeaderText = "Sequence Type";
+            this.typeIDDataGridViewTextBoxColumn.Name = "typeIDDataGridViewTextBoxColumn";
+            this.typeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.typeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.typeIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.typeIDDataGridViewTextBoxColumn.Width = 150;
             // 
             // frmDocumentsSequences
             // 
@@ -228,10 +228,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource sequenceTypeBindingSource;
         private System.Windows.Forms.BindingSource documentSequencesBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn sequenceNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sequenceDescriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isRealDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn typeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripDgv;
     }
 }

@@ -117,16 +117,15 @@ namespace FlameTradeSS
                 DocumentSequences documentSequences = dgvDocumentSequences.CurrentRow.DataBoundItem as DocumentSequences;
                 if (documentSequences!=null && documentSequences.ID!= 0) 
                 {
-
-
                     ToolStripMenuItem editSequencesPropertirs = new ToolStripMenuItem();
                     editSequencesPropertirs.Text = "Редактиране на Свойствата на : " + documentSequences.SequenceName;
                     editSequencesPropertirs.Click += EditSequencesPropertirs_Click;
                     contextMenuStripDgv.Items.Add(editSequencesPropertirs);
+                } else if (documentSequences.ID == 0)
+                {
+                    CommonTasks.SendErrorMsg("Моля, преди да продължите, ЗАПАМЕТЕТЕ промените");
                 }
-            }
-
-            
+             }
         }
 
         private void EditSequencesPropertirs_Click(object sender, EventArgs e)

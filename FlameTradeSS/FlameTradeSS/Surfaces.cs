@@ -18,6 +18,7 @@ namespace FlameTradeSS
         public Surfaces()
         {
             this.Items = new HashSet<Items>();
+            this.DocumentTransactions = new HashSet<DocumentTransactions>();
         }
     
         public int ID { get; set; }
@@ -27,5 +28,7 @@ namespace FlameTradeSS
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Items> Items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
     }
 }

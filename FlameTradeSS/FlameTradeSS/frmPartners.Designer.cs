@@ -34,7 +34,11 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvPartners = new System.Windows.Forms.DataGridView();
+            this.partnerGroupsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partnerCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partnerStaticPriceGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblFilter = new System.Windows.Forms.Label();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.partnernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,12 +48,8 @@
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.partnerGroupsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.partnerCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.staticPriceGroupIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.partnerStaticPriceGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnerGroupsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnerCategoryBindingSource)).BeginInit();
@@ -154,6 +154,18 @@
             this.dgvPartners.TabIndex = 9;
             this.dgvPartners.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPartners_CellMouseDown);
             // 
+            // partnerGroupsBindingSource
+            // 
+            this.partnerGroupsBindingSource.DataSource = typeof(FlameTradeSS.PartnerGroups);
+            // 
+            // partnerCategoryBindingSource
+            // 
+            this.partnerCategoryBindingSource.DataSource = typeof(FlameTradeSS.PartnerCategory);
+            // 
+            // partnerStaticPriceGroupBindingSource
+            // 
+            this.partnerStaticPriceGroupBindingSource.DataSource = typeof(FlameTradeSS.PartnerStaticPriceGroup);
+            // 
             // contextMenuDgv
             // 
             this.contextMenuDgv.Name = "contextMenuDgv";
@@ -161,6 +173,10 @@
             this.contextMenuDgv.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuDgv_Closing);
             this.contextMenuDgv.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuDgv_Opening);
             this.contextMenuDgv.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuDgv_ItemClicked);
+            // 
+            // partnersBindingSource
+            // 
+            this.partnersBindingSource.DataSource = typeof(FlameTradeSS.Partners);
             // 
             // lblFilter
             // 
@@ -230,52 +246,36 @@
             this.groupIDDataGridViewTextBoxColumn.DataPropertyName = "GroupID";
             this.groupIDDataGridViewTextBoxColumn.DataSource = this.partnerGroupsBindingSource;
             this.groupIDDataGridViewTextBoxColumn.DisplayMember = "GroupName";
-            this.groupIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.groupIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.groupIDDataGridViewTextBoxColumn.HeaderText = "Група";
             this.groupIDDataGridViewTextBoxColumn.Name = "groupIDDataGridViewTextBoxColumn";
             this.groupIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.groupIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.groupIDDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
-            // partnerGroupsBindingSource
-            // 
-            this.partnerGroupsBindingSource.DataSource = typeof(FlameTradeSS.PartnerGroups);
-            // 
             // categoryIDDataGridViewTextBoxColumn
             // 
             this.categoryIDDataGridViewTextBoxColumn.DataPropertyName = "CategoryID";
             this.categoryIDDataGridViewTextBoxColumn.DataSource = this.partnerCategoryBindingSource;
             this.categoryIDDataGridViewTextBoxColumn.DisplayMember = "CategoryName";
-            this.categoryIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.categoryIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.categoryIDDataGridViewTextBoxColumn.HeaderText = "Категория";
             this.categoryIDDataGridViewTextBoxColumn.Name = "categoryIDDataGridViewTextBoxColumn";
             this.categoryIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.categoryIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.categoryIDDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
-            // partnerCategoryBindingSource
-            // 
-            this.partnerCategoryBindingSource.DataSource = typeof(FlameTradeSS.PartnerCategory);
-            // 
             // staticPriceGroupIDDataGridViewTextBoxColumn
             // 
             this.staticPriceGroupIDDataGridViewTextBoxColumn.DataPropertyName = "StaticPriceGroupID";
             this.staticPriceGroupIDDataGridViewTextBoxColumn.DataSource = this.partnerStaticPriceGroupBindingSource;
             this.staticPriceGroupIDDataGridViewTextBoxColumn.DisplayMember = "PriceGroupName";
-            this.staticPriceGroupIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.staticPriceGroupIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.staticPriceGroupIDDataGridViewTextBoxColumn.HeaderText = "Ценова Група";
             this.staticPriceGroupIDDataGridViewTextBoxColumn.Name = "staticPriceGroupIDDataGridViewTextBoxColumn";
             this.staticPriceGroupIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.staticPriceGroupIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.staticPriceGroupIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            // 
-            // partnerStaticPriceGroupBindingSource
-            // 
-            this.partnerStaticPriceGroupBindingSource.DataSource = typeof(FlameTradeSS.PartnerStaticPriceGroup);
-            // 
-            // partnersBindingSource
-            // 
-            this.partnersBindingSource.DataSource = typeof(FlameTradeSS.Partners);
             // 
             // frmPartners
             // 
@@ -318,6 +318,9 @@
         private System.Windows.Forms.BindingSource partnerGroupsBindingSource;
         private System.Windows.Forms.BindingSource partnerCategoryBindingSource;
         private System.Windows.Forms.BindingSource partnerStaticPriceGroupBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDgv;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn partnernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
@@ -327,8 +330,5 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn groupIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn categoryIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn staticPriceGroupIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip contextMenuDgv;
-        private System.Windows.Forms.Label lblFilter;
-        private System.Windows.Forms.TextBox txtFilter;
     }
 }

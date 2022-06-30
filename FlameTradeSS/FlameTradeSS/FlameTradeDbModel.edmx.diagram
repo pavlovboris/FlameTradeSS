@@ -142,6 +142,15 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DgvFields" />
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" />
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.ReceiptModels" Width="1.5" PointX="4.25" PointY="3.625" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.ReceiptModelsItemCategories" Width="1.5" PointX="18.5" PointY="19.125" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentTransactions_ReceiptModels" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ItemCategory" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_Partitions" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_Partitions1" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ReceiptModels" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

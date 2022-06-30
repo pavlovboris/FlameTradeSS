@@ -21,6 +21,7 @@ namespace FlameTradeSS
         public double ItemQTY { get; set; }
         public int ItemPartitionID { get; set; }
         public int SecondPartitionID { get; set; }
+        public int SurfaceID { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Items Items { get; set; }
