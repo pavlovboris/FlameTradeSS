@@ -50,11 +50,13 @@
             System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Партиди", new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Повърхности");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
             treeNode10,
             treeNode11,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Отчети");
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
@@ -153,14 +155,16 @@
             treeNode13.Text = "Видове Партиди";
             treeNode14.Name = "InventoryPartitions";
             treeNode14.Text = "Партиди";
-            treeNode15.Name = "InventorySettings";
-            treeNode15.Text = "Настройки";
-            treeNode16.Name = "InventoryReports";
-            treeNode16.Text = "Отчети";
+            treeNode15.Name = "InventorySurfaces";
+            treeNode15.Text = "Повърхности";
+            treeNode16.Name = "InventorySettings";
+            treeNode16.Text = "Настройки";
+            treeNode17.Name = "InventoryReports";
+            treeNode17.Text = "Отчети";
             this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode9,
-            treeNode15,
-            treeNode16});
+            treeNode16,
+            treeNode17});
             this.treeViewInventory.Size = new System.Drawing.Size(195, 223);
             this.treeViewInventory.TabIndex = 35;
             this.treeViewInventory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewInventory_NodeMouseDoubleClick);

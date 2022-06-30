@@ -234,7 +234,9 @@ namespace FlameTradeSS
                     frmPartitionsType frmPartitionsType = new frmPartitionsType();
                     CommonTasks.OpenForm(frmPartitionsType);
                     break;
-                case "":
+                case "InventorySurfaces":
+                    frmSurfaces frmSurfaces = new frmSurfaces();
+                    CommonTasks.OpenForm(frmSurfaces);
                     break;
             }
         }
