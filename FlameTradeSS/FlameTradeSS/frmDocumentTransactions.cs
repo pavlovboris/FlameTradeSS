@@ -132,20 +132,7 @@ namespace FlameTradeSS
 
         private void dgvTransactionLines_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex!=-1 && e.ColumnIndex == TransactionReceipt_ReceiptID_Name_ID.Index)
-            {
-                if (dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value != null)
-                {
-                    frmReceiptSelector frmReceiptSelector = new frmReceiptSelector();
-                    frmReceiptSelector.db = db;
-                    frmReceiptSelector.FormClosing += FrmReceiptSelector_FormClosing;
-                    Items item = new Items();
-                    int itmId = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
-                    item = db.Items.Where(i => i.ID ==  itmId ).SingleOrDefault();
-                    frmReceiptSelector.item = item;
-                    CommonTasks.OpenForm(frmReceiptSelector);
-                }
-            } 
+           
         }
 
         private void FrmReceiptSelector_FormClosing(object sender, FormClosingEventArgs e)
@@ -358,6 +345,70 @@ namespace FlameTradeSS
                 CommonTasks.WriteGrideViewSetting(dgvTransactionLines, Name + dgvTransactionLines.Name + CurrentSessionData.CurrentUser.UserName);
             }
             catch { }
+        }
+
+        private void dgvTransactionLines_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex!=-1 && e.ColumnIndex == Items_ItemID_Code_ID.Index)
+            {
+                //TransactionLines transactionLines = dgvTransactionLines.Rows[e.RowIndex].DataBoundItem as TransactionLines;
+                int itemID = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
+                Items item = db.Items.Where(i => i.ID.Equals(itemID)).SingleOrDefault();
+                
+
+                if (item.DefaultMu != 0)
+                {
+                    dgvTransactionLines.Rows[e.RowIndex].Cells[Mu_MuID_Code_ID.Index].Value = item.DefaultMu;
+                } 
+                
+                if (item.DefaultPartition != 0)
+                {
+                    dgvTransactionLines.Rows[e.RowIndex].Cells[Partitions_PartitionID_code_ID.Index].Value = item.DefaultPartition;
+                } 
+
+                if (item.DefaultSurfaceID!= 0)
+                {
+                    dgvTransactionLines.Rows[e.RowIndex].Cells[Surfaces_SurfaceID_SurfaceName_ID.Index].Value = item.DefaultSurfaceID;
+                }
+            }
+        }
+
+        private void dgvTransactionLines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != -1 && e.ColumnIndex == TransactionReceipt_ReceiptID_Name_ID.Index)
+            {
+                if (dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value != null)
+                {
+                    frmReceiptSelector frmReceiptSelector = new frmReceiptSelector();
+                    frmReceiptSelector.db = db;
+                    frmReceiptSelector.FormClosing += FrmReceiptSelector_FormClosing;
+                    Items item = new Items();
+                    int itmId = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
+                    item = db.Items.Where(i => i.ID == itmId).SingleOrDefault();
+                    frmReceiptSelector.item = item;
+                    CommonTasks.OpenForm(frmReceiptSelector);
+                }
+            } else if (e.ColumnIndex != -1 && e.ColumnIndex == Items_ItemID_Description_ID.Index)
+            {
+                frmItemSelector frmItemSelector  = new frmItemSelector();
+                frmItemSelector.db = db;
+                frmItemSelector.FormClosing += FrmItemSelector_FormClosing;
+                CommonTasks.OpenForm(frmItemSelector);
+            }
+        }
+
+        private void FrmItemSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmItemSelector frmItemSelector = (frmItemSelector)sender;
+            Items selectedItem = frmItemSelector.dgvItemsSelector.CurrentRow.DataBoundItem as Items;
+            if (selectedItem != null)
+            {
+                if(frmItemSelector.xClicked==false)
+                {
+                    dgvTransactionLines.CurrentRow.Cells[Items_ItemID_Code_ID.Index].Value = selectedItem.ID;
+
+                }
+            }
         }
     }
 }

@@ -260,6 +260,7 @@ namespace FlameTradeSS
                 newDocumentTransaction.UserID = CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
+                newDocumentTransaction.ReceiptModelID = 1;
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
                 newDocumentTransaction.tempID = tempID;
 

@@ -189,6 +189,12 @@
     <Compile Include="frmItemsCategory.Designer.cs">
       <DependentUpon>frmItemsCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItemSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemSelector.Designer.cs">
+      <DependentUpon>frmItemSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReceiptSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -507,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmItemsCategory.resx">
       <DependentUpon>frmItemsCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItemSelector.resx">
+      <DependentUpon>frmItemSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReceiptSelector.resx">
       <DependentUpon>frmReceiptSelector.cs</DependentUpon>

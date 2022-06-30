@@ -585,9 +585,10 @@
             this.ReceiptModel_ReceiptModelID_ModelName_ID.DataSource = this.receiptModelsBindingSource;
             this.ReceiptModel_ReceiptModelID_ModelName_ID.DisplayMember = "ModelName";
             this.ReceiptModel_ReceiptModelID_ModelName_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.ReceiptModel_ReceiptModelID_ModelName_ID.HeaderText = "ReceiptModelID";
+            this.ReceiptModel_ReceiptModelID_ModelName_ID.HeaderText = "Модел на Рецепта";
             this.ReceiptModel_ReceiptModelID_ModelName_ID.Name = "ReceiptModel_ReceiptModelID_ModelName_ID";
             this.ReceiptModel_ReceiptModelID_ModelName_ID.ValueMember = "ID";
+            this.ReceiptModel_ReceiptModelID_ModelName_ID.Width = 120;
             // 
             // Surfaces_TransactionSurfaceID_SurfaceName_ID
             // 
@@ -595,7 +596,7 @@
             this.Surfaces_TransactionSurfaceID_SurfaceName_ID.DataSource = this.surfacesBindingSource;
             this.Surfaces_TransactionSurfaceID_SurfaceName_ID.DisplayMember = "SurfaceName";
             this.Surfaces_TransactionSurfaceID_SurfaceName_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.Surfaces_TransactionSurfaceID_SurfaceName_ID.HeaderText = "TransactionSurfaceID";
+            this.Surfaces_TransactionSurfaceID_SurfaceName_ID.HeaderText = "Повърхност";
             this.Surfaces_TransactionSurfaceID_SurfaceName_ID.Name = "Surfaces_TransactionSurfaceID_SurfaceName_ID";
             this.Surfaces_TransactionSurfaceID_SurfaceName_ID.ValueMember = "ID";
             // 
@@ -604,8 +605,9 @@
             this.RequestedDeliveryDate.DataPropertyName = "RequestedDeliveryDate";
             dataGridViewCellStyle5.Format = "d";
             this.RequestedDeliveryDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.RequestedDeliveryDate.HeaderText = "RequestedDeliveryDate";
+            this.RequestedDeliveryDate.HeaderText = "Искана Дата на Доставка";
             this.RequestedDeliveryDate.Name = "RequestedDeliveryDate";
+            this.RequestedDeliveryDate.Width = 165;
             // 
             // Qty1
             // 
