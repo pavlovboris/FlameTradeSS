@@ -21,6 +21,8 @@ namespace FlameTradeSS
             this.DocumentTransactions = new HashSet<DocumentTransactions>();
             this.UsersLogInLogs = new HashSet<UsersLogInLogs>();
             this.CurrentlyLoggedUsers = new HashSet<CurrentlyLoggedUsers>();
+            this.DocumentTransactionsComments = new HashSet<DocumentTransactionsComments>();
+            this.TransactionLinesComments = new HashSet<TransactionLinesComments>();
         }
     
         public int ID { get; set; }
@@ -39,5 +41,9 @@ namespace FlameTradeSS
         public virtual ICollection<UsersLogInLogs> UsersLogInLogs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentlyLoggedUsers> CurrentlyLoggedUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentTransactionsComments> DocumentTransactionsComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionLinesComments> TransactionLinesComments { get; set; }
     }
 }

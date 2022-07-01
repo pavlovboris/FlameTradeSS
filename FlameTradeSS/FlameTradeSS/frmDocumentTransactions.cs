@@ -114,6 +114,7 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
+                    servicesBindingSource.DataSource= db.Services.ToList();
                     break;
             }
 
@@ -167,28 +168,33 @@ namespace FlameTradeSS
            
             BindingSource personsDataBindingSource = new BindingSource();
             BindingSource tasksDataBindingSource = new BindingSource();
+            BindingSource taskStatusBindingSource = new BindingSource();
+
             dgvTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTasks.AutoGenerateColumns = false;
             dgvTasks.AutoSize = true;
             
             personsDataBindingSource.DataSource = db.PersonsFullNameView.ToList();
             tasksDataBindingSource.DataSource = db.Tasks.ToList();
+            taskStatusBindingSource.DataSource = db.TaskStatuses.ToList();
 
             tasksDataBindingSource.Add(new Tasks());
 
             DataGridViewComboBoxColumn taskNameDataGridViewColumn = new DataGridViewComboBoxColumn();
             taskNameDataGridViewColumn.Name = "TaskName";
-            taskNameDataGridViewColumn.Width = 100;
+           // taskNameDataGridViewColumn.Width = 100;
             taskNameDataGridViewColumn.HeaderText = "Task";
             taskNameDataGridViewColumn.DataPropertyName = "TaskID";
             taskNameDataGridViewColumn.DataSource = tasksDataBindingSource;
             taskNameDataGridViewColumn.DisplayMember = "TaskName";
             taskNameDataGridViewColumn.ValueMember = "ID";
             taskNameDataGridViewColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            taskNameDataGridViewColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             DataGridViewComboBoxColumn personNameDataGridViewColumn = new DataGridViewComboBoxColumn();
             personNameDataGridViewColumn.Name = "Person_Name";
-            personNameDataGridViewColumn.Width = 100;
+            //personNameDataGridViewColumn.Width = 100;
             personNameDataGridViewColumn.HeaderText = "Responsible Person";
             personNameDataGridViewColumn.DataPropertyName = "PersonID";
             personNameDataGridViewColumn.DataSource = personsDataBindingSource;
@@ -196,6 +202,17 @@ namespace FlameTradeSS
             personNameDataGridViewColumn.ValueMember = "ID";
             personNameDataGridViewColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             personsDataBindingSource.Add(new PersonsFullNameView());
+            taskNameDataGridViewColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            DataGridViewComboBoxColumn taskStatusComboBoxColumn = new DataGridViewComboBoxColumn();
+            taskStatusComboBoxColumn.Name = "Status";
+            taskStatusComboBoxColumn.DataPropertyName = "TaskStatusID";
+            taskStatusComboBoxColumn.DataSource = taskStatusBindingSource;
+            taskStatusComboBoxColumn.DisplayMember = "StatusName";
+            taskStatusComboBoxColumn.ValueMember = "ID";
+            taskStatusComboBoxColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            taskStatusBindingSource.Add(new TaskStatuses());
+            taskStatusComboBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvTasks.DataSource = transactionTasksDataBindingSource;
             Point pointDgvTasks = new Point();
@@ -205,8 +222,9 @@ namespace FlameTradeSS
            
             dgvTasks.Columns.Add(taskNameDataGridViewColumn);
             dgvTasks.Columns.Add(personNameDataGridViewColumn);
-            dgvTasks.Size = new System.Drawing.Size(100, 100);
-            dgvTasks.RowHeadersWidth = 20;
+            dgvTasks.Columns.Add(taskStatusComboBoxColumn);
+           // dgvTasks.Size = new System.Drawing.Size(100, 100);
+            dgvTasks.RowHeadersWidth = 5;
             
 
             Controls.Add(dgvTasks);

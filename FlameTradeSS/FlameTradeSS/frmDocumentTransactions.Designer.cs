@@ -50,33 +50,37 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbTransactipnType = new System.Windows.Forms.ComboBox();
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateTimeTransactionDate = new System.Windows.Forms.DateTimePicker();
             this.dgvTransactionLines = new System.Windows.Forms.DataGridView();
-            this.Items_ItemID_Description_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Surfaces_SurfaceID_SurfaceName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.machinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.servicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partitionsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnTasks = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.Items_ItemID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Items_ItemID_Description_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Machines_MachineID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.machinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Services_ServiceID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.servicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Surfaces_SurfaceID_SurfaceName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DurationHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ordering = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TransactionReceipt_ReceiptID_Name_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.transactionReceiptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Mu_MuID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Partitions_PartitionID_code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Partitions_SecondPartitionID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.partitionsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdditionExpense = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePrice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,9 +96,8 @@
             this.CostPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostPrice3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.machinesBindingSource)).BeginInit();
@@ -105,8 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTransactipnType
@@ -124,6 +125,14 @@
             this.cmbTransactipnType.Size = new System.Drawing.Size(162, 21);
             this.cmbTransactipnType.TabIndex = 0;
             this.cmbTransactipnType.ValueMember = "ID";
+            // 
+            // documentTransactionsBindingSource
+            // 
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // dateTimeTransactionDate
             // 
@@ -160,6 +169,7 @@
             this.Partitions_PartitionID_code_ID,
             this.Partitions_SecondPartitionID_Code_ID,
             this.Qty,
+            this.Comment,
             this.AdditionExpense,
             this.SalePrice1,
             this.SalePrice2,
@@ -185,27 +195,41 @@
             this.dgvTransactionLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellDoubleClick);
             this.dgvTransactionLines.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellValueChanged);
             // 
-            // Items_ItemID_Description_ID
+            // itemsBindingSource
             // 
-            this.Items_ItemID_Description_ID.DataPropertyName = "ItemID";
-            this.Items_ItemID_Description_ID.DataSource = this.itemsBindingSource;
-            this.Items_ItemID_Description_ID.DisplayMember = "Description";
-            this.Items_ItemID_Description_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.Items_ItemID_Description_ID.HeaderText = "Описание";
-            this.Items_ItemID_Description_ID.MinimumWidth = 10;
-            this.Items_ItemID_Description_ID.Name = "Items_ItemID_Description_ID";
-            this.Items_ItemID_Description_ID.ValueMember = "ID";
-            this.Items_ItemID_Description_ID.Width = 200;
+            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
             // 
-            // Surfaces_SurfaceID_SurfaceName_ID
+            // machinesBindingSource
             // 
-            this.Surfaces_SurfaceID_SurfaceName_ID.DataPropertyName = "SurfaceID";
-            this.Surfaces_SurfaceID_SurfaceName_ID.DataSource = this.surfacesBindingSource;
-            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayMember = "SurfaceName";
-            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.Surfaces_SurfaceID_SurfaceName_ID.HeaderText = "Повърхност";
-            this.Surfaces_SurfaceID_SurfaceName_ID.Name = "Surfaces_SurfaceID_SurfaceName_ID";
-            this.Surfaces_SurfaceID_SurfaceName_ID.ValueMember = "ID";
+            this.machinesBindingSource.DataSource = typeof(FlameTradeSS.Machines);
+            // 
+            // servicesBindingSource
+            // 
+            this.servicesBindingSource.DataSource = typeof(FlameTradeSS.Services);
+            // 
+            // surfacesBindingSource
+            // 
+            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
+            // 
+            // transactionReceiptBindingSource
+            // 
+            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
+            // 
+            // muBindingSource
+            // 
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
+            // 
+            // partitionsBindingSource
+            // 
+            this.partitionsBindingSource.DataSource = typeof(FlameTradeSS.Partitions);
+            // 
+            // partitionsBindingSource1
+            // 
+            this.partitionsBindingSource1.DataSource = typeof(FlameTradeSS.Partitions);
+            // 
+            // transactionLinesBindingSource
+            // 
+            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
             // 
             // btnTasks
             // 
@@ -243,9 +267,17 @@
             this.Items_ItemID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Items_ItemID_Code_ID.ValueMember = "ID";
             // 
-            // itemsBindingSource
+            // Items_ItemID_Description_ID
             // 
-            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
+            this.Items_ItemID_Description_ID.DataPropertyName = "ItemID";
+            this.Items_ItemID_Description_ID.DataSource = this.itemsBindingSource;
+            this.Items_ItemID_Description_ID.DisplayMember = "Description";
+            this.Items_ItemID_Description_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Items_ItemID_Description_ID.HeaderText = "Описание";
+            this.Items_ItemID_Description_ID.MinimumWidth = 10;
+            this.Items_ItemID_Description_ID.Name = "Items_ItemID_Description_ID";
+            this.Items_ItemID_Description_ID.ValueMember = "ID";
+            this.Items_ItemID_Description_ID.Width = 200;
             // 
             // Machines_MachineID_Code_ID
             // 
@@ -260,10 +292,6 @@
             this.Machines_MachineID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Machines_MachineID_Code_ID.ValueMember = "ID";
             // 
-            // machinesBindingSource
-            // 
-            this.machinesBindingSource.DataSource = typeof(FlameTradeSS.Machines);
-            // 
             // Services_ServiceID_Code_ID
             // 
             this.Services_ServiceID_Code_ID.DataPropertyName = "ServiceID";
@@ -277,13 +305,15 @@
             this.Services_ServiceID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Services_ServiceID_Code_ID.ValueMember = "ID";
             // 
-            // servicesBindingSource
+            // Surfaces_SurfaceID_SurfaceName_ID
             // 
-            this.servicesBindingSource.DataSource = typeof(FlameTradeSS.Services);
-            // 
-            // surfacesBindingSource
-            // 
-            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
+            this.Surfaces_SurfaceID_SurfaceName_ID.DataPropertyName = "SurfaceID";
+            this.Surfaces_SurfaceID_SurfaceName_ID.DataSource = this.surfacesBindingSource;
+            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayMember = "SurfaceName";
+            this.Surfaces_SurfaceID_SurfaceName_ID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.Surfaces_SurfaceID_SurfaceName_ID.HeaderText = "Повърхност";
+            this.Surfaces_SurfaceID_SurfaceName_ID.Name = "Surfaces_SurfaceID_SurfaceName_ID";
+            this.Surfaces_SurfaceID_SurfaceName_ID.ValueMember = "ID";
             // 
             // StartDate
             // 
@@ -349,10 +379,6 @@
             this.TransactionReceipt_ReceiptID_Name_ID.ValueMember = "ID";
             this.TransactionReceipt_ReceiptID_Name_ID.Width = 200;
             // 
-            // transactionReceiptBindingSource
-            // 
-            this.transactionReceiptBindingSource.DataSource = typeof(FlameTradeSS.TransactionReceipt);
-            // 
             // Mu_MuID_Code_ID
             // 
             this.Mu_MuID_Code_ID.DataPropertyName = "MuID";
@@ -366,10 +392,6 @@
             this.Mu_MuID_Code_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Mu_MuID_Code_ID.ValueMember = "ID";
             this.Mu_MuID_Code_ID.Width = 200;
-            // 
-            // muBindingSource
-            // 
-            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
             // 
             // Partitions_PartitionID_code_ID
             // 
@@ -385,10 +407,6 @@
             this.Partitions_PartitionID_code_ID.ValueMember = "ID";
             this.Partitions_PartitionID_code_ID.Width = 200;
             // 
-            // partitionsBindingSource
-            // 
-            this.partitionsBindingSource.DataSource = typeof(FlameTradeSS.Partitions);
-            // 
             // Partitions_SecondPartitionID_Code_ID
             // 
             this.Partitions_SecondPartitionID_Code_ID.DataPropertyName = "SecondPartitionID";
@@ -403,10 +421,6 @@
             this.Partitions_SecondPartitionID_Code_ID.ValueMember = "ID";
             this.Partitions_SecondPartitionID_Code_ID.Width = 200;
             // 
-            // partitionsBindingSource1
-            // 
-            this.partitionsBindingSource1.DataSource = typeof(FlameTradeSS.Partitions);
-            // 
             // Qty
             // 
             this.Qty.DataPropertyName = "Qty";
@@ -417,6 +431,12 @@
             this.Qty.MinimumWidth = 10;
             this.Qty.Name = "Qty";
             this.Qty.Width = 200;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
             // 
             // AdditionExpense
             // 
@@ -585,18 +605,6 @@
             this.IsCanceled.TrueValue = "1";
             this.IsCanceled.Width = 200;
             // 
-            // transactionLinesBindingSource
-            // 
-            this.transactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
-            // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,6 +623,8 @@
             this.Text = "Document Transactions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
             this.Load += new System.EventHandler(this.frmDocumentTransactions_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.machinesBindingSource)).EndInit();
@@ -625,8 +635,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -664,6 +672,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_PartitionID_code_ID;
         private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_SecondPartitionID_Code_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn AdditionExpense;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice2;

@@ -151,6 +151,12 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_Partitions1" />
         <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptModelsItemCategories_ReceiptModels" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DocumentTransactionsComments" Width="1.5" PointX="20.75" PointY="19.5" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.TransactionLinesComments" Width="1.5" PointX="24" PointY="12" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentTransactionsComments_Users" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLinesComments_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

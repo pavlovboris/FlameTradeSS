@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmPersons : Form
+    public partial class frmPersonsTypes : Form
     {
-        public frmPersons()
+        public frmPersonsTypes()
         {
             InitializeComponent();
         }
-
-        private static readonly SecurityService securityService = new SecurityService();
-        static FlameTradeDbEntities db = securityService.NewDatabaseEntity();
-
 
         private const int cCaption = 300;   // Caption bar height;
 
@@ -38,20 +34,7 @@ namespace FlameTradeSS
             base.WndProc(ref m);
         }
 
-        private void frmPersons_Load(object sender, EventArgs e)
-        {
-            UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
-
-            personsBindingSource.DataSource = db.Persons.ToList();
-            personsTypeBindingSource.DataSource = db.PersonsType.ToList();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void frmPersons_Paint(object sender, PaintEventArgs e)
+        private void frmPartnerGroups_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = this.CreateGraphics();
             // create  a  pen object with which to draw
@@ -63,27 +46,42 @@ namespace FlameTradeSS
             g.DrawRectangle(p, r);
         }
 
+        private static readonly SecurityService securityService = new SecurityService();
+        FlameTradeDbEntities db = securityService.NewDatabaseEntity();
+
+        private void frmPartnerGroups_Load(object sender, EventArgs e)
+        {
+            UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
+
+            personsTypeBindingSource.DataSource = db.PersonsType.ToList();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Persons persons = new Persons();
-            personsBindingSource.Add(persons);
-            db.Persons.Add(persons);
+            PersonsType newPersonsType = new PersonsType();
+            personsTypeBindingSource.Add(newPersonsType);
+            personsTypeBindingSource.MoveLast();
+            db.PersonsType.Add(newPersonsType);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if(CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите всички промени?")==true)
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените") == true)
             {
                 try
                 {
-                    personsBindingSource.EndEdit();
                     await db.SaveChangesAsync();
-                    CommonTasks.SendInfoMsg("Промените са запаметени успешно");
+                    CommonTasks.SendInfoMsg("Промените са запазени успешно");
                 }
                 catch (Exception ex)
                 {
-                    CommonTasks.SendErrorMsg("Нещо се обърка, промените НЕ бяха запаметени!!!");
-                    if (CommonTasks.SendWarningMsg("Искате ли да разгледате детайлите на грешката?") == true)
+                    CommonTasks.SendErrorMsg("Промените НЕ бяха запаметени!!!");
+                    if (CommonTasks.SendWarningMsg("Искате ли да видите детайлите") == true)
                     {
                         CommonTasks.SendErrorMsg(ex.Message);
                     }
@@ -93,11 +91,17 @@ namespace FlameTradeSS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Persons perosonForRemoving = dgvPersons.CurrentRow.DataBoundItem as Persons;
-            if (CommonTasks.SendWarningMsg("Сугурни ли сте, че искате да маркираният потребител : " + perosonForRemoving.PersonName +" "+ perosonForRemoving.PersonSureName+ "?") == true)
+            PersonsType personType= dgvItemGroups.CurrentRow.DataBoundItem as PersonsType;
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + personType.PersonTypeName + "?") == true)
             {
-                personsBindingSource.Remove(perosonForRemoving);
-                db.Persons.Remove(perosonForRemoving);
+                if (dgvItemGroups.CurrentRow.Index != -1)
+                {
+                    if (personType != null)
+                    {
+                        personsTypeBindingSource.Remove(personType);
+                        db.PersonsType.Remove(personType);
+                    }
+                }
             }
         }
     }

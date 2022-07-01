@@ -42,6 +42,7 @@
             this.btnTransactionType = new System.Windows.Forms.Button();
             this.btnSequenceTransactions = new System.Windows.Forms.Button();
             this.btnMu = new System.Windows.Forms.Button();
+            this.btnPersonsType = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -200,6 +201,18 @@
             this.btnMu.UseVisualStyleBackColor = true;
             this.btnMu.Click += new System.EventHandler(this.btnMu_Click);
             // 
+            // btnPersonsType
+            // 
+            this.btnPersonsType.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPersonsType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPersonsType.Location = new System.Drawing.Point(108, 150);
+            this.btnPersonsType.Name = "btnPersonsType";
+            this.btnPersonsType.Size = new System.Drawing.Size(75, 41);
+            this.btnPersonsType.TabIndex = 32;
+            this.btnPersonsType.Text = "Persons Types";
+            this.btnPersonsType.UseVisualStyleBackColor = true;
+            this.btnPersonsType.Click += new System.EventHandler(this.btnPersonsType_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +220,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(735, 316);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPersonsType);
             this.Controls.Add(this.btnMu);
             this.Controls.Add(this.btnSequenceTransactions);
             this.Controls.Add(this.btnTransactionType);
@@ -249,5 +263,6 @@
         private System.Windows.Forms.Button btnTransactionType;
         private System.Windows.Forms.Button btnSequenceTransactions;
         private System.Windows.Forms.Button btnMu;
+        private System.Windows.Forms.Button btnPersonsType;
     }
 }

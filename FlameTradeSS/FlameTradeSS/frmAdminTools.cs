@@ -121,5 +121,11 @@ namespace FlameTradeSS
             frmMu frmMu = new frmMu();
             CommonTasks.OpenForm(frmMu);
         }
+
+        private void btnPersonsType_Click(object sender, EventArgs e)
+        {
+            frmPersonsTypes frmPersonsTypes = new frmPersonsTypes();
+            CommonTasks.OpenForm(frmPersonsTypes);
+        }
     }
 }

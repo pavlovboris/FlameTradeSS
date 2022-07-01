@@ -108,6 +108,9 @@
     <Compile Include="DocumentTransactions.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentTransactionsComments.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentTransformation.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -158,6 +161,12 @@
     </Compile>
     <Compile Include="frmDocumentSequencesProperties.Designer.cs">
       <DependentUpon>frmDocumentSequencesProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPersonsTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonsTypes.Designer.cs">
+      <DependentUpon>frmPersonsTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSurfaces.cs">
       <SubType>Form</SubType>
@@ -421,6 +430,9 @@
     <Compile Include="TransactionLines.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransactionLinesComments.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TransactionLinesTransformation.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -495,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentSequencesProperties.resx">
       <DependentUpon>frmDocumentSequencesProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonsTypes.resx">
+      <DependentUpon>frmPersonsTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurfaces.resx">
       <DependentUpon>frmSurfaces.cs</DependentUpon>
@@ -618,6 +633,7 @@
     <None Include="Properties\DataSources\Persons.datasource" />
     <None Include="Properties\DataSources\PersonsFullNameView.datasource" />
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
+    <None Include="Properties\DataSources\PersonsType.datasource" />
     <None Include="Properties\DataSources\Project.datasource" />
     <None Include="Properties\DataSources\ReceiptModels.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />

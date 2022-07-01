@@ -21,6 +21,7 @@ namespace FlameTradeSS
             this.MachinesInventory = new HashSet<MachinesInventory>();
             this.TransactionLinesTransformation = new HashSet<TransactionLinesTransformation>();
             this.TransactionLinesTransformation1 = new HashSet<TransactionLinesTransformation>();
+            this.TransactionLinesComments = new HashSet<TransactionLinesComments>();
         }
     
         public int ID { get; set; }
@@ -54,6 +55,7 @@ namespace FlameTradeSS
         public Nullable<double> CostPrice3 { get; set; }
         public int IsCanceled { get; set; }
         public Nullable<int> SurfaceID { get; set; }
+        public string Comment { get; set; }
     
         public virtual DocumentTransactions DocumentTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -71,5 +73,7 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionLinesTransformation> TransactionLinesTransformation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLinesTransformation> TransactionLinesTransformation1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionLinesComments> TransactionLinesComments { get; set; }
     }
 }

@@ -85,5 +85,7 @@ namespace FlameTradeSS
         public virtual DbSet<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
         public virtual DbSet<ReceiptModels> ReceiptModels { get; set; }
         public virtual DbSet<ReceiptModelsItemCategories> ReceiptModelsItemCategories { get; set; }
+        public virtual DbSet<DocumentTransactionsComments> DocumentTransactionsComments { get; set; }
+        public virtual DbSet<TransactionLinesComments> TransactionLinesComments { get; set; }
     }
 }

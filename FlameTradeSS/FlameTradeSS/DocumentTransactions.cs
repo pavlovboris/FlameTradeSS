@@ -22,6 +22,7 @@ namespace FlameTradeSS
             this.TransactionPersons = new HashSet<TransactionPersons>();
             this.TransactionsTransformations = new HashSet<TransactionsTransformations>();
             this.TransactionsTransformations1 = new HashSet<TransactionsTransformations>();
+            this.DocumentTransactionsComments = new HashSet<DocumentTransactionsComments>();
         }
     
         public int ID { get; set; }
@@ -50,6 +51,7 @@ namespace FlameTradeSS
         public int NotForInvoice { get; set; }
         public int ReceiptModelID { get; set; }
         public Nullable<int> TransactionSurfaceID { get; set; }
+        public string Comment { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Documents Documents { get; set; }
@@ -67,5 +69,7 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionsTransformations> TransactionsTransformations1 { get; set; }
         public virtual ReceiptModels ReceiptModels { get; set; }
         public virtual Surfaces Surfaces { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentTransactionsComments> DocumentTransactionsComments { get; set; }
     }
 }

@@ -67,10 +67,19 @@
             this.documentsProjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
-            this.TransactionTypes_TransactionTypeID_TypeName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
+            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
+            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.TransactionTypes_TransactionTypeID_TypeName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpectedMatDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RequestedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,17 +95,9 @@
             this.IsConfirmed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsDelivered = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Users_UserID_UserName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CreationDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblDocumentNumber = new System.Windows.Forms.Label();
-            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
-            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -433,6 +434,7 @@
             this.TransactionTypes_TransactionTypeID_TypeName_ID,
             this.NotForInvoice,
             this.TransactionDate,
+            this.Comment,
             this.ExpectedMatDate,
             this.RequestedDate,
             this.ReceivedDate,
@@ -461,6 +463,61 @@
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
+            // 
+            // documentTransactionsBindingSource
+            // 
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
+            // lblDocumentNumber
+            // 
+            this.lblDocumentNumber.AutoSize = true;
+            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 48);
+            this.lblDocumentNumber.Name = "lblDocumentNumber";
+            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
+            this.lblDocumentNumber.TabIndex = 11;
+            this.lblDocumentNumber.Text = "Номер на Документа";
+            // 
+            // txtDocumentNumber
+            // 
+            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
+            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 64);
+            this.txtDocumentNumber.MaxLength = 20;
+            this.txtDocumentNumber.Name = "txtDocumentNumber";
+            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
+            this.txtDocumentNumber.TabIndex = 10;
+            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
+            // 
+            // listBoxTransactionsAdd
+            // 
+            this.listBoxTransactionsAdd.FormattingEnabled = true;
+            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(552, 29);
+            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
+            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(140, 56);
+            this.listBoxTransactionsAdd.TabIndex = 9;
+            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
+            // 
+            // tabControlMain
+            // 
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControlMain.Location = new System.Drawing.Point(0, 243);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(1690, 25);
+            this.tabControlMain.TabIndex = 15;
+            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
+            // 
             // TransactionTypes_TransactionTypeID_TypeName_ID
             // 
             this.TransactionTypes_TransactionTypeID_TypeName_ID.DataPropertyName = "TransactionTypeID";
@@ -473,10 +530,6 @@
             this.TransactionTypes_TransactionTypeID_TypeName_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.TransactionTypes_TransactionTypeID_TypeName_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.TransactionTypes_TransactionTypeID_TypeName_ID.ValueMember = "ID";
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // NotForInvoice
             // 
@@ -493,6 +546,12 @@
             this.TransactionDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.TransactionDate.HeaderText = "Дата";
             this.TransactionDate.Name = "TransactionDate";
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
             // 
             // ExpectedMatDate
             // 
@@ -607,10 +666,6 @@
             this.Users_UserID_UserName_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Users_UserID_UserName_ID.ValueMember = "ID";
             // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
-            // 
             // CreationDateTime
             // 
             this.CreationDateTime.DataPropertyName = "CreationDateTime";
@@ -635,53 +690,6 @@
             this.IsCanceled.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IsCanceled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.IsCanceled.TrueValue = "1";
-            // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // lblDocumentNumber
-            // 
-            this.lblDocumentNumber.AutoSize = true;
-            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 48);
-            this.lblDocumentNumber.Name = "lblDocumentNumber";
-            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
-            this.lblDocumentNumber.TabIndex = 11;
-            this.lblDocumentNumber.Text = "Номер на Документа";
-            // 
-            // txtDocumentNumber
-            // 
-            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
-            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 64);
-            this.txtDocumentNumber.MaxLength = 20;
-            this.txtDocumentNumber.Name = "txtDocumentNumber";
-            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
-            this.txtDocumentNumber.TabIndex = 10;
-            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
-            // 
-            // listBoxTransactionsAdd
-            // 
-            this.listBoxTransactionsAdd.FormattingEnabled = true;
-            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(552, 29);
-            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
-            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(140, 56);
-            this.listBoxTransactionsAdd.TabIndex = 9;
-            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
-            // 
-            // tabControlMain
-            // 
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 243);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1690, 25);
-            this.tabControlMain.TabIndex = 15;
-            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
             // frmNewDocument
             // 
@@ -761,6 +769,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn TransactionTypes_TransactionTypeID_TypeName_ID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NotForInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpectedMatDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn RequestedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceivedDate;

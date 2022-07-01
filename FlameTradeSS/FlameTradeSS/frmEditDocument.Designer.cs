@@ -80,6 +80,7 @@
             this.TransactionTypes_TransactionTypeID_TypeName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpectedMatDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RequestedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receivedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -427,6 +428,7 @@
             this.TransactionTypes_TransactionTypeID_TypeName_ID,
             this.NotForInvoice,
             this.TransactionDate,
+            this.Comment,
             this.ExpectedMatDate,
             this.RequestedDate,
             this.receivedDateDataGridViewTextBoxColumn,
@@ -549,6 +551,12 @@
             this.TransactionDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.TransactionDate.HeaderText = "Дата";
             this.TransactionDate.Name = "TransactionDate";
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
             // 
             // ExpectedMatDate
             // 
@@ -790,6 +798,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn TransactionTypes_TransactionTypeID_TypeName_ID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NotForInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpectedMatDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn RequestedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn receivedDateDataGridViewTextBoxColumn;

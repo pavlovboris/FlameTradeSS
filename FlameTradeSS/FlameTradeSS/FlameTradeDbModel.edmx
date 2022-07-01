@@ -131,6 +131,16 @@
           <Property Name="NotForInvoice" Type="int" Nullable="false" />
           <Property Name="ReceiptModelID" Type="int" Nullable="false" />
           <Property Name="TransactionSurfaceID" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="DocumentTransactionsComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentTransactionID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -548,6 +558,16 @@
           <Property Name="CostPrice3" Type="float" />
           <Property Name="IsCanceled" Type="int" Nullable="false" />
           <Property Name="SurfaceID" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TransactionLinesComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionLineID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -840,6 +860,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactionsComments_DocumentTransactions">
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
+          <End Role="DocumentTransactionsComments" Type="Self.DocumentTransactionsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactionsComments">
+              <PropertyRef Name="DocumentTransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactionsComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="DocumentTransactionsComments" Type="Self.DocumentTransactionsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactionsComments">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1468,6 +1512,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionLinesComments_TransactionLines">
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
+          <End Role="TransactionLinesComments" Type="Self.TransactionLinesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLinesComments">
+              <PropertyRef Name="TransactionLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLinesComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TransactionLinesComments" Type="Self.TransactionLinesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLinesComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionLinesTransformation_OriginTransactionLineID">
           <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
           <End Role="TransactionLinesTransformation" Type="Self.TransactionLinesTransformation" Multiplicity="*" />
@@ -1672,6 +1740,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="DocumentSequencesProperties" EntityType="Self.DocumentSequencesProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsProjects" EntityType="Self.DocumentsProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactions" EntityType="Self.DocumentTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTransactionsComments" EntityType="Self.DocumentTransactionsComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransformation" EntityType="Self.DocumentTransformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FunctionRoles" EntityType="Self.FunctionRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
@@ -1713,6 +1782,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionAttachments" EntityType="Self.TransactionAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLines" EntityType="Self.TransactionLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionLinesComments" EntityType="Self.TransactionLinesComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLinesTransformation" EntityType="Self.TransactionLinesTransformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionPersons" EntityType="Self.TransactionPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionReceipt" EntityType="Self.TransactionReceipt" Schema="dbo" store:Type="Tables" />
@@ -1797,6 +1867,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_DocumentTransactions_UserID" Association="Self.FK_DocumentTransactions_UserID">
             <End Role="Users" EntitySet="Users" />
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactionsComments_DocumentTransactions" Association="Self.FK_DocumentTransactionsComments_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="DocumentTransactionsComments" EntitySet="DocumentTransactionsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactionsComments_Users" Association="Self.FK_DocumentTransactionsComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DocumentTransactionsComments" EntitySet="DocumentTransactionsComments" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentTransformation_DocID" Association="Self.FK_DocumentTransformation_DocID">
             <End Role="Documents" EntitySet="Documents" />
@@ -2006,6 +2084,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionLines" EntitySet="TransactionLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionLinesComments_TransactionLines" Association="Self.FK_TransactionLinesComments_TransactionLines">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionLinesComments" EntitySet="TransactionLinesComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLinesComments_Users" Association="Self.FK_TransactionLinesComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransactionLinesComments" EntitySet="TransactionLinesComments" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionLinesTransformation_OriginTransactionLineID" Association="Self.FK_TransactionLinesTransformation_OriginTransactionLineID">
             <End Role="TransactionLines" EntitySet="TransactionLines" />
             <End Role="TransactionLinesTransformation" EntitySet="TransactionLinesTransformation" />
@@ -2205,6 +2291,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="TransactionSurfaceID" Type="Int32" />
           <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_DocumentTransactions_ReceiptModels" FromRole="DocumentTransactions" ToRole="ReceiptModels" />
           <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="DocumentTransactions" ToRole="Surfaces" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentTransactionsComments" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions" FromRole="DocumentTransactions" ToRole="DocumentTransactionsComments" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -2663,6 +2751,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionLinesTransformation" Relationship="Self.FK_TransactionLinesTransformation_OriginTransactionLineID" FromRole="TransactionLines" ToRole="TransactionLinesTransformation" />
           <NavigationProperty Name="TransactionLinesTransformation1" Relationship="Self.FK_TransactionLinesTransformation_TransactionLineID" FromRole="TransactionLines" ToRole="TransactionLinesTransformation" />
           <Property Name="SurfaceID" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionLinesComments" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines" FromRole="TransactionLines" ToRole="TransactionLinesComments" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -2747,6 +2837,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_RoleID" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="UsersLogInLogs" Relationship="FlameTradeDbModel.FK_UsersLogInLogs_Users" FromRole="Users" ToRole="UsersLogInLogs" />
           <NavigationProperty Name="CurrentlyLoggedUsers" Relationship="FlameTradeDbModel.FK_CurrentlyLoggedUsers_Users" FromRole="Users" ToRole="CurrentlyLoggedUsers" />
+          <NavigationProperty Name="DocumentTransactionsComments" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_Users" FromRole="Users" ToRole="DocumentTransactionsComments" />
+          <NavigationProperty Name="TransactionLinesComments" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_Users" FromRole="Users" ToRole="TransactionLinesComments" />
         </EntityType>
         <Association Name="FK_DocumentTransactions_ColorID">
           <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
@@ -3969,6 +4061,24 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="ReceiptModels" EntitySet="ReceiptModels" />
             <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
           </AssociationSet>
+          <EntitySet Name="DocumentTransactionsComments" EntityType="FlameTradeDbModel.DocumentTransactionsComments" />
+          <EntitySet Name="TransactionLinesComments" EntityType="FlameTradeDbModel.TransactionLinesComments" />
+          <AssociationSet Name="FK_DocumentTransactionsComments_DocumentTransactions" Association="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="DocumentTransactionsComments" EntitySet="DocumentTransactionsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactionsComments_Users" Association="FlameTradeDbModel.FK_DocumentTransactionsComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DocumentTransactionsComments" EntitySet="DocumentTransactionsComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLinesComments_TransactionLines" Association="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionLinesComments" EntitySet="TransactionLinesComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLinesComments_Users" Association="FlameTradeDbModel.FK_TransactionLinesComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransactionLinesComments" EntitySet="TransactionLinesComments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -4306,6 +4416,76 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DocumentTransactionsComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentTransactionID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions" FromRole="DocumentTransactionsComments" ToRole="DocumentTransactions" />
+          <NavigationProperty Name="Users" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_Users" FromRole="DocumentTransactionsComments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TransactionLinesComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionLineID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines" FromRole="TransactionLinesComments" ToRole="TransactionLines" />
+          <NavigationProperty Name="Users" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_Users" FromRole="TransactionLinesComments" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_DocumentTransactionsComments_DocumentTransactions">
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentTransactionsComments" Role="DocumentTransactionsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactionsComments">
+              <PropertyRef Name="DocumentTransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactionsComments_Users">
+          <End Type="FlameTradeDbModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentTransactionsComments" Role="DocumentTransactionsComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactionsComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLinesComments_TransactionLines">
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionLinesComments" Role="TransactionLinesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLinesComments">
+              <PropertyRef Name="TransactionLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLinesComments_Users">
+          <End Type="FlameTradeDbModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionLinesComments" Role="TransactionLinesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLinesComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4390,6 +4570,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="TransactionSurfaceID" ColumnName="TransactionSurfaceID" />
                 <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
                 <ScalarProperty Name="NotForInvoice" ColumnName="NotForInvoice" />
@@ -4779,6 +4960,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionLines">
               <MappingFragment StoreEntitySet="TransactionLines">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionsID" ColumnName="TransactionsID" />
@@ -4989,6 +5171,26 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="ReceiptModelsItemCategories">
                 <ScalarProperty Name="ItemCategoryID" ColumnName="ItemCategoryID" />
                 <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTransactionsComments">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactionsComments">
+              <MappingFragment StoreEntitySet="DocumentTransactionsComments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DocumentTransactionID" ColumnName="DocumentTransactionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionLinesComments">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionLinesComments">
+              <MappingFragment StoreEntitySet="TransactionLinesComments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TransactionLineID" ColumnName="TransactionLineID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
