@@ -46,6 +46,8 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbSequenceFilter = new System.Windows.Forms.ComboBox();
+            this.transactionsTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnIssueDocument = new System.Windows.Forms.Button();
             this.lblIsCanceled = new System.Windows.Forms.Label();
@@ -67,16 +69,8 @@
             this.documentsProjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblDocumentNumber = new System.Windows.Forms.Label();
-            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
-            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
             this.TransactionTypes_TransactionTypeID_TypeName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,13 +89,22 @@
             this.IsConfirmed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsDelivered = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Users_UserID_UserName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CreationDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
+            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
+            this.listBoxTransactionsAdd = new System.Windows.Forms.ListBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentsAttachmentsBindingSource)).BeginInit();
             this.contextMenuStripProjects.SuspendLayout();
@@ -197,6 +200,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cmbSequenceFilter);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnIssueDocument);
             this.panel1.Controls.Add(this.lblIsCanceled);
@@ -226,6 +230,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1690, 243);
             this.panel1.TabIndex = 12;
+            // 
+            // cmbSequenceFilter
+            // 
+            this.cmbSequenceFilter.DataSource = this.transactionsTypeBindingSource1;
+            this.cmbSequenceFilter.DisplayMember = "TypeName";
+            this.cmbSequenceFilter.FormattingEnabled = true;
+            this.cmbSequenceFilter.Location = new System.Drawing.Point(45, 91);
+            this.cmbSequenceFilter.Name = "cmbSequenceFilter";
+            this.cmbSequenceFilter.Size = new System.Drawing.Size(103, 21);
+            this.cmbSequenceFilter.TabIndex = 30;
+            this.cmbSequenceFilter.ValueMember = "ID";
+            this.cmbSequenceFilter.SelectedIndexChanged += new System.EventHandler(this.cmbSequenceFilter_SelectedIndexChanged);
+            // 
+            // transactionsTypeBindingSource1
+            // 
+            this.transactionsTypeBindingSource1.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // btnCancel
             // 
@@ -462,61 +482,7 @@
             this.dgvDocumentTransactions.Size = new System.Drawing.Size(1501, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
-            // 
-            // documentTransactionsBindingSource
-            // 
-            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // lblDocumentNumber
-            // 
-            this.lblDocumentNumber.AutoSize = true;
-            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 48);
-            this.lblDocumentNumber.Name = "lblDocumentNumber";
-            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
-            this.lblDocumentNumber.TabIndex = 11;
-            this.lblDocumentNumber.Text = "Номер на Документа";
-            // 
-            // txtDocumentNumber
-            // 
-            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
-            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 64);
-            this.txtDocumentNumber.MaxLength = 20;
-            this.txtDocumentNumber.Name = "txtDocumentNumber";
-            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
-            this.txtDocumentNumber.TabIndex = 10;
-            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
-            // 
-            // listBoxTransactionsAdd
-            // 
-            this.listBoxTransactionsAdd.FormattingEnabled = true;
-            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(552, 29);
-            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
-            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(140, 56);
-            this.listBoxTransactionsAdd.TabIndex = 9;
-            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
-            // 
-            // tabControlMain
-            // 
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 243);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1690, 25);
-            this.tabControlMain.TabIndex = 15;
-            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
+            this.dgvDocumentTransactions.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocumentTransactions_ColumnWidthChanged);
             // 
             // TransactionTypes_TransactionTypeID_TypeName_ID
             // 
@@ -530,6 +496,10 @@
             this.TransactionTypes_TransactionTypeID_TypeName_ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.TransactionTypes_TransactionTypeID_TypeName_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.TransactionTypes_TransactionTypeID_TypeName_ID.ValueMember = "ID";
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // NotForInvoice
             // 
@@ -666,6 +636,10 @@
             this.Users_UserID_UserName_ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Users_UserID_UserName_ID.ValueMember = "ID";
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(FlameTradeSS.Users);
+            // 
             // CreationDateTime
             // 
             this.CreationDateTime.DataPropertyName = "CreationDateTime";
@@ -691,6 +665,53 @@
             this.IsCanceled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.IsCanceled.TrueValue = "1";
             // 
+            // documentTransactionsBindingSource
+            // 
+            this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
+            // lblDocumentNumber
+            // 
+            this.lblDocumentNumber.AutoSize = true;
+            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 48);
+            this.lblDocumentNumber.Name = "lblDocumentNumber";
+            this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
+            this.lblDocumentNumber.TabIndex = 11;
+            this.lblDocumentNumber.Text = "Номер на Документа";
+            // 
+            // txtDocumentNumber
+            // 
+            this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
+            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 64);
+            this.txtDocumentNumber.MaxLength = 20;
+            this.txtDocumentNumber.Name = "txtDocumentNumber";
+            this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
+            this.txtDocumentNumber.TabIndex = 10;
+            this.txtDocumentNumber.EnabledChanged += new System.EventHandler(this.txtDocumentNumber_EnabledChanged);
+            // 
+            // listBoxTransactionsAdd
+            // 
+            this.listBoxTransactionsAdd.FormattingEnabled = true;
+            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(552, 29);
+            this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
+            this.listBoxTransactionsAdd.Size = new System.Drawing.Size(140, 56);
+            this.listBoxTransactionsAdd.TabIndex = 9;
+            this.listBoxTransactionsAdd.DoubleClick += new System.EventHandler(this.listBoxTransactionsAdd_DoubleClick);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
+            // 
+            // tabControlMain
+            // 
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControlMain.Location = new System.Drawing.Point(0, 243);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(1690, 25);
+            this.tabControlMain.TabIndex = 15;
+            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
+            // 
             // frmNewDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,6 +732,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentsAttachmentsBindingSource)).EndInit();
             this.contextMenuStripProjects.ResumeLayout(false);
@@ -788,5 +810,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
+        private System.Windows.Forms.ComboBox cmbSequenceFilter;
+        private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
     }
 }

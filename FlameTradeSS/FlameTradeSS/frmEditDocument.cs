@@ -17,6 +17,8 @@ namespace FlameTradeSS
         }
         int maxID;
         bool issued;
+
+        List<TransactionsType> existingTransactionTypes = new List<TransactionsType>();
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -41,12 +43,30 @@ namespace FlameTradeSS
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
             documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
             usersBindingSource.DataSource = db.Users.ToList();
+            
+
+            transactionsTypeBindingSource1.Add(new TransactionsType() { TypeName = "Всички"});
+            foreach(DataGridViewRow dgvr in dgvDocumentTransactions.Rows)
+            {
+                DocumentTransactions documentTransactions = dgvr.DataBoundItem as DocumentTransactions;
+                if (documentTransactions != null)
+                {
+                    //TransactionsType trt = documentTransactions.TransactionsType;
+                    
+                    if (existingTransactionTypes.Where(trt => trt.Equals(documentTransactions.TransactionsType)).SingleOrDefault()==null)
+                    {
+                        transactionsTypeBindingSource1.Add(documentTransactions.TransactionsType);
+                        existingTransactionTypes.Add(documentTransactions.TransactionsType);
+                    }
+                }
+            }
+
+            cmbSequenceFilter.SelectedIndex = 0;
 
             if (documentsProjectsBindingSource.DataSource != null)
             {
                 foreach (DocumentsProjects dp in documentsProjectsBindingSource)
                 {
-
                     Project project = dp.Project;
                     projectBindingSource.Add(project);
                 }
@@ -293,6 +313,12 @@ namespace FlameTradeSS
                 cmbDocumentSequence.Enabled = false;
 
                 await db.SaveChangesAsync();
+
+                if (existingTransactionTypes.Where(trt => trt.Equals(selectedTransactionType)).SingleOrDefault()==null)
+                {
+                    existingTransactionTypes.Add(selectedTransactionType);
+                    transactionsTypeBindingSource1.Add(selectedTransactionType);
+                }
             }           
         }
 
@@ -653,6 +679,31 @@ namespace FlameTradeSS
                     form.BringToFront();
                     form.Focus();
                 } 
+            }
+        }
+
+        private void cmbSequenceFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox filter = (ComboBox)sender;
+            TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
+            if (transactionsType != null)
+            {
+                if (filter.SelectedIndex != 0)
+                {
+                    documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID && dt.TransactionTypeID == transactionsType.ID).ToList();
+                } else
+                {
+                    documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
+                }
+            }
+        }
+
+        private void dgvDocumentTransactions_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            
+            if (e.Column.Index== TransactionTypes_TransactionTypeID_TypeName_ID.Index)
+            {
+                cmbSequenceFilter.Width = TransactionTypes_TransactionTypeID_TypeName_ID.Width;
             }
         }
     }

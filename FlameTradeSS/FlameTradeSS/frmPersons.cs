@@ -44,6 +44,7 @@ namespace FlameTradeSS
 
             personsBindingSource.DataSource = db.Persons.ToList();
             personsTypeBindingSource.DataSource = db.PersonsType.ToList();
+            personsTypeBindingSource.Add(new PersonsType());
         }
 
         private void btnClose_Click(object sender, EventArgs e)
