@@ -54,6 +54,8 @@
             this.costingModelIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.costingModelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pricingModelIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.contextMenuStripDocument = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuAddEditFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbIsCanceled = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
@@ -64,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.costingModelsBindingSource)).BeginInit();
+            this.contextMenuStripDocument.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +122,6 @@
             this.dgvDocuments.BackgroundColor = System.Drawing.Color.White;
             this.dgvDocuments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDocuments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
-            this.dgvDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDocuments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.documentSequenceIDDataGridViewTextBoxColumn,
@@ -134,6 +136,7 @@
             this.userIDDataGridViewTextBoxColumn,
             this.costingModelIDDataGridViewTextBoxColumn,
             this.pricingModelIDDataGridViewTextBoxColumn});
+            this.dgvDocuments.ContextMenuStrip = this.contextMenuStripDocument;
             this.dgvDocuments.DataSource = this.documentsBindingSource;
             this.dgvDocuments.Location = new System.Drawing.Point(12, 135);
             this.dgvDocuments.Name = "dgvDocuments";
@@ -305,6 +308,21 @@
             this.pricingModelIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.pricingModelIDDataGridViewTextBoxColumn.Width = 120;
             // 
+            // contextMenuStripDocument
+            // 
+            this.contextMenuStripDocument.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuAddEditFinancialPlan});
+            this.contextMenuStripDocument.Name = "contextMenuStripDocument";
+            this.contextMenuStripDocument.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStripDocument.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDocument_Opening);
+            this.contextMenuStripDocument.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocument_ItemClicked);
+            // 
+            // toolStripMenuAddEditFinancialPlan
+            // 
+            this.toolStripMenuAddEditFinancialPlan.Name = "toolStripMenuAddEditFinancialPlan";
+            this.toolStripMenuAddEditFinancialPlan.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuAddEditFinancialPlan.Text = "Финансов План";
+            // 
             // documentsBindingSource
             // 
             this.documentsBindingSource.DataSource = typeof(FlameTradeSS.Documents);
@@ -374,6 +392,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.costingModelsBindingSource)).EndInit();
+            this.contextMenuStripDocument.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -409,5 +428,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn pricingModelIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox cmbSequence;
         private System.Windows.Forms.BindingSource documentSequencesBindingSource1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDocument;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuAddEditFinancialPlan;
     }
 }

@@ -44,12 +44,12 @@ namespace FlameTradeSS
 
         public static void SendInfoMsg(string message)
         {
-            MessageBox.Show(message, "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            MessageBox.Show(message, "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static bool SendWarningMsg(string message)
         {
-            if(MessageBox.Show(message,"Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) ==DialogResult.Yes)
+            if(MessageBox.Show(message,"Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Warning) ==DialogResult.Yes)
             {
                 return true;
             } else
@@ -60,7 +60,7 @@ namespace FlameTradeSS
 
         public static DialogResult SendQuestionMsg(string message)
         {
-            DialogResult dialog = MessageBox.Show(message, "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            DialogResult dialog = MessageBox.Show(message, "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dialog == DialogResult.Yes)
             {
                 return DialogResult.Yes;

@@ -232,7 +232,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.MinimumSize = new System.Drawing.Size(1450, 239);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1547, 239);
+            this.panel1.Size = new System.Drawing.Size(1550, 239);
             this.panel1.TabIndex = 12;
             // 
             // cmbSequenceFilter
@@ -308,7 +308,7 @@
             // btnRemoveFile
             // 
             this.btnRemoveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveFile.Location = new System.Drawing.Point(1488, 199);
+            this.btnRemoveFile.Location = new System.Drawing.Point(1491, 199);
             this.btnRemoveFile.Name = "btnRemoveFile";
             this.btnRemoveFile.Size = new System.Drawing.Size(47, 23);
             this.btnRemoveFile.TabIndex = 23;
@@ -319,7 +319,7 @@
             // btnAddFile
             // 
             this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddFile.Location = new System.Drawing.Point(1391, 199);
+            this.btnAddFile.Location = new System.Drawing.Point(1394, 199);
             this.btnAddFile.Name = "btnAddFile";
             this.btnAddFile.Size = new System.Drawing.Size(47, 23);
             this.btnAddFile.TabIndex = 22;
@@ -331,7 +331,7 @@
             // 
             this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttachments.AutoSize = true;
-            this.lblAttachments.Location = new System.Drawing.Point(1388, 9);
+            this.lblAttachments.Location = new System.Drawing.Point(1391, 9);
             this.lblAttachments.Name = "lblAttachments";
             this.lblAttachments.Size = new System.Drawing.Size(54, 13);
             this.lblAttachments.TabIndex = 21;
@@ -350,7 +350,7 @@
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
             this.dgvAttachments.DataSource = this.documentsAttachmentsBindingSource;
-            this.dgvAttachments.Location = new System.Drawing.Point(1391, 29);
+            this.dgvAttachments.Location = new System.Drawing.Point(1394, 29);
             this.dgvAttachments.MultiSelect = false;
             this.dgvAttachments.Name = "dgvAttachments";
             this.dgvAttachments.ReadOnly = true;
@@ -376,7 +376,7 @@
             // 
             this.lblProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProjects.AutoSize = true;
-            this.lblProjects.Location = new System.Drawing.Point(1170, 9);
+            this.lblProjects.Location = new System.Drawing.Point(1173, 9);
             this.lblProjects.Name = "lblProjects";
             this.lblProjects.Size = new System.Drawing.Size(50, 13);
             this.lblProjects.TabIndex = 16;
@@ -399,7 +399,7 @@
             this.listBoxProjects.DataSource = this.projectBindingSource;
             this.listBoxProjects.DisplayMember = "ProjectName";
             this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.Location = new System.Drawing.Point(1173, 29);
+            this.listBoxProjects.Location = new System.Drawing.Point(1176, 29);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(212, 82);
             this.listBoxProjects.TabIndex = 14;
@@ -475,7 +475,7 @@
             this.dgvDocumentTransactions.Name = "dgvDocumentTransactions";
             this.dgvDocumentTransactions.RowHeadersWidth = 20;
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1358, 105);
+            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1361, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dgvDocumentTransactions.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocumentTransactions_ColumnWidthChanged);
@@ -734,7 +734,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 239);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1547, 26);
+            this.tabControlMain.Size = new System.Drawing.Size(1550, 26);
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
@@ -743,7 +743,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1547, 858);
+            this.ClientSize = new System.Drawing.Size(1550, 858);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

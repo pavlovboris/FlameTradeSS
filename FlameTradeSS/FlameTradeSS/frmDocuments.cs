@@ -538,5 +538,24 @@ namespace FlameTradeSS
                 CommonTasks.OpenForm(frmEditDocument);
             }
         }
+
+        private void contextMenuStripDocument_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvDocuments.SelectedRows == null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(e.ClickedItem == contextMenuStripDocument.Items[0])
+            {
+                frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
+
+
+                CommonTasks.OpenForm(frmFinancialPlans);
+            }
+        }
     }
 }
