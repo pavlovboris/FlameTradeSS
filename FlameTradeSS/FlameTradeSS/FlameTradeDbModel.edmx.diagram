@@ -175,6 +175,7 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_Services_FinancialCategories" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" />
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_FinancialPlanLines_FinancialCategories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

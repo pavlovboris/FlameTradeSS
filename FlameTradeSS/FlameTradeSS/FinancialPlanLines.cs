@@ -26,5 +26,6 @@ namespace FlameTradeSS
     
         public virtual FinancialPlans FinancialPlans { get; set; }
         public virtual TransactionsType TransactionsType { get; set; }
+        public virtual FinancialCategories FinancialCategories { get; set; }
     }
 }

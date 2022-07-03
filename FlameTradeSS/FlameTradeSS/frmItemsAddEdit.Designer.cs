@@ -75,6 +75,9 @@
             this.cmbDefaultSurface = new System.Windows.Forms.ComboBox();
             this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialogChangePicture = new System.Windows.Forms.OpenFileDialog();
+            this.lblFinancialCategory = new System.Windows.Forms.Label();
+            this.cmbFinancialCategory = new System.Windows.Forms.ComboBox();
+            this.financialCategoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
@@ -83,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picItemPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialCategoriesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -484,6 +488,31 @@
             this.openFileDialogChangePicture.FileName = "openFileDialog1";
             this.openFileDialogChangePicture.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogChangePicture_FileOk);
             // 
+            // lblFinancialCategory
+            // 
+            this.lblFinancialCategory.AutoSize = true;
+            this.lblFinancialCategory.Location = new System.Drawing.Point(233, 262);
+            this.lblFinancialCategory.Name = "lblFinancialCategory";
+            this.lblFinancialCategory.Size = new System.Drawing.Size(122, 13);
+            this.lblFinancialCategory.TabIndex = 55;
+            this.lblFinancialCategory.Text = "Финансова Категория";
+            // 
+            // cmbFinancialCategory
+            // 
+            this.cmbFinancialCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.itemsBindingSource, "FinancialCategoryID", true));
+            this.cmbFinancialCategory.DataSource = this.financialCategoriesBindingSource;
+            this.cmbFinancialCategory.DisplayMember = "CategoryName";
+            this.cmbFinancialCategory.FormattingEnabled = true;
+            this.cmbFinancialCategory.Location = new System.Drawing.Point(233, 281);
+            this.cmbFinancialCategory.Name = "cmbFinancialCategory";
+            this.cmbFinancialCategory.Size = new System.Drawing.Size(176, 21);
+            this.cmbFinancialCategory.TabIndex = 54;
+            this.cmbFinancialCategory.ValueMember = "ID";
+            // 
+            // financialCategoriesBindingSource
+            // 
+            this.financialCategoriesBindingSource.DataSource = typeof(FlameTradeSS.FinancialCategories);
+            // 
             // frmItemsAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,6 +520,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(637, 484);
             this.ControlBox = false;
+            this.Controls.Add(this.lblFinancialCategory);
+            this.Controls.Add(this.cmbFinancialCategory);
             this.Controls.Add(this.lblDefaultSurface);
             this.Controls.Add(this.cmbDefaultSurface);
             this.Controls.Add(this.btnReceipt);
@@ -546,6 +577,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picItemPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialCategoriesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,5 +630,8 @@
         private System.Windows.Forms.ComboBox cmbDefaultSurface;
         private System.Windows.Forms.BindingSource surfacesBindingSource;
         private System.Windows.Forms.OpenFileDialog openFileDialogChangePicture;
+        private System.Windows.Forms.Label lblFinancialCategory;
+        private System.Windows.Forms.ComboBox cmbFinancialCategory;
+        private System.Windows.Forms.BindingSource financialCategoriesBindingSource;
     }
 }

@@ -77,6 +77,14 @@ namespace FlameTradeSS
             DgvOperations dgvOperations = new DgvOperations();
             dgvTransactionLines = dgvOperations.ConfigureDgv(dgvTransactionLines, db, documentTransactions.Documents.DocumentSequences,documentTransactions);
 
+            List<PossibleFinancialCategoryTransactionsType> allTransactions = new List<PossibleFinancialCategoryTransactionsType>();
+            allTransactions = db.PossibleFinancialCategoryTransactionsType.Where(pfct => pfct.TransactionTypeID == documentTransactions.TransactionTypeID).ToList();
+
+
+            foreach(PossibleFinancialCategoryTransactionsType possible in allTransactions)
+            {
+                financialCategoriesBindingSource.Add(db.FinancialCategories.Where(fc => fc.ID == possible.FinancialCategoryID).SingleOrDefault());
+            }
             documentTransactionsBindingSource.DataSource = documentTransactions;
             transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
             muBindingSource.DataSource = db.Mu.ToList();
@@ -95,7 +103,7 @@ namespace FlameTradeSS
 
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
-                   
+                    
                     itemsBindingSource.DataSource = db.Items.ToList();
                     transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
                     surfacesBindingSource.DataSource = db.Surfaces.ToList();
@@ -387,6 +395,22 @@ namespace FlameTradeSS
                 if (item.DefaultSurfaceID!= 0)
                 {
                     dgvTransactionLines.Rows[e.RowIndex].Cells[Surfaces_SurfaceID_SurfaceName_ID.Index].Value = item.DefaultSurfaceID;
+                }
+
+                if (item.FinancialCategoryID != null)
+                {
+                    bool exists = false;
+                    foreach(FinancialCategories financialCategories in financialCategoriesBindingSource)
+                    {
+                        if (financialCategories.ID == item.FinancialCategoryID)
+                        {
+                            exists = true;
+                        }
+                    }
+                    if (exists==true)
+                    {
+                        dgvTransactionLines.Rows[e.RowIndex].Cells[FinancialCategoryID.Index].Value = item.FinancialCategoryID; 
+                    }
                 }
             }
         }

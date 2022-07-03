@@ -1014,6 +1014,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FinancialPlanLines_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="1" />
+          <End Role="FinancialPlanLines" Type="Self.FinancialPlanLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FinancialPlanLines">
+              <PropertyRef Name="FinancialGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FinancialPlanLines_FinancialPlans">
           <End Role="FinancialPlans" Type="Self.FinancialPlans" Multiplicity="1" />
           <End Role="FinancialPlanLines" Type="Self.FinancialPlanLines" Multiplicity="*" />
@@ -2111,6 +2123,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_FinancialPlanColors_TransactionsType" Association="Self.FK_FinancialPlanColors_TransactionsType">
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="FinancialPlanColors" EntitySet="FinancialPlanColors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FinancialPlanLines_FinancialCategories" Association="Self.FK_FinancialPlanLines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="FinancialPlanLines" EntitySet="FinancialPlanLines" />
           </AssociationSet>
           <AssociationSet Name="FK_FinancialPlanLines_FinancialPlans" Association="Self.FK_FinancialPlanLines_FinancialPlans">
             <End Role="FinancialPlans" EntitySet="FinancialPlans" />
@@ -4414,6 +4430,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
           </AssociationSet>
+          <AssociationSet Name="FK_FinancialPlanLines_FinancialCategories" Association="FlameTradeDbModel.FK_FinancialPlanLines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="FinancialPlanLines" EntitySet="FinancialPlanLines" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -4836,6 +4856,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_FinancialPlanLines_TransactionsType" FromRole="FinancialPlanLines" ToRole="TransactionsType" />
           <Property Name="RelatedDocumentTransactionID" Type="Int32" />
           <Property Name="ProfitPercent" Type="Double" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_FinancialPlanLines_FinancialCategories" FromRole="FinancialPlanLines" ToRole="FinancialCategories" />
         </EntityType>
         <EntityType Name="FinancialPlans">
           <Key>
@@ -4955,6 +4976,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="PossibleFinancialCategoryTransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" FromRole="FinancialCategories" ToRole="PossibleFinancialCategoryTransactionsType" />
           <NavigationProperty Name="Services" Relationship="FlameTradeDbModel.FK_Services_FinancialCategories" FromRole="FinancialCategories" ToRole="Services" />
           <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" FromRole="FinancialCategories" ToRole="TransactionLines" />
+          <NavigationProperty Name="FinancialPlanLines" Relationship="FlameTradeDbModel.FK_FinancialPlanLines_FinancialCategories" FromRole="FinancialCategories" ToRole="FinancialPlanLines" />
         </EntityType>
         <EntityType Name="PossibleFinancialCategoryTransactionsType">
           <Key>
@@ -5035,6 +5057,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="PossibleFinancialCategoryTransactionsType">
               <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FinancialPlanLines_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.FinancialPlanLines" Role="FinancialPlanLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FinancialPlanLines">
+              <PropertyRef Name="FinancialGroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

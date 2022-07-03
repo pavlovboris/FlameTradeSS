@@ -10,10 +10,10 @@ namespace FlameTradeSS
 {
     internal class AddingItems
     {
-        public void AddFlowLayoutItem(Panel panel1,FlameTradeDbEntities db,List<DocumentTransactions> transactionsType)
+        public void AddFlowLayoutItem(Panel panel1,FlameTradeDbEntities db,List<DocumentTransactions> documentTransactions)
         {
 
-            foreach(DocumentTransactions trans in transactionsType)
+            foreach(DocumentTransactions trans in documentTransactions)
             {
                 
                 ContextMenuStrip flowContext = new ContextMenuStrip();
@@ -49,11 +49,61 @@ namespace FlameTradeSS
                 buttonAdd.Width = flowLayoutPanel.Width - 5;
                 flowLayoutPanel.Controls.Add(buttonAdd);
                 buttonAdd.Show();
+
+                BindingSource financialCategoryBindingSource = new BindingSource() { DataSource= db.FinancialCategories.ToList() };
+               
+
+                BindingSource bs = new BindingSource();
+                bs.DataSource = typeof(FinancialPlanLines);
+
+                foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.TransactionsID == trans.ID))
+                {
+                    if (transactionLines.FinancialCategoryID!=0)
+                    {
+                        bool exists = false;
+                        foreach(FinancialPlanLines financialPlanLines in bs)
+                        {
+                            if (financialPlanLines.FinancialGroupID== transactionLines.FinancialCategoryID)
+                            {
+                                exists = true;
+                                financialPlanLines.OfferValue += (transactionLines.Qty * transactionLines.SalePrice1);
+                            }
+                        }
+                        if (exists == false)
+                        {
+                            FinancialPlanLines newFinancialLine = new FinancialPlanLines();
+
+
+                            newFinancialLine.FinancialGroupID = (int)transactionLines.FinancialCategoryID;
+                            newFinancialLine.TransactionTypeID = transactionLines.DocumentTransactions.TransactionTypeID;
+                            newFinancialLine.ProfitPercent = 0;
+                            newFinancialLine.OfferValue = transactionLines.Qty * transactionLines.SalePrice1;
+                            newFinancialLine.BudgetValue = 0;
+                            newFinancialLine.RealValue = 0;
+                            
+
+                            bs.Add(newFinancialLine);
+                            bs.MoveLast();
+
+                            ComboBox cmbFinancialGroup = new ComboBox();
+
+                            cmbFinancialGroup.Name = "FinancialGroup";
+                            cmbFinancialGroup.DataBindings.Add("SelectedValue",newFinancialLine, "FinancialGroupID");
+                            cmbFinancialGroup.DataSource = financialCategoryBindingSource;
+                            cmbFinancialGroup.DisplayMember = "CategoryName";
+                            cmbFinancialGroup.ValueMember = "ID";
+                            
+                            flowLayoutPanel.Controls.Add(cmbFinancialGroup);
+                            cmbFinancialGroup.Show();
+
+                            TextBox txtOfferValue = new TextBox();
+                            txtOfferValue.DataBindings.Add("Text",newFinancialLine,"OfferValue");
+                            flowLayoutPanel.Controls.Add(txtOfferValue);
+                            txtOfferValue.Show();
+                        }          
+                    }
+                }
             }
-            
-
-
-
         }
 
         private void FlowContext_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

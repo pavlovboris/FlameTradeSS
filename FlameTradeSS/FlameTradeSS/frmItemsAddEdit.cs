@@ -75,6 +75,10 @@ namespace FlameTradeSS
             muBindingSource.DataSource = db.Mu.ToList();
             partitionsBindingSource.DataSource = db.Partitions.ToList();
             surfacesBindingSource.DataSource = db.Surfaces.ToList();
+            
+            financialCategoriesBindingSource.DataSource = db.FinancialCategories.ToList();
+            //financialCategoriesBindingSource.Add(new FinancialCategories());
+
 
             List<Partners> suppliers = new List<Partners>();
             
@@ -131,6 +135,11 @@ namespace FlameTradeSS
                 picItemPicture.Image = image;
                // picItemPicture.SizeMode = PictureBoxSizeMode.Zoom;
                
+            }
+
+            if (newItem.FinancialCategories != null)
+            {
+                cmbFinancialCategory.SelectedItem = newItem.FinancialCategories;
             }
 
             Cursor.Current = Cursors.Default;

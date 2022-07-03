@@ -62,6 +62,7 @@
             this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.partitionsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.financialCategoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnTasks = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -80,6 +81,7 @@
             this.Partitions_PartitionID_code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Partitions_SecondPartitionID_Code_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinancialCategoryID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdditionExpense = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePrice1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -107,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialCategoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,6 +172,7 @@
             this.Partitions_PartitionID_code_ID,
             this.Partitions_SecondPartitionID_Code_ID,
             this.Qty,
+            this.FinancialCategoryID,
             this.Comment,
             this.AdditionExpense,
             this.SalePrice1,
@@ -226,6 +230,10 @@
             // partitionsBindingSource1
             // 
             this.partitionsBindingSource1.DataSource = typeof(FlameTradeSS.Partitions);
+            // 
+            // financialCategoriesBindingSource
+            // 
+            this.financialCategoriesBindingSource.DataSource = typeof(FlameTradeSS.FinancialCategories);
             // 
             // transactionLinesBindingSource
             // 
@@ -432,6 +440,17 @@
             this.Qty.Name = "Qty";
             this.Qty.Width = 200;
             // 
+            // FinancialCategoryID
+            // 
+            this.FinancialCategoryID.DataPropertyName = "FinancialCategoryID";
+            this.FinancialCategoryID.DataSource = this.financialCategoriesBindingSource;
+            this.FinancialCategoryID.DisplayMember = "CategoryName";
+            this.FinancialCategoryID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.FinancialCategoryID.HeaderText = "Финансова Категория";
+            this.FinancialCategoryID.Name = "FinancialCategoryID";
+            this.FinancialCategoryID.ValueMember = "ID";
+            this.FinancialCategoryID.Width = 130;
+            // 
             // Comment
             // 
             this.Comment.DataPropertyName = "Comment";
@@ -634,6 +653,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financialCategoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionLinesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -657,6 +677,7 @@
         private System.Windows.Forms.BindingSource surfacesBindingSource;
         private System.Windows.Forms.BindingSource partitionsBindingSource;
         private System.Windows.Forms.BindingSource partitionsBindingSource1;
+        private System.Windows.Forms.BindingSource financialCategoriesBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn Items_ItemID_Code_ID;
         private System.Windows.Forms.DataGridViewComboBoxColumn Items_ItemID_Description_ID;
         private System.Windows.Forms.DataGridViewComboBoxColumn Machines_MachineID_Code_ID;
@@ -672,6 +693,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_PartitionID_code_ID;
         private System.Windows.Forms.DataGridViewComboBoxColumn Partitions_SecondPartitionID_Code_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewComboBoxColumn FinancialCategoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn AdditionExpense;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice1;

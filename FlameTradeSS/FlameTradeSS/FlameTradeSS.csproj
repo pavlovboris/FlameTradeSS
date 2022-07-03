@@ -118,6 +118,9 @@
     <Compile Include="DocumentTransformation.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FinancialCategories.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FinancialPlanColors.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -406,6 +409,9 @@
     <Compile Include="PersonsType.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PossibleFinancialCategoryTransactionsType.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -646,6 +652,7 @@
     <None Include="Properties\DataSources\DocumentSequencesProperties.datasource" />
     <None Include="Properties\DataSources\DocumentsProjects.datasource" />
     <None Include="Properties\DataSources\DocumentTransactions.datasource" />
+    <None Include="Properties\DataSources\FinancialCategories.datasource" />
     <None Include="Properties\DataSources\FinancialPlanColors.datasource" />
     <None Include="Properties\DataSources\FinancialPlans.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
