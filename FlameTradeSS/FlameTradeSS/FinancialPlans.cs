@@ -12,25 +12,28 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class FinancialPlans
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
+        public FinancialPlans()
         {
-            this.DocumentsProjects = new HashSet<DocumentsProjects>();
-            this.ProjectPersons = new HashSet<ProjectPersons>();
-            this.FinancialPlans = new HashSet<FinancialPlans>();
+            this.FinancialPlanLines = new HashSet<FinancialPlanLines>();
+            this.DocumentsFinancialPlan = new HashSet<DocumentsFinancialPlan>();
         }
     
         public int ID { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectDescription { get; set; }
+        public int ProjectID { get; set; }
+        public Nullable<System.DateTime> CreationDate { get; set; }
+        public string ContractNumber { get; set; }
+        public string Comment { get; set; }
+        public Nullable<double> CurrentOfferValue { get; set; }
+        public Nullable<double> CurrentBudgetValue { get; set; }
+        public Nullable<double> CurrentRealValue { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentsProjects> DocumentsProjects { get; set; }
+        public virtual ICollection<FinancialPlanLines> FinancialPlanLines { get; set; }
+        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectPersons> ProjectPersons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinancialPlans> FinancialPlans { get; set; }
+        public virtual ICollection<DocumentsFinancialPlan> DocumentsFinancialPlan { get; set; }
     }
 }

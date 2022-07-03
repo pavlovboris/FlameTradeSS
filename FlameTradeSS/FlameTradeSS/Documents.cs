@@ -23,6 +23,7 @@ namespace FlameTradeSS
             this.DocumentTransformation = new HashSet<DocumentTransformation>();
             this.DocumentTransformation1 = new HashSet<DocumentTransformation>();
             this.InvoiceNumbering = new HashSet<InvoiceNumbering>();
+            this.DocumentsFinancialPlan = new HashSet<DocumentsFinancialPlan>();
         }
     
         public int ID { get; set; }
@@ -55,5 +56,7 @@ namespace FlameTradeSS
         public virtual ICollection<DocumentTransformation> DocumentTransformation1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceNumbering> InvoiceNumbering { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentsFinancialPlan> DocumentsFinancialPlan { get; set; }
     }
 }

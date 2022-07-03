@@ -313,14 +313,14 @@
             this.contextMenuStripDocument.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuAddEditFinancialPlan});
             this.contextMenuStripDocument.Name = "contextMenuStripDocument";
-            this.contextMenuStripDocument.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStripDocument.Size = new System.Drawing.Size(162, 26);
             this.contextMenuStripDocument.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDocument_Opening);
             this.contextMenuStripDocument.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocument_ItemClicked);
             // 
             // toolStripMenuAddEditFinancialPlan
             // 
             this.toolStripMenuAddEditFinancialPlan.Name = "toolStripMenuAddEditFinancialPlan";
-            this.toolStripMenuAddEditFinancialPlan.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuAddEditFinancialPlan.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuAddEditFinancialPlan.Text = "Финансов План";
             // 
             // documentsBindingSource
@@ -385,6 +385,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDocuments";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocuments_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDocuments_FormClosed);
             this.Load += new System.EventHandler(this.frmDocuments_Load);
             this.SizeChanged += new System.EventHandler(this.frmDocuments_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).EndInit();

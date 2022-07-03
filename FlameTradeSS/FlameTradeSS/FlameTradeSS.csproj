@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddingItems.cs" />
     <Compile Include="AppForms.cs" />
     <Compile Include="Colors.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
@@ -102,6 +103,9 @@
     <Compile Include="DocumentSequencesProperties.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFinancialPlan.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsProjects.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -112,6 +116,15 @@
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentTransformation.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialPlanColors.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialPlanLines.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialPlans.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="frmAdminTools.cs">
@@ -624,6 +637,7 @@
     <None Include="Properties\DataSources\DocumentSequencesProperties.datasource" />
     <None Include="Properties\DataSources\DocumentsProjects.datasource" />
     <None Include="Properties\DataSources\DocumentTransactions.datasource" />
+    <None Include="Properties\DataSources\FinancialPlans.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />
     <None Include="Properties\DataSources\ItemCategory.datasource" />

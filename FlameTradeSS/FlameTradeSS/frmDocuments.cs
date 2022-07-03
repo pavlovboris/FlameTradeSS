@@ -549,13 +549,34 @@ namespace FlameTradeSS
 
         private void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if(e.ClickedItem == contextMenuStripDocument.Items[0])
+            if(dgvDocuments.CurrentRow.DataBoundItem!=null)
             {
-                frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
+                List<DocumentTransactions> transaction = new List<DocumentTransactions>();
+                Documents currentRowBI = dgvDocuments.CurrentRow.DataBoundItem as Documents;
+                foreach(DocumentTransactions currentDocTrans in currentRowBI.DocumentTransactions)
+                {
+                    if(currentDocTrans.TransactionsType.IsFinancialType==1)
+                    {
+                        transaction.Add(currentDocTrans);
+                    }
+                    
+                }
+                
+                    
+                if (e.ClickedItem == contextMenuStripDocument.Items[0])
+                {
+                    frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
+                    frmFinancialPlans.transactionsType = transaction;
 
-
-                CommonTasks.OpenForm(frmFinancialPlans);
+                    CommonTasks.OpenForm(frmFinancialPlans);
+                }
             }
+            
+        }
+
+        private void frmDocuments_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            dgvDocuments.Dispose();
         }
     }
 }

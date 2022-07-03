@@ -19,7 +19,7 @@ namespace FlameTradeSS
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             InitializeComponent();
         }
-
+        public List<DocumentTransactions> transactionsType;
         private void frmDocuments_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -28,22 +28,22 @@ namespace FlameTradeSS
             }
             catch { }
 
-            Properties.Settings.Default.frmItemsState = this.WindowState;
+            Properties.Settings.Default.frmFinancialPlanState = this.WindowState;
             if (this.WindowState == FormWindowState.Normal)
             {
                 // save location and size if the state is normal
-                Properties.Settings.Default.frmItemsLocation = this.Location;
-                Properties.Settings.Default.frmItemsSize = this.Size;
+                Properties.Settings.Default.frmFinancialPlanLocation = this.Location;
+                Properties.Settings.Default.frmFinancialPlanSize = this.Size;
             }
             else
             {
                 // save the RestoreBounds if the form is minimized or maximized!
-                Properties.Settings.Default.frmItemsLocation = this.RestoreBounds.Location;
-                Properties.Settings.Default.frmItemsSize = this.RestoreBounds.Size;
+                Properties.Settings.Default.frmFinancialPlanLocation = this.RestoreBounds.Location;
+                Properties.Settings.Default.frmFinancialPlanSize = this.RestoreBounds.Size;
             }
 
             // don't forget to save the settings
-            Properties.Settings.Default.Save();
+     
         }
 
         private const int cGrip = 10;      // Grip size
@@ -107,6 +107,15 @@ namespace FlameTradeSS
             {
 
             }
+
+            Properties.Settings.Default.Save();
+            financialPlansBindingSource.DataSource = db.FinancialPlans.ToList();
+            FinancialPlans financialPlans = new FinancialPlans();
+            financialPlans.Project = db.Project.First();
+            financialPlans.CreationDate = DateTime.Now;
+            financialPlansBindingSource.Add(financialPlans);
+            financialPlansBindingSource.MoveLast();
+            projectBindingSource.DataSource = db.Project.ToList();
             Cursor.Current = Cursors.Default;
             Show();
         }
@@ -114,6 +123,54 @@ namespace FlameTradeSS
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private Point pointMouse = new Point();
+        private Control ctrlMoved = new Control();
+        private bool bMoving = false;
+
+        private void Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            //if not left mouse button, exit
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+            // save cursor location
+            pointMouse = e.Location;
+            //remember that we're moving
+            bMoving = true;
+        }
+
+        private void Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            bMoving = false;
+        }
+
+        private void Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            //if not being moved or left mouse button not used, exit
+            if (!bMoving || e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+            //get control reference
+            ctrlMoved = (Control)sender;
+            //set control's position based upon mouse's position change
+            ctrlMoved.Left += e.X - pointMouse.X;
+            ctrlMoved.Top += e.Y - pointMouse.Y;
+        }
+
+        int i = 0;
+        BindingSource bs;
+
+        private void flowLayoutPanel1_Click(object sender, EventArgs e)
+        {
+
+            AddingItems add = new AddingItems();
+         
+            add.AddFlowLayoutItem(panel1,db,transactionsType);
+           
         }
     }
 }

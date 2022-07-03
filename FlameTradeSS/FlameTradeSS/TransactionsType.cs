@@ -20,12 +20,14 @@ namespace FlameTradeSS
             this.DocumentTransactions = new HashSet<DocumentTransactions>();
             this.SequencesTransactions = new HashSet<SequencesTransactions>();
             this.DocumentSequencesProperties = new HashSet<DocumentSequencesProperties>();
+            this.FinancialPlanLines = new HashSet<FinancialPlanLines>();
         }
     
         public int ID { get; set; }
         public string TypeName { get; set; }
         public int TransactionMultiplier { get; set; }
         public int LinesRelation { get; set; }
+        public int IsFinancialType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
@@ -34,5 +36,7 @@ namespace FlameTradeSS
         public virtual ICollection<SequencesTransactions> SequencesTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinancialPlanLines> FinancialPlanLines { get; set; }
     }
 }

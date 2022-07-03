@@ -20,6 +20,9 @@ namespace FlameTradeSS
         public Nullable<int> TaskID { get; set; }
         public int TaskStatusID { get; set; }
         public string TaskCompletionLevel { get; set; }
+        public Nullable<int> AssigningUserID { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
     
         public virtual DocumentTransactions DocumentTransactions { get; set; }
         public virtual Persons Persons { get; set; }
