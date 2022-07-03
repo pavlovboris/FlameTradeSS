@@ -127,5 +127,11 @@ namespace FlameTradeSS
             frmPersonsTypes frmPersonsTypes = new frmPersonsTypes();
             CommonTasks.OpenForm(frmPersonsTypes);
         }
+
+        private void btnFinancialColors_Click(object sender, EventArgs e)
+        {
+            frmFinancialColors frmFinancialColors = new frmFinancialColors();
+            CommonTasks.OpenForm(frmFinancialColors);
+        }
     }
 }

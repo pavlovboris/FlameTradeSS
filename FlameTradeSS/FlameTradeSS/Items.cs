@@ -44,6 +44,7 @@ namespace FlameTradeSS
         public byte[] PictureData { get; set; }
         public int IsInactive { get; set; }
         public int DefaultSurfaceID { get; set; }
+        public Nullable<int> FinancialCategoryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventory { get; set; }
@@ -63,5 +64,6 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionReceipt> TransactionReceipt { get; set; }
         public virtual Partners Partners { get; set; }
         public virtual Surfaces Surfaces { get; set; }
+        public virtual FinancialCategories FinancialCategories { get; set; }
     }
 }

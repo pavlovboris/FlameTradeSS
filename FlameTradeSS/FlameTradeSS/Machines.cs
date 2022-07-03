@@ -25,9 +25,11 @@ namespace FlameTradeSS
         public string Name { get; set; }
         public string Description { get; set; }
         public int TypeID { get; set; }
+        public Nullable<int> FinancialCategoryID { get; set; }
     
         public virtual MachineType MachineType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLines> TransactionLines { get; set; }
+        public virtual FinancialCategories FinancialCategories { get; set; }
     }
 }

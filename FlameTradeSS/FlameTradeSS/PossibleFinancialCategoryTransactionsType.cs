@@ -12,12 +12,13 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class FinancialPlanColors
+    public partial class PossibleFinancialCategoryTransactionsType
     {
         public int ID { get; set; }
+        public int FinancialCategoryID { get; set; }
         public int TransactionTypeID { get; set; }
-        public string FinancialColor { get; set; }
     
+        public virtual FinancialCategories FinancialCategories { get; set; }
         public virtual TransactionsType TransactionsType { get; set; }
     }
 }

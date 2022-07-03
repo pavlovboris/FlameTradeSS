@@ -12,37 +12,30 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class TransactionsType
+    public partial class FinancialCategories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TransactionsType()
+        public FinancialCategories()
         {
-            this.DocumentTransactions = new HashSet<DocumentTransactions>();
-            this.SequencesTransactions = new HashSet<SequencesTransactions>();
-            this.DocumentSequencesProperties = new HashSet<DocumentSequencesProperties>();
-            this.FinancialPlanLines = new HashSet<FinancialPlanLines>();
-            this.FinancialPlanColors = new HashSet<FinancialPlanColors>();
+            this.Items = new HashSet<Items>();
+            this.Machines = new HashSet<Machines>();
             this.PossibleFinancialCategoryTransactionsType = new HashSet<PossibleFinancialCategoryTransactionsType>();
+            this.Services = new HashSet<Services>();
+            this.TransactionLines = new HashSet<TransactionLines>();
         }
     
         public int ID { get; set; }
-        public string TypeName { get; set; }
-        public int TransactionMultiplier { get; set; }
-        public int LinesRelation { get; set; }
-        public int IsFinancialType { get; set; }
+        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
-        public virtual LinesType LinesType { get; set; }
+        public virtual ICollection<Items> Items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SequencesTransactions> SequencesTransactions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinancialPlanLines> FinancialPlanLines { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinancialPlanColors> FinancialPlanColors { get; set; }
+        public virtual ICollection<Machines> Machines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PossibleFinancialCategoryTransactionsType> PossibleFinancialCategoryTransactionsType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Services> Services { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionLines> TransactionLines { get; set; }
     }
 }

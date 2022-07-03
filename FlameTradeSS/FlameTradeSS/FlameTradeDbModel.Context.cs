@@ -91,5 +91,7 @@ namespace FlameTradeSS
         public virtual DbSet<FinancialPlans> FinancialPlans { get; set; }
         public virtual DbSet<DocumentsFinancialPlan> DocumentsFinancialPlan { get; set; }
         public virtual DbSet<FinancialPlanColors> FinancialPlanColors { get; set; }
+        public virtual DbSet<FinancialCategories> FinancialCategories { get; set; }
+        public virtual DbSet<PossibleFinancialCategoryTransactionsType> PossibleFinancialCategoryTransactionsType { get; set; }
     }
 }

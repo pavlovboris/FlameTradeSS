@@ -158,6 +158,13 @@
           <Property Name="OriginDocID" Type="int" Nullable="false" />
           <Property Name="DocID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="FinancialCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="FinancialPlanColors">
           <Key>
             <PropertyRef Name="ID" />
@@ -266,6 +273,7 @@
           <Property Name="PictureData" Type="image" />
           <Property Name="IsInactive" Type="int" Nullable="false" />
           <Property Name="DefaultSurfaceID" Type="int" Nullable="false" />
+          <Property Name="FinancialCategoryID" Type="int" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -299,6 +307,7 @@
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="250" />
           <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="FinancialCategoryID" Type="int" />
         </EntityType>
         <EntityType Name="MachinesInventory">
           <Key>
@@ -427,6 +436,14 @@
           <Property Name="PersonTypeName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PersonTypeDescription" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="PossibleFinancialCategoryTransactionsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FinancialCategoryID" Type="int" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="ID" />
@@ -521,6 +538,7 @@
           <Property Name="Code" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="FinancialCategoryID" Type="int" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -602,6 +620,7 @@
           <Property Name="IsCanceled" Type="int" Nullable="false" />
           <Property Name="SurfaceID" Type="int" />
           <Property Name="Comment" Type="varchar" MaxLength="250" />
+          <Property Name="FinancialCategoryID" Type="int" />
         </EntityType>
         <EntityType Name="TransactionLinesComments">
           <Key>
@@ -983,6 +1002,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FinancialPlanColors_TransactionsType">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="1" />
+          <End Role="FinancialPlanColors" Type="Self.FinancialPlanColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FinancialPlanColors">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FinancialPlanLines_FinancialPlans">
           <End Role="FinancialPlans" Type="Self.FinancialPlans" Multiplicity="1" />
           <End Role="FinancialPlanLines" Type="Self.FinancialPlanLines" Multiplicity="*" />
@@ -1139,6 +1170,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Items_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Items_ItemCategory">
           <End Role="ItemCategory" Type="Self.ItemCategory" Multiplicity="1" />
           <End Role="Items" Type="Self.Items" Multiplicity="*" />
@@ -1208,6 +1251,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="ItemsConfiguration">
               <PropertyRef Name="ItemOfOrigin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machines_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="0..1" />
+          <End Role="Machines" Type="Self.Machines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Machines">
+              <PropertyRef Name="FinancialCategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1355,6 +1410,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PossibleFinancialCategoryTransactionsType_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="1" />
+          <End Role="PossibleFinancialCategoryTransactionsType" Type="Self.PossibleFinancialCategoryTransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleFinancialCategoryTransactionsType">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleFinancialCategoryTransactionsType_TransactionsType">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="1" />
+          <End Role="PossibleFinancialCategoryTransactionsType" Type="Self.PossibleFinancialCategoryTransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleFinancialCategoryTransactionsType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProjectPersons_PersonsID">
           <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="ProjectPersons" Type="Self.ProjectPersons" Multiplicity="*" />
@@ -1487,6 +1566,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Services_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Suppliers_PartnerID">
           <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="*" />
@@ -1520,6 +1611,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="TransactionAttachments">
               <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLines_FinancialCategories">
+          <End Role="FinancialCategories" Type="Self.FinancialCategories" Multiplicity="0..1" />
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="FinancialCategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1850,6 +1953,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="DocumentTransactions" EntityType="Self.DocumentTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactionsComments" EntityType="Self.DocumentTransactionsComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransformation" EntityType="Self.DocumentTransformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinancialCategories" EntityType="Self.FinancialCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialPlanColors" EntityType="Self.FinancialPlanColors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialPlanLines" EntityType="Self.FinancialPlanLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialPlans" EntityType="Self.FinancialPlans" Schema="dbo" store:Type="Tables" />
@@ -1877,6 +1981,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsRolesOfPersons" EntityType="Self.PersonsRolesOfPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsType" EntityType="Self.PersonsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossibleFinancialCategoryTransactionsType" EntityType="Self.PossibleFinancialCategoryTransactionsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPersons" EntityType="Self.ProjectPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptLines" EntityType="Self.ReceiptLines" Schema="dbo" store:Type="Tables" />
@@ -2003,6 +2108,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Documents" EntitySet="Documents" />
             <End Role="DocumentTransformation" EntitySet="DocumentTransformation" />
           </AssociationSet>
+          <AssociationSet Name="FK_FinancialPlanColors_TransactionsType" Association="Self.FK_FinancialPlanColors_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="FinancialPlanColors" EntitySet="FinancialPlanColors" />
+          </AssociationSet>
           <AssociationSet Name="FK_FinancialPlanLines_FinancialPlans" Association="Self.FK_FinancialPlanLines_FinancialPlans">
             <End Role="FinancialPlans" EntitySet="FinancialPlans" />
             <End Role="FinancialPlanLines" EntitySet="FinancialPlanLines" />
@@ -2055,6 +2164,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Partitions" EntitySet="Partitions" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_Items_FinancialCategories" Association="Self.FK_Items_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
           <AssociationSet Name="FK_Items_ItemCategory" Association="Self.FK_Items_ItemCategory">
             <End Role="ItemCategory" EntitySet="ItemCategory" />
             <End Role="Items" EntitySet="Items" />
@@ -2078,6 +2191,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_ItemsConfiguration_ItemOfOrigin" Association="Self.FK_ItemsConfiguration_ItemOfOrigin">
             <End Role="Items" EntitySet="Items" />
             <End Role="ItemsConfiguration" EntitySet="ItemsConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machines_FinancialCategories" Association="Self.FK_Machines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Machines" EntitySet="Machines" />
           </AssociationSet>
           <AssociationSet Name="FK_Machines_TypeID" Association="Self.FK_Machines_TypeID">
             <End Role="MachineType" EntitySet="MachineType" />
@@ -2127,6 +2244,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="RoleOfPersons" EntitySet="RoleOfPersons" />
             <End Role="PersonsRolesOfPersons" EntitySet="PersonsRolesOfPersons" />
           </AssociationSet>
+          <AssociationSet Name="FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" Association="Self.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleFinancialCategoryTransactionsType_TransactionsType" Association="Self.FK_PossibleFinancialCategoryTransactionsType_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProjectPersons_PersonsID" Association="Self.FK_ProjectPersons_PersonsID">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="ProjectPersons" EntitySet="ProjectPersons" />
@@ -2171,6 +2296,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="SequencesTransactions" EntitySet="SequencesTransactions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Services_FinancialCategories" Association="Self.FK_Services_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
           <AssociationSet Name="FK_Suppliers_PartnerID" Association="Self.FK_Suppliers_PartnerID">
             <End Role="Partners" EntitySet="Partners" />
             <End Role="Suppliers" EntitySet="Suppliers" />
@@ -2182,6 +2311,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_TransactionAttachments_TransactionID" Association="Self.FK_TransactionAttachments_TransactionID">
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionAttachments" EntitySet="TransactionAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_FinancialCategories" Association="Self.FK_TransactionLines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionLines_ItemID" Association="Self.FK_TransactionLines_ItemID">
             <End Role="Items" EntitySet="Items" />
@@ -2532,6 +2665,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="IsInactive" Type="Int32" Nullable="false" />
           <Property Name="DefaultSurfaceID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_Items_Surfaces" FromRole="Items" ToRole="Surfaces" />
+          <Property Name="FinancialCategoryID" Type="Int32" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_Items_FinancialCategories" FromRole="Items" ToRole="FinancialCategories" />
         </EntityType>
         <EntityType Name="ItemsConfiguration">
           <Key>
@@ -2572,6 +2707,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MachineType" Relationship="Self.FK_Machines_TypeID" FromRole="Machines" ToRole="MachineType" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_TransactionLines_MachineID" FromRole="Machines" ToRole="TransactionLines" />
+          <Property Name="FinancialCategoryID" Type="Int32" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_Machines_FinancialCategories" FromRole="Machines" ToRole="FinancialCategories" />
         </EntityType>
         <EntityType Name="MachinesInventory">
           <Key>
@@ -2818,6 +2955,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_TransactionLines_ServiceID" FromRole="Services" ToRole="TransactionLines" />
+          <Property Name="FinancialCategoryID" Type="Int32" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_Services_FinancialCategories" FromRole="Services" ToRole="FinancialCategories" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -2886,6 +3025,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="SurfaceID" Type="Int32" />
           <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionLinesComments" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines" FromRole="TransactionLines" ToRole="TransactionLinesComments" />
+          <Property Name="FinancialCategoryID" Type="Int32" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" FromRole="TransactionLines" ToRole="FinancialCategories" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -2959,6 +3100,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_TransactionsType" FromRole="TransactionsType" ToRole="DocumentSequencesProperties" />
           <NavigationProperty Name="FinancialPlanLines" Relationship="FlameTradeDbModel.FK_FinancialPlanLines_TransactionsType" FromRole="TransactionsType" ToRole="FinancialPlanLines" />
           <Property Name="IsFinancialType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FinancialPlanColors" Relationship="FlameTradeDbModel.FK_FinancialPlanColors_TransactionsType" FromRole="TransactionsType" ToRole="FinancialPlanColors" />
+          <NavigationProperty Name="PossibleFinancialCategoryTransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" FromRole="TransactionsType" ToRole="PossibleFinancialCategoryTransactionsType" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -4241,6 +4384,36 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="DocumentsFinancialPlan" EntitySet="DocumentsFinancialPlan" />
           </AssociationSet>
           <EntitySet Name="FinancialPlanColors" EntityType="FlameTradeDbModel.FinancialPlanColors" />
+          <AssociationSet Name="FK_FinancialPlanColors_TransactionsType" Association="FlameTradeDbModel.FK_FinancialPlanColors_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="FinancialPlanColors" EntitySet="FinancialPlanColors" />
+          </AssociationSet>
+          <EntitySet Name="FinancialCategories" EntityType="FlameTradeDbModel.FinancialCategories" />
+          <EntitySet Name="PossibleFinancialCategoryTransactionsType" EntityType="FlameTradeDbModel.PossibleFinancialCategoryTransactionsType" />
+          <AssociationSet Name="FK_Items_FinancialCategories" Association="FlameTradeDbModel.FK_Items_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machines_FinancialCategories" Association="FlameTradeDbModel.FK_Machines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Machines" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_FinancialCategories" Association="FlameTradeDbModel.FK_Services_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_FinancialCategories" Association="FlameTradeDbModel.FK_TransactionLines_FinancialCategories">
+            <End Role="FinancialCategories" EntitySet="FinancialCategories" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleFinancialCategoryTransactionsType_TransactionsType" Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -4757,7 +4930,114 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
           <Property Name="FinancialColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_FinancialPlanColors_TransactionsType" FromRole="FinancialPlanColors" ToRole="TransactionsType" />
         </EntityType>
+        <Association Name="FK_FinancialPlanColors_TransactionsType">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.FinancialPlanColors" Role="FinancialPlanColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FinancialPlanColors">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FinancialCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="FlameTradeDbModel.FK_Items_FinancialCategories" FromRole="FinancialCategories" ToRole="Items" />
+          <NavigationProperty Name="Machines" Relationship="FlameTradeDbModel.FK_Machines_FinancialCategories" FromRole="FinancialCategories" ToRole="Machines" />
+          <NavigationProperty Name="PossibleFinancialCategoryTransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" FromRole="FinancialCategories" ToRole="PossibleFinancialCategoryTransactionsType" />
+          <NavigationProperty Name="Services" Relationship="FlameTradeDbModel.FK_Services_FinancialCategories" FromRole="FinancialCategories" ToRole="Services" />
+          <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" FromRole="FinancialCategories" ToRole="TransactionLines" />
+        </EntityType>
+        <EntityType Name="PossibleFinancialCategoryTransactionsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FinancialCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" FromRole="PossibleFinancialCategoryTransactionsType" ToRole="FinancialCategories" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" FromRole="PossibleFinancialCategoryTransactionsType" ToRole="TransactionsType" />
+        </EntityType>
+        <Association Name="FK_Items_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.Items" Role="Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machines_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.Machines" Role="Machines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Machines">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleFinancialCategoryTransactionsType_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleFinancialCategoryTransactionsType" Role="PossibleFinancialCategoryTransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleFinancialCategoryTransactionsType">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.Services" Role="Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLines_FinancialCategories">
+          <End Type="FlameTradeDbModel.FinancialCategories" Role="FinancialCategories" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FinancialCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="FinancialCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleFinancialCategoryTransactionsType_TransactionsType">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleFinancialCategoryTransactionsType" Role="PossibleFinancialCategoryTransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleFinancialCategoryTransactionsType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4939,6 +5219,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Items">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="DefaultSurfaceID" ColumnName="DefaultSurfaceID" />
                 <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
                 <ScalarProperty Name="PictureData" ColumnName="PictureData" />
@@ -4990,6 +5271,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Machines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Machines">
               <MappingFragment StoreEntitySet="Machines">
+                <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -5204,6 +5486,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Services">
               <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -5232,6 +5515,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionLines">
               <MappingFragment StoreEntitySet="TransactionLines">
+                <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -5514,6 +5798,23 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="FinancialPlanColors">
                 <ScalarProperty Name="FinancialColor" ColumnName="FinancialColor" />
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinancialCategories">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.FinancialCategories">
+              <MappingFragment StoreEntitySet="FinancialCategories">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossibleFinancialCategoryTransactionsType">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PossibleFinancialCategoryTransactionsType">
+              <MappingFragment StoreEntitySet="PossibleFinancialCategoryTransactionsType">
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

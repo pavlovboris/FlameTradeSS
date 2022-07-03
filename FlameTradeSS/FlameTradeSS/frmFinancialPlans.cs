@@ -161,15 +161,31 @@ namespace FlameTradeSS
             ctrlMoved.Top += e.Y - pointMouse.Y;
         }
 
-        int i = 0;
-        BindingSource bs;
+      
+     
 
         private void flowLayoutPanel1_Click(object sender, EventArgs e)
         {
+            List<DocumentTransactions> transactions = new List<DocumentTransactions>();
+            foreach (DocumentTransactions doctrans in transactionsType)
+            {
+                bool exist = false;
+                foreach (Control flowPanel in panelFlowPanel.Controls)
+                {
+                    if (flowPanel.Tag == doctrans)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist == false)
+                {
+                    transactions.Add(doctrans);
+                }
+            }
 
             AddingItems add = new AddingItems();
          
-            add.AddFlowLayoutItem(panel1,db,transactionsType);
+            add.AddFlowLayoutItem(panelFlowPanel,db,transactions);
            
         }
     }

@@ -16,7 +16,7 @@ namespace FlameTradeSS
             InitializeComponent();
         }
         int maxID;
-        bool issued;
+
 
         List<TransactionsType> existingTransactionTypes = new List<TransactionsType>();
         private void frmNewDocument_Load(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace FlameTradeSS
 
             if (newDocument.Issued == 0)
             {
-                issued = false;
+               
             }
             else
             {
@@ -100,7 +100,7 @@ namespace FlameTradeSS
                 cmbPartners.Enabled = false;
                 dateTimeDocDate.Enabled = false;
                 dgvDocumentTransactions.ReadOnly = true;
-                issued = true;
+              
             }
 
             if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
@@ -618,7 +618,7 @@ namespace FlameTradeSS
                                 dateTimeDocDate.Enabled = false;
                                 dgvDocumentTransactions.ReadOnly = true;
                                 listBoxTransactionsAdd.Enabled = false;
-                                issued = true;
+                           
                                 await db.SaveChangesAsync();
                                 CommonTasks.SendInfoMsg("Документа е успешно издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
                             }
@@ -658,7 +658,7 @@ namespace FlameTradeSS
                             dgvDocumentTransactions.ReadOnly = true;
                             listBoxTransactionsAdd.Enabled = false;
                             
-                            issued = true;
+                       
                             await db.SaveChangesAsync();
                             CommonTasks.SendInfoMsg("Документа е издаден успешно : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
                         }

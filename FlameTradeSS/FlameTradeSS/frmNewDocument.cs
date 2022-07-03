@@ -560,7 +560,7 @@ namespace FlameTradeSS
             }
         }
 
-        bool issued;
+       
 
         private async void btnIssueDocument_Click(object sender, EventArgs e)
         {
@@ -594,7 +594,7 @@ namespace FlameTradeSS
                                     dateTimeDocDate.Enabled = false;
                                     dgvDocumentTransactions.ReadOnly = true;
                                     listBoxTransactionsAdd.Enabled = false;
-                                    issued = true;
+                                  
                                     await db.SaveChangesAsync();
                                     CommonTasks.SendInfoMsg("Документа е успешно издаден : "+newDocument.DocumentNumber.ToString()+"@"+newDocument.DocumentSequences.SequenceName);
                                 }
@@ -634,7 +634,7 @@ namespace FlameTradeSS
                                 dateTimeDocDate.Enabled = false;
                                 dgvDocumentTransactions.ReadOnly = true;
                                 listBoxTransactionsAdd.Enabled = false;
-                                issued = true;
+                               
                                 await db.SaveChangesAsync();
                                 CommonTasks.SendInfoMsg("Документа е издаден успешно : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
                             }

@@ -139,6 +139,12 @@
     <Compile Include="frmFinancialPlans.Designer.cs">
       <DependentUpon>frmFinancialPlans.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFinancialColors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinancialColors.Designer.cs">
+      <DependentUpon>frmFinancialColors.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -512,6 +518,9 @@
     <EmbeddedResource Include="frmFinancialPlans.resx">
       <DependentUpon>frmFinancialPlans.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFinancialColors.resx">
+      <DependentUpon>frmFinancialColors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -637,6 +646,7 @@
     <None Include="Properties\DataSources\DocumentSequencesProperties.datasource" />
     <None Include="Properties\DataSources\DocumentsProjects.datasource" />
     <None Include="Properties\DataSources\DocumentTransactions.datasource" />
+    <None Include="Properties\DataSources\FinancialPlanColors.datasource" />
     <None Include="Properties\DataSources\FinancialPlans.datasource" />
     <None Include="Properties\DataSources\FunctionRoles.datasource" />
     <None Include="Properties\DataSources\Functions.datasource" />

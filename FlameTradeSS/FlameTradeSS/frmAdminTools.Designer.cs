@@ -38,11 +38,12 @@
             this.btnPersons = new System.Windows.Forms.Button();
             this.btnSequenceType = new System.Windows.Forms.Button();
             this.btnSequences = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnTransactionType = new System.Windows.Forms.Button();
             this.btnSequenceTransactions = new System.Windows.Forms.Button();
             this.btnMu = new System.Windows.Forms.Button();
             this.btnPersonsType = new System.Windows.Forms.Button();
+            this.btnFinancialColors = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -152,19 +153,6 @@
             this.btnSequences.UseVisualStyleBackColor = true;
             this.btnSequences.Click += new System.EventHandler(this.btnSequences_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(682, 6);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 48);
-            this.btnClose.TabIndex = 26;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // btnTransactionType
             // 
             this.btnTransactionType.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -213,13 +201,39 @@
             this.btnPersonsType.UseVisualStyleBackColor = true;
             this.btnPersonsType.Click += new System.EventHandler(this.btnPersonsType_Click);
             // 
+            // btnFinancialColors
+            // 
+            this.btnFinancialColors.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnFinancialColors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinancialColors.Location = new System.Drawing.Point(358, 49);
+            this.btnFinancialColors.Name = "btnFinancialColors";
+            this.btnFinancialColors.Size = new System.Drawing.Size(82, 39);
+            this.btnFinancialColors.TabIndex = 33;
+            this.btnFinancialColors.Text = "Financial Items Colors";
+            this.btnFinancialColors.UseVisualStyleBackColor = true;
+            this.btnFinancialColors.Click += new System.EventHandler(this.btnFinancialColors_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.btnClose.Location = new System.Drawing.Point(902, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 48);
+            this.btnClose.TabIndex = 26;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(735, 316);
+            this.ClientSize = new System.Drawing.Size(955, 338);
             this.ControlBox = false;
+            this.Controls.Add(this.btnFinancialColors);
             this.Controls.Add(this.btnPersonsType);
             this.Controls.Add(this.btnMu);
             this.Controls.Add(this.btnSequenceTransactions);
@@ -236,7 +250,6 @@
             this.Controls.Add(this.btnRoles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(735, 316);
             this.MinimumSize = new System.Drawing.Size(735, 316);
             this.Name = "frmAdminTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -264,5 +277,6 @@
         private System.Windows.Forms.Button btnSequenceTransactions;
         private System.Windows.Forms.Button btnMu;
         private System.Windows.Forms.Button btnPersonsType;
+        private System.Windows.Forms.Button btnFinancialColors;
     }
 }

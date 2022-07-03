@@ -166,6 +166,15 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsFinancialPlan_Documents" />
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsFinancialPlan_FinancialPlans" />
         <EntityTypeShape EntityType="FlameTradeDbModel.FinancialPlanColors" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_FinancialPlanColors_TransactionsType" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.FinancialCategories" Width="1.5" PointX="14.25" PointY="29.25" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.PossibleFinancialCategoryTransactionsType" Width="1.5" PointX="23.5" PointY="15.5" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Items_FinancialCategories" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Machines_FinancialCategories" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_FinancialCategories" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Services_FinancialCategories" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
