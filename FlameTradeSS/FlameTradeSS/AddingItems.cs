@@ -67,6 +67,8 @@ namespace FlameTradeSS
                             {
                                 exists = true;
                                 financialPlanLines.OfferValue += (transactionLines.Qty * transactionLines.SalePrice1);
+                                
+                                
                             }
                         }
                         if (exists == false)
