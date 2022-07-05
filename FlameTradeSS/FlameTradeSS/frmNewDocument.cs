@@ -685,6 +685,9 @@ namespace FlameTradeSS
             }
         }
 
+        TextBox txtFilter;
+        ComboBox cmbFilter;
+
         private void btnTransformFrom_Click(object sender, EventArgs e)
         {
             Panel panelTransformFrom = new Panel();
@@ -719,13 +722,44 @@ namespace FlameTradeSS
             lblFilterPoint.Y = 50;
             Label lblFilter = new Label()
             {
-                Text = "Филтър : ",
+                Text = "Филтър за серия :",
                 Location = lblFilterPoint,
-                Width = 100
+                Width = 110
             };
+
+            panelTransformFrom.Controls.Add(lblFilter);
+
             Point cmbFilterPoint = new Point();
-            cmbFilterPoint.X = 105;
+            cmbFilterPoint.X = 115;
             cmbFilterPoint.Y = 50;
+
+            Point lblTextFilterPoint = new Point();
+            lblTextFilterPoint.X = 5;
+            lblTextFilterPoint.Y = 90;
+
+            Label lblTextFilter = new Label()
+            {
+                Text = "Филтър :",
+                Location = lblTextFilterPoint,
+                Width = 50
+            };
+
+            panelTransformFrom.Controls.Add(lblTextFilter);
+
+            Point txtFilterPoint = new Point();
+            txtFilterPoint.X = 55;
+            txtFilterPoint.Y = 90;
+
+            txtFilter = new TextBox()
+            {
+                Name = "txtFilter",
+                Location = txtFilterPoint,
+                Width = 200,
+            };
+            txtFilter.TextChanged += TxtFilter_TextChanged;
+
+            panelTransformFrom.Controls.Add(txtFilter);
+
 
             //BindingSource cmbFilterBinding = new BindingSource();
             List<DocumentSequences> possibleList = new List<DocumentSequences>();
@@ -739,12 +773,13 @@ namespace FlameTradeSS
                     possibleList.Add(pst.DocumentSequences);
                 }
 
-                ComboBox cmbFilter = new ComboBox()
+                cmbFilter = new ComboBox()
                 {
                     Name = "cmbFilter",
                     DataSource = possibleList,
                     DisplayMember = "SequenceName",
                     ValueMember = "ID",
+                    DropDownStyle = ComboBoxStyle.DropDownList,
                     //SelectedIndex = 0,
                     Location = cmbFilterPoint
                 };
@@ -769,12 +804,49 @@ namespace FlameTradeSS
                 }
 
                 DataGridViewComboBoxColumn sequence = new DataGridViewComboBoxColumn();
+              
                 sequence.Name = "sequences";
+                sequence.HeaderText = "Серия";
                 sequence.DataSource = sequenceBinding;
                 sequence.DataPropertyName = "DocumentSequenceID";
                 sequence.ValueMember = "ID";
                 sequence.DisplayMember = "SequenceName";
                 sequence.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+                sequence.ReadOnly = true;
+
+                DataGridViewTextBoxColumn number = new DataGridViewTextBoxColumn()
+                {
+                    Name = "number",
+                    HeaderText = "Номер",
+                    DataPropertyName = "DocumentNumber",
+                    Width = 50
+                };
+
+                BindingSource partnerBinding = new BindingSource() { DataSource = typeof(Partners) };
+                partnerBinding.DataSource = db.Partners.ToList();
+
+                DataGridViewComboBoxColumn partner = new DataGridViewComboBoxColumn()
+                {
+                    Name = "Partner",
+                    HeaderText = "Партньор",
+                    DataSource = partnerBinding,
+                    DataPropertyName = "PartnerID",
+                    ValueMember = "ID",
+                    DisplayMember = "Partner_Name",
+                    DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing,
+                    ReadOnly = true,
+                    Width = 200
+                    
+                };
+
+                DataGridViewTextBoxColumn comment = new DataGridViewTextBoxColumn()
+                {
+                    Name ="comment",  
+                    HeaderText = "Коментар",
+                    DataPropertyName ="Comment",
+                    Width = 250
+                    
+                };
 
                 dgvDocsForTransformation = new DataGridView()
                 {
@@ -785,6 +857,7 @@ namespace FlameTradeSS
                     Tag = transformBinding,
                     AllowUserToAddRows = false,
                     AllowUserToDeleteRows = false,
+                    ReadOnly = true,
                     RowHeadersWidth = 5,
                     SelectionMode = DataGridViewSelectionMode.FullRowSelect,
 
@@ -794,8 +867,30 @@ namespace FlameTradeSS
                  };
 
                 dgvDocsForTransformation.Columns.Add(sequence);
+                dgvDocsForTransformation.Columns.Add(number);
+                dgvDocsForTransformation.Columns.Add(partner);
+                dgvDocsForTransformation.Columns.Add(comment);
 
                 panelTransformFrom.Controls.Add(dgvDocsForTransformation);
+            }
+        }
+
+        private void TxtFilter_TextChanged(object sender, EventArgs e)
+        {
+           // TextBox textBox = (TextBox)sender;
+            DocumentSequences currentSequence = cmbFilter.SelectedItem as DocumentSequences;
+
+            if (dgvDocsForTransformation != null && currentSequence != null)
+            {
+                BindingSource transformBinding = dgvDocsForTransformation.Tag as BindingSource;
+                if (string.IsNullOrEmpty(txtFilter.Text))
+                {
+                    transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSequence.ID).ToList();
+                }
+                else
+                {
+                    transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSequence.ID && d.DocumentNumber.ToString().Contains(txtFilter.Text) | d.Partners.Partner_name.Contains(txtFilter.Text) | d.Comment.Contains(txtFilter.Text)).ToList();
+                }
             }
         }
 
@@ -808,7 +903,14 @@ namespace FlameTradeSS
             if(dgvDocsForTransformation!=null && currentSeq!=null)
             {
                 BindingSource transformBinding = dgvDocsForTransformation.Tag as BindingSource;
-                transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSeq.ID).ToList();
+                if(string.IsNullOrEmpty(txtFilter.Text))
+                {
+                    transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSeq.ID).ToList();
+                } else
+                {
+                    transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSeq.ID && d.DocumentNumber.ToString().Contains(txtFilter.Text) | d.Partners.Partner_name.Contains(txtFilter.Text) | d.Comment.Contains(txtFilter.Text)).ToList();
+                }
+                
             }
         }
 
