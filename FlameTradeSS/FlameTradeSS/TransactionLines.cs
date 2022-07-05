@@ -57,6 +57,8 @@ namespace FlameTradeSS
         public Nullable<int> SurfaceID { get; set; }
         public string Comment { get; set; }
         public Nullable<int> FinancialCategoryID { get; set; }
+        public Nullable<int> OriginLine { get; set; }
+        public int WH { get; set; }
     
         public virtual DocumentTransactions DocumentTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

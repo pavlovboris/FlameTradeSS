@@ -176,6 +176,13 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" />
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" />
         <AssociationConnector Association="FlameTradeDbModel.FK_FinancialPlanLines_FinancialCategories" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.PossibleSequenceTransformationsProperties" Width="1.5" PointX="18.25" PointY="1.125" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.PossibleSequenceTransofrmation" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

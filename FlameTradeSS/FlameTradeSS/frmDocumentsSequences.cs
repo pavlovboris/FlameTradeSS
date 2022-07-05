@@ -121,11 +121,30 @@ namespace FlameTradeSS
                     editSequencesPropertirs.Text = "Редактиране на Свойствата на : " + documentSequences.SequenceName;
                     editSequencesPropertirs.Click += EditSequencesPropertirs_Click;
                     contextMenuStripDgv.Items.Add(editSequencesPropertirs);
+
+                    ToolStripMenuItem editPossibleSequenceTransformations = new ToolStripMenuItem();
+                    editPossibleSequenceTransformations.Text = "Редактиране на Трансформации на :" + documentSequences.SequenceName;
+                    editPossibleSequenceTransformations.Click += EditPossibleSequenceTransformations_Click;
+                    contextMenuStripDgv.Items.Add(editPossibleSequenceTransformations);
+
                 } else if (documentSequences.ID == 0)
                 {
                     CommonTasks.SendErrorMsg("Моля, преди да продължите, ЗАПАМЕТЕТЕ промените");
                 }
              }
+        }
+
+        private void EditPossibleSequenceTransformations_Click(object sender, EventArgs e)
+        {
+            DocumentSequences documentSequences = dgvDocumentSequences.CurrentRow.DataBoundItem as DocumentSequences;
+            if (documentSequences!=null)
+            {
+                frmPossibleSequenceTransformations frmPossibleSequenceTransformations = new frmPossibleSequenceTransformations();
+                frmPossibleSequenceTransformations.documentSequences = documentSequences;
+                frmPossibleSequenceTransformations.db = db;
+                CommonTasks.OpenForm(frmPossibleSequenceTransformations);
+
+            }
         }
 
         private void EditSequencesPropertirs_Click(object sender, EventArgs e)

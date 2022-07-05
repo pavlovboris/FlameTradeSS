@@ -12,12 +12,8 @@ namespace FlameTradeSS
     {
         public void AddFlowLayoutItem(Panel panel1,FlameTradeDbEntities db,List<DocumentTransactions> documentTransactions,FinancialPlans financialPlans,BindingSource bindingSource)
         {
-
             foreach(DocumentTransactions trans in documentTransactions)
             {
-
-                
-
                 ContextMenuStrip flowContext = new ContextMenuStrip();
                 flowContext.Items.Add(new ToolStripMenuItem { Text = "Премахни",Name = "remove" });
                 flowContext.ItemClicked += FlowContext_ItemClicked;
@@ -45,6 +41,7 @@ namespace FlameTradeSS
                 flowLayoutPanel.MouseDown += FlowLayoutPanel_MouseDown;
                 flowLayoutPanel.MouseUp += FlowLayoutPanel_MouseUp;
                 flowLayoutPanel.MouseMove += FlowLayoutPanel_MouseMove;
+                flowLayoutPanel.Padding = new Padding(5,20,5,20); 
                 flowLayoutPanel.Tag = trans;
                 flowLayoutPanel.AutoSize = true;
                 //flowLayoutPanel.Dock = DockStyle.Fill;
@@ -60,12 +57,14 @@ namespace FlameTradeSS
                 categoryName.ReadOnly = true;
                 categoryName.TextAlign = HorizontalAlignment.Center;
                 categoryName.Width = flowLayoutPanel.Width - 5;
+                //categoryName.Padding = new Padding(5, 20, 50, 5);
                 flowLayoutPanel.Controls.Add(categoryName);
                 categoryName.Show();
 
                 Button buttonAdd = new Button();
                 buttonAdd.Text = "Добави Категория";
                 buttonAdd.Width = flowLayoutPanel.Width - 5;
+                //buttonAdd.Padding = new Padding(5, 20, 50, 5);
                 flowLayoutPanel.Controls.Add(buttonAdd);
                 buttonAdd.Show();
 

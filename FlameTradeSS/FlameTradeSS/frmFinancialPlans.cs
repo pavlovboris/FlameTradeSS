@@ -118,7 +118,31 @@ namespace FlameTradeSS
             //await db.SaveChangesAsync();
             projectBindingSource.DataSource = db.Project.ToList();
             Cursor.Current = Cursors.Default;
-            Show();
+            Show();            
+
+            if (autoLoad == true)
+            {
+                financialPlanLinesbindingSource.DataSource = db.FinancialPlanLines.Where(fpl => fpl.FinancialPlanID == financialPlans.ID).ToList();
+
+                List<TransactionsType> transactions = new List<TransactionsType>();
+                foreach(FinancialPlanLines financialPlanLine in financialPlanLinesbindingSource)
+                {
+                    bool exists = false; 
+                    foreach(TransactionsType transaction in transactions)
+                    {
+                        if (transaction.ID == financialPlanLine.TransactionTypeID)
+                        {
+                            exists = true;
+                        }
+                    }
+                    if (exists == false)
+                    {
+                        transactions.Add(financialPlanLine.TransactionsType);
+                    }
+                }
+                LoadingItems load = new LoadingItems();
+                load.LoadFlowLayoutItem(panelFlowPanel, db, transactions, financialPlans, financialPlanLinesbindingSource);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -162,7 +186,7 @@ namespace FlameTradeSS
             ctrlMoved.Top += e.Y - pointMouse.Y;
         }
 
-      
+        public bool autoLoad = false;
      
 
         private void flowLayoutPanel1_Click(object sender, EventArgs e)
@@ -183,20 +207,33 @@ namespace FlameTradeSS
                     transactions.Add(doctrans);
                 }
             }
-
             AddingItems add = new AddingItems();
          
             add.AddFlowLayoutItem(panelFlowPanel,db,transactions, financialPlans,financialPlanLinesbindingSource);           
         }
-
+        public bool isNew = true;
         private async void button2_Click(object sender, EventArgs e)
         {
-            db.FinancialPlans.Add(financialPlans);
-            foreach(FinancialPlanLines financialPlanLines in financialPlanLinesbindingSource)
+           DialogResult result = CommonTasks.SendQuestionMsg("Сигурни ли сте, че искате да запазите финансовият план?");
+
+            if (result ==  DialogResult.Yes)
             {
-                db.FinancialPlanLines.Add(financialPlanLines);
+                if(isNew == true)
+                {
+                    db.FinancialPlans.Add(financialPlans);
+                    foreach (FinancialPlanLines financialPlanLines in financialPlanLinesbindingSource)
+                    {
+                        db.FinancialPlanLines.Add(financialPlanLines);
+                    }
+                } 
+                
+                await db.SaveChangesAsync();
+
+                Close();
+            } else if (result == DialogResult.No)
+            {
+                Close();
             }
-            await db.SaveChangesAsync();
         }
     }
 }

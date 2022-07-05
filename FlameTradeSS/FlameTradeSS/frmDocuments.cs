@@ -547,42 +547,41 @@ namespace FlameTradeSS
             }
         }
 
-        private async void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if(dgvDocuments.CurrentRow.DataBoundItem!=null)
+            Documents currentRowBI = dgvDocuments.CurrentRow.DataBoundItem as Documents;
+            if (e.ClickedItem == toolStripMenuAddFinancialPlan)
             {
-                List<DocumentTransactions> transaction = new List<DocumentTransactions>();
-                Documents currentRowBI = dgvDocuments.CurrentRow.DataBoundItem as Documents;
-                foreach(DocumentTransactions currentDocTrans in currentRowBI.DocumentTransactions)
+                if (dgvDocuments.CurrentRow.DataBoundItem != null)
                 {
-                    if(currentDocTrans.TransactionsType.IsFinancialType==1)
+                    List<DocumentTransactions> transaction = new List<DocumentTransactions>();
+                    
+                    foreach (DocumentTransactions currentDocTrans in currentRowBI.DocumentTransactions)
                     {
-                        transaction.Add(currentDocTrans);
+                        if (currentDocTrans.TransactionsType.IsFinancialType == 1)
+                        {
+                            transaction.Add(currentDocTrans);
+                        }
+
                     }
-                    
-                }
-                
-                    
-                if (e.ClickedItem == contextMenuStripDocument.Items[0])
-                {
                     frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
                     frmFinancialPlans.transactionsType = transaction;
                     frmFinancialPlans.financialPlans = new FinancialPlans();
 
-                   // DocumentsProjects documents = currentRowBI.DocumentsProjects.FirstOrDefault();
-                    //if (documents!=null)
-                    //{
-                        frmFinancialPlans.financialPlans.ProjectID = 1;
-                    //}
-                    
+                    frmFinancialPlans.financialPlans.ProjectID = 1;
                     frmFinancialPlans.financialPlans.CreationDate = DateTime.Now;
-                    
-                    //db.FinancialPlans.Add(frmFinancialPlans.financialPlans);
-                    //await db.SaveChangesAsync();
-                    CommonTasks.OpenForm(frmFinancialPlans);
+
+                    CommonTasks.OpenForm(frmFinancialPlans);                    
+                }
+            } else if (e.ClickedItem == toolStripMenuEditFinancialPlan)
+            {
+                if (dgvDocuments.CurrentRow.DataBoundItem != null)
+                {
+                    frmFinancialPlansList frmFinancialPlansList = new frmFinancialPlansList();
+                    frmFinancialPlansList.senderDocument = currentRowBI;
+                    CommonTasks.OpenForm(frmFinancialPlansList);
                 }
             }
-            
         }
 
         private void frmDocuments_FormClosed(object sender, FormClosedEventArgs e)

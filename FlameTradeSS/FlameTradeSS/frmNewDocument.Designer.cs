@@ -100,6 +100,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.btnTransformFrom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -200,6 +201,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnTransformFrom);
             this.panel1.Controls.Add(this.cmbSequenceFilter);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnIssueDocument);
@@ -712,6 +714,16 @@
             this.tabControlMain.TabIndex = 15;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
+            // btnTransformFrom
+            // 
+            this.btnTransformFrom.Location = new System.Drawing.Point(380, 24);
+            this.btnTransformFrom.Name = "btnTransformFrom";
+            this.btnTransformFrom.Size = new System.Drawing.Size(21, 23);
+            this.btnTransformFrom.TabIndex = 31;
+            this.btnTransformFrom.Text = "+";
+            this.btnTransformFrom.UseVisualStyleBackColor = true;
+            this.btnTransformFrom.Click += new System.EventHandler(this.btnTransformFrom_Click);
+            // 
             // frmNewDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -812,5 +824,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
         private System.Windows.Forms.ComboBox cmbSequenceFilter;
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
+        private System.Windows.Forms.Button btnTransformFrom;
     }
 }

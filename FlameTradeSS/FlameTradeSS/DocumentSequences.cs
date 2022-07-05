@@ -21,6 +21,8 @@ namespace FlameTradeSS
             this.Numbering = new HashSet<Numbering>();
             this.SequencesTransactions = new HashSet<SequencesTransactions>();
             this.DocumentSequencesProperties = new HashSet<DocumentSequencesProperties>();
+            this.PossibleSequenceTransofrmation = new HashSet<PossibleSequenceTransofrmation>();
+            this.PossibleSequenceTransofrmation1 = new HashSet<PossibleSequenceTransofrmation>();
         }
     
         public int ID { get; set; }
@@ -38,5 +40,9 @@ namespace FlameTradeSS
         public virtual ICollection<SequencesTransactions> SequencesTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentSequencesProperties> DocumentSequencesProperties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PossibleSequenceTransofrmation> PossibleSequenceTransofrmation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PossibleSequenceTransofrmation> PossibleSequenceTransofrmation1 { get; set; }
     }
 }

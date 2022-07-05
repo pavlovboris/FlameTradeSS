@@ -35,7 +35,7 @@
             this.financialPlansBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelMainPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtCurrentRealValue = new System.Windows.Forms.TextBox();
             this.txtCurrentBudgetValue = new System.Windows.Forms.TextBox();
             this.txtCurrentOfferValue = new System.Windows.Forms.TextBox();
@@ -43,7 +43,7 @@
             this.dateTimeCreationDate = new System.Windows.Forms.DateTimePicker();
             this.cmbProject = new System.Windows.Forms.ComboBox();
             this.txtFinancialPlanID = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadFromDocument = new System.Windows.Forms.Button();
             this.financialPlanLinesbindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.financialPlansBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
@@ -86,7 +86,7 @@
             // 
             // panelMainPanel
             // 
-            this.panelMainPanel.Controls.Add(this.button2);
+            this.panelMainPanel.Controls.Add(this.btnSave);
             this.panelMainPanel.Controls.Add(this.txtCurrentRealValue);
             this.panelMainPanel.Controls.Add(this.txtCurrentBudgetValue);
             this.panelMainPanel.Controls.Add(this.txtCurrentOfferValue);
@@ -94,21 +94,21 @@
             this.panelMainPanel.Controls.Add(this.dateTimeCreationDate);
             this.panelMainPanel.Controls.Add(this.cmbProject);
             this.panelMainPanel.Controls.Add(this.txtFinancialPlanID);
-            this.panelMainPanel.Controls.Add(this.button1);
+            this.panelMainPanel.Controls.Add(this.btnLoadFromDocument);
             this.panelMainPanel.Location = new System.Drawing.Point(14, 95);
             this.panelMainPanel.Name = "panelMainPanel";
             this.panelMainPanel.Size = new System.Drawing.Size(1161, 100);
             this.panelMainPanel.TabIndex = 29;
             // 
-            // button2
+            // btnSave
             // 
-            this.button2.Location = new System.Drawing.Point(305, 74);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSave.Location = new System.Drawing.Point(154, 74);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(169, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Запази Финансовият План";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtCurrentRealValue
             // 
@@ -171,15 +171,15 @@
             this.txtFinancialPlanID.Size = new System.Drawing.Size(126, 20);
             this.txtFinancialPlanID.TabIndex = 1;
             // 
-            // button1
+            // btnLoadFromDocument
             // 
-            this.button1.Location = new System.Drawing.Point(3, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.flowLayoutPanel1_Click);
+            this.btnLoadFromDocument.Location = new System.Drawing.Point(3, 74);
+            this.btnLoadFromDocument.Name = "btnLoadFromDocument";
+            this.btnLoadFromDocument.Size = new System.Drawing.Size(145, 23);
+            this.btnLoadFromDocument.TabIndex = 0;
+            this.btnLoadFromDocument.Text = "Зареди всички групи ";
+            this.btnLoadFromDocument.UseVisualStyleBackColor = true;
+            this.btnLoadFromDocument.Click += new System.EventHandler(this.flowLayoutPanel1_Click);
             // 
             // financialPlanLinesbindingSource
             // 
@@ -223,8 +223,8 @@
         public System.Windows.Forms.DateTimePicker dateTimeCreationDate;
         private System.Windows.Forms.ComboBox cmbProject;
         private System.Windows.Forms.TextBox txtFinancialPlanID;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.BindingSource financialPlanLinesbindingSource;
+        public System.Windows.Forms.Button btnLoadFromDocument;
     }
 }

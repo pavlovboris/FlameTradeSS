@@ -444,6 +444,29 @@
           <Property Name="FinancialCategoryID" Type="int" Nullable="false" />
           <Property Name="TransactionTypeID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="PossibleSequenceTransformationsProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PossibleSqequenceTransformationID" Type="int" Nullable="false" />
+          <Property Name="UseReceipt" Type="int" Nullable="false" />
+          <Property Name="RemainQTYAction" Type="int" Nullable="false" />
+          <Property Name="RemainProductionQTYAction" Type="int" Nullable="false" />
+          <Property Name="RemainPackagingQTYAction" Type="int" Nullable="false" />
+          <Property Name="RemainDeliveryQTYAction" Type="int" Nullable="false" />
+          <Property Name="RemainInvoiceQTYAction" Type="int" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+          <Property Name="TransactionTypeIDTo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PossibleSequenceTransofrmation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="int" Nullable="false" />
+          <Property Name="PossibleDocumentSequenceID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="ID" />
@@ -621,6 +644,8 @@
           <Property Name="SurfaceID" Type="int" />
           <Property Name="Comment" Type="varchar" MaxLength="250" />
           <Property Name="FinancialCategoryID" Type="int" />
+          <Property Name="OriginLine" Type="int" />
+          <Property Name="WH" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TransactionLinesComments">
           <Key>
@@ -1446,6 +1471,66 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation">
+          <End Role="PossibleSequenceTransofrmation" Type="Self.PossibleSequenceTransofrmation" Multiplicity="1" />
+          <End Role="PossibleSequenceTransformationsProperties" Type="Self.PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="PossibleSqequenceTransformationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_TransactionsType">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="1" />
+          <End Role="PossibleSequenceTransformationsProperties" Type="Self.PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_TransactionsType1">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="1" />
+          <End Role="PossibleSequenceTransformationsProperties" Type="Self.PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="TransactionTypeIDTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransofrmation_DocumentSequences">
+          <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
+          <End Role="PossibleSequenceTransofrmation" Type="Self.PossibleSequenceTransofrmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransofrmation_DocumentSequences1">
+          <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
+          <End Role="PossibleSequenceTransofrmation" Type="Self.PossibleSequenceTransofrmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="PossibleDocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProjectPersons_PersonsID">
           <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="ProjectPersons" Type="Self.ProjectPersons" Multiplicity="*" />
@@ -1994,6 +2079,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="PersonsRolesOfPersons" EntityType="Self.PersonsRolesOfPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsType" EntityType="Self.PersonsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PossibleFinancialCategoryTransactionsType" EntityType="Self.PossibleFinancialCategoryTransactionsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossibleSequenceTransformationsProperties" EntityType="Self.PossibleSequenceTransformationsProperties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossibleSequenceTransofrmation" EntityType="Self.PossibleSequenceTransofrmation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPersons" EntityType="Self.ProjectPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptLines" EntityType="Self.ReceiptLines" Schema="dbo" store:Type="Tables" />
@@ -2268,6 +2355,26 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="PossibleFinancialCategoryTransactionsType" EntitySet="PossibleFinancialCategoryTransactionsType" />
           </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" Association="Self.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation">
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_TransactionsType" Association="Self.FK_PossibleSequenceTransformationsProperties_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_TransactionsType1" Association="Self.FK_PossibleSequenceTransformationsProperties_TransactionsType1">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransofrmation_DocumentSequences" Association="Self.FK_PossibleSequenceTransofrmation_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransofrmation_DocumentSequences1" Association="Self.FK_PossibleSequenceTransofrmation_DocumentSequences1">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProjectPersons_PersonsID" Association="Self.FK_ProjectPersons_PersonsID">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="ProjectPersons" EntitySet="ProjectPersons" />
@@ -2520,6 +2627,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Numbering" Relationship="Self.FK_Numbering_SequenceID" FromRole="DocumentSequences" ToRole="Numbering" />
           <NavigationProperty Name="SequencesTransactions" Relationship="Self.FK_SequencesTransactions_SquenceID" FromRole="DocumentSequences" ToRole="SequencesTransactions" />
           <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentSequencesProperties" />
+          <NavigationProperty Name="PossibleSequenceTransofrmation" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
+          <NavigationProperty Name="PossibleSequenceTransofrmation1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -3043,6 +3152,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionLinesComments" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_TransactionLines" FromRole="TransactionLines" ToRole="TransactionLinesComments" />
           <Property Name="FinancialCategoryID" Type="Int32" />
           <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" FromRole="TransactionLines" ToRole="FinancialCategories" />
+          <Property Name="OriginLine" Type="Int32" />
+          <Property Name="WH" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -3118,6 +3229,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="IsFinancialType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FinancialPlanColors" Relationship="FlameTradeDbModel.FK_FinancialPlanColors_TransactionsType" FromRole="TransactionsType" ToRole="FinancialPlanColors" />
           <NavigationProperty Name="PossibleFinancialCategoryTransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" FromRole="TransactionsType" ToRole="PossibleFinancialCategoryTransactionsType" />
+          <NavigationProperty Name="PossibleSequenceTransformationsProperties" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" FromRole="TransactionsType" ToRole="PossibleSequenceTransformationsProperties" />
+          <NavigationProperty Name="PossibleSequenceTransformationsProperties1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" FromRole="TransactionsType" ToRole="PossibleSequenceTransformationsProperties" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -4434,6 +4547,28 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="FinancialCategories" EntitySet="FinancialCategories" />
             <End Role="FinancialPlanLines" EntitySet="FinancialPlanLines" />
           </AssociationSet>
+          <EntitySet Name="PossibleSequenceTransformationsProperties" EntityType="FlameTradeDbModel.PossibleSequenceTransformationsProperties" />
+          <EntitySet Name="PossibleSequenceTransofrmation" EntityType="FlameTradeDbModel.PossibleSequenceTransofrmation" />
+          <AssociationSet Name="FK_PossibleSequenceTransofrmation_DocumentSequences" Association="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransofrmation_DocumentSequences1" Association="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation">
+            <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_TransactionsType" Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossibleSequenceTransformationsProperties_TransactionsType1" Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5072,6 +5207,95 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PossibleSequenceTransformationsProperties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PossibleSqequenceTransformationID" Type="Int32" Nullable="false" />
+          <Property Name="UseReceipt" Type="Int32" Nullable="false" />
+          <Property Name="RemainQTYAction" Type="Int32" Nullable="false" />
+          <Property Name="RemainProductionQTYAction" Type="Int32" Nullable="false" />
+          <Property Name="RemainPackagingQTYAction" Type="Int32" Nullable="false" />
+          <Property Name="RemainDeliveryQTYAction" Type="Int32" Nullable="false" />
+          <Property Name="RemainInvoiceQTYAction" Type="Int32" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PossibleSequenceTransofrmation" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" FromRole="PossibleSequenceTransformationsProperties" ToRole="PossibleSequenceTransofrmation" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" FromRole="PossibleSequenceTransformationsProperties" ToRole="TransactionsType" />
+          <Property Name="TransactionTypeIDTo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TransactionsType1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" FromRole="PossibleSequenceTransformationsProperties" ToRole="TransactionsType" />
+        </EntityType>
+        <EntityType Name="PossibleSequenceTransofrmation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentSequenceID" Type="Int32" Nullable="false" />
+          <Property Name="PossibleDocumentSequenceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentSequences" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences" FromRole="PossibleSequenceTransofrmation" ToRole="DocumentSequences" />
+          <NavigationProperty Name="DocumentSequences1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" FromRole="PossibleSequenceTransofrmation" ToRole="DocumentSequences" />
+          <NavigationProperty Name="PossibleSequenceTransformationsProperties" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" FromRole="PossibleSequenceTransofrmation" ToRole="PossibleSequenceTransformationsProperties" />
+        </EntityType>
+        <Association Name="FK_PossibleSequenceTransofrmation_DocumentSequences">
+          <End Type="FlameTradeDbModel.DocumentSequences" Role="DocumentSequences" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleSequenceTransofrmation" Role="PossibleSequenceTransofrmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransofrmation_DocumentSequences1">
+          <End Type="FlameTradeDbModel.DocumentSequences" Role="DocumentSequences" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleSequenceTransofrmation" Role="PossibleSequenceTransofrmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="PossibleDocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation">
+          <End Type="FlameTradeDbModel.PossibleSequenceTransofrmation" Role="PossibleSequenceTransofrmation" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleSequenceTransformationsProperties" Role="PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PossibleSequenceTransofrmation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="PossibleSqequenceTransformationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_TransactionsType">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleSequenceTransformationsProperties" Role="PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossibleSequenceTransformationsProperties_TransactionsType1">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.PossibleSequenceTransformationsProperties" Role="PossibleSequenceTransformationsProperties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PossibleSequenceTransformationsProperties">
+              <PropertyRef Name="TransactionTypeIDTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5549,6 +5773,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionLines">
               <MappingFragment StoreEntitySet="TransactionLines">
+                <ScalarProperty Name="WH" ColumnName="WH" />
+                <ScalarProperty Name="OriginLine" ColumnName="OriginLine" />
                 <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
@@ -5849,6 +6075,31 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="PossibleFinancialCategoryTransactionsType">
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
                 <ScalarProperty Name="FinancialCategoryID" ColumnName="FinancialCategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossibleSequenceTransformationsProperties">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PossibleSequenceTransformationsProperties">
+              <MappingFragment StoreEntitySet="PossibleSequenceTransformationsProperties">
+                <ScalarProperty Name="TransactionTypeIDTo" ColumnName="TransactionTypeIDTo" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="RemainInvoiceQTYAction" ColumnName="RemainInvoiceQTYAction" />
+                <ScalarProperty Name="RemainDeliveryQTYAction" ColumnName="RemainDeliveryQTYAction" />
+                <ScalarProperty Name="RemainPackagingQTYAction" ColumnName="RemainPackagingQTYAction" />
+                <ScalarProperty Name="RemainProductionQTYAction" ColumnName="RemainProductionQTYAction" />
+                <ScalarProperty Name="RemainQTYAction" ColumnName="RemainQTYAction" />
+                <ScalarProperty Name="UseReceipt" ColumnName="UseReceipt" />
+                <ScalarProperty Name="PossibleSqequenceTransformationID" ColumnName="PossibleSqequenceTransformationID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossibleSequenceTransofrmation">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PossibleSequenceTransofrmation">
+              <MappingFragment StoreEntitySet="PossibleSequenceTransofrmation">
+                <ScalarProperty Name="PossibleDocumentSequenceID" ColumnName="PossibleDocumentSequenceID" />
+                <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

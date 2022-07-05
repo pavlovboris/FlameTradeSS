@@ -23,6 +23,8 @@ namespace FlameTradeSS
             this.FinancialPlanLines = new HashSet<FinancialPlanLines>();
             this.FinancialPlanColors = new HashSet<FinancialPlanColors>();
             this.PossibleFinancialCategoryTransactionsType = new HashSet<PossibleFinancialCategoryTransactionsType>();
+            this.PossibleSequenceTransformationsProperties = new HashSet<PossibleSequenceTransformationsProperties>();
+            this.PossibleSequenceTransformationsProperties1 = new HashSet<PossibleSequenceTransformationsProperties>();
         }
     
         public int ID { get; set; }
@@ -44,5 +46,9 @@ namespace FlameTradeSS
         public virtual ICollection<FinancialPlanColors> FinancialPlanColors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PossibleFinancialCategoryTransactionsType> PossibleFinancialCategoryTransactionsType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PossibleSequenceTransformationsProperties> PossibleSequenceTransformationsProperties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PossibleSequenceTransformationsProperties> PossibleSequenceTransformationsProperties1 { get; set; }
     }
 }

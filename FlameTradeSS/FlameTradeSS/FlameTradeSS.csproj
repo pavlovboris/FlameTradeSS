@@ -73,6 +73,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocumentsTransformations.cs" />
+    <Compile Include="frmPossibleSequenceTransformations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPossibleSequenceTransformations.Designer.cs">
+      <DependentUpon>frmPossibleSequenceTransformations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinancialPlansList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinancialPlansList.Designer.cs">
+      <DependentUpon>frmFinancialPlansList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingItems.cs" />
     <Compile Include="AddingItems.cs" />
     <Compile Include="AppForms.cs" />
     <Compile Include="Colors.cs">
@@ -412,6 +426,12 @@
     <Compile Include="PossibleFinancialCategoryTransactionsType.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PossibleSequenceTransformationsProperties.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PossibleSequenceTransofrmation.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -520,6 +540,12 @@
     </Compile>
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPossibleSequenceTransformations.resx">
+      <DependentUpon>frmPossibleSequenceTransformations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinancialPlansList.resx">
+      <DependentUpon>frmFinancialPlansList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFinancialPlans.resx">
       <DependentUpon>frmFinancialPlans.cs</DependentUpon>
@@ -675,6 +701,8 @@
     <None Include="Properties\DataSources\PersonsFullNameView.datasource" />
     <None Include="Properties\DataSources\PersonsRolesOfPersons.datasource" />
     <None Include="Properties\DataSources\PersonsType.datasource" />
+    <None Include="Properties\DataSources\PossibleSequenceTransformationsProperties.datasource" />
+    <None Include="Properties\DataSources\PossibleSequenceTransofrmation.datasource" />
     <None Include="Properties\DataSources\Project.datasource" />
     <None Include="Properties\DataSources\ReceiptModels.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />

@@ -59,9 +59,6 @@ namespace FlameTradeSS
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
         }
-
-
-
         private void frmDocumentTransactions_Load(object sender, EventArgs e)
         {
             this.GotFocus += new EventHandler(Form_Gotfocus);

@@ -699,5 +699,83 @@ namespace FlameTradeSS
             }
 
         }
+
+        private void btnTransformFrom_Click(object sender, EventArgs e)
+        {
+            Panel panelTransformFrom = new Panel();
+            panelTransformFrom.Location = btnTransformFrom.Location;
+            panelTransformFrom.Width = 400;
+            panelTransformFrom.Height = 500;
+            panelTransformFrom.BorderStyle = BorderStyle.Fixed3D;
+            this.Controls.Add(panelTransformFrom);
+            panelTransformFrom.BringToFront();
+
+            Button ok = new Button();
+            ok.Text = "Вмъкни избраните документи";
+            ok.Width = 200;
+            Point okPoint = new Point();
+            okPoint.X = 5;
+            okPoint.Y = 5;
+            ok.Location = okPoint;
+            Button cancel = new Button();
+            cancel.Text = "Отказ";
+            cancel.Click += Cancel_Click;
+            Point cancelPoint = new Point();
+            cancelPoint.X = 205;
+            cancelPoint.Y = 5;
+            cancel.Location = cancelPoint;
+
+            panelTransformFrom.Controls.Add(ok);
+            panelTransformFrom.Controls.Add(cancel);
+
+            Point lblFilterPoint = new Point();
+            lblFilterPoint.X = 5;
+            lblFilterPoint.Y = 50;
+            Label lblFilter = new Label()
+            {
+                Text = "Филтър : ",
+                Location = lblFilterPoint,
+                Width = 100
+            };
+            Point cmbFilterPoint = new Point();
+            cmbFilterPoint.X = 105;
+            cmbFilterPoint.Y = 50;
+
+            //BindingSource cmbFilterBinding = new BindingSource();
+            List<DocumentSequences> possibleList = new List<DocumentSequences>();
+
+            DocumentSequences selectedSequence = cmbDocumentSequence.SelectedItem as DocumentSequences; 
+
+            if (selectedSequence.SequenceName != null)
+            {
+                foreach (PossibleSequenceTransofrmation pst in db.PossibleSequenceTransofrmation.Where(pt => pt.PossibleDocumentSequenceID == selectedSequence.ID ).ToList())
+                {
+                    possibleList.Add(pst.DocumentSequences);
+                }
+
+                ComboBox cmbFilter = new ComboBox()
+                {
+                    Name = "cmbFilter",
+                    DataSource = possibleList,
+                    DisplayMember = "SequenceName",
+                    ValueMember = "ID",
+                    //SelectedIndex = 0,
+                    Location = cmbFilterPoint
+                };
+                panelTransformFrom.Controls.Add(cmbFilter);
+
+            }
+
+
+            //cmbFilterBinding.DataSource = db.DocumentSequences.Where()
+
+            
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Button sendr = (Button)sender;
+            sendr.Parent.Dispose();
+        }
     }
 }
