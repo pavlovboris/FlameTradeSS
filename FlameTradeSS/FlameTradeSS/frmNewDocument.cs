@@ -136,7 +136,6 @@ namespace FlameTradeSS
                                 }
                             }
                         }
-
                         await db.SaveChangesAsync();
                         dgvAttachments.Dispose();
                         dgvDocumentTransactions.Dispose();
@@ -161,8 +160,6 @@ namespace FlameTradeSS
                     e.Cancel = true;
                 }
             }
-            
-
             try
             {
                 CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
@@ -252,10 +249,7 @@ namespace FlameTradeSS
                 TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
                 DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 
-
-
                 int tempID = CurrentSessionData.Counter + 1;
-
 
                 CurrentSessionData.Counter = tempID;
 
@@ -311,7 +305,6 @@ namespace FlameTradeSS
             }
         }
 
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null )
@@ -347,16 +340,13 @@ namespace FlameTradeSS
                     newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                     newfrmDocumentTransactions.MdiParent = this;
                     newfrmDocumentTransactions.documentTransactions = documentTransactions;
-                    //newfrmDocumentTransactions.documentTransactionsBindingSource.DataSource = documentTransactions;
                     newfrmDocumentTransactions.db = db;
-                    //  newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
 
                     TabPage newTabFrmDocumentTransactions = new TabPage();
                     DocumentTransactions selectedTransactionType = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
 
                     newTabFrmDocumentTransactions.Name = newfrmDocumentTransactions.Name;
                     newTabFrmDocumentTransactions.Text = selectedTransactionType.TransactionsType.TypeName + " " + documentTransactions.tempID.ToString();
-                    //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
                     tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
                     newTabFrmDocumentTransactions.Parent = tabControlMain;
 
@@ -560,8 +550,6 @@ namespace FlameTradeSS
             }
         }
 
-       
-
         private async void btnIssueDocument_Click(object sender, EventArgs e)
         {
             if (newDocument.DocumentSequences!=null)
@@ -643,7 +631,6 @@ namespace FlameTradeSS
                         break;
                 }
             } else { CommonTasks.SendErrorMsg("Необходимо е документа да има избрана серия, партьор и добавени транзакции"); }
-            
         }
 
         private void cmbPartners_SelectedIndexChanged(object sender, EventArgs e)
@@ -688,7 +675,6 @@ namespace FlameTradeSS
                     documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
                 }
             }
-
         }
 
         private void dgvDocumentTransactions_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -697,7 +683,6 @@ namespace FlameTradeSS
             {
                 cmbSequenceFilter.Width = TransactionTypes_TransactionTypeID_TypeName_ID.Width;
             }
-
         }
 
         private void btnTransformFrom_Click(object sender, EventArgs e)
@@ -707,6 +692,7 @@ namespace FlameTradeSS
             panelTransformFrom.Width = 400;
             panelTransformFrom.Height = 500;
             panelTransformFrom.BorderStyle = BorderStyle.Fixed3D;
+            panelTransformFrom.AutoScroll = true;
             this.Controls.Add(panelTransformFrom);
             panelTransformFrom.BringToFront();
 
@@ -762,14 +748,68 @@ namespace FlameTradeSS
                     //SelectedIndex = 0,
                     Location = cmbFilterPoint
                 };
+                cmbFilter.SelectedIndexChanged += CmbFilter_SelectedIndexChanged;
                 panelTransformFrom.Controls.Add(cmbFilter);
 
+                Point poitDgv = new Point()
+                {
+                    X = 5,
+                    Y = 120
+                };
+
+                BindingSource transformBinding = new BindingSource() { DataSource = typeof(Documents)};
+                BindingSource sequenceBinding = new BindingSource();
+                sequenceBinding.DataSource = db.DocumentSequences.ToList();
+
+                DocumentSequences currentSeq = cmbFilter.SelectedItem as DocumentSequences;
+                
+                if (currentSeq!=null)
+                {
+                    transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSeq.ID).ToList();
+                }
+
+                DataGridViewComboBoxColumn sequence = new DataGridViewComboBoxColumn();
+                sequence.Name = "sequences";
+                sequence.DataSource = sequenceBinding;
+                sequence.DataPropertyName = "DocumentSequenceID";
+                sequence.ValueMember = "ID";
+                sequence.DisplayMember = "SequenceName";
+                sequence.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+
+                dgvDocsForTransformation = new DataGridView()
+                {
+                    AutoGenerateColumns = false,
+                    AutoSize = true,
+                    Width = 390,
+                    Location = poitDgv,
+                    Tag = transformBinding,
+                    AllowUserToAddRows = false,
+                    AllowUserToDeleteRows = false,
+                    RowHeadersWidth = 5,
+                    SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+
+                    MaximumSize = new Size(500, 1000),
+                    Name = "dgvDocsForTransformation",
+                    DataSource = transformBinding
+                 };
+
+                dgvDocsForTransformation.Columns.Add(sequence);
+
+                panelTransformFrom.Controls.Add(dgvDocsForTransformation);
             }
+        }
 
+        DataGridView dgvDocsForTransformation;
 
-            //cmbFilterBinding.DataSource = db.DocumentSequences.Where()
-
-            
+        private void CmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            DocumentSequences currentSeq = comboBox.SelectedItem as DocumentSequences;
+            if(dgvDocsForTransformation!=null && currentSeq!=null)
+            {
+                BindingSource transformBinding = dgvDocsForTransformation.Tag as BindingSource;
+                transformBinding.DataSource = db.Documents.Where(d => d.DocumentSequenceID == currentSeq.ID).ToList();
+            }
         }
 
         private void Cancel_Click(object sender, EventArgs e)
