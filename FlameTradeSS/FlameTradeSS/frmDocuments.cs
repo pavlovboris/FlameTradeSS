@@ -547,7 +547,7 @@ namespace FlameTradeSS
             }
         }
 
-        private void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private async void contextMenuStripDocument_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if(dgvDocuments.CurrentRow.DataBoundItem!=null)
             {
@@ -567,7 +567,18 @@ namespace FlameTradeSS
                 {
                     frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
                     frmFinancialPlans.transactionsType = transaction;
+                    frmFinancialPlans.financialPlans = new FinancialPlans();
 
+                   // DocumentsProjects documents = currentRowBI.DocumentsProjects.FirstOrDefault();
+                    //if (documents!=null)
+                    //{
+                        frmFinancialPlans.financialPlans.ProjectID = 1;
+                    //}
+                    
+                    frmFinancialPlans.financialPlans.CreationDate = DateTime.Now;
+                    
+                    //db.FinancialPlans.Add(frmFinancialPlans.financialPlans);
+                    //await db.SaveChangesAsync();
                     CommonTasks.OpenForm(frmFinancialPlans);
                 }
             }

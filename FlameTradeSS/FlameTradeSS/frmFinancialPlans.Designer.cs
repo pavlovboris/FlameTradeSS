@@ -35,6 +35,7 @@
             this.financialPlansBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelMainPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.txtCurrentRealValue = new System.Windows.Forms.TextBox();
             this.txtCurrentBudgetValue = new System.Windows.Forms.TextBox();
             this.txtCurrentOfferValue = new System.Windows.Forms.TextBox();
@@ -43,9 +44,11 @@
             this.cmbProject = new System.Windows.Forms.ComboBox();
             this.txtFinancialPlanID = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.financialPlanLinesbindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.financialPlansBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             this.panelMainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialPlanLinesbindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -83,6 +86,7 @@
             // 
             // panelMainPanel
             // 
+            this.panelMainPanel.Controls.Add(this.button2);
             this.panelMainPanel.Controls.Add(this.txtCurrentRealValue);
             this.panelMainPanel.Controls.Add(this.txtCurrentBudgetValue);
             this.panelMainPanel.Controls.Add(this.txtCurrentOfferValue);
@@ -95,6 +99,16 @@
             this.panelMainPanel.Name = "panelMainPanel";
             this.panelMainPanel.Size = new System.Drawing.Size(1161, 100);
             this.panelMainPanel.TabIndex = 29;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(305, 74);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(127, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtCurrentRealValue
             // 
@@ -167,6 +181,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.flowLayoutPanel1_Click);
             // 
+            // financialPlanLinesbindingSource
+            // 
+            this.financialPlanLinesbindingSource.DataSource = typeof(FlameTradeSS.FinancialPlanLines);
+            // 
             // frmFinancialPlans
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +205,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             this.panelMainPanel.ResumeLayout(false);
             this.panelMainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.financialPlanLinesbindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,5 +224,7 @@
         private System.Windows.Forms.ComboBox cmbProject;
         private System.Windows.Forms.TextBox txtFinancialPlanID;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.BindingSource financialPlanLinesbindingSource;
     }
 }

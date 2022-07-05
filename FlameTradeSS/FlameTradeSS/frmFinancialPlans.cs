@@ -90,8 +90,8 @@ namespace FlameTradeSS
         private static readonly SecurityService securityService = new SecurityService();
         FlameTradeDbEntities db = securityService.NewDatabaseEntity();
 
-
-        private void frmDocuments_Load(object sender, EventArgs e)
+        public FinancialPlans financialPlans;
+        private  void frmDocuments_Load(object sender, EventArgs e)
         {
 
             Cursor.Current = Cursors.WaitCursor;
@@ -110,11 +110,12 @@ namespace FlameTradeSS
 
             Properties.Settings.Default.Save();
             financialPlansBindingSource.DataSource = db.FinancialPlans.ToList();
-            FinancialPlans financialPlans = new FinancialPlans();
-            financialPlans.Project = db.Project.First();
-            financialPlans.CreationDate = DateTime.Now;
+            //financialPlans.Project = db.Project.First();
+            //financialPlans.CreationDate = DateTime.Now;
             financialPlansBindingSource.Add(financialPlans);
             financialPlansBindingSource.MoveLast();
+            //db.FinancialPlans.Add(financialPlans);
+            //await db.SaveChangesAsync();
             projectBindingSource.DataSource = db.Project.ToList();
             Cursor.Current = Cursors.Default;
             Show();
@@ -185,8 +186,17 @@ namespace FlameTradeSS
 
             AddingItems add = new AddingItems();
          
-            add.AddFlowLayoutItem(panelFlowPanel,db,transactions);
-           
+            add.AddFlowLayoutItem(panelFlowPanel,db,transactions, financialPlans,financialPlanLinesbindingSource);           
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            db.FinancialPlans.Add(financialPlans);
+            foreach(FinancialPlanLines financialPlanLines in financialPlanLinesbindingSource)
+            {
+                db.FinancialPlanLines.Add(financialPlanLines);
+            }
+            await db.SaveChangesAsync();
         }
     }
 }
