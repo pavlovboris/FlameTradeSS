@@ -581,6 +581,15 @@ namespace FlameTradeSS
                     frmFinancialPlansList.senderDocument = currentRowBI;
                     CommonTasks.OpenForm(frmFinancialPlansList);
                 }
+            } else if (e.ClickedItem == toolStripMenuDocumentTransformations)
+            {
+                if (dgvDocuments.CurrentRow.DataBoundItem !=null)
+                {
+                    frmDocumentTransformation frmDocumentTransformation = new frmDocumentTransformation();
+                    frmDocumentTransformation.document = currentRowBI;
+                    frmDocumentTransformation.db = db;
+                    frmDocumentTransformation.Show();
+                }
             }
         }
 

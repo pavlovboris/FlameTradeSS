@@ -56,12 +56,14 @@
             this.pricingModelIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.contextMenuStripDocument = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuAddFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuEditFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbIsCanceled = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.cmbSequence = new System.Windows.Forms.ComboBox();
             this.documentSequencesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripMenuEditFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuDocumentTransformations = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocuments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
@@ -313,9 +315,11 @@
             // 
             this.contextMenuStripDocument.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuAddFinancialPlan,
-            this.toolStripMenuEditFinancialPlan});
+            this.toolStripMenuEditFinancialPlan,
+            this.toolStripSeparator1,
+            this.toolStripMenuDocumentTransformations});
             this.contextMenuStripDocument.Name = "contextMenuStripDocument";
-            this.contextMenuStripDocument.Size = new System.Drawing.Size(276, 70);
+            this.contextMenuStripDocument.Size = new System.Drawing.Size(276, 98);
             this.contextMenuStripDocument.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDocument_Opening);
             this.contextMenuStripDocument.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocument_ItemClicked);
             // 
@@ -324,6 +328,12 @@
             this.toolStripMenuAddFinancialPlan.Name = "toolStripMenuAddFinancialPlan";
             this.toolStripMenuAddFinancialPlan.Size = new System.Drawing.Size(275, 22);
             this.toolStripMenuAddFinancialPlan.Text = "Нов Финансов План";
+            // 
+            // toolStripMenuEditFinancialPlan
+            // 
+            this.toolStripMenuEditFinancialPlan.Name = "toolStripMenuEditFinancialPlan";
+            this.toolStripMenuEditFinancialPlan.Size = new System.Drawing.Size(275, 22);
+            this.toolStripMenuEditFinancialPlan.Text = "Съшествуващи финансови Планове";
             // 
             // documentsBindingSource
             // 
@@ -368,11 +378,16 @@
             // 
             this.documentSequencesBindingSource1.DataSource = typeof(FlameTradeSS.DocumentSequences);
             // 
-            // toolStripMenuEditFinancialPlan
+            // toolStripSeparator1
             // 
-            this.toolStripMenuEditFinancialPlan.Name = "toolStripMenuEditFinancialPlan";
-            this.toolStripMenuEditFinancialPlan.Size = new System.Drawing.Size(275, 22);
-            this.toolStripMenuEditFinancialPlan.Text = "Съшествуващи финансови Планове";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(272, 6);
+            // 
+            // toolStripMenuDocumentTransformations
+            // 
+            this.toolStripMenuDocumentTransformations.Name = "toolStripMenuDocumentTransformations";
+            this.toolStripMenuDocumentTransformations.Size = new System.Drawing.Size(275, 22);
+            this.toolStripMenuDocumentTransformations.Text = "Свързани Документи";
             // 
             // frmDocuments
             // 
@@ -440,5 +455,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripDocument;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuAddFinancialPlan;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuEditFinancialPlan;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDocumentTransformations;
     }
 }

@@ -74,6 +74,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentsTransformations.cs" />
+    <Compile Include="frmDocumentTransformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentTransformation.Designer.cs">
+      <DependentUpon>frmDocumentTransformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPossibleSequenceTransformations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -541,6 +547,9 @@
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentTransformation.resx">
+      <DependentUpon>frmDocumentTransformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPossibleSequenceTransformations.resx">
       <DependentUpon>frmPossibleSequenceTransformations.cs</DependentUpon>
     </EmbeddedResource>
@@ -678,6 +687,7 @@
     <None Include="Properties\DataSources\DocumentSequencesProperties.datasource" />
     <None Include="Properties\DataSources\DocumentsProjects.datasource" />
     <None Include="Properties\DataSources\DocumentTransactions.datasource" />
+    <None Include="Properties\DataSources\DocumentTransformation.datasource" />
     <None Include="Properties\DataSources\FinancialCategories.datasource" />
     <None Include="Properties\DataSources\FinancialPlanColors.datasource" />
     <None Include="Properties\DataSources\FinancialPlanLines.datasource" />

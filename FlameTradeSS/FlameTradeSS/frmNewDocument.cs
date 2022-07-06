@@ -434,7 +434,6 @@ namespace FlameTradeSS
                     db.DocumentsProjects.Remove(documentsProjects);
                 }
             }
-           
         }
 
         private void btnAddFile_Click(object sender, EventArgs e)
@@ -692,10 +691,11 @@ namespace FlameTradeSS
         {
             Panel panelTransformFrom = new Panel();
             panelTransformFrom.Location = btnTransformFrom.Location;
-            panelTransformFrom.Width = 400;
-            panelTransformFrom.Height = 500;
+            panelTransformFrom.Width = 550;
+            panelTransformFrom.Height = 600;
             panelTransformFrom.BorderStyle = BorderStyle.Fixed3D;
             panelTransformFrom.AutoScroll = true;
+            
             this.Controls.Add(panelTransformFrom);
             panelTransformFrom.BringToFront();
 
@@ -852,7 +852,7 @@ namespace FlameTradeSS
                 {
                     AutoGenerateColumns = false,
                     AutoSize = true,
-                    Width = 390,
+                    Width = 450,
                     Location = poitDgv,
                     Tag = transformBinding,
                     AllowUserToAddRows = false,
@@ -861,10 +861,11 @@ namespace FlameTradeSS
                     RowHeadersWidth = 5,
                     SelectionMode = DataGridViewSelectionMode.FullRowSelect,
 
-                    MaximumSize = new Size(500, 1000),
+                    MaximumSize = new Size(590, 1000),
                     Name = "dgvDocsForTransformation",
                     DataSource = transformBinding
                  };
+                dgvDocsForTransformation.CellDoubleClick += DgvDocsForTransformation_CellDoubleClick;
 
                 dgvDocsForTransformation.Columns.Add(sequence);
                 dgvDocsForTransformation.Columns.Add(number);
@@ -872,6 +873,22 @@ namespace FlameTradeSS
                 dgvDocsForTransformation.Columns.Add(comment);
 
                 panelTransformFrom.Controls.Add(dgvDocsForTransformation);
+            }
+        }
+
+        private void DgvDocsForTransformation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dgvDocsForTransformation.CurrentRow.Index!= -1)
+            {
+                Documents currentDoc = dgvDocsForTransformation.CurrentRow.DataBoundItem as Documents;
+                
+                List<Documents> documentsFrom = new List<Documents>();
+                documentsFrom.Add(currentDoc);
+                if (currentDoc!=null)
+                {
+                    DocumentsTransformations doDocumentTransofrmation = new DocumentsTransformations();
+                    doDocumentTransofrmation.TransformDocument(db, newDocument, documentsFrom, documentTransactionsBindingSource);
+                }
             }
         }
 
