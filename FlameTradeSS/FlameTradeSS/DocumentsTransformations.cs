@@ -26,7 +26,7 @@ namespace FlameTradeSS
                             CurrentSessionData.Counter = tempID;
 
                             DocumentTransactions newDocTransaction = new DocumentTransactions();
-                            newDocTransaction.DocumentsID = documentsTo.ID;
+                            newDocTransaction.Documents = documentsTo;
                             newDocTransaction.TransactionDate = DateTime.Now;
                             newDocTransaction.TransactionTypeID = possibleSequenceTransformationsProperties.TransactionTypeIDTo;
                             newDocTransaction.CreationDateTime = DateTime.Now;
@@ -61,6 +61,44 @@ namespace FlameTradeSS
                             newTransactionsTransformations.DocumentTransactions1 = newDocTransaction;
                             newTransactionsTransformations.DocumentTransactions = documentTransactions;
                             db.TransactionsTransformations.Add(newTransactionsTransformations);
+
+                            foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
+                            {
+                                if (possibleSequenceTransformationsProperties.UseReceipt != 1)
+                                {
+                                    TransactionLines newTransactionLine = new TransactionLines();
+                                    newTransactionLine.DocumentTransactions = newDocTransaction;
+                                    newTransactionLine.AdditionExpense = transactionLines.AdditionExpense;
+                                    newTransactionLine.Comment = transactionLines.Comment;
+                                    newTransactionLine.CostPrice1 = transactionLines.CostPrice1;
+                                    newTransactionLine.CostPrice2 = transactionLines.CostPrice2;
+                                    newTransactionLine.CostPrice3 = transactionLines.CostPrice3;
+                                    newTransactionLine.SalePrice1 = transactionLines.SalePrice1;
+                                    newTransactionLine.SalePrice2 = transactionLines.SalePrice2;
+                                    newTransactionLine.SalePrice3 = transactionLines.SalePrice3;
+                                    newTransactionLine.SecondPartitionID = transactionLines.SecondPartitionID;
+                                    newTransactionLine.ServiceID = transactionLines.ServiceID;
+                                    newTransactionLine.StartDate = transactionLines.StartDate;
+                                    newTransactionLine.Cycles = transactionLines.Cycles;
+                                    newTransactionLine.DurationHours = transactionLines.DurationHours;
+                                    newTransactionLine.EndDate = transactionLines.EndDate;
+                                    newTransactionLine.MuID = transactionLines.MuID;
+                                    newTransactionLine.ExpectedMatDate = transactionLines.ExpectedMatDate;
+                                    newTransactionLine.RequestDate = transactionLines.RequestDate;
+                                    newTransactionLine.FinancialCategoryID = transactionLines.FinancialCategoryID;
+                                    newTransactionLine.ItemID = transactionLines.ItemID;
+                                    newTransactionLine.MachineID = transactionLines.MachineID;
+                                    newTransactionLine.Ordering = transactionLines.Ordering;
+                                    newTransactionLine.PartitionID = transactionLines.PartitionID;
+                                    newTransactionLine.ReceiptID = transactionLines.ReceiptID;
+                                    newTransactionLine.SurfaceID = transactionLines.SurfaceID;
+                                    newTransactionLine.WH = transactionLines.WH;
+                                    newTransactionLine.Qty = transactionLines.Qty;
+
+                                    db.TransactionLines.Add(newTransactionLine);
+
+                                }
+                            }
                         }
                     }
                 }

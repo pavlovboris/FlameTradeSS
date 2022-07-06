@@ -83,15 +83,15 @@ namespace FlameTradeSS
                 financialCategoriesBindingSource.Add(db.FinancialCategories.Where(fc => fc.ID == possible.FinancialCategoryID).SingleOrDefault());
             }
             documentTransactionsBindingSource.DataSource = documentTransactions;
-            transactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
+            transactionLinesBindingSource.DataSource = documentTransactions.TransactionLines.ToList(); //db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
             muBindingSource.DataSource = db.Mu.ToList();
             itemsBindingSource.DataSource = db.Items.ToList();
             
-            if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null)
-            {
-                TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
-                transactionLines.TransactionsID = documentTransactions.ID;
-            }
+            //if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null && documentTransactions.TransactionLines.Count>0)
+            //{
+             //   TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
+           ///     transactionLines.DocumentTransactions = documentTransactions;
+         //   }
 
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
@@ -122,9 +122,6 @@ namespace FlameTradeSS
                     servicesBindingSource.DataSource= db.Services.ToList();
                     break;
             }
-
-            
-            
         }
 
         private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)
@@ -372,12 +369,34 @@ namespace FlameTradeSS
 
         private void dgvTransactionLines_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex != -1)
+            {
+                TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
+
+                if (transactionLines == null)
+                {
+                    transactionLines = new TransactionLines();
+                    transactionLinesBindingSource.Add(transactionLines);
+                    transactionLinesBindingSource.MoveLast();
+                    transactionLines.DocumentTransactions = documentTransactions;
+                    db.TransactionLines.Add(transactionLines);
+
+                }
+
+                if (transactionLines.DocumentTransactions == null)
+                {
+                    transactionLines.DocumentTransactions = documentTransactions;
+                    db.TransactionLines.Add(transactionLines);
+                }
+            }
+           
+
             if (e.RowIndex!=-1 && e.ColumnIndex == Items_ItemID_Code_ID.Index)
             {
                 //TransactionLines transactionLines = dgvTransactionLines.Rows[e.RowIndex].DataBoundItem as TransactionLines;
                 int itemID = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
                 Items item = db.Items.Where(i => i.ID.Equals(itemID)).SingleOrDefault();
-                
+
 
                 if (item.DefaultMu != 0)
                 {
@@ -409,6 +428,8 @@ namespace FlameTradeSS
                         dgvTransactionLines.Rows[e.RowIndex].Cells[FinancialCategoryID.Index].Value = item.FinancialCategoryID; 
                     }
                 }
+
+                dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Description_ID.Index].Value = item.ID;
             }
         }
 
@@ -448,6 +469,21 @@ namespace FlameTradeSS
 
                 }
             }
+        }
+
+        private void dgvTransactionLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            DataGridView dgvr =(DataGridView)sender;
+
+           // if(dgvr.CurrentRow!=null && !dgvr.CurrentRow.IsNewRow && dgvr.CurrentRow.DataBoundItem!=null)
+          //  {
+         //       TransactionLines transactionLines = dgvr.Rows[e.RowIndex].DataBoundItem as TransactionLines;
+
+         //       transactionLines = new TransactionLines();
+       // / //       transactionLines.DocumentTransactions = documentTransactions;
+        //        db.TransactionLines.Add(transactionLines);
+         //       
+        //    }
         }
     }
 }

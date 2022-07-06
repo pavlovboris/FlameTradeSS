@@ -123,7 +123,7 @@ namespace FlameTradeSS
                             frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
                            // frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                            foreach (DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
+                           /* foreach (DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
                             {
                                 if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem != null)
                                 {
@@ -134,7 +134,7 @@ namespace FlameTradeSS
                                         db.TransactionLines.Add(transactionLines);
                                     }
                                 }
-                            }
+                            }*/
                         }
                         await db.SaveChangesAsync();
                         dgvAttachments.Dispose();
@@ -151,7 +151,7 @@ namespace FlameTradeSS
 
                     if (newDocument.DocumentSequenceID!=0 && newDocument.PartnerID!=0 && newDocument.IsBlocked==0)
                     {
-                        CommonTasks.DeleteDocument(db, newDocument);
+                     //   CommonTasks.DeleteDocument(db, newDocument);
                     }
                     
                 }
@@ -254,7 +254,7 @@ namespace FlameTradeSS
                 CurrentSessionData.Counter = tempID;
 
                 newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
-                newDocumentTransaction.DocumentsID = newDocument.ID;
+                newDocumentTransaction.Documents = newDocument;
                 newDocumentTransaction.UserID =CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
@@ -267,7 +267,7 @@ namespace FlameTradeSS
                 newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
                 newfrmDocumentTransactions.db = db;
                 db.DocumentTransactions.Add(newDocumentTransaction);
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
                 // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
                 newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                 newfrmDocumentTransactions.MdiParent = this;
@@ -294,7 +294,7 @@ namespace FlameTradeSS
                 cmbDocumentSequence.Enabled = false;
 
 
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
 
                 if (existingTransactionTypes.Where(trt => trt.Equals(selectedTransactionType)).SingleOrDefault() == null)
                 {

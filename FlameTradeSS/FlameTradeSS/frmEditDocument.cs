@@ -180,22 +180,23 @@ namespace FlameTradeSS
                             frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
                             //frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                            foreach(DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
+                          /*  foreach(DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
                             {
                                 if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem!=null)
                                 {
                                     TransactionLines transactionLines = row.DataBoundItem as TransactionLines;
-                                    if (transactionLines.ID == 0)
+                                    if (transactionLines.DocumentTransactions == null)
                                     {
-                                        transactionLines.TransactionsID = frmDocTrans.documentTransactions.ID;
+                                        transactionLines.DocumentTransactions = frmDocTrans.documentTransactions;
                                         db.TransactionLines.Add(transactionLines);
                                     }
                                 }
-                            }
+                            } */
                         }
                         //make isBlocked=1;
                         await db.SaveChangesAsync();
-                        
+                        dgvDocumentTransactions.Dispose();
+                        dgvAttachments.Dispose();
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
                 }

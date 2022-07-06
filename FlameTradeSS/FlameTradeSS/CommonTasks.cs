@@ -264,6 +264,7 @@ namespace FlameTradeSS
                         db.DocumentTransformation.Remove(documentTransformation);
                         
                     }
+
                     await db.SaveChangesAsync();
                     db.Documents.Remove(documents);
                     await db.SaveChangesAsync();

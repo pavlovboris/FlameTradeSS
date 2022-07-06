@@ -120,7 +120,7 @@ namespace FlameTradeSS
 
                 foreach (TransactionLines transactionLines in trans.TransactionLines)
                 {
-                    if (transactionLines.FinancialCategoryID!=0)
+                    if (transactionLines.FinancialCategoryID != 0 && transactionLines.FinancialCategoryID != null)
                     {
                         bool exists = false;
                         foreach(FinancialPlanLines financialPlanLines in bs)

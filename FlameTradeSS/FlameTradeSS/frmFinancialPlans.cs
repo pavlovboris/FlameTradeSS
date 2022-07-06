@@ -212,6 +212,7 @@ namespace FlameTradeSS
             add.AddFlowLayoutItem(panelFlowPanel,db,transactions, financialPlans,financialPlanLinesbindingSource);           
         }
         public bool isNew = true;
+        public Documents documents;
         private async void button2_Click(object sender, EventArgs e)
         {
            DialogResult result = CommonTasks.SendQuestionMsg("Сигурни ли сте, че искате да запазите финансовият план?");
@@ -221,13 +222,23 @@ namespace FlameTradeSS
                 if(isNew == true)
                 {
                     db.FinancialPlans.Add(financialPlans);
+                    
                     foreach (FinancialPlanLines financialPlanLines in financialPlanLinesbindingSource)
                     {
                         db.FinancialPlanLines.Add(financialPlanLines);
                     }
-                } 
+
+                    DocumentsFinancialPlan documentsFinancialPlan = new DocumentsFinancialPlan();
+                    documentsFinancialPlan.FinancialPlanID = financialPlans.ID;
+                    documentsFinancialPlan.DocumentID = documents.ID;
+                    db.DocumentsFinancialPlan.Add(documentsFinancialPlan);
+                }
+
                 
+
                 await db.SaveChangesAsync();
+
+               
 
                 Close();
             } else if (result == DialogResult.No)
