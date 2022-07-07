@@ -38,9 +38,12 @@
             this.financialColorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialPlanColorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinancialPlanColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialPlanColorsBindingSource)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -87,6 +90,7 @@
             this.dgvFinancialPlanColor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.transactionTypeIDDataGridViewTextBoxColumn,
             this.financialColorDataGridViewTextBoxColumn});
+            this.dgvFinancialPlanColor.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvFinancialPlanColor.DataSource = this.financialPlanColorsBindingSource;
             this.dgvFinancialPlanColor.Location = new System.Drawing.Point(13, 65);
             this.dgvFinancialPlanColor.Name = "dgvFinancialPlanColor";
@@ -126,6 +130,21 @@
             // 
             this.financialPlanColorsBindingSource.DataSource = typeof(FlameTradeSS.FinancialPlanColors);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuEdit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuEdit
+            // 
+            this.toolStripMenuEdit.Name = "toolStripMenuEdit";
+            this.toolStripMenuEdit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuEdit.Text = "Редактирай";
+            // 
             // frmFinancialColors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +166,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinancialPlanColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialPlanColorsBindingSource)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -160,5 +180,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn transactionTypeIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn financialColorDataGridViewTextBoxColumn;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuEdit;
     }
 }

@@ -32,34 +32,40 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentSequencesProperties));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvDocumentSequenceProperties = new System.Windows.Forms.DataGridView();
+            this.dgvFieldsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvFieldsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TransactonTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inVisibleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.readOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.disabledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.documentSequencesPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblDocumentSequenceLabel = new System.Windows.Forms.Label();
             this.lblDocumentSequenceName = new System.Windows.Forms.Label();
             this.dgvDocumentSequenceProperties2 = new System.Windows.Forms.DataGridView();
-            this.buttonRemove2 = new System.Windows.Forms.Button();
-            this.buttonAdd2 = new System.Windows.Forms.Button();
-            this.dgvFieldsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.documentSequencesPropertiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvFieldsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentSequencesPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvFieldsIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TransactonTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.inVisibleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.readOnlyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.disabledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvFieldsIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvFieldsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.inVisibleDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.readOnlyDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.documentSequencesPropertiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonRemove2 = new System.Windows.Forms.Button();
+            this.buttonAdd2 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuIEdit1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -92,6 +98,7 @@
             this.inVisibleDataGridViewTextBoxColumn,
             this.readOnlyDataGridViewTextBoxColumn,
             this.disabledDataGridViewTextBoxColumn});
+            this.dgvDocumentSequenceProperties.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvDocumentSequenceProperties.DataSource = this.documentSequencesPropertiesBindingSource;
             this.dgvDocumentSequenceProperties.Location = new System.Drawing.Point(12, 65);
             this.dgvDocumentSequenceProperties.Name = "dgvDocumentSequenceProperties";
@@ -99,6 +106,71 @@
             this.dgvDocumentSequenceProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocumentSequenceProperties.Size = new System.Drawing.Size(669, 796);
             this.dgvDocumentSequenceProperties.TabIndex = 10;
+            // 
+            // dgvFieldsIDDataGridViewTextBoxColumn
+            // 
+            this.dgvFieldsIDDataGridViewTextBoxColumn.DataPropertyName = "DgvFieldsID";
+            this.dgvFieldsIDDataGridViewTextBoxColumn.DataSource = this.dgvFieldsBindingSource;
+            this.dgvFieldsIDDataGridViewTextBoxColumn.DisplayMember = "FieldName";
+            this.dgvFieldsIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.dgvFieldsIDDataGridViewTextBoxColumn.HeaderText = "DocumentTransactionLinesColumns";
+            this.dgvFieldsIDDataGridViewTextBoxColumn.Name = "dgvFieldsIDDataGridViewTextBoxColumn";
+            this.dgvFieldsIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFieldsIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvFieldsIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.dgvFieldsIDDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // dgvFieldsBindingSource
+            // 
+            this.dgvFieldsBindingSource.DataSource = typeof(FlameTradeSS.DgvFields);
+            // 
+            // TransactonTypeID
+            // 
+            this.TransactonTypeID.DataPropertyName = "TransactonTypeID";
+            this.TransactonTypeID.DataSource = this.transactionsTypeBindingSource;
+            this.TransactonTypeID.DisplayMember = "TypeName";
+            this.TransactonTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.TransactonTypeID.HeaderText = "Transacton Type";
+            this.TransactonTypeID.Name = "TransactonTypeID";
+            this.TransactonTypeID.ValueMember = "ID";
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            // 
+            // inVisibleDataGridViewTextBoxColumn
+            // 
+            this.inVisibleDataGridViewTextBoxColumn.DataPropertyName = "InVisible";
+            this.inVisibleDataGridViewTextBoxColumn.FalseValue = "0";
+            this.inVisibleDataGridViewTextBoxColumn.HeaderText = "InVisible";
+            this.inVisibleDataGridViewTextBoxColumn.Name = "inVisibleDataGridViewTextBoxColumn";
+            this.inVisibleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inVisibleDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.inVisibleDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // readOnlyDataGridViewTextBoxColumn
+            // 
+            this.readOnlyDataGridViewTextBoxColumn.DataPropertyName = "ReadOnly";
+            this.readOnlyDataGridViewTextBoxColumn.FalseValue = "0";
+            this.readOnlyDataGridViewTextBoxColumn.HeaderText = "ReadOnly";
+            this.readOnlyDataGridViewTextBoxColumn.Name = "readOnlyDataGridViewTextBoxColumn";
+            this.readOnlyDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.readOnlyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.readOnlyDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // disabledDataGridViewTextBoxColumn
+            // 
+            this.disabledDataGridViewTextBoxColumn.DataPropertyName = "Disabled";
+            this.disabledDataGridViewTextBoxColumn.FalseValue = "0";
+            this.disabledDataGridViewTextBoxColumn.HeaderText = "Disabled";
+            this.disabledDataGridViewTextBoxColumn.Name = "disabledDataGridViewTextBoxColumn";
+            this.disabledDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.disabledDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.disabledDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // documentSequencesPropertiesBindingSource
+            // 
+            this.documentSequencesPropertiesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
             // 
             // btnAdd
             // 
@@ -184,6 +256,7 @@
             this.dgvFieldsIDDataGridViewTextBoxColumn1,
             this.inVisibleDataGridViewTextBoxColumn1,
             this.readOnlyDataGridViewTextBoxColumn1});
+            this.dgvDocumentSequenceProperties2.ContextMenuStrip = this.contextMenuStrip2;
             this.dgvDocumentSequenceProperties2.DataSource = this.documentSequencesPropertiesBindingSource1;
             this.dgvDocumentSequenceProperties2.Location = new System.Drawing.Point(700, 65);
             this.dgvDocumentSequenceProperties2.Name = "dgvDocumentSequenceProperties2";
@@ -191,6 +264,46 @@
             this.dgvDocumentSequenceProperties2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocumentSequenceProperties2.Size = new System.Drawing.Size(504, 796);
             this.dgvDocumentSequenceProperties2.TabIndex = 16;
+            // 
+            // dgvFieldsIDDataGridViewTextBoxColumn1
+            // 
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.DataPropertyName = "DgvFieldsID";
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.DataSource = this.dgvFieldsBindingSource1;
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.DisplayMember = "FieldName";
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.HeaderText = "DocumentTransactionColumns";
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.Name = "dgvFieldsIDDataGridViewTextBoxColumn1";
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.ValueMember = "ID";
+            this.dgvFieldsIDDataGridViewTextBoxColumn1.Width = 300;
+            // 
+            // dgvFieldsBindingSource1
+            // 
+            this.dgvFieldsBindingSource1.DataSource = typeof(FlameTradeSS.DgvFields);
+            // 
+            // inVisibleDataGridViewTextBoxColumn1
+            // 
+            this.inVisibleDataGridViewTextBoxColumn1.DataPropertyName = "InVisible";
+            this.inVisibleDataGridViewTextBoxColumn1.FalseValue = "0";
+            this.inVisibleDataGridViewTextBoxColumn1.HeaderText = "InVisible";
+            this.inVisibleDataGridViewTextBoxColumn1.Name = "inVisibleDataGridViewTextBoxColumn1";
+            this.inVisibleDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.inVisibleDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.inVisibleDataGridViewTextBoxColumn1.TrueValue = "1";
+            // 
+            // readOnlyDataGridViewTextBoxColumn1
+            // 
+            this.readOnlyDataGridViewTextBoxColumn1.DataPropertyName = "ReadOnly";
+            this.readOnlyDataGridViewTextBoxColumn1.FalseValue = "0";
+            this.readOnlyDataGridViewTextBoxColumn1.HeaderText = "ReadOnly";
+            this.readOnlyDataGridViewTextBoxColumn1.Name = "readOnlyDataGridViewTextBoxColumn1";
+            this.readOnlyDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.readOnlyDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.readOnlyDataGridViewTextBoxColumn1.TrueValue = "1";
+            // 
+            // documentSequencesPropertiesBindingSource1
+            // 
+            this.documentSequencesPropertiesBindingSource1.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
             // 
             // buttonRemove2
             // 
@@ -226,110 +339,35 @@
             this.buttonAdd2.UseVisualStyleBackColor = true;
             this.buttonAdd2.Click += new System.EventHandler(this.buttonAdd2_Click);
             // 
-            // dgvFieldsBindingSource1
+            // contextMenuStrip1
             // 
-            this.dgvFieldsBindingSource1.DataSource = typeof(FlameTradeSS.DgvFields);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuEdit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(138, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
-            // documentSequencesPropertiesBindingSource1
+            // contextMenuStrip2
             // 
-            this.documentSequencesPropertiesBindingSource1.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuIEdit1});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
+            this.contextMenuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip2_ItemClicked);
             // 
-            // dgvFieldsBindingSource
+            // toolStripMenuEdit
             // 
-            this.dgvFieldsBindingSource.DataSource = typeof(FlameTradeSS.DgvFields);
+            this.toolStripMenuEdit.Name = "toolStripMenuEdit";
+            this.toolStripMenuEdit.Size = new System.Drawing.Size(137, 22);
+            this.toolStripMenuEdit.Text = "Редактирай";
             // 
-            // transactionsTypeBindingSource
+            // toolStripMenuIEdit1
             // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
-            // documentSequencesPropertiesBindingSource
-            // 
-            this.documentSequencesPropertiesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequencesProperties);
-            // 
-            // dgvFieldsIDDataGridViewTextBoxColumn
-            // 
-            this.dgvFieldsIDDataGridViewTextBoxColumn.DataPropertyName = "DgvFieldsID";
-            this.dgvFieldsIDDataGridViewTextBoxColumn.DataSource = this.dgvFieldsBindingSource;
-            this.dgvFieldsIDDataGridViewTextBoxColumn.DisplayMember = "FieldName";
-            this.dgvFieldsIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.dgvFieldsIDDataGridViewTextBoxColumn.HeaderText = "DocumentTransactionLinesColumns";
-            this.dgvFieldsIDDataGridViewTextBoxColumn.Name = "dgvFieldsIDDataGridViewTextBoxColumn";
-            this.dgvFieldsIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFieldsIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvFieldsIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.dgvFieldsIDDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // TransactonTypeID
-            // 
-            this.TransactonTypeID.DataPropertyName = "TransactonTypeID";
-            this.TransactonTypeID.DataSource = this.transactionsTypeBindingSource;
-            this.TransactonTypeID.DisplayMember = "TypeName";
-            this.TransactonTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.TransactonTypeID.HeaderText = "Transacton Type";
-            this.TransactonTypeID.Name = "TransactonTypeID";
-            this.TransactonTypeID.ValueMember = "ID";
-            // 
-            // inVisibleDataGridViewTextBoxColumn
-            // 
-            this.inVisibleDataGridViewTextBoxColumn.DataPropertyName = "InVisible";
-            this.inVisibleDataGridViewTextBoxColumn.FalseValue = "0";
-            this.inVisibleDataGridViewTextBoxColumn.HeaderText = "InVisible";
-            this.inVisibleDataGridViewTextBoxColumn.Name = "inVisibleDataGridViewTextBoxColumn";
-            this.inVisibleDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inVisibleDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.inVisibleDataGridViewTextBoxColumn.TrueValue = "1";
-            // 
-            // readOnlyDataGridViewTextBoxColumn
-            // 
-            this.readOnlyDataGridViewTextBoxColumn.DataPropertyName = "ReadOnly";
-            this.readOnlyDataGridViewTextBoxColumn.FalseValue = "0";
-            this.readOnlyDataGridViewTextBoxColumn.HeaderText = "ReadOnly";
-            this.readOnlyDataGridViewTextBoxColumn.Name = "readOnlyDataGridViewTextBoxColumn";
-            this.readOnlyDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.readOnlyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.readOnlyDataGridViewTextBoxColumn.TrueValue = "1";
-            // 
-            // disabledDataGridViewTextBoxColumn
-            // 
-            this.disabledDataGridViewTextBoxColumn.DataPropertyName = "Disabled";
-            this.disabledDataGridViewTextBoxColumn.FalseValue = "0";
-            this.disabledDataGridViewTextBoxColumn.HeaderText = "Disabled";
-            this.disabledDataGridViewTextBoxColumn.Name = "disabledDataGridViewTextBoxColumn";
-            this.disabledDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.disabledDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.disabledDataGridViewTextBoxColumn.TrueValue = "1";
-            // 
-            // dgvFieldsIDDataGridViewTextBoxColumn1
-            // 
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.DataPropertyName = "DgvFieldsID";
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.DataSource = this.dgvFieldsBindingSource1;
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.DisplayMember = "FieldName";
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.HeaderText = "DocumentTransactionColumns";
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.Name = "dgvFieldsIDDataGridViewTextBoxColumn1";
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.ValueMember = "ID";
-            this.dgvFieldsIDDataGridViewTextBoxColumn1.Width = 300;
-            // 
-            // inVisibleDataGridViewTextBoxColumn1
-            // 
-            this.inVisibleDataGridViewTextBoxColumn1.DataPropertyName = "InVisible";
-            this.inVisibleDataGridViewTextBoxColumn1.FalseValue = "0";
-            this.inVisibleDataGridViewTextBoxColumn1.HeaderText = "InVisible";
-            this.inVisibleDataGridViewTextBoxColumn1.Name = "inVisibleDataGridViewTextBoxColumn1";
-            this.inVisibleDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.inVisibleDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.inVisibleDataGridViewTextBoxColumn1.TrueValue = "1";
-            // 
-            // readOnlyDataGridViewTextBoxColumn1
-            // 
-            this.readOnlyDataGridViewTextBoxColumn1.DataPropertyName = "ReadOnly";
-            this.readOnlyDataGridViewTextBoxColumn1.FalseValue = "0";
-            this.readOnlyDataGridViewTextBoxColumn1.HeaderText = "ReadOnly";
-            this.readOnlyDataGridViewTextBoxColumn1.Name = "readOnlyDataGridViewTextBoxColumn1";
-            this.readOnlyDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.readOnlyDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.readOnlyDataGridViewTextBoxColumn1.TrueValue = "1";
+            this.toolStripMenuIEdit1.Name = "toolStripMenuIEdit1";
+            this.toolStripMenuIEdit1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuIEdit1.Text = "Редактирай";
             // 
             // frmDocumentSequencesProperties
             // 
@@ -356,12 +394,14 @@
             this.Load += new System.EventHandler(this.frmPartnerGroups_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentSequenceProperties2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFieldsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentSequencesPropertiesBindingSource1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +432,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dgvFieldsIDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inVisibleDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn readOnlyDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuEdit;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuIEdit1;
     }
 }

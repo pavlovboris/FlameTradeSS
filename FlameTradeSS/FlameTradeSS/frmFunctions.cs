@@ -94,6 +94,11 @@ namespace FlameTradeSS
             {
                 CommonTasks.ReadDataGridViewSetting(dgvFunctions, Name + dgvFunctions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
+
+            foreach(DataGridViewRow dgvr in dgvFunctions.Rows)
+            {
+                dgvr.ReadOnly = true;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -106,6 +111,7 @@ namespace FlameTradeSS
             Functions functions = new Functions();
             functionsBindingSource.Add(functions);
             db.Functions.Add(functions);
+            dgvFunctions.CurrentRow.ReadOnly = false;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -161,6 +167,22 @@ namespace FlameTradeSS
             {
                 CommonTasks.WriteGrideViewSetting(dgvFunctions, Name + dgvFunctions.Name + CurrentSessionData.CurrentUser.UserName);
             } catch { }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvFunctions.CurrentRow.Index == -1 || dgvFunctions.CurrentRow.DataBoundItem == null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == toolStripMenuEdit)
+            {
+                dgvFunctions.CurrentRow.ReadOnly = false; 
+            }
         }
     }
 }

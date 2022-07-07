@@ -64,6 +64,17 @@ namespace FlameTradeSS
             dgvFieldsBindingSource1.Add(new DgvFields());
             transactionsTypeBindingSource.DataSource = db.TransactionsType.Where(tt => tt.SequencesTransactions.Where(st => st.SquenceID==documentSequences.ID).Any()).ToList();
             lblDocumentSequenceName.Text = documentSequences.SequenceName;
+
+            foreach(DataGridViewRow dgvrl in dgvDocumentSequenceProperties.Rows)
+            {
+                dgvrl.ReadOnly = true;
+            }
+            foreach (DataGridViewRow dgvrl in dgvDocumentSequenceProperties2.Rows)
+            {
+                dgvrl.ReadOnly = true;
+            }
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -78,6 +89,7 @@ namespace FlameTradeSS
             documentSequencesPropertiesBindingSource.Add(documentSequencesProperties);
             documentSequencesPropertiesBindingSource.MoveLast();
             db.DocumentSequencesProperties.Add(documentSequencesProperties);
+            dgvDocumentSequenceProperties.CurrentRow.ReadOnly = false;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -122,6 +134,8 @@ namespace FlameTradeSS
             documentSequencesPropertiesBindingSource1.Add(documentSequencesProperties);
             documentSequencesPropertiesBindingSource1.MoveLast();
             db.DocumentSequencesProperties.Add(documentSequencesProperties);
+            dgvDocumentSequenceProperties2.CurrentRow.ReadOnly = false;
+
         }
 
         private void buttonRemove2_Click(object sender, EventArgs e)
@@ -137,6 +151,32 @@ namespace FlameTradeSS
 
                 }
             }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvDocumentSequenceProperties.CurrentRow.Index==-1 || dgvDocumentSequenceProperties.CurrentRow.DataBoundItem==null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvDocumentSequenceProperties2.CurrentRow.Index == -1 || dgvDocumentSequenceProperties.CurrentRow.DataBoundItem == null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            dgvDocumentSequenceProperties.CurrentRow.ReadOnly = false;
+        }
+
+        private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            dgvDocumentSequenceProperties2.CurrentRow.ReadOnly = false;
         }
     }
 }

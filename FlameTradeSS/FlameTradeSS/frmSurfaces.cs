@@ -54,6 +54,7 @@ namespace FlameTradeSS
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
             surfacesBindingSource.DataSource = db.Surfaces.ToList();
+            surfaceTypesBindingSource.DataSource = db.SurfaceTypes.ToList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

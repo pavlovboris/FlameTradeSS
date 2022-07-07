@@ -36,12 +36,14 @@
             this.projectDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuProjectConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuDocuments = new System.Windows.Forms.ToolStripMenuItem();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuDocuments = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             this.contextMenuProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
@@ -105,9 +107,11 @@
             this.contextMenuProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuProjectConfig,
             this.toolStripSeparator1,
-            this.toolStripMenuDocuments});
+            this.toolStripMenuDocuments,
+            this.toolStripSeparator2,
+            this.toolStripMenuEdit});
             this.contextMenuProject.Name = "contextMenuProject";
-            this.contextMenuProject.Size = new System.Drawing.Size(181, 76);
+            this.contextMenuProject.Size = new System.Drawing.Size(181, 104);
             this.contextMenuProject.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProject_Opening);
             this.contextMenuProject.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuProject_ItemClicked);
             // 
@@ -116,6 +120,17 @@
             this.toolStripMenuProjectConfig.Name = "toolStripMenuProjectConfig";
             this.toolStripMenuProjectConfig.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuProjectConfig.Text = "Конфигурирай : ";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripMenuDocuments
+            // 
+            this.toolStripMenuDocuments.Name = "toolStripMenuDocuments";
+            this.toolStripMenuDocuments.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuDocuments.Text = "Документи на :";
             // 
             // projectBindingSource
             // 
@@ -172,16 +187,16 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator2
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
-            // toolStripMenuDocuments
+            // toolStripMenuEdit
             // 
-            this.toolStripMenuDocuments.Name = "toolStripMenuDocuments";
-            this.toolStripMenuDocuments.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuDocuments.Text = "Документи на :";
+            this.toolStripMenuEdit.Name = "toolStripMenuEdit";
+            this.toolStripMenuEdit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuEdit.Text = "Редакция";
             // 
             // frmProjects
             // 
@@ -226,5 +241,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuProjectConfig;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuDocuments;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuEdit;
     }
 }

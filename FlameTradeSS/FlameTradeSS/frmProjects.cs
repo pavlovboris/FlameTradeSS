@@ -61,6 +61,11 @@ namespace FlameTradeSS
             }
 
             projectBindingSource.DataSource = db.Project.ToList();
+            
+            foreach(DataGridViewRow dgvr in dgvProjects.Rows)
+            {
+                dgvr.ReadOnly = true;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -78,6 +83,7 @@ namespace FlameTradeSS
             projectBindingSource.Add(newProject);
             projectBindingSource.MoveLast();
             db.Project.Add(newProject);
+            dgvProjects.CurrentRow.ReadOnly = false;
         }
 
         private async  void btnSave_Click(object sender, EventArgs e)
@@ -169,6 +175,9 @@ namespace FlameTradeSS
                 frmProjectDocuments.project = dgvProjects.CurrentRow.DataBoundItem as Project;
                 frmProjectDocuments.db = db;
                 CommonTasks.OpenForm(frmProjectDocuments);
+            } else if (e.ClickedItem == toolStripMenuEdit)
+            {
+                dgvProjects.CurrentRow.ReadOnly = false;
             }
         }
     }

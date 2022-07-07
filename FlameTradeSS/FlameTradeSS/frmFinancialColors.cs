@@ -38,14 +38,14 @@ namespace FlameTradeSS
         private static readonly SecurityService securityService = new SecurityService();
         static FlameTradeDbEntities db = securityService.NewDatabaseEntity();
 
-        private  void frmFunctions_Load(object sender, EventArgs e)
+        private void frmFunctions_Load(object sender, EventArgs e)
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
             financialPlanColorsBindingSource.DataSource = db.FinancialPlanColors.ToList();
             transactionsTypeBindingSource.DataSource = db.TransactionsType.Where(tt => tt.IsFinancialType == 1).ToList();
 
-           // List<TransactionsType> missingTransactionTypes = new List<TransactionsType>();
+            // List<TransactionsType> missingTransactionTypes = new List<TransactionsType>();
 
             foreach (TransactionsType transactionsType in db.TransactionsType.Where(tt => tt.IsFinancialType == 1).ToList())
             {
@@ -57,7 +57,7 @@ namespace FlameTradeSS
                         existing = true;
                     }
                 }
-                if (existing==false)
+                if (existing == false)
                 {
                     //missingTransactionTypes.Add(transactionsType);
                     FinancialPlanColors financialPlanColors = new FinancialPlanColors();
@@ -67,21 +67,21 @@ namespace FlameTradeSS
                     financialPlanColorsBindingSource.Add(financialPlanColors);
                     db.FinancialPlanColors.Add(financialPlanColors);
                 }
+
+                foreach (DataGridViewRow dgvr in dgvFinancialPlanColor.Rows)
+                {
+                    dgvr.ReadOnly = true;
+                }
             }
-
-            
-           
-
 
             foreach (DataGridViewRow dgvr in dgvFinancialPlanColor.Rows)
             {
                 FinancialPlanColors planColors = dgvr.DataBoundItem as FinancialPlanColors;
-                foreach(DataGridViewCell cell in dgvr.Cells)
+                foreach (DataGridViewCell cell in dgvr.Cells)
                 {
-                   cell.Style.BackColor = Color.FromArgb(Convert.ToInt32(planColors.FinancialColor));
+                    cell.Style.BackColor = Color.FromArgb(Convert.ToInt32(planColors.FinancialColor));
                 }
             }
-
 
             try
             {
@@ -93,12 +93,9 @@ namespace FlameTradeSS
         {
             Close();
         }
-
-
-
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if(CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените")==true)
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените") == true)
             {
                 try
                 {
@@ -107,11 +104,11 @@ namespace FlameTradeSS
                 } catch (Exception ex)
                 {
                     CommonTasks.SendErrorMsg("Промените НЕ бяха запаметени!!! \n Ако сте премахнали функция, възможно е тя да е присвоена на Роля и за това да не може да бъде изтрита");
-                    if(CommonTasks.SendWarningMsg("Искате ли да видите детайлите")==true)
+                    if (CommonTasks.SendWarningMsg("Искате ли да видите детайлите") == true)
                     {
                         CommonTasks.SendErrorMsg(ex.Message);
                     }
-                }                
+                }
             }
         }
 
@@ -137,10 +134,10 @@ namespace FlameTradeSS
 
         private void dgvFinancialPlanColor_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex!= -1 && e.ColumnIndex==financialColorDataGridViewTextBoxColumn.Index)
+            if (e.RowIndex != -1 && e.ColumnIndex == financialColorDataGridViewTextBoxColumn.Index)
             {
-             
-                if (colorDialog1.ShowDialog()==DialogResult.OK)
+
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
                 {
                     dgvFinancialPlanColor.CurrentCell.Value = colorDialog1.Color.ToArgb().ToString();
                     foreach (DataGridViewCell cell in dgvFinancialPlanColor.Rows[e.RowIndex].Cells)
@@ -148,6 +145,22 @@ namespace FlameTradeSS
                         cell.Style.BackColor = colorDialog1.Color;
                     }
                 }
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvFinancialPlanColor.CurrentRow.Index == -1 || dgvFinancialPlanColor.CurrentRow.DataBoundItem ==null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == toolStripMenuEdit)
+            {
+                dgvFinancialPlanColor.CurrentRow.ReadOnly = false;
             }
         }
     }

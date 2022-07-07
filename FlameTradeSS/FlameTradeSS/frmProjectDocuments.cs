@@ -65,8 +65,13 @@ namespace FlameTradeSS
                 lblProjectName.Text = project.ProjectName;
             }
 
+           
             usersBindingSource.DataSource = db.Users.ToList();
             documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
+            documentSequencesBindingSource.Add(new DocumentSequences() { SequenceName = "All" });
+            cmbSequence.SelectedItem = cmbSequence.Items[cmbSequence.Items.Count-1];
+            cmbIsCanceled.SelectedIndex = 0;
+
             partnersBindingSource.DataSource = db.Partners.ToList();
 
             foreach(DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID==project.ID).ToList())
@@ -82,7 +87,142 @@ namespace FlameTradeSS
 
         private void dgvProjectAttachments_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex != -1 && dgvProjectDocuments.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                frmEditDocument frmEditDocument = new frmEditDocument();
+                frmEditDocument.newDocument = dgvProjectDocuments.CurrentRow.DataBoundItem as Documents;
+                frmEditDocument.db = db;
 
+
+                foreach (Control mdicontrol in frmEditDocument.Controls)
+                {
+                    MdiClient mdiClient = mdicontrol as MdiClient;
+                    if (mdiClient != null)
+                    {
+                        mdiClient.BackColor = Color.White;
+                        break;
+                    }
+                }
+                CommonTasks.OpenForm(frmEditDocument);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DocumentSequences documentSequences = cmbSequence.SelectedItem as DocumentSequences;
+            if (documentSequences != null && documentSequences.SequenceName == "All")
+            {
+                switch (cmbIsCanceled.SelectedIndex)
+                {
+                    case 0:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 1:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 0).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 2:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 1).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                }
+            }
+            else if (documentSequences != null)
+            {
+                switch (cmbIsCanceled.SelectedIndex)
+                {
+                    case 0:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 1:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 0 && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 2:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 1 && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void cmbSequence_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DocumentSequences documentSequences = cmbSequence.SelectedItem as DocumentSequences;
+            if (documentSequences != null && documentSequences.SequenceName == "All")
+            {
+                switch (cmbIsCanceled.SelectedIndex)
+                {
+                    case 0:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 1:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 0).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 2:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 1).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                }
+            }
+            else if (documentSequences != null)
+            {
+                switch (cmbIsCanceled.SelectedIndex)
+                {
+                    case 0:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 1:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 0 && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                    case 2:
+                        documentsBindingSource.Clear();
+                        foreach (DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID == project.ID && dp.Documents.IsCanceled == 1 && dp.Documents.DocumentSequenceID == documentSequences.ID).ToList())
+                        {
+                            documentsBindingSource.Add(documentsProjects.Documents);
+                        }
+                        break;
+                }
+            }
         }
     }
 }

@@ -588,6 +588,15 @@
           <Property Name="SurfaceCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SurfaceName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SurfaceDescription" Type="varchar" MaxLength="250" />
+          <Property Name="SurfaceTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SurfaceTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeDescription" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Tasks">
           <Key>
@@ -1709,6 +1718,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Surfaces_SurfaceTypes">
+          <End Role="SurfaceTypes" Type="Self.SurfaceTypes" Multiplicity="1" />
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurfaceTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Surfaces">
+              <PropertyRef Name="SurfaceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TaskTypes_LinesType">
           <End Role="LinesType" Type="Self.LinesType" Multiplicity="0..1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -2116,6 +2137,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Surfaces" EntityType="Self.Surfaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurfaceTypes" EntityType="Self.SurfaceTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionAttachments" EntityType="Self.TransactionAttachments" Schema="dbo" store:Type="Tables" />
@@ -2453,6 +2475,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_Suppliers_PartnerID" Association="Self.FK_Suppliers_PartnerID">
             <End Role="Partners" EntitySet="Partners" />
             <End Role="Suppliers" EntitySet="Suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Surfaces_SurfaceTypes" Association="Self.FK_Surfaces_SurfaceTypes">
+            <End Role="SurfaceTypes" EntitySet="SurfaceTypes" />
+            <End Role="Surfaces" EntitySet="Surfaces" />
           </AssociationSet>
           <AssociationSet Name="FK_TaskTypes_LinesType" Association="Self.FK_TaskTypes_LinesType">
             <End Role="LinesType" EntitySet="LinesType" />
@@ -4602,6 +4628,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectAttachments" EntitySet="ProjectAttachments" />
           </AssociationSet>
+          <EntitySet Name="SurfaceTypes" EntityType="FlameTradeDbModel.SurfaceTypes" />
+          <AssociationSet Name="FK_Surfaces_SurfaceTypes" Association="FlameTradeDbModel.FK_Surfaces_SurfaceTypes">
+            <End Role="SurfaceTypes" EntitySet="SurfaceTypes" />
+            <End Role="Surfaces" EntitySet="Surfaces" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -4676,6 +4707,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="SurfaceDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Items" Relationship="FlameTradeDbModel.FK_Items_Surfaces" FromRole="Surfaces" ToRole="Items" />
           <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="Surfaces" ToRole="DocumentTransactions" />
+          <Property Name="SurfaceTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SurfaceTypes" Relationship="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" FromRole="Surfaces" ToRole="SurfaceTypes" />
         </EntityType>
         <Association Name="FK_Items_Surfaces">
           <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
@@ -5352,6 +5385,27 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SurfaceTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" FromRole="SurfaceTypes" ToRole="Surfaces" />
+        </EntityType>
+        <Association Name="FK_Surfaces_SurfaceTypes">
+          <End Type="FlameTradeDbModel.SurfaceTypes" Role="SurfaceTypes" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurfaceTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Surfaces">
+              <PropertyRef Name="SurfaceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5968,6 +6022,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Surfaces">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Surfaces">
               <MappingFragment StoreEntitySet="Surfaces">
+                <ScalarProperty Name="SurfaceTypeID" ColumnName="SurfaceTypeID" />
                 <ScalarProperty Name="SurfaceDescription" ColumnName="SurfaceDescription" />
                 <ScalarProperty Name="SurfaceName" ColumnName="SurfaceName" />
                 <ScalarProperty Name="SurfaceCode" ColumnName="SurfaceCode" />
@@ -6167,6 +6222,15 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="FileData" ColumnName="FileData" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurfaceTypes">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.SurfaceTypes">
+              <MappingFragment StoreEntitySet="SurfaceTypes">
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

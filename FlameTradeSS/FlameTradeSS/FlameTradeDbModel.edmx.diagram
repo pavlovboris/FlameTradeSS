@@ -185,6 +185,8 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" />
         <EntityTypeShape EntityType="FlameTradeDbModel.ProjectAttachments" Width="1.5" PointX="13.5" PointY="44.5" />
         <AssociationConnector Association="FlameTradeDbModel.FK_ProjectAttachments_Project" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.SurfaceTypes" Width="1.5" PointX="0.75" PointY="7.25" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

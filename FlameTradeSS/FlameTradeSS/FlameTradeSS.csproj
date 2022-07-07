@@ -496,6 +496,9 @@
     <Compile Include="Surfaces.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SurfaceTypes.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tasks.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -752,6 +755,7 @@
     <None Include="Properties\DataSources\SequenceType.datasource" />
     <None Include="Properties\DataSources\Services.datasource" />
     <None Include="Properties\DataSources\Surfaces.datasource" />
+    <None Include="Properties\DataSources\SurfaceTypes.datasource" />
     <None Include="Properties\DataSources\TransactionLines.datasource" />
     <None Include="Properties\DataSources\TransactionReceipt.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />

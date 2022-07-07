@@ -12,25 +12,19 @@ namespace FlameTradeSS
     using System;
     using System.Collections.Generic;
     
-    public partial class Surfaces
+    public partial class SurfaceTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Surfaces()
+        public SurfaceTypes()
         {
-            this.Items = new HashSet<Items>();
-            this.DocumentTransactions = new HashSet<DocumentTransactions>();
+            this.Surfaces = new HashSet<Surfaces>();
         }
     
         public int ID { get; set; }
-        public string SurfaceCode { get; set; }
-        public string SurfaceName { get; set; }
-        public string SurfaceDescription { get; set; }
-        public int SurfaceTypeID { get; set; }
+        public string TypeName { get; set; }
+        public string TypeDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Items> Items { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
-        public virtual SurfaceTypes SurfaceTypes { get; set; }
+        public virtual ICollection<Surfaces> Surfaces { get; set; }
     }
 }

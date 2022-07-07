@@ -32,15 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSurfaces));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvSurfaces = new System.Windows.Forms.DataGridView();
+            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surfaceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surfaceNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surfaceDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurfaceTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSurfaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -49,7 +52,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(348, 6);
+            this.btnClose.Location = new System.Drawing.Point(607, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
@@ -70,14 +73,19 @@
             this.dgvSurfaces.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.surfaceCodeDataGridViewTextBoxColumn,
             this.surfaceNameDataGridViewTextBoxColumn,
-            this.surfaceDescriptionDataGridViewTextBoxColumn});
+            this.surfaceDescriptionDataGridViewTextBoxColumn,
+            this.SurfaceTypeID});
             this.dgvSurfaces.DataSource = this.surfacesBindingSource;
             this.dgvSurfaces.Location = new System.Drawing.Point(18, 65);
             this.dgvSurfaces.Name = "dgvSurfaces";
             this.dgvSurfaces.RowHeadersWidth = 20;
             this.dgvSurfaces.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSurfaces.Size = new System.Drawing.Size(379, 346);
+            this.dgvSurfaces.Size = new System.Drawing.Size(638, 346);
             this.dgvSurfaces.TabIndex = 10;
+            // 
+            // surfacesBindingSource
+            // 
+            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
             // 
             // btnAdd
             // 
@@ -121,7 +129,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(298, 417);
+            this.btnSave.Location = new System.Drawing.Point(557, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -130,35 +138,48 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // surfacesBindingSource
+            // surfaceTypesBindingSource
             // 
-            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
+            this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
             // 
             // surfaceCodeDataGridViewTextBoxColumn
             // 
             this.surfaceCodeDataGridViewTextBoxColumn.DataPropertyName = "SurfaceCode";
-            this.surfaceCodeDataGridViewTextBoxColumn.HeaderText = "Surface Code";
+            this.surfaceCodeDataGridViewTextBoxColumn.HeaderText = "Код на повърхност";
             this.surfaceCodeDataGridViewTextBoxColumn.Name = "surfaceCodeDataGridViewTextBoxColumn";
+            this.surfaceCodeDataGridViewTextBoxColumn.Width = 150;
             // 
             // surfaceNameDataGridViewTextBoxColumn
             // 
             this.surfaceNameDataGridViewTextBoxColumn.DataPropertyName = "SurfaceName";
-            this.surfaceNameDataGridViewTextBoxColumn.HeaderText = "Surface Name";
+            this.surfaceNameDataGridViewTextBoxColumn.HeaderText = "Име на повърхност";
             this.surfaceNameDataGridViewTextBoxColumn.Name = "surfaceNameDataGridViewTextBoxColumn";
+            this.surfaceNameDataGridViewTextBoxColumn.Width = 150;
             // 
             // surfaceDescriptionDataGridViewTextBoxColumn
             // 
             this.surfaceDescriptionDataGridViewTextBoxColumn.DataPropertyName = "SurfaceDescription";
-            this.surfaceDescriptionDataGridViewTextBoxColumn.HeaderText = "Surface Description";
+            this.surfaceDescriptionDataGridViewTextBoxColumn.HeaderText = "Описание на повърхност";
             this.surfaceDescriptionDataGridViewTextBoxColumn.Name = "surfaceDescriptionDataGridViewTextBoxColumn";
-            this.surfaceDescriptionDataGridViewTextBoxColumn.Width = 150;
+            this.surfaceDescriptionDataGridViewTextBoxColumn.Width = 160;
+            // 
+            // SurfaceTypeID
+            // 
+            this.SurfaceTypeID.DataPropertyName = "SurfaceTypeID";
+            this.SurfaceTypeID.DataSource = this.surfaceTypesBindingSource;
+            this.SurfaceTypeID.DisplayMember = "TypeName";
+            this.SurfaceTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.SurfaceTypeID.HeaderText = "Тип на повърхност";
+            this.SurfaceTypeID.Name = "SurfaceTypeID";
+            this.SurfaceTypeID.ValueMember = "ID";
+            this.SurfaceTypeID.Width = 150;
             // 
             // frmSurfaces
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(403, 481);
+            this.ClientSize = new System.Drawing.Size(662, 481);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -174,6 +195,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSurfaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,9 +207,11 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.BindingSource surfacesBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn surfaceCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn surfaceNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn surfaceDescriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource surfacesBindingSource;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SurfaceTypeID;
+        private System.Windows.Forms.BindingSource surfaceTypesBindingSource;
     }
 }

@@ -57,6 +57,11 @@ namespace FlameTradeSS
             documentSequencesBindingSource.DataSource = db.DocumentSequences.ToList();
             SequenceType nullType = new SequenceType();
             sequenceTypeBindingSource.Add(nullType);
+
+            foreach(DataGridViewRow dgvr in dgvDocumentSequences.Rows)
+            {
+                dgvr.ReadOnly = true;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -70,6 +75,7 @@ namespace FlameTradeSS
             documentSequencesBindingSource.Add(newDocumentSequence);
             documentSequencesBindingSource.MoveLast();
             db.DocumentSequences.Add(newDocumentSequence);
+            dgvDocumentSequences.CurrentRow.ReadOnly = false;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -131,7 +137,20 @@ namespace FlameTradeSS
                 {
                     CommonTasks.SendErrorMsg("Моля, преди да продължите, ЗАПАМЕТЕТЕ промените");
                 }
+
+                ToolStripSeparator toolStripSeparator = new ToolStripSeparator();
+                contextMenuStripDgv.Items.Add(toolStripSeparator);
+
+                ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+                toolStripMenuItem.Text = "Редактирай";
+                toolStripMenuItem.Click += ToolStripMenuItem_Click;
+                contextMenuStripDgv.Items.Add(toolStripMenuItem);
              }
+        }
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgvDocumentSequences.CurrentRow.ReadOnly = false; 
         }
 
         private void EditPossibleSequenceTransformations_Click(object sender, EventArgs e)

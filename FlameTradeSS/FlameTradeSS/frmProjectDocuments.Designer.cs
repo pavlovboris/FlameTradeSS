@@ -37,7 +37,6 @@
             this.lblProject = new System.Windows.Forms.Label();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.dgvProjectDocuments = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.documentSequenceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.documentSequencesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.documentNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,8 @@
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isCanceledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbIsCanceled = new System.Windows.Forms.ComboBox();
+            this.cmbSequence = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectDocuments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
@@ -119,18 +120,6 @@
             this.dgvProjectDocuments.Size = new System.Drawing.Size(952, 357);
             this.dgvProjectDocuments.TabIndex = 19;
             this.dgvProjectDocuments.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectAttachments_CellDoubleClick);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Всички",
-            "Не",
-            "Да"});
-            this.comboBox1.Location = new System.Drawing.Point(861, 65);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(107, 21);
-            this.comboBox1.TabIndex = 20;
             // 
             // documentSequenceIDDataGridViewTextBoxColumn
             // 
@@ -247,6 +236,31 @@
             // 
             this.documentsBindingSource.DataSource = typeof(FlameTradeSS.Documents);
             // 
+            // cmbIsCanceled
+            // 
+            this.cmbIsCanceled.FormattingEnabled = true;
+            this.cmbIsCanceled.Items.AddRange(new object[] {
+            "Всички",
+            "Не",
+            "Да"});
+            this.cmbIsCanceled.Location = new System.Drawing.Point(861, 65);
+            this.cmbIsCanceled.Name = "cmbIsCanceled";
+            this.cmbIsCanceled.Size = new System.Drawing.Size(107, 21);
+            this.cmbIsCanceled.TabIndex = 20;
+            this.cmbIsCanceled.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // cmbSequence
+            // 
+            this.cmbSequence.DataSource = this.documentSequencesBindingSource;
+            this.cmbSequence.DisplayMember = "SequenceName";
+            this.cmbSequence.FormattingEnabled = true;
+            this.cmbSequence.Location = new System.Drawing.Point(16, 64);
+            this.cmbSequence.Name = "cmbSequence";
+            this.cmbSequence.Size = new System.Drawing.Size(106, 21);
+            this.cmbSequence.TabIndex = 21;
+            this.cmbSequence.ValueMember = "ID";
+            this.cmbSequence.SelectedIndexChanged += new System.EventHandler(this.cmbSequence_SelectedIndexChanged);
+            // 
             // frmProjectDocuments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,7 +268,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(980, 466);
             this.ControlBox = false;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbSequence);
+            this.Controls.Add(this.cmbIsCanceled);
             this.Controls.Add(this.dgvProjectDocuments);
             this.Controls.Add(this.lblProjectName);
             this.Controls.Add(this.lblProject);
@@ -296,6 +311,7 @@
         private System.Windows.Forms.BindingSource usersBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isCanceledDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource documentsBindingSource;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbIsCanceled;
+        private System.Windows.Forms.ComboBox cmbSequence;
     }
 }
