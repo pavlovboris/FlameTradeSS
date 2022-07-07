@@ -69,7 +69,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentsID" Type="int" Nullable="false" />
           <Property Name="FileName" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="FileData" Type="image" />
+          <Property Name="FileData" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="DocumentSequences">
           <Key>
@@ -270,7 +270,7 @@
           <Property Name="StaticWidth" Type="float" Nullable="false" />
           <Property Name="StaticLength" Type="float" Nullable="false" />
           <Property Name="PictureName" Type="varchar" MaxLength="250" />
-          <Property Name="PictureData" Type="image" />
+          <Property Name="PictureData" Type="varbinary(max)" />
           <Property Name="IsInactive" Type="int" Nullable="false" />
           <Property Name="DefaultSurfaceID" Type="int" Nullable="false" />
           <Property Name="FinancialCategoryID" Type="int" />
@@ -474,6 +474,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ProjectDescription" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectAttachments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FileData" Type="varbinary(max)" />
+          <Property Name="ContractID" Type="int" />
         </EntityType>
         <EntityType Name="ProjectPersons">
           <Key>
@@ -1531,6 +1541,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectAttachments_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectAttachments" Type="Self.ProjectAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectAttachments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProjectPersons_PersonsID">
           <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
           <End Role="ProjectPersons" Type="Self.ProjectPersons" Multiplicity="*" />
@@ -2082,6 +2104,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="PossibleSequenceTransformationsProperties" EntityType="Self.PossibleSequenceTransformationsProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PossibleSequenceTransofrmation" EntityType="Self.PossibleSequenceTransofrmation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectAttachments" EntityType="Self.ProjectAttachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPersons" EntityType="Self.ProjectPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptLines" EntityType="Self.ReceiptLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptModels" EntityType="Self.ReceiptModels" Schema="dbo" store:Type="Tables" />
@@ -2374,6 +2397,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_PossibleSequenceTransofrmation_DocumentSequences1" Association="Self.FK_PossibleSequenceTransofrmation_DocumentSequences1">
             <End Role="DocumentSequences" EntitySet="DocumentSequences" />
             <End Role="PossibleSequenceTransofrmation" EntitySet="PossibleSequenceTransofrmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAttachments_Project" Association="Self.FK_ProjectAttachments_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectAttachments" EntitySet="ProjectAttachments" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectPersons_PersonsID" Association="Self.FK_ProjectPersons_PersonsID">
             <End Role="Persons" EntitySet="Persons" />
@@ -3001,6 +3028,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentsProjects" Relationship="Self.FK_DocumentsProjects_ProjectID" FromRole="Project" ToRole="DocumentsProjects" />
           <NavigationProperty Name="ProjectPersons" Relationship="Self.FK_ProjectPersons_ProjectID" FromRole="Project" ToRole="ProjectPersons" />
           <NavigationProperty Name="FinancialPlans" Relationship="FlameTradeDbModel.FK_FinancialPlans_Project" FromRole="Project" ToRole="FinancialPlans" />
+          <NavigationProperty Name="ProjectAttachments" Relationship="FlameTradeDbModel.FK_ProjectAttachments_Project" FromRole="Project" ToRole="ProjectAttachments" />
         </EntityType>
         <EntityType Name="ProjectPersons">
           <Key>
@@ -4569,6 +4597,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="PossibleSequenceTransformationsProperties" EntitySet="PossibleSequenceTransformationsProperties" />
           </AssociationSet>
+          <EntitySet Name="ProjectAttachments" EntityType="FlameTradeDbModel.ProjectAttachments" />
+          <AssociationSet Name="FK_ProjectAttachments_Project" Association="FlameTradeDbModel.FK_ProjectAttachments_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectAttachments" EntitySet="ProjectAttachments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5293,6 +5326,29 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="PossibleSequenceTransformationsProperties">
               <PropertyRef Name="TransactionTypeIDTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProjectAttachments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ContractID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="FlameTradeDbModel.FK_ProjectAttachments_Project" FromRole="ProjectAttachments" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_ProjectAttachments_Project">
+          <End Type="FlameTradeDbModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.ProjectAttachments" Role="ProjectAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProjectAttachments">
+              <PropertyRef Name="ProjectID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6100,6 +6156,17 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="PossibleSequenceTransofrmation">
                 <ScalarProperty Name="PossibleDocumentSequenceID" ColumnName="PossibleDocumentSequenceID" />
                 <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectAttachments">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.ProjectAttachments">
+              <MappingFragment StoreEntitySet="ProjectAttachments">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

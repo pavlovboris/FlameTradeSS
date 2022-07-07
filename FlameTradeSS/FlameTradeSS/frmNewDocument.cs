@@ -149,11 +149,13 @@ namespace FlameTradeSS
                      //   form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
                   //  }
 
-                    if (newDocument.DocumentSequenceID!=0 && newDocument.PartnerID!=0 && newDocument.IsBlocked==0)
-                    {
+                   // if (newDocument.DocumentSequenceID!=0 && newDocument.PartnerID!=0 && newDocument.IsBlocked==0)
+                   // {
                      //   CommonTasks.DeleteDocument(db, newDocument);
-                    }
-                    
+                   // }
+                    dgvAttachments.Dispose();
+                    dgvDocumentTransactions.Dispose();
+
                 }
                 else
                 {
@@ -242,7 +244,7 @@ namespace FlameTradeSS
         }
 
 
-        private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
+        private  void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
             if (listBoxTransactionsAdd.SelectedItem!=null)
             {

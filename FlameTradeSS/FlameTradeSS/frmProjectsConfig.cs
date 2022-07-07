@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmProjects : Form
+    public partial class frmProjectsConfig : Form
     {
-        public frmProjects()
+        public frmProjectsConfig()
         {
             InitializeComponent();
         }
@@ -35,7 +35,6 @@ namespace FlameTradeSS
         }
 
         public string newProjectName;
-
         private void frmPartnerGroups_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -59,40 +58,17 @@ namespace FlameTradeSS
             {
                 db = securityService.NewDatabaseEntity();
             }
-
-            projectBindingSource.DataSource = db.Project.ToList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Project newProject = new Project();
-            if (!string.IsNullOrEmpty(newProjectName))
-            {
-                newProject.ProjectName = newProjectName;
-            }
-            projectBindingSource.Add(newProject);
-            projectBindingSource.MoveLast();
-            db.Project.Add(newProject);
-        }
-
         private async  void btnSave_Click(object sender, EventArgs e)
         {
             bool proceed = true;
             int error = 0;
-            foreach (DataGridViewRow dgvr in dgvProjects.Rows)
-            {
-                if (dgvr.Cells[0].Value == null || dgvr.Cells[1].Value == null)
-                {
-                    proceed = false;
-                    error = dgvr.Index;
-                }
-
-            }
+           
 
             if (proceed == true)
             {
@@ -116,42 +92,6 @@ namespace FlameTradeSS
             } else
             {
                 CommonTasks.SendErrorMsg("Необходимо е да попълните Име и Описание на обекта : " + error.ToString());
-            }
-        }
-
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            Project project = dgvProjects.CurrentRow.DataBoundItem as Project;
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + project.ProjectName + "?") == true)
-            {
-                if (dgvProjects.CurrentRow.Index != -1)
-                {
-                    if (project != null)
-                    {
-                        projectBindingSource.Remove(project);
-                        db.Project.Remove(project);
-                    }
-                }
-            }
-        }
-
-        private void contextMenuProject_Opening(object sender, CancelEventArgs e)
-        {
-            //DataGridView sndr = (DataGridView)sender;
-            if (dgvProjects.CurrentRow.Index==-1 && dgvProjects.CurrentRow.DataBoundItem == null)
-            {
-                e.Cancel = true;
-            } else
-            {
-                toolStripMenuProjectConfig.Text ="Конфигурирай : " + dgvProjects.CurrentRow.Cells[projectNameDataGridViewTextBoxColumn.Index].Value.ToString(); 
-            }
-        }
-
-        private void contextMenuProject_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if(e.ClickedItem == toolStripMenuProjectConfig)
-            {
-                
             }
         }
     }

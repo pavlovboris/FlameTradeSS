@@ -183,6 +183,8 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_PossibleSequenceTransofrmation" />
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" />
         <AssociationConnector Association="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.ProjectAttachments" Width="1.5" PointX="13.5" PointY="44.5" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_ProjectAttachments_Project" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

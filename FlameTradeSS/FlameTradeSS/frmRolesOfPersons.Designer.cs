@@ -164,6 +164,7 @@
             this.Name = "frmRolesOfPersons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRolesOfPersons";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmRolesOfPersons_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmRolesOfPersons_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRolesOfPersons)).EndInit();

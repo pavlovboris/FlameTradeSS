@@ -87,7 +87,7 @@ namespace FlameTradeSS
                 flowLayoutPanel.Controls.Add(lblProfit);
                 lblProfit.Show();
                 BindingSource bsFinancialLines = new BindingSource() { DataSource = typeof(FinancialPlanLines) };
-                bsFinancialLines.DataSource = db.FinancialPlanLines.Where(fpl => fpl.FinancialPlanID == financialPlans.ID).ToList();
+                bsFinancialLines.DataSource = db.FinancialPlanLines.Where(fpl => fpl.FinancialPlanID == financialPlans.ID && fpl.TransactionTypeID==transTypes.ID).ToList();
 
                 foreach (FinancialPlanLines financialPlanLine in bsFinancialLines)
                 {

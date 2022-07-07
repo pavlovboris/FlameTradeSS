@@ -12,7 +12,7 @@ namespace FlameTradeSS
 
         public DataGridView ConfigureDgv(DataGridView dgv, FlameTradeDbEntities db,DocumentSequences sequences, DocumentTransactions documentTransactions)
         {
-            string doctrams = null;
+            
             List<DocumentSequencesProperties> documentSequencesProperties;
             if (documentTransactions.TransactionTypeID==0)
             {

@@ -56,27 +56,6 @@ namespace FlameTradeSS
             Close();
         }
 
-
-
-        private async void btnSave_Click(object sender, EventArgs e)
-        {
-            if(CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да запазите промените")==true)
-            {
-                try
-                {
-                    await db.SaveChangesAsync();
-                    CommonTasks.SendInfoMsg("Промените са запазени успешно");
-                } catch (Exception ex)
-                {
-                    CommonTasks.SendErrorMsg("Промените НЕ бяха запаметени!!! \n Ако сте премахнали функция, възможно е тя да е присвоена на Роля и за това да не може да бъде изтрита");
-                    if(CommonTasks.SendWarningMsg("Искате ли да видите детайлите")==true)
-                    {
-                        CommonTasks.SendErrorMsg(ex.Message);
-                    }
-                }                
-            }
-        }
-
         private void frmFunctions_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -103,8 +82,10 @@ namespace FlameTradeSS
         {
             if (e.RowIndex!= -1)
             {
+                
                 frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
                 FinancialPlans financial = dgvFinancialPlans.Rows[e.RowIndex].DataBoundItem as FinancialPlans;
+                
                 frmFinancialPlans.financialPlans = financial;
                 frmFinancialPlans.autoLoad = true;
                 frmFinancialPlans.btnLoadFromDocument.Visible = false;

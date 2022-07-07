@@ -179,19 +179,7 @@ namespace FlameTradeSS
                         {
                             frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
 
-                            //frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                          /*  foreach(DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
-                            {
-                                if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem!=null)
-                                {
-                                    TransactionLines transactionLines = row.DataBoundItem as TransactionLines;
-                                    if (transactionLines.DocumentTransactions == null)
-                                    {
-                                        transactionLines.DocumentTransactions = frmDocTrans.documentTransactions;
-                                        db.TransactionLines.Add(transactionLines);
-                                    }
-                                }
-                            } */
+          
                         }
                         //make isBlocked=1;
                         await db.SaveChangesAsync();
@@ -202,6 +190,8 @@ namespace FlameTradeSS
                 }
                 else if (dialogResult == DialogResult.No)
                 {
+                    dgvDocumentTransactions.Dispose();
+                    dgvAttachments.Dispose();
                     // dispose what is isBlocked==0;
                 }
                 else

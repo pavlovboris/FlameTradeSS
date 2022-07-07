@@ -570,7 +570,13 @@ namespace FlameTradeSS
                     frmFinancialPlans.financialPlans = new FinancialPlans();
                     frmFinancialPlans.documents = currentRowBI;
 
-                    frmFinancialPlans.financialPlans.ProjectID = 1;
+                    if (currentRowBI.DocumentsProjects.Count > 0)
+                    {
+                        frmFinancialPlans.financialPlans.ProjectID = currentRowBI.DocumentsProjects.FirstOrDefault().ProjectID;
+                    } else
+                    {
+                        frmFinancialPlans.financialPlans.ProjectID = 1;
+                    }
                     frmFinancialPlans.financialPlans.CreationDate = DateTime.Now;
 
                     CommonTasks.OpenForm(frmFinancialPlans);                    

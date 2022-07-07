@@ -98,6 +98,12 @@
     <Compile Include="frmFinancialPlansList.Designer.cs">
       <DependentUpon>frmFinancialPlansList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProjectsConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectsConfig.Designer.cs">
+      <DependentUpon>frmProjectsConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadingItems.cs" />
     <Compile Include="AddingItems.cs" />
     <Compile Include="AppForms.cs" />
@@ -447,6 +453,9 @@
     <Compile Include="Project.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProjectAttachments.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProjectPersons.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -591,6 +600,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPersonsTypes.resx">
       <DependentUpon>frmPersonsTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectsConfig.resx">
+      <DependentUpon>frmProjectsConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurfaces.resx">
       <DependentUpon>frmSurfaces.cs</DependentUpon>

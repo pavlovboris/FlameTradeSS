@@ -116,6 +116,9 @@ namespace FlameTradeSS
 
             cmbCategory.SelectedItem = nullItemCategory;
 
+           
+            Cursor.Current = Cursors.Default;
+            Show();
             try
             {
                 CommonTasks.ReadDataGridViewSetting(dgvItems, Name + dgvItems.Name + CurrentSessionData.CurrentUser.UserName);
@@ -124,8 +127,6 @@ namespace FlameTradeSS
             {
 
             }
-            Cursor.Current = Cursors.Default;
-            Show();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

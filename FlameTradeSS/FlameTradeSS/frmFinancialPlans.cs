@@ -109,14 +109,17 @@ namespace FlameTradeSS
             }
 
             Properties.Settings.Default.Save();
-            financialPlansBindingSource.DataSource = db.FinancialPlans.ToList();
+          //  financialPlansBindingSource.DataSource = db.FinancialPlans.ToList();
             //financialPlans.Project = db.Project.First();
             //financialPlans.CreationDate = DateTime.Now;
             financialPlansBindingSource.Add(financialPlans);
             financialPlansBindingSource.MoveLast();
             //db.FinancialPlans.Add(financialPlans);
             //await db.SaveChangesAsync();
+            
+            
             projectBindingSource.DataSource = db.Project.ToList();
+            cmbProject.SelectedValue = financialPlans.ProjectID;
             Cursor.Current = Cursors.Default;
             Show();            
 

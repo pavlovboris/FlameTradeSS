@@ -32,14 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProjects));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.projectNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.contextMenuProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuProjectConfig = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
+            this.contextMenuProject.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -70,6 +73,7 @@
             this.dgvProjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.projectNameDataGridViewTextBoxColumn,
             this.projectDescriptionDataGridViewTextBoxColumn});
+            this.dgvProjects.ContextMenuStrip = this.contextMenuProject;
             this.dgvProjects.DataSource = this.projectBindingSource;
             this.dgvProjects.Location = new System.Drawing.Point(12, 65);
             this.dgvProjects.Name = "dgvProjects";
@@ -77,6 +81,26 @@
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProjects.Size = new System.Drawing.Size(370, 346);
             this.dgvProjects.TabIndex = 10;
+            // 
+            // projectNameDataGridViewTextBoxColumn
+            // 
+            this.projectNameDataGridViewTextBoxColumn.DataPropertyName = "ProjectName";
+            this.projectNameDataGridViewTextBoxColumn.HeaderText = "Име на проекта";
+            this.projectNameDataGridViewTextBoxColumn.MaxInputLength = 200;
+            this.projectNameDataGridViewTextBoxColumn.Name = "projectNameDataGridViewTextBoxColumn";
+            this.projectNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // projectDescriptionDataGridViewTextBoxColumn
+            // 
+            this.projectDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProjectDescription";
+            this.projectDescriptionDataGridViewTextBoxColumn.HeaderText = "Описание на проекта";
+            this.projectDescriptionDataGridViewTextBoxColumn.MaxInputLength = 200;
+            this.projectDescriptionDataGridViewTextBoxColumn.Name = "projectDescriptionDataGridViewTextBoxColumn";
+            this.projectDescriptionDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // projectBindingSource
+            // 
+            this.projectBindingSource.DataSource = typeof(FlameTradeSS.Project);
             // 
             // btnAdd
             // 
@@ -129,25 +153,20 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // projectNameDataGridViewTextBoxColumn
+            // contextMenuProject
             // 
-            this.projectNameDataGridViewTextBoxColumn.DataPropertyName = "ProjectName";
-            this.projectNameDataGridViewTextBoxColumn.HeaderText = "Име на проекта";
-            this.projectNameDataGridViewTextBoxColumn.MaxInputLength = 200;
-            this.projectNameDataGridViewTextBoxColumn.Name = "projectNameDataGridViewTextBoxColumn";
-            this.projectNameDataGridViewTextBoxColumn.Width = 150;
+            this.contextMenuProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuProjectConfig});
+            this.contextMenuProject.Name = "contextMenuProject";
+            this.contextMenuProject.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuProject.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProject_Opening);
+            this.contextMenuProject.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuProject_ItemClicked);
             // 
-            // projectDescriptionDataGridViewTextBoxColumn
+            // toolStripMenuProjectConfig
             // 
-            this.projectDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProjectDescription";
-            this.projectDescriptionDataGridViewTextBoxColumn.HeaderText = "Описание на проекта";
-            this.projectDescriptionDataGridViewTextBoxColumn.MaxInputLength = 200;
-            this.projectDescriptionDataGridViewTextBoxColumn.Name = "projectDescriptionDataGridViewTextBoxColumn";
-            this.projectDescriptionDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // projectBindingSource
-            // 
-            this.projectBindingSource.DataSource = typeof(FlameTradeSS.Project);
+            this.toolStripMenuProjectConfig.Name = "toolStripMenuProjectConfig";
+            this.toolStripMenuProjectConfig.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuProjectConfig.Text = "Конфигурирай : ";
             // 
             // frmProjects
             // 
@@ -173,6 +192,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
+            this.contextMenuProject.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -187,5 +207,7 @@
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ContextMenuStrip contextMenuProject;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuProjectConfig;
     }
 }
