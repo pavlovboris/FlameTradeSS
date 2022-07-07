@@ -98,6 +98,12 @@
     <Compile Include="frmFinancialPlansList.Designer.cs">
       <DependentUpon>frmFinancialPlansList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProjectDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProjectDocuments.Designer.cs">
+      <DependentUpon>frmProjectDocuments.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProjectsConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     <EmbeddedResource Include="frmPersonsTypes.resx">
       <DependentUpon>frmPersonsTypes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProjectDocuments.resx">
+      <DependentUpon>frmProjectDocuments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProjectsConfig.resx">
       <DependentUpon>frmProjectsConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -735,6 +744,7 @@
     <None Include="Properties\DataSources\PossibleSequenceTransformationsProperties.datasource" />
     <None Include="Properties\DataSources\PossibleSequenceTransofrmation.datasource" />
     <None Include="Properties\DataSources\Project.datasource" />
+    <None Include="Properties\DataSources\ProjectAttachments.datasource" />
     <None Include="Properties\DataSources\ReceiptModels.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />

@@ -138,20 +138,37 @@ namespace FlameTradeSS
         private void contextMenuProject_Opening(object sender, CancelEventArgs e)
         {
             //DataGridView sndr = (DataGridView)sender;
-            if (dgvProjects.CurrentRow.Index==-1 && dgvProjects.CurrentRow.DataBoundItem == null)
+            if (dgvProjects.CurrentRow.Index==-1 && dgvProjects.CurrentRow.DataBoundItem == null  )
             {
                 e.Cancel = true;
             } else
             {
-                toolStripMenuProjectConfig.Text ="Конфигурирай : " + dgvProjects.CurrentRow.Cells[projectNameDataGridViewTextBoxColumn.Index].Value.ToString(); 
+                Project project = dgvProjects.CurrentRow.DataBoundItem as Project;
+                if(project.ID!=0)
+                {
+                    toolStripMenuProjectConfig.Text = "Конфигурирай : " + dgvProjects.CurrentRow.Cells[projectNameDataGridViewTextBoxColumn.Index].Value.ToString();
+                    toolStripMenuDocuments.Text = "Документи на : " + dgvProjects.CurrentRow.Cells[projectNameDataGridViewTextBoxColumn.Index].Value.ToString();
+                } else
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
         private void contextMenuProject_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if(e.ClickedItem == toolStripMenuProjectConfig)
+            if (e.ClickedItem == toolStripMenuProjectConfig)
             {
-                
+                frmProjectsConfig frmProjectsConfig = new frmProjectsConfig();
+                frmProjectsConfig.project = dgvProjects.CurrentRow.DataBoundItem as Project;
+                frmProjectsConfig.db = db;
+                CommonTasks.OpenForm(frmProjectsConfig);
+            } else if (e.ClickedItem == toolStripMenuDocuments)
+            {
+                frmProjectDocuments frmProjectDocuments = new frmProjectDocuments();
+                frmProjectDocuments.project = dgvProjects.CurrentRow.DataBoundItem as Project;
+                frmProjectDocuments.db = db;
+                CommonTasks.OpenForm(frmProjectDocuments);
             }
         }
     }
