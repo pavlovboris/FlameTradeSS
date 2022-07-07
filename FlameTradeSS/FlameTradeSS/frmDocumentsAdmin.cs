@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmDocuments : Form
+    public partial class frmDocumentsAdmin : Form
     {
-        public frmDocuments()
+        public frmDocumentsAdmin()
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.DoubleBuffered = true;
@@ -47,6 +47,7 @@ namespace FlameTradeSS
 
             // don't forget to save the settings
             Properties.Settings.Default.Save();
+
             dgvDocuments.Dispose();
         }
 
@@ -591,6 +592,13 @@ namespace FlameTradeSS
                     frmDocumentTransformation.document = currentRowBI;
                     frmDocumentTransformation.db = db;
                     frmDocumentTransformation.Show();
+                }
+            } else if (e.ClickedItem == toolStripMenuDelete)
+            {
+                if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да изтриете документ : " + currentRowBI.DocumentSequences.SequenceName)==true)
+                {
+                    documentsBindingSource.Remove(currentRowBI);
+                    CommonTasks.DeleteDocument(db, currentRowBI);
                 }
             }
         }

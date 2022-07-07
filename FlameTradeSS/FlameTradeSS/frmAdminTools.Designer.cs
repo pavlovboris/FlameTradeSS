@@ -44,6 +44,7 @@
             this.btnPersonsType = new System.Windows.Forms.Button();
             this.btnFinancialColors = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnDocumentsList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -226,6 +227,18 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnDocumentsList
+            // 
+            this.btnDocumentsList.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDocumentsList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocumentsList.Location = new System.Drawing.Point(189, 285);
+            this.btnDocumentsList.Name = "btnDocumentsList";
+            this.btnDocumentsList.Size = new System.Drawing.Size(75, 41);
+            this.btnDocumentsList.TabIndex = 34;
+            this.btnDocumentsList.Text = "Documents List";
+            this.btnDocumentsList.UseVisualStyleBackColor = true;
+            this.btnDocumentsList.Click += new System.EventHandler(this.btnDocumentsList_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +246,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(955, 338);
             this.ControlBox = false;
+            this.Controls.Add(this.btnDocumentsList);
             this.Controls.Add(this.btnFinancialColors);
             this.Controls.Add(this.btnPersonsType);
             this.Controls.Add(this.btnMu);
@@ -278,5 +292,6 @@
         private System.Windows.Forms.Button btnMu;
         private System.Windows.Forms.Button btnPersonsType;
         private System.Windows.Forms.Button btnFinancialColors;
+        private System.Windows.Forms.Button btnDocumentsList;
     }
 }

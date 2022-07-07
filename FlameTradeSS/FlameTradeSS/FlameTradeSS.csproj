@@ -74,6 +74,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentsTransformations.cs" />
+    <Compile Include="frmDocumentsAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentsAdmin.Designer.cs">
+      <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDocumentTransformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +552,9 @@
     </Compile>
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentsAdmin.resx">
+      <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentTransformation.resx">
       <DependentUpon>frmDocumentTransformation.cs</DependentUpon>

@@ -52,7 +52,7 @@ namespace FlameTradeSS
                 usersBindingSource.DataSource = db.Users.ToList();
             }
  
-            rolesBindingSource.DataSource = db.Roles.ToList();
+            rolesBindingSource.DataSource = db.Roles.Where(r => r.RoleID!=1).ToList();
             personsFullNameViewBindingSource.DataSource = db.PersonsFullNameView.ToList();
 
             try
@@ -79,6 +79,7 @@ namespace FlameTradeSS
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Users newUsers = new Users();
+            newUsers.RoleID = 3;
             usersBindingSource.Add(newUsers);
             usersBindingSource.MoveLast();
             db.Users.Add(newUsers);

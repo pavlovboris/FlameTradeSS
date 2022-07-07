@@ -29,36 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentTransformation));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvTransofrmationFrom = new System.Windows.Forms.DataGridView();
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.documentSequencesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fromDocumentNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromDocumentDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromPartnerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDocumentNumber = new System.Windows.Forms.Label();
             this.lblDocument = new System.Windows.Forms.Label();
             this.dgvDocumentsTo = new System.Windows.Forms.DataGridView();
-            this.lblFromTransformation = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.documentSequencesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toSequenceDataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.toNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDateDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toPartnerDataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.fromDocumentNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fromDocumentDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fromPartnerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.lblFromTransformation = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransofrmationFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentsTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentsTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -97,6 +97,71 @@
             this.dgvTransofrmationFrom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTransofrmationFrom.Size = new System.Drawing.Size(488, 243);
             this.dgvTransofrmationFrom.TabIndex = 10;
+            this.dgvTransofrmationFrom.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransofrmationFrom_CellDoubleClick);
+            // 
+            // fromDocumentSequenceIDDataGridViewTextBoxColumn
+            // 
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DataPropertyName = "DocumentSequenceID";
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DataSource = this.documentSequencesBindingSource;
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DisplayMember = "SequenceName";
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.HeaderText = "Серия";
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.Name = "fromDocumentSequenceIDDataGridViewTextBoxColumn";
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            // 
+            // documentSequencesBindingSource
+            // 
+            this.documentSequencesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequences);
+            // 
+            // fromDocumentNumberDataGridViewTextBoxColumn
+            // 
+            this.fromDocumentNumberDataGridViewTextBoxColumn.DataPropertyName = "DocumentNumber";
+            this.fromDocumentNumberDataGridViewTextBoxColumn.HeaderText = "Номер";
+            this.fromDocumentNumberDataGridViewTextBoxColumn.Name = "fromDocumentNumberDataGridViewTextBoxColumn";
+            this.fromDocumentNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fromDocumentDateDataGridViewTextBoxColumn
+            // 
+            this.fromDocumentDateDataGridViewTextBoxColumn.DataPropertyName = "DocumentDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.fromDocumentDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.fromDocumentDateDataGridViewTextBoxColumn.HeaderText = "Дата";
+            this.fromDocumentDateDataGridViewTextBoxColumn.Name = "fromDocumentDateDataGridViewTextBoxColumn";
+            this.fromDocumentDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fromPartnerIDDataGridViewTextBoxColumn
+            // 
+            this.fromPartnerIDDataGridViewTextBoxColumn.DataPropertyName = "PartnerID";
+            this.fromPartnerIDDataGridViewTextBoxColumn.DataSource = this.partnersBindingSource;
+            this.fromPartnerIDDataGridViewTextBoxColumn.DisplayMember = "Partner_name";
+            this.fromPartnerIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.fromPartnerIDDataGridViewTextBoxColumn.HeaderText = "Партьор";
+            this.fromPartnerIDDataGridViewTextBoxColumn.Name = "fromPartnerIDDataGridViewTextBoxColumn";
+            this.fromPartnerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fromPartnerIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fromPartnerIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.fromPartnerIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.fromPartnerIDDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // partnersBindingSource
+            // 
+            this.partnersBindingSource.DataSource = typeof(FlameTradeSS.Partners);
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Коментар";
+            this.Comment.Name = "Comment";
+            this.Comment.ReadOnly = true;
+            this.Comment.Width = 300;
+            // 
+            // documentsBindingSource
+            // 
+            this.documentsBindingSource.DataSource = typeof(FlameTradeSS.Documents);
             // 
             // lblDocumentNumber
             // 
@@ -139,42 +204,7 @@
             this.dgvDocumentsTo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocumentsTo.Size = new System.Drawing.Size(488, 243);
             this.dgvDocumentsTo.TabIndex = 16;
-            // 
-            // lblFromTransformation
-            // 
-            this.lblFromTransformation.AutoSize = true;
-            this.lblFromTransformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromTransformation.Location = new System.Drawing.Point(12, 43);
-            this.lblFromTransformation.Name = "lblFromTransformation";
-            this.lblFromTransformation.Size = new System.Drawing.Size(178, 16);
-            this.lblFromTransformation.TabIndex = 17;
-            this.lblFromTransformation.Text = "Документа произлиза от :";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(503, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(183, 16);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Документ/и произлищи от :";
-            // 
-            // documentSequencesBindingSource
-            // 
-            this.documentSequencesBindingSource.DataSource = typeof(FlameTradeSS.DocumentSequences);
-            // 
-            // partnersBindingSource
-            // 
-            this.partnersBindingSource.DataSource = typeof(FlameTradeSS.Partners);
-            // 
-            // documentsBindingSource1
-            // 
-            this.documentsBindingSource1.DataSource = typeof(FlameTradeSS.Documents);
-            // 
-            // documentsBindingSource
-            // 
-            this.documentsBindingSource.DataSource = typeof(FlameTradeSS.Documents);
+            this.dgvDocumentsTo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentsTo_CellDoubleClick);
             // 
             // toSequenceDataGridViewComboBoxColumn1
             // 
@@ -228,57 +258,29 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 300;
             // 
-            // fromDocumentSequenceIDDataGridViewTextBoxColumn
+            // documentsBindingSource1
             // 
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DataPropertyName = "DocumentSequenceID";
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DataSource = this.documentSequencesBindingSource;
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DisplayMember = "SequenceName";
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.HeaderText = "Серия";
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.Name = "fromDocumentSequenceIDDataGridViewTextBoxColumn";
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.fromDocumentSequenceIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.documentsBindingSource1.DataSource = typeof(FlameTradeSS.Documents);
             // 
-            // fromDocumentNumberDataGridViewTextBoxColumn
+            // lblFromTransformation
             // 
-            this.fromDocumentNumberDataGridViewTextBoxColumn.DataPropertyName = "DocumentNumber";
-            this.fromDocumentNumberDataGridViewTextBoxColumn.HeaderText = "Номер";
-            this.fromDocumentNumberDataGridViewTextBoxColumn.Name = "fromDocumentNumberDataGridViewTextBoxColumn";
-            this.fromDocumentNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lblFromTransformation.AutoSize = true;
+            this.lblFromTransformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromTransformation.Location = new System.Drawing.Point(12, 43);
+            this.lblFromTransformation.Name = "lblFromTransformation";
+            this.lblFromTransformation.Size = new System.Drawing.Size(178, 16);
+            this.lblFromTransformation.TabIndex = 17;
+            this.lblFromTransformation.Text = "Документа произлиза от :";
             // 
-            // fromDocumentDateDataGridViewTextBoxColumn
+            // label1
             // 
-            this.fromDocumentDateDataGridViewTextBoxColumn.DataPropertyName = "DocumentDate";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.fromDocumentDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.fromDocumentDateDataGridViewTextBoxColumn.HeaderText = "Дата";
-            this.fromDocumentDateDataGridViewTextBoxColumn.Name = "fromDocumentDateDataGridViewTextBoxColumn";
-            this.fromDocumentDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fromPartnerIDDataGridViewTextBoxColumn
-            // 
-            this.fromPartnerIDDataGridViewTextBoxColumn.DataPropertyName = "PartnerID";
-            this.fromPartnerIDDataGridViewTextBoxColumn.DataSource = this.partnersBindingSource;
-            this.fromPartnerIDDataGridViewTextBoxColumn.DisplayMember = "Partner_name";
-            this.fromPartnerIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.fromPartnerIDDataGridViewTextBoxColumn.HeaderText = "Партьор";
-            this.fromPartnerIDDataGridViewTextBoxColumn.Name = "fromPartnerIDDataGridViewTextBoxColumn";
-            this.fromPartnerIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fromPartnerIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.fromPartnerIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.fromPartnerIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.fromPartnerIDDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Коментар";
-            this.Comment.Name = "Comment";
-            this.Comment.ReadOnly = true;
-            this.Comment.Width = 300;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(503, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(183, 16);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Документ/и произлищи от :";
             // 
             // frmDocumentTransformation
             // 
@@ -302,11 +304,11 @@
             this.Load += new System.EventHandler(this.frmPartnerGroups_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransofrmationFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentsTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDocumentsTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

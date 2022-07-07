@@ -239,9 +239,9 @@ namespace FlameTradeSS
                         {
                             db.TransactionsTransformations.Remove(transactionsTransformations);
                         }
+
                         await db.SaveChangesAsync();
-                        db.DocumentTransactions.Remove(dt);
-                        
+                        db.DocumentTransactions.Remove(dt);                        
                     }
 
                     List<DocumentsProjects> documentsProjectsList = db.DocumentsProjects.Where(dp => dp.DocumentsID == documents.ID).ToList();
@@ -265,7 +265,14 @@ namespace FlameTradeSS
                         
                     }
 
+                    List<DocumentsFinancialPlan> documentsFinancialPlans = db.DocumentsFinancialPlan.Where(dfp => dfp.DocumentID == documents.ID).ToList();
+                    foreach(DocumentsFinancialPlan financialPlan in documentsFinancialPlans)
+                    {
+                        db.DocumentsFinancialPlan.Remove(financialPlan);
+                    }
+
                     await db.SaveChangesAsync();
+
                     db.Documents.Remove(documents);
                     await db.SaveChangesAsync();
                 }

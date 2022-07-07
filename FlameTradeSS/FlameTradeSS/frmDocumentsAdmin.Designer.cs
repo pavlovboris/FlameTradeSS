@@ -1,6 +1,6 @@
 ﻿namespace FlameTradeSS
 {
-    partial class frmDocuments
+    partial class frmDocumentsAdmin
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocuments));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentsAdmin));
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -59,6 +59,8 @@
             this.toolStripMenuEditFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuDocumentTransformations = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.documentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbIsCanceled = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
@@ -317,9 +319,11 @@
             this.toolStripMenuAddFinancialPlan,
             this.toolStripMenuEditFinancialPlan,
             this.toolStripSeparator1,
-            this.toolStripMenuDocumentTransformations});
+            this.toolStripMenuDocumentTransformations,
+            this.toolStripSeparator2,
+            this.toolStripMenuDelete});
             this.contextMenuStripDocument.Name = "contextMenuStripDocument";
-            this.contextMenuStripDocument.Size = new System.Drawing.Size(276, 76);
+            this.contextMenuStripDocument.Size = new System.Drawing.Size(276, 104);
             this.contextMenuStripDocument.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripDocument_Opening);
             this.contextMenuStripDocument.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocument_ItemClicked);
             // 
@@ -345,6 +349,17 @@
             this.toolStripMenuDocumentTransformations.Name = "toolStripMenuDocumentTransformations";
             this.toolStripMenuDocumentTransformations.Size = new System.Drawing.Size(275, 22);
             this.toolStripMenuDocumentTransformations.Text = "Свързани Документи";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(272, 6);
+            // 
+            // toolStripMenuDelete
+            // 
+            this.toolStripMenuDelete.Name = "toolStripMenuDelete";
+            this.toolStripMenuDelete.Size = new System.Drawing.Size(275, 22);
+            this.toolStripMenuDelete.Text = "Delete Document";
             // 
             // documentsBindingSource
             // 
@@ -389,7 +404,7 @@
             // 
             this.documentSequencesBindingSource1.DataSource = typeof(FlameTradeSS.DocumentSequences);
             // 
-            // frmDocuments
+            // frmDocumentsAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -404,7 +419,7 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmDocuments";
+            this.Name = "frmDocumentsAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDocuments";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocuments_FormClosing);
@@ -456,5 +471,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuEditFinancialPlan;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuDocumentTransformations;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDelete;
     }
 }

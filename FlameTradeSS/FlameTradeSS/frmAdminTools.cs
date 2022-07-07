@@ -133,5 +133,11 @@ namespace FlameTradeSS
             frmFinancialColors frmFinancialColors = new frmFinancialColors();
             CommonTasks.OpenForm(frmFinancialColors);
         }
+
+        private void btnDocumentsList_Click(object sender, EventArgs e)
+        {
+            frmDocumentsAdmin frmDocumentsAdmin = new frmDocumentsAdmin();
+            CommonTasks.OpenForm(frmDocumentsAdmin);
+        }
     }
 }

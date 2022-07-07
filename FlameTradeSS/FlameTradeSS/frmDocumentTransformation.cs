@@ -79,5 +79,49 @@ namespace FlameTradeSS
         {
             Close();
         }
+
+        private void dgvTransofrmationFrom_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && dgvTransofrmationFrom.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                frmEditDocument frmEditDocument = new frmEditDocument();
+                frmEditDocument.newDocument = dgvTransofrmationFrom.CurrentRow.DataBoundItem as Documents;
+                frmEditDocument.db = db;
+
+
+                foreach (Control mdicontrol in frmEditDocument.Controls)
+                {
+                    MdiClient mdiClient = mdicontrol as MdiClient;
+                    if (mdiClient != null)
+                    {
+                        mdiClient.BackColor = Color.White;
+                        break;
+                    }
+                }
+                CommonTasks.OpenForm(frmEditDocument);
+            }
+        }
+
+        private void dgvDocumentsTo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && dgvDocumentsTo.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                frmEditDocument frmEditDocument = new frmEditDocument();
+                frmEditDocument.newDocument = dgvDocumentsTo.CurrentRow.DataBoundItem as Documents;
+                frmEditDocument.db = db;
+
+
+                foreach (Control mdicontrol in frmEditDocument.Controls)
+                {
+                    MdiClient mdiClient = mdicontrol as MdiClient;
+                    if (mdiClient != null)
+                    {
+                        mdiClient.BackColor = Color.White;
+                        break;
+                    }
+                }
+                CommonTasks.OpenForm(frmEditDocument);
+            }
+        }
     }
 }
