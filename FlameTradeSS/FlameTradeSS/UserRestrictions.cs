@@ -25,15 +25,53 @@ namespace FlameTradeSS
                                 try
                                 {
                                     form.Controls[form.Controls.IndexOfKey(f.ControllName)].Dispose();
+                                    break;
                                 } catch { }
-                                
+                                try
+                                {
+                                    Type panel = typeof(Panel);
+
+                                    foreach (Control ctrll in form.Controls)
+                                    {
+
+                                        if (ctrll.GetType() == panel)
+                                        {
+                                            Panel pnl = ctrll as Panel;
+                                            foreach (Control control in pnl.Controls)
+                                            {
+                                                pnl.Controls[pnl.Controls.IndexOfKey(f.ControllName)].Dispose();
+                                            }
+                                        }
+                                    }
+                                }
+                                catch { };
+
                                 break;
                             case "Disable":
                                 try
                                 {
                                     form.Controls[form.Controls.IndexOfKey(f.ControllName)].Enabled = false;
+                                    break;
                                 }
                                 catch { }
+                                try
+                                {
+                                    Type panel = typeof(Panel);
+
+                                    foreach (Control ctrll in form.Controls)
+                                    {
+
+                                        if(ctrll.GetType()==panel)
+                                        {
+                                            Panel pnl = ctrll as Panel;
+                                            foreach(Control control in pnl.Controls)
+                                            {
+                                                pnl.Controls[pnl.Controls.IndexOfKey(f.ControllName)].Enabled = false;
+                                            }
+                                        }
+                                    }
+                                }
+                                catch { };
                                 break;
                         }
                     }

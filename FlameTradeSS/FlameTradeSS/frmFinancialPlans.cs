@@ -98,10 +98,10 @@ namespace FlameTradeSS
             Hide();
             
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmItemsSize, Properties.Settings.Default.frmItemsState, Properties.Settings.Default.frmItemsLocation);
+            UserRestrictions.ApplyUserRestrictions(CurrentSessionData.CurrentUser, this);
 
             try
-            {
-                //CommonTasks.ReadDataGridViewSetting(dgvItems, Name + dgvItems.Name + CurrentSessionData.CurrentUser.UserName);
+            {                //CommonTasks.ReadDataGridViewSetting(dgvItems, Name + dgvItems.Name + CurrentSessionData.CurrentUser.UserName);
             }
             catch
             {

@@ -64,6 +64,17 @@ namespace FlameTradeSS
                     foreach (Control control in controlsForm.Controls)
                     {
                         AppForms currentControl = controlsList.Where(c => c.Name == control.Name).FirstOrDefault();
+                        if (control.Controls.Count>0)
+                        {
+                            foreach (Control ctrl in control.Controls)
+                            {
+                                AppForms currentSubControl = controlsList.Where(c => c.Name == ctrl.Name).FirstOrDefault();
+                                if (!controlsList.Contains(currentSubControl))
+                                {
+                                    controlsList.Add(new AppForms() { Name = ctrl.Name }) ;
+                                }
+                            }
+                        }
                         if (!controlsList.Contains(currentControl))
                         {
                             controlsList.Add(new AppForms() { Name = control.Name });
