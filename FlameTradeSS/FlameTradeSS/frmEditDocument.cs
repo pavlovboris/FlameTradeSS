@@ -166,6 +166,13 @@ namespace FlameTradeSS
             // don't forget to save the settings
             Properties.Settings.Default.Save();
 
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
+
+            bool dispose = true;
 
             if (newDocument.Issued == 0)
             {
@@ -173,86 +180,86 @@ namespace FlameTradeSS
 
                 if (dialogResult == DialogResult.Yes)
                 {
+
+                    dgvDocumentTransactions.Dispose();
+
                     try
                     {
-                        foreach (Form form in this.MdiChildren)
-                        {
-                            frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
-
-          
-                        }
+   
                         //make isBlocked=1;
-                        await db.SaveChangesAsync();
-                        dgvDocumentTransactions.Dispose();
-                        dgvAttachments.Dispose();
+                        await db.SaveChangesAsync();              
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     dgvDocumentTransactions.Dispose();
-                    dgvAttachments.Dispose();
-                    // dispose what is isBlocked==0;
                 }
                 else
                 {
                     e.Cancel = true;
+                    dispose = false;
                 }
             }
 
-            try
+            if(dispose == true)
             {
-                CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
+                dgvDocumentTransactions.Dispose();
             }
-            catch { }
+            
         }
 
         private void cmbDocumentSequence_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbDocumentSequence.SelectedIndex != documentSequencesBindingSource.Count - 1)
+            try
             {
-                cmbPartners.Enabled = true;
-                DocumentSequences selectedDocumentSequence = cmbDocumentSequence.SelectedItem as DocumentSequences;
-
-                if (selectedDocumentSequence.SequenceType.PartnerType == "Customer")
+                if (cmbDocumentSequence.SelectedIndex != documentSequencesBindingSource.Count - 1)
                 {
-                    List<Partners> customers = new List<Partners>();
+                    cmbPartners.Enabled = true;
+                    DocumentSequences selectedDocumentSequence = cmbDocumentSequence.SelectedItem as DocumentSequences;
 
-                    foreach (Customers isCustomer in db.Customers.ToList())
+                    if (selectedDocumentSequence.SequenceType.PartnerType == "Customer")
                     {
-                        customers.Add(db.Partners.Where(p => p.ID == isCustomer.PartnerID).SingleOrDefault());
+                        List<Partners> customers = new List<Partners>();
+
+                        foreach (Customers isCustomer in db.Customers.ToList())
+                        {
+                            customers.Add(db.Partners.Where(p => p.ID == isCustomer.PartnerID).SingleOrDefault());
+                        }
+
+                        partnersBindingSource.DataSource = customers;
+                        cmbPartners.SelectedItem = null;
+                    }
+                    else if (selectedDocumentSequence.SequenceType.PartnerType == "Supplier")
+                    {
+                        List<Partners> suppliers = new List<Partners>();
+
+                        foreach (Suppliers isSupler in db.Suppliers.ToList())
+                        {
+                            suppliers.Add(db.Partners.Where(ps => ps.ID == isSupler.PartnerID).SingleOrDefault());
+                        }
+                        partnersBindingSource.DataSource = suppliers;
+                        cmbPartners.SelectedItem = null;
                     }
 
-                    partnersBindingSource.DataSource = customers;
-                    cmbPartners.SelectedItem = null;
-                }
-                else if (selectedDocumentSequence.SequenceType.PartnerType == "Supplier")
-                {
-                    List<Partners> suppliers = new List<Partners>();
-
-                    foreach (Suppliers isSupler in db.Suppliers.ToList())
+                    if (selectedDocumentSequence.SequenceType.NumberingReference == "Invoice Numbering ")
                     {
-                        suppliers.Add(db.Partners.Where(ps => ps.ID == isSupler.PartnerID).SingleOrDefault());
+                        txtDocumentNumber.Enabled = false;
+                        txtDocumentNumber.Text = "0";
                     }
-                    partnersBindingSource.DataSource = suppliers;
-                    cmbPartners.SelectedItem = null;
-                }
+                    else if (selectedDocumentSequence.SequenceType.NumberingReference == "Standart Numbering")
+                    {
+                        txtDocumentNumber.Enabled = false;
+                        txtDocumentNumber.Text = "0";
+                    }
+                    else
+                    {
+                        txtDocumentNumber.Enabled = true;
+                    }
 
-                if (selectedDocumentSequence.SequenceType.NumberingReference == "Invoice Numbering ")
-                {
-                    txtDocumentNumber.Enabled = false;
-                    txtDocumentNumber.Text = "0";
                 }
-                else if (selectedDocumentSequence.SequenceType.NumberingReference == "Standart Numbering")
-                {
-                    txtDocumentNumber.Enabled = false;
-                    txtDocumentNumber.Text = "0";
-                }
-                else
-                {
-                    txtDocumentNumber.Enabled = true;
-                }
-            }
+            } catch { }
+     
         }
 
         private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
@@ -675,27 +682,35 @@ namespace FlameTradeSS
 
         private void cmbSequenceFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox filter = (ComboBox)sender;
-            TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
-            if (transactionsType != null)
+            try
             {
-                if (filter.SelectedIndex != 0)
+                ComboBox filter = (ComboBox)sender;
+                TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
+         
+                if (transactionsType != null)
                 {
-                    documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID && dt.TransactionTypeID == transactionsType.ID).ToList();
-                } else
-                {
-                    documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
+                    if (filter.SelectedIndex != 0)
+                    {
+                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID && dt.TransactionTypeID == transactionsType.ID).ToList();
+                    }
+                    else
+                    {
+                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
+                    }
                 }
             }
+            catch { }
         }
 
         private void dgvDocumentTransactions_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            
-            if (e.Column.Index== TransactionTypes_TransactionTypeID_TypeName_ID.Index)
+            try
             {
-                cmbSequenceFilter.Width = TransactionTypes_TransactionTypeID_TypeName_ID.Width;
-            }
+                if (e.Column.Index == TransactionTypes_TransactionTypeID_TypeName_ID.Index)
+                {
+                    cmbSequenceFilter.Width = TransactionTypes_TransactionTypeID_TypeName_ID.Width;
+                }
+            } catch { }
         }
     }
 }

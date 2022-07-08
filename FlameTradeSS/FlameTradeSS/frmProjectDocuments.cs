@@ -74,10 +74,6 @@ namespace FlameTradeSS
 
             partnersBindingSource.DataSource = db.Partners.ToList();
 
-            foreach(DocumentsProjects documentsProjects in db.DocumentsProjects.Where(dp => dp.ProjectID==project.ID).ToList())
-            {
-                documentsBindingSource.Add(documentsProjects.Documents);
-            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

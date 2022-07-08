@@ -92,7 +92,9 @@ namespace FlameTradeSS
                 frmFinancialPlans.isNew = false;
                 Close();
                 CommonTasks.OpenForm(frmFinancialPlans);
-                
+
+                int y = Screen.PrimaryScreen.Bounds.Bottom - this.Height;
+                this.Location = new Point(0, y);
             }
         }
     }

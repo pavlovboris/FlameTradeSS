@@ -108,65 +108,52 @@ namespace FlameTradeSS
                 Properties.Settings.Default.frmNewDocumentSize = this.RestoreBounds.Size;
             }
 
+            bool dispose = true;
+
             // don't forget to save the settings
             Properties.Settings.Default.Save();
+
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
+
             if (newDocument.Issued == 0)
             {
                 DialogResult dialogResult = CommonTasks.SendQuestionMsg("Искате ли да запазите документа?");
 
                 if (dialogResult == DialogResult.Yes)
                 {
+               
+
                     try
                     {
-                        foreach (Form form in this.MdiChildren)
-                        {
-                            frmDocumentTransactions frmDocTrans = form as frmDocumentTransactions;
-
-                           // frmDocTrans.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                           /* foreach (DataGridViewRow row in frmDocTrans.dgvTransactionLines.Rows)
-                            {
-                                if (!row.IsNewRow && row.Index != -1 && row.DataBoundItem != null)
-                                {
-                                    TransactionLines transactionLines = row.DataBoundItem as TransactionLines;
-                                    if (transactionLines.ID == 0)
-                                    {
-                                        transactionLines.TransactionsID = frmDocTrans.documentTransactions.ID;
-                                        db.TransactionLines.Add(transactionLines);
-                                    }
-                                }
-                            }*/
-                        }
-                        await db.SaveChangesAsync();
-                        dgvAttachments.Dispose();
                         dgvDocumentTransactions.Dispose();
+                        await db.SaveChangesAsync();
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                   // foreach (Form form in this.MdiChildren)
-                   // {
-                     //   form.FormClosing -= NewfrmDocumentTransactions_FormClosing;
-                  //  }
+                    try
+                    {
+                        CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
+                    }
+                    catch { }
 
-                   // if (newDocument.DocumentSequenceID!=0 && newDocument.PartnerID!=0 && newDocument.IsBlocked==0)
-                   // {
-                     //   CommonTasks.DeleteDocument(db, newDocument);
-                   // }
-                    dgvAttachments.Dispose();
                     dgvDocumentTransactions.Dispose();
-
                 }
                 else
                 {
                     e.Cancel = true;
+                    dispose = false;
                 }
             }
-            try
+            if (dispose == true)
             {
-                CommonTasks.WriteGrideViewSetting(dgvDocumentTransactions, Name + dgvDocumentTransactions.Name + CurrentSessionData.CurrentUser.UserName);
-            } catch { }
-            
+                dgvDocumentTransactions.Dispose();
+            }
         }
 
         private void cmbDocumentSequence_SelectionChangeCommitted(object sender, EventArgs e)

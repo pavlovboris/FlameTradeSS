@@ -140,7 +140,7 @@ namespace FlameTradeSS
             fs.Close();
         }
 
-        public static void WriteGrideViewSetting(DataGridView dgv, string FileName)
+        public  static void WriteGrideViewSetting(DataGridView dgv, string FileName)
         {
             //declaring teh xmlwritter object  
             XmlTextWriter settingwriter = new XmlTextWriter("..\\XML\\" + FileName + ".xml", null);

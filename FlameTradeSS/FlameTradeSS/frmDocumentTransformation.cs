@@ -99,6 +99,9 @@ namespace FlameTradeSS
                     }
                 }
                 CommonTasks.OpenForm(frmEditDocument);
+                
+                int y = Screen.PrimaryScreen.Bounds.Bottom - this.Height;
+                this.Location = new Point(0, y);
             }
         }
 
