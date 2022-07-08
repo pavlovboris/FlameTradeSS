@@ -122,6 +122,16 @@ namespace FlameTradeSS
                     servicesBindingSource.DataSource= db.Services.ToList();
                     break;
             }
+            if (RemainingQTY.Visible == true)
+            {
+                RemainingQTY.ReadOnly = true;
+                RemainingQTY.DefaultCellStyle.BackColor = Color.LightYellow;
+            }
+            if (RemainingInvoiceQTY.Visible == true)
+            {
+                RemainingInvoiceQTY.ReadOnly = true;
+                RemainingInvoiceQTY.DefaultCellStyle.BackColor = Color.LightYellow;
+            }
         }
 
         private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)
@@ -295,35 +305,6 @@ namespace FlameTradeSS
         private void btnClose_Click(object sender, EventArgs e)
         {
             Hide();
-
-           
-
-         /*   if (MdiParent.Name == "frmEditDocument")
-            {
-               frmEditDocument form = MdiParent as frmEditDocument;
-               
-                foreach (TabPage tabPage in form.tabControlMain.TabPages )
-                {
-                    if (tabPage.Name == Name)
-                    {
-                       // tabPage.Dispose();
-                    }
-                }
-            } else if (MdiParent.Name == "frmNewDocument")
-            {
-                frmNewDocument form = Parent as frmNewDocument;
-
-                foreach (TabPage tabPage in form.tabControlMain.TabPages)
-                {
-                    if (tabPage.Name == Name)
-                    {
-                        //tabPage.Dispose();
-                    }
-                }
-
-            }*/
-
-          
         }
 
         private TabControl tabCtrl;
@@ -391,12 +372,11 @@ namespace FlameTradeSS
             }
            
 
-            if (e.RowIndex!=-1 && e.ColumnIndex == Items_ItemID_Code_ID.Index)
+            if (e.RowIndex!=-1 && e.ColumnIndex == Items_ItemID_Code_ID.Index | e.ColumnIndex == Items_ItemID_Description_ID.Index)
             {
                 //TransactionLines transactionLines = dgvTransactionLines.Rows[e.RowIndex].DataBoundItem as TransactionLines;
                 int itemID = (int)dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Code_ID.Index].Value;
                 Items item = db.Items.Where(i => i.ID.Equals(itemID)).SingleOrDefault();
-
 
                 if (item.DefaultMu != 0)
                 {
@@ -429,9 +409,37 @@ namespace FlameTradeSS
                     }
                 }
 
-                dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Description_ID.Index].Value = item.ID;
+               // dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Description_ID.Index].Value = item.ID;
+
+            } else if (e.RowIndex!=-1 && e.ColumnIndex == Qty.Index)
+            {
+                if(RemainingQTY.Visible == true)
+                {
+                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    if (dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value!=null)
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value + oldNewDiff;
+                    } else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
+                    }
+                }
+                if (RemainingInvoiceQTY.Visible == true)
+                {
+                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    if (dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value != null)
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value + oldNewDiff;
+                    } else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
+                    }
+
+                }
             }
         }
+
+        double qtyOldValue = 0;
 
         private void dgvTransactionLines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -484,6 +492,17 @@ namespace FlameTradeSS
         //        db.TransactionLines.Add(transactionLines);
          //       
         //    }
+        }
+
+        private void dgvTransactionLines_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex == Qty.Index )
+            {
+                if (dgvTransactionLines.CurrentCell.Value!=null)
+                {
+                    qtyOldValue = (double)dgvTransactionLines.CurrentCell.Value;
+                }
+            }
         }
     }
 }

@@ -40,20 +40,25 @@
             this.dgvTransformationsProperties = new System.Windows.Forms.DataGridView();
             this.buttonRemove2 = new System.Windows.Forms.Button();
             this.buttonAdd2 = new System.Windows.Forms.Button();
-            this.TransactionTypeIDTo = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.useReceiptDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.transactionsTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.remainQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainProductionQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainPackagingQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainDeliveryQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.possibleSequenceTransformationsPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.possibleDocumentSequenceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.documentSequencesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.possibleSequenceTransofrmationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.useReceiptDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TransactionTypeIDTo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.transactionTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.remainQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.remainProductionQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RemainQTYthis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RemainProductionQTYthis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RemainPackagingQTYthis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RemainDeliveryQTYthis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RemainInvoiceQTYthis = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPossibleSequenceTransformations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransformationsProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource1)).BeginInit();
@@ -183,7 +188,12 @@
             this.remainProductionQTYActionDataGridViewTextBoxColumn,
             this.remainPackagingQTYActionDataGridViewTextBoxColumn,
             this.remainDeliveryQTYActionDataGridViewTextBoxColumn,
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn});
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn,
+            this.RemainQTYthis,
+            this.RemainProductionQTYthis,
+            this.RemainPackagingQTYthis,
+            this.RemainDeliveryQTYthis,
+            this.RemainInvoiceQTYthis});
             this.dgvTransformationsProperties.DataSource = this.possibleSequenceTransformationsPropertiesBindingSource;
             this.dgvTransformationsProperties.Location = new System.Drawing.Point(349, 65);
             this.dgvTransformationsProperties.Name = "dgvTransformationsProperties";
@@ -226,84 +236,13 @@
             this.buttonAdd2.UseVisualStyleBackColor = true;
             this.buttonAdd2.Click += new System.EventHandler(this.buttonAdd2_Click);
             // 
-            // TransactionTypeIDTo
-            // 
-            this.TransactionTypeIDTo.DataPropertyName = "TransactionTypeIDTo";
-            this.TransactionTypeIDTo.DataSource = this.transactionsTypeBindingSource1;
-            this.TransactionTypeIDTo.DisplayMember = "TypeName";
-            this.TransactionTypeIDTo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.TransactionTypeIDTo.HeaderText = "To Transaction Type";
-            this.TransactionTypeIDTo.Name = "TransactionTypeIDTo";
-            this.TransactionTypeIDTo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TransactionTypeIDTo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.TransactionTypeIDTo.ValueMember = "ID";
-            this.TransactionTypeIDTo.Width = 150;
-            // 
-            // useReceiptDataGridViewTextBoxColumn
-            // 
-            this.useReceiptDataGridViewTextBoxColumn.DataPropertyName = "UseReceipt";
-            this.useReceiptDataGridViewTextBoxColumn.FalseValue = "0";
-            this.useReceiptDataGridViewTextBoxColumn.HeaderText = "UseReceipt";
-            this.useReceiptDataGridViewTextBoxColumn.Name = "useReceiptDataGridViewTextBoxColumn";
-            this.useReceiptDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.useReceiptDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.useReceiptDataGridViewTextBoxColumn.TrueValue = "1";
-            // 
             // transactionsTypeBindingSource1
             // 
             this.transactionsTypeBindingSource1.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
-            // transactionTypeIDDataGridViewTextBoxColumn
-            // 
-            this.transactionTypeIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionTypeID";
-            this.transactionTypeIDDataGridViewTextBoxColumn.DataSource = this.transactionsTypeBindingSource;
-            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
-            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.transactionTypeIDDataGridViewTextBoxColumn.HeaderText = "Fron Transaction Type";
-            this.transactionTypeIDDataGridViewTextBoxColumn.Name = "transactionTypeIDDataGridViewTextBoxColumn";
-            this.transactionTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.transactionTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.transactionTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.transactionTypeIDDataGridViewTextBoxColumn.Width = 150;
-            // 
             // transactionsTypeBindingSource
             // 
             this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
-            // 
-            // remainQTYActionDataGridViewTextBoxColumn
-            // 
-            this.remainQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainQTYAction";
-            this.remainQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainQTYAction";
-            this.remainQTYActionDataGridViewTextBoxColumn.Name = "remainQTYActionDataGridViewTextBoxColumn";
-            this.remainQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // remainProductionQTYActionDataGridViewTextBoxColumn
-            // 
-            this.remainProductionQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainProductionQTYAction";
-            this.remainProductionQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainProductionQTYAction";
-            this.remainProductionQTYActionDataGridViewTextBoxColumn.Name = "remainProductionQTYActionDataGridViewTextBoxColumn";
-            this.remainProductionQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // remainPackagingQTYActionDataGridViewTextBoxColumn
-            // 
-            this.remainPackagingQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainPackagingQTYAction";
-            this.remainPackagingQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainPackagingQTYAction";
-            this.remainPackagingQTYActionDataGridViewTextBoxColumn.Name = "remainPackagingQTYActionDataGridViewTextBoxColumn";
-            this.remainPackagingQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // remainDeliveryQTYActionDataGridViewTextBoxColumn
-            // 
-            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainDeliveryQTYAction";
-            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainDeliveryQTYAction";
-            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.Name = "remainDeliveryQTYActionDataGridViewTextBoxColumn";
-            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // remainInvoiceQTYActionDataGridViewTextBoxColumn
-            // 
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainInvoiceQTYAction";
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainInvoiceQTYAction";
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.Name = "remainInvoiceQTYActionDataGridViewTextBoxColumn";
-            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // possibleSequenceTransformationsPropertiesBindingSource
             // 
@@ -328,6 +267,133 @@
             // possibleSequenceTransofrmationBindingSource
             // 
             this.possibleSequenceTransofrmationBindingSource.DataSource = typeof(FlameTradeSS.PossibleSequenceTransofrmation);
+            // 
+            // useReceiptDataGridViewTextBoxColumn
+            // 
+            this.useReceiptDataGridViewTextBoxColumn.DataPropertyName = "UseReceipt";
+            this.useReceiptDataGridViewTextBoxColumn.FalseValue = "0";
+            this.useReceiptDataGridViewTextBoxColumn.HeaderText = "UseReceipt";
+            this.useReceiptDataGridViewTextBoxColumn.Name = "useReceiptDataGridViewTextBoxColumn";
+            this.useReceiptDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.useReceiptDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.useReceiptDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // TransactionTypeIDTo
+            // 
+            this.TransactionTypeIDTo.DataPropertyName = "TransactionTypeIDTo";
+            this.TransactionTypeIDTo.DataSource = this.transactionsTypeBindingSource1;
+            this.TransactionTypeIDTo.DisplayMember = "TypeName";
+            this.TransactionTypeIDTo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.TransactionTypeIDTo.HeaderText = "To Transaction Type";
+            this.TransactionTypeIDTo.Name = "TransactionTypeIDTo";
+            this.TransactionTypeIDTo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TransactionTypeIDTo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TransactionTypeIDTo.ValueMember = "ID";
+            this.TransactionTypeIDTo.Width = 150;
+            // 
+            // transactionTypeIDDataGridViewTextBoxColumn
+            // 
+            this.transactionTypeIDDataGridViewTextBoxColumn.DataPropertyName = "TransactionTypeID";
+            this.transactionTypeIDDataGridViewTextBoxColumn.DataSource = this.transactionsTypeBindingSource;
+            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
+            this.transactionTypeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.transactionTypeIDDataGridViewTextBoxColumn.HeaderText = "Fron Transaction Type";
+            this.transactionTypeIDDataGridViewTextBoxColumn.Name = "transactionTypeIDDataGridViewTextBoxColumn";
+            this.transactionTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.transactionTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.transactionTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.transactionTypeIDDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // remainQTYActionDataGridViewTextBoxColumn
+            // 
+            this.remainQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainQTYAction";
+            this.remainQTYActionDataGridViewTextBoxColumn.FalseValue = "0";
+            this.remainQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainQTYAction";
+            this.remainQTYActionDataGridViewTextBoxColumn.Name = "remainQTYActionDataGridViewTextBoxColumn";
+            this.remainQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remainQTYActionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remainQTYActionDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // remainProductionQTYActionDataGridViewTextBoxColumn
+            // 
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainProductionQTYAction";
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.FalseValue = "0";
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainProductionQTYAction";
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.Name = "remainProductionQTYActionDataGridViewTextBoxColumn";
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remainProductionQTYActionDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // remainPackagingQTYActionDataGridViewTextBoxColumn
+            // 
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainPackagingQTYAction";
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.FalseValue = "0";
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainPackagingQTYAction";
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.Name = "remainPackagingQTYActionDataGridViewTextBoxColumn";
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remainPackagingQTYActionDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // remainDeliveryQTYActionDataGridViewTextBoxColumn
+            // 
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainDeliveryQTYAction";
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.FalseValue = "0";
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainDeliveryQTYAction";
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.Name = "remainDeliveryQTYActionDataGridViewTextBoxColumn";
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remainDeliveryQTYActionDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // remainInvoiceQTYActionDataGridViewTextBoxColumn
+            // 
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.DataPropertyName = "RemainInvoiceQTYAction";
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.FalseValue = "0";
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.HeaderText = "RemainInvoiceQTYAction";
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.Name = "remainInvoiceQTYActionDataGridViewTextBoxColumn";
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.remainInvoiceQTYActionDataGridViewTextBoxColumn.TrueValue = "1";
+            // 
+            // RemainQTYthis
+            // 
+            this.RemainQTYthis.DataPropertyName = "RemainQTYthis";
+            this.RemainQTYthis.FalseValue = "0";
+            this.RemainQTYthis.HeaderText = "RemainQTYthis";
+            this.RemainQTYthis.Name = "RemainQTYthis";
+            this.RemainQTYthis.TrueValue = "1";
+            // 
+            // RemainProductionQTYthis
+            // 
+            this.RemainProductionQTYthis.DataPropertyName = "RemainProductionQTYthis";
+            this.RemainProductionQTYthis.FalseValue = "0";
+            this.RemainProductionQTYthis.HeaderText = "RemainProductionQTYthis";
+            this.RemainProductionQTYthis.Name = "RemainProductionQTYthis";
+            this.RemainProductionQTYthis.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RemainProductionQTYthis.TrueValue = "1";
+            // 
+            // RemainPackagingQTYthis
+            // 
+            this.RemainPackagingQTYthis.DataPropertyName = "RemainPackagingQTYthis";
+            this.RemainPackagingQTYthis.FalseValue = "0";
+            this.RemainPackagingQTYthis.HeaderText = "RemainPackagingQTYthis";
+            this.RemainPackagingQTYthis.Name = "RemainPackagingQTYthis";
+            this.RemainPackagingQTYthis.TrueValue = "1";
+            // 
+            // RemainDeliveryQTYthis
+            // 
+            this.RemainDeliveryQTYthis.DataPropertyName = "RemainDeliveryQTYthis";
+            this.RemainDeliveryQTYthis.FalseValue = "0";
+            this.RemainDeliveryQTYthis.HeaderText = "RemainDeliveryQTYthis";
+            this.RemainDeliveryQTYthis.Name = "RemainDeliveryQTYthis";
+            this.RemainDeliveryQTYthis.TrueValue = "1";
+            // 
+            // RemainInvoiceQTYthis
+            // 
+            this.RemainInvoiceQTYthis.DataPropertyName = "RemainInvoiceQTYthis";
+            this.RemainInvoiceQTYthis.FalseValue = "0";
+            this.RemainInvoiceQTYthis.HeaderText = "RemainInvoiceQTYthis";
+            this.RemainInvoiceQTYthis.Name = "RemainInvoiceQTYthis";
+            this.RemainInvoiceQTYthis.TrueValue = "1";
             // 
             // frmPossibleSequenceTransformations
             // 
@@ -386,10 +452,15 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn useReceiptDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn TransactionTypeIDTo;
         private System.Windows.Forms.DataGridViewComboBoxColumn transactionTypeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainQTYActionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainProductionQTYActionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainPackagingQTYActionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainDeliveryQTYActionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remainInvoiceQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn remainQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn remainProductionQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn remainPackagingQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn remainDeliveryQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn remainInvoiceQTYActionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RemainQTYthis;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RemainProductionQTYthis;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RemainPackagingQTYthis;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RemainDeliveryQTYthis;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RemainInvoiceQTYthis;
     }
 }

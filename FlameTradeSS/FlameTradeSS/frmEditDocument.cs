@@ -190,6 +190,27 @@ namespace FlameTradeSS
                         await db.SaveChangesAsync();              
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
+
+                    foreach (TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID == newDocument.ID))
+                    {
+                        foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.ID ==transactionRowsDependancy.TransactionLines1.ID))
+                        {
+                            TransactionLines dependantTL = transactionRowsDependancy.TransactionLines;
+                            switch (transactionRowsDependancy.ControlledParameter)
+                            {
+                                case "RemainingQTY":
+                                    break;
+                                case "RemainingInvoiceQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                        transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    await db.SaveChangesAsync();
                 }
                 else if (dialogResult == DialogResult.No)
                 {

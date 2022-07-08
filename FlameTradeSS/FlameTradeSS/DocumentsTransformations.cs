@@ -10,7 +10,7 @@ namespace FlameTradeSS
     internal class DocumentsTransformations
     {
 
-        public void TransformDocument(FlameTradeDbEntities db,Documents documentsTo, List<Documents> documentsFrom, BindingSource documentTransactionsBindingSource)
+        public void TransformDocument(FlameTradeDbEntities db,Documents documentsTo, List<Documents> documentsFrom, BindingSource documentTransactionsBindingSource,bool thisAction)
         {
             foreach (Documents document in documentsFrom)
             {
@@ -93,10 +93,79 @@ namespace FlameTradeSS
                                     newTransactionLine.ReceiptID = transactionLines.ReceiptID;
                                     newTransactionLine.SurfaceID = transactionLines.SurfaceID;
                                     newTransactionLine.WH = transactionLines.WH;
-                                    newTransactionLine.Qty = transactionLines.Qty;
+                                    
 
+                                    
+
+                                    if (thisAction == true)
+                                    {
+                                        
+                                        if (possibleSequenceTransformationsProperties.RemainQTYthis == 1)
+                                        {
+                                            if (transactionLines.RemainingQTY != null)
+                                            {
+                                                newTransactionLine.Qty = transactionLines.RemainingQTY;
+
+                                                if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
+                                                {
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
+                                                }
+
+                                                if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
+                                                {
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
+                                                }
+
+                                                TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
+                                                newTransactionRowsDependancy.TransactionLines = newTransactionLine;
+                                                newTransactionRowsDependancy.TransactionLines1 = transactionLines;
+                                                newTransactionRowsDependancy.ControlledParameter = "RemainQTY";
+                                                newTransactionRowsDependancy.InitialValue = transactionLines.RemainingQTY;
+                                                newTransactionRowsDependancy.LastValue = transactionLines.RemainingQTY;
+                                                db.TransactionRowsDependancy.Add(newTransactionRowsDependancy);
+                                            }
+                                        } 
+
+                                        if (possibleSequenceTransformationsProperties.RemainInvoiceQTYthis == 1)
+                                        {
+                                            if (transactionLines.RemainingInvoiceQTY != null)
+                                            {
+                                                newTransactionLine.Qty = transactionLines.RemainingInvoiceQTY;
+
+                                                if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
+                                                {
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
+                                                }
+
+                                                if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
+                                                {
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
+                                                }
+
+                                                TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
+                                                newTransactionRowsDependancy.TransactionLines = newTransactionLine;
+                                                newTransactionRowsDependancy.TransactionLines1 = transactionLines;
+                                                newTransactionRowsDependancy.ControlledParameter = "RemainingInvoiceQTY";
+                                                newTransactionRowsDependancy.InitialValue = transactionLines.RemainingInvoiceQTY;
+                                                newTransactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                                db.TransactionRowsDependancy.Add(newTransactionRowsDependancy);
+                                            }
+                                        }
+                                    } else
+                                    {
+                                        newTransactionLine.Qty = transactionLines.Qty;
+
+                                        if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
+                                        {
+                                            newTransactionLine.RemainingQTY = transactionLines.Qty;
+                                        }
+
+                                        if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
+                                        {
+                                            newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                        }
+                                    }
                                     db.TransactionLines.Add(newTransactionLine);
-
                                 }
                             }
                         }

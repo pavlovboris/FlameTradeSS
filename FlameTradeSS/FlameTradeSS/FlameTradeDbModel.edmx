@@ -458,6 +458,11 @@
           <Property Name="RemainInvoiceQTYAction" Type="int" Nullable="false" />
           <Property Name="TransactionTypeID" Type="int" Nullable="false" />
           <Property Name="TransactionTypeIDTo" Type="int" Nullable="false" />
+          <Property Name="RemainQTYthis" Type="int" Nullable="false" />
+          <Property Name="RemainProductionQTYthis" Type="int" Nullable="false" />
+          <Property Name="RemainPackagingQTYthis" Type="int" Nullable="false" />
+          <Property Name="RemainDeliveryQTYthis" Type="int" Nullable="false" />
+          <Property Name="RemainInvoiceQTYthis" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PossibleSequenceTransofrmation">
           <Key>
@@ -710,6 +715,17 @@
           <Property Name="PartitionID" Type="int" Nullable="false" />
           <Property Name="SecondPartitionID" Type="int" Nullable="false" />
           <Property Name="SurfaceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionRowsDependancy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ControllingTransactionRowID" Type="int" Nullable="false" />
+          <Property Name="ControlledTransactionRowID" Type="int" Nullable="false" />
+          <Property Name="ControlledParameter" Type="varchar" MaxLength="100" />
+          <Property Name="InitialValue" Type="float" />
+          <Property Name="LastValue" Type="float" />
         </EntityType>
         <EntityType Name="TransactionsTransformations">
           <Key>
@@ -2006,6 +2022,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionRowsDependancy_TransactionLines">
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
+          <End Role="TransactionRowsDependancy" Type="Self.TransactionRowsDependancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionRowsDependancy">
+              <PropertyRef Name="ControllingTransactionRowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionRowsDependancy_TransactionLines1">
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
+          <End Role="TransactionRowsDependancy" Type="Self.TransactionRowsDependancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionRowsDependancy">
+              <PropertyRef Name="ControlledTransactionRowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionsTransformations_OriginTransactionID">
           <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
           <End Role="TransactionsTransformations" Type="Self.TransactionsTransformations" Multiplicity="*" />
@@ -2146,6 +2186,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="TransactionLinesTransformation" EntityType="Self.TransactionLinesTransformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionPersons" EntityType="Self.TransactionPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionReceipt" EntityType="Self.TransactionReceipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionRowsDependancy" EntityType="Self.TransactionRowsDependancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionsTransformations" EntityType="Self.TransactionsTransformations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionsType" EntityType="Self.TransactionsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -2571,6 +2612,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_TransactionReceipt_ReceiptModels" Association="Self.FK_TransactionReceipt_ReceiptModels">
             <End Role="ReceiptModels" EntitySet="ReceiptModels" />
             <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionRowsDependancy_TransactionLines" Association="Self.FK_TransactionRowsDependancy_TransactionLines">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionRowsDependancy" EntitySet="TransactionRowsDependancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionRowsDependancy_TransactionLines1" Association="Self.FK_TransactionRowsDependancy_TransactionLines1">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionRowsDependancy" EntitySet="TransactionRowsDependancy" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionsTransformations_OriginTransactionID" Association="Self.FK_TransactionsTransformations_OriginTransactionID">
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
@@ -3208,6 +3257,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="FinancialCategories" Relationship="FlameTradeDbModel.FK_TransactionLines_FinancialCategories" FromRole="TransactionLines" ToRole="FinancialCategories" />
           <Property Name="OriginLine" Type="Int32" />
           <Property Name="WH" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TransactionRowsDependancy" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
+          <NavigationProperty Name="TransactionRowsDependancy1" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -4633,6 +4684,15 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="SurfaceTypes" EntitySet="SurfaceTypes" />
             <End Role="Surfaces" EntitySet="Surfaces" />
           </AssociationSet>
+          <EntitySet Name="TransactionRowsDependancy" EntityType="FlameTradeDbModel.TransactionRowsDependancy" />
+          <AssociationSet Name="FK_TransactionRowsDependancy_TransactionLines" Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionRowsDependancy" EntitySet="TransactionRowsDependancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionRowsDependancy_TransactionLines1" Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1">
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="TransactionRowsDependancy" EntitySet="TransactionRowsDependancy" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5290,6 +5350,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" FromRole="PossibleSequenceTransformationsProperties" ToRole="TransactionsType" />
           <Property Name="TransactionTypeIDTo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TransactionsType1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" FromRole="PossibleSequenceTransformationsProperties" ToRole="TransactionsType" />
+          <Property Name="RemainQTYthis" Type="Int32" Nullable="false" />
+          <Property Name="RemainProductionQTYthis" Type="Int32" Nullable="false" />
+          <Property Name="RemainPackagingQTYthis" Type="Int32" Nullable="false" />
+          <Property Name="RemainDeliveryQTYthis" Type="Int32" Nullable="false" />
+          <Property Name="RemainInvoiceQTYthis" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PossibleSequenceTransofrmation">
           <Key>
@@ -5403,6 +5468,43 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Surfaces">
               <PropertyRef Name="SurfaceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TransactionRowsDependancy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ControllingTransactionRowID" Type="Int32" Nullable="false" />
+          <Property Name="ControlledTransactionRowID" Type="Int32" Nullable="false" />
+          <Property Name="ControlledParameter" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InitialValue" Type="Double" />
+          <Property Name="LastValue" Type="Double" />
+          <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" FromRole="TransactionRowsDependancy" ToRole="TransactionLines" />
+          <NavigationProperty Name="TransactionLines1" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" FromRole="TransactionRowsDependancy" ToRole="TransactionLines" />
+        </EntityType>
+        <Association Name="FK_TransactionRowsDependancy_TransactionLines">
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionRowsDependancy" Role="TransactionRowsDependancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionRowsDependancy">
+              <PropertyRef Name="ControllingTransactionRowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionRowsDependancy_TransactionLines1">
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionRowsDependancy" Role="TransactionRowsDependancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionRowsDependancy">
+              <PropertyRef Name="ControlledTransactionRowID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6193,6 +6295,11 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="PossibleSequenceTransformationsProperties">
             <EntityTypeMapping TypeName="FlameTradeDbModel.PossibleSequenceTransformationsProperties">
               <MappingFragment StoreEntitySet="PossibleSequenceTransformationsProperties">
+                <ScalarProperty Name="RemainInvoiceQTYthis" ColumnName="RemainInvoiceQTYthis" />
+                <ScalarProperty Name="RemainDeliveryQTYthis" ColumnName="RemainDeliveryQTYthis" />
+                <ScalarProperty Name="RemainPackagingQTYthis" ColumnName="RemainPackagingQTYthis" />
+                <ScalarProperty Name="RemainProductionQTYthis" ColumnName="RemainProductionQTYthis" />
+                <ScalarProperty Name="RemainQTYthis" ColumnName="RemainQTYthis" />
                 <ScalarProperty Name="TransactionTypeIDTo" ColumnName="TransactionTypeIDTo" />
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
                 <ScalarProperty Name="RemainInvoiceQTYAction" ColumnName="RemainInvoiceQTYAction" />
@@ -6231,6 +6338,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="SurfaceTypes">
                 <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionRowsDependancy">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionRowsDependancy">
+              <MappingFragment StoreEntitySet="TransactionRowsDependancy">
+                <ScalarProperty Name="LastValue" ColumnName="LastValue" />
+                <ScalarProperty Name="InitialValue" ColumnName="InitialValue" />
+                <ScalarProperty Name="ControlledParameter" ColumnName="ControlledParameter" />
+                <ScalarProperty Name="ControlledTransactionRowID" ColumnName="ControlledTransactionRowID" />
+                <ScalarProperty Name="ControllingTransactionRowID" ColumnName="ControllingTransactionRowID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

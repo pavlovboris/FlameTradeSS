@@ -195,6 +195,7 @@
             this.dgvTransactionLines.RowHeadersWidth = 20;
             this.dgvTransactionLines.Size = new System.Drawing.Size(902, 329);
             this.dgvTransactionLines.TabIndex = 2;
+            this.dgvTransactionLines.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvTransactionLines_CellBeginEdit);
             this.dgvTransactionLines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellClick);
             this.dgvTransactionLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellDoubleClick);
             this.dgvTransactionLines.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionLines_CellValueChanged);

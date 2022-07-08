@@ -22,6 +22,8 @@ namespace FlameTradeSS
             this.TransactionLinesTransformation = new HashSet<TransactionLinesTransformation>();
             this.TransactionLinesTransformation1 = new HashSet<TransactionLinesTransformation>();
             this.TransactionLinesComments = new HashSet<TransactionLinesComments>();
+            this.TransactionRowsDependancy = new HashSet<TransactionRowsDependancy>();
+            this.TransactionRowsDependancy1 = new HashSet<TransactionRowsDependancy>();
         }
     
         public int ID { get; set; }
@@ -79,5 +81,9 @@ namespace FlameTradeSS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLinesComments> TransactionLinesComments { get; set; }
         public virtual FinancialCategories FinancialCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionRowsDependancy> TransactionRowsDependancy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionRowsDependancy> TransactionRowsDependancy1 { get; set; }
     }
 }

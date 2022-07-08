@@ -24,6 +24,11 @@ namespace FlameTradeSS
         public int RemainInvoiceQTYAction { get; set; }
         public int TransactionTypeID { get; set; }
         public int TransactionTypeIDTo { get; set; }
+        public int RemainQTYthis { get; set; }
+        public int RemainProductionQTYthis { get; set; }
+        public int RemainPackagingQTYthis { get; set; }
+        public int RemainDeliveryQTYthis { get; set; }
+        public int RemainInvoiceQTYthis { get; set; }
     
         public virtual PossibleSequenceTransofrmation PossibleSequenceTransofrmation { get; set; }
         public virtual TransactionsType TransactionsType { get; set; }

@@ -187,6 +187,9 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_ProjectAttachments_Project" />
         <EntityTypeShape EntityType="FlameTradeDbModel.SurfaceTypes" Width="1.5" PointX="0.75" PointY="7.25" />
         <AssociationConnector Association="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.TransactionRowsDependancy" Width="1.5" PointX="21" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

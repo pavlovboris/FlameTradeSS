@@ -70,6 +70,7 @@ namespace FlameTradeSS
             {
                 transactionsTypeBindingSource.Add(db.TransactionsType.Where(tt => tt.ID == sequence.TransactionTypeID).SingleOrDefault());
             }
+        
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -146,7 +147,7 @@ namespace FlameTradeSS
 
                 if (possibleSequence != null && possibleSequence.PossibleDocumentSequenceID != 0)
                 {
-                    List<SequencesTransactions> sequencesTransactions = db.SequencesTransactions.Where(st => st.SquenceID == possibleSequence.ID).ToList();
+                    List<SequencesTransactions> sequencesTransactions = db.SequencesTransactions.Where(st => st.SquenceID == possibleSequence.PossibleDocumentSequenceID).ToList();
 
                     possibleSequenceTransformationsPropertiesBindingSource.DataSource = db.PossibleSequenceTransformationsProperties.Where(pstp => pstp.PossibleSqequenceTransformationID == possibleSequence.ID).ToList();
                     transactionsTypeBindingSource1.Clear();

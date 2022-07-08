@@ -523,6 +523,9 @@
     <Compile Include="TransactionReceipt.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransactionRowsDependancy.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TransactionsTransformations.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>

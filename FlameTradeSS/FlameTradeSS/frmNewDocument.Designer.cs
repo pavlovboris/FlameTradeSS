@@ -46,6 +46,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTransformFrom = new System.Windows.Forms.Button();
             this.cmbSequenceFilter = new System.Windows.Forms.ComboBox();
             this.transactionsTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
@@ -100,7 +101,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.btnTransformFrom = new System.Windows.Forms.Button();
+            this.chkBoxThisAction = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -201,6 +202,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.chkBoxThisAction);
             this.panel1.Controls.Add(this.btnTransformFrom);
             this.panel1.Controls.Add(this.cmbSequenceFilter);
             this.panel1.Controls.Add(this.btnCancel);
@@ -232,6 +234,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1690, 243);
             this.panel1.TabIndex = 12;
+            // 
+            // btnTransformFrom
+            // 
+            this.btnTransformFrom.Location = new System.Drawing.Point(380, 24);
+            this.btnTransformFrom.Name = "btnTransformFrom";
+            this.btnTransformFrom.Size = new System.Drawing.Size(21, 23);
+            this.btnTransformFrom.TabIndex = 31;
+            this.btnTransformFrom.Text = "+";
+            this.btnTransformFrom.UseVisualStyleBackColor = true;
+            this.btnTransformFrom.Click += new System.EventHandler(this.btnTransformFrom_Click);
             // 
             // cmbSequenceFilter
             // 
@@ -714,15 +726,17 @@
             this.tabControlMain.TabIndex = 15;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
-            // btnTransformFrom
+            // chkBoxThisAction
             // 
-            this.btnTransformFrom.Location = new System.Drawing.Point(380, 24);
-            this.btnTransformFrom.Name = "btnTransformFrom";
-            this.btnTransformFrom.Size = new System.Drawing.Size(21, 23);
-            this.btnTransformFrom.TabIndex = 31;
-            this.btnTransformFrom.Text = "+";
-            this.btnTransformFrom.UseVisualStyleBackColor = true;
-            this.btnTransformFrom.Click += new System.EventHandler(this.btnTransformFrom_Click);
+            this.chkBoxThisAction.AutoSize = true;
+            this.chkBoxThisAction.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkBoxThisAction.Location = new System.Drawing.Point(164, 5);
+            this.chkBoxThisAction.Name = "chkBoxThisAction";
+            this.chkBoxThisAction.Size = new System.Drawing.Size(234, 17);
+            this.chkBoxThisAction.TabIndex = 32;
+            this.chkBoxThisAction.Text = "Действие с трансгормираният документ";
+            this.chkBoxThisAction.UseVisualStyleBackColor = true;
+            this.chkBoxThisAction.CheckedChanged += new System.EventHandler(this.chkBoxThisAction_CheckedChanged);
             // 
             // frmNewDocument
             // 
@@ -825,5 +839,6 @@
         private System.Windows.Forms.ComboBox cmbSequenceFilter;
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
         private System.Windows.Forms.Button btnTransformFrom;
+        private System.Windows.Forms.CheckBox chkBoxThisAction;
     }
 }

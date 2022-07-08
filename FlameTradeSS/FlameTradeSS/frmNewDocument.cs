@@ -129,7 +129,30 @@ namespace FlameTradeSS
 
                     try
                     {
+                        foreach(TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID==newDocument.ID))
+
                         dgvDocumentTransactions.Dispose();
+                        await db.SaveChangesAsync();
+
+                        foreach (TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID == newDocument.ID))
+                        {
+                            foreach(TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.ID == transactionRowsDependancy.TransactionLines1.ID))
+                            {
+                                TransactionLines dependantTL = transactionRowsDependancy.TransactionLines;
+                                switch (transactionRowsDependancy.ControlledParameter)
+                                {
+                                    case "RemainingQTY":
+                                        break;
+                                    case "RemainingInvoiceQTY":
+                                        if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                        {
+                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                        }
+                                        break;
+                                }
+                            }
+                        }
                         await db.SaveChangesAsync();
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -290,7 +313,6 @@ namespace FlameTradeSS
                     existingTransactionTypes.Add(selectedTransactionType);
                     transactionsTypeBindingSource1.Add(selectedTransactionType);
                 }
-
             }
         }
 
@@ -574,7 +596,7 @@ namespace FlameTradeSS
                                     await db.SaveChangesAsync();
                                     CommonTasks.SendInfoMsg("Документа е успешно издаден : "+newDocument.DocumentNumber.ToString()+"@"+newDocument.DocumentSequences.SequenceName);
                                 }
-                                catch { CommonTasks.SendErrorMsg("Дактурата НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
+                                catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                             }
 
                         }
@@ -876,10 +898,12 @@ namespace FlameTradeSS
                 if (currentDoc!=null)
                 {
                     DocumentsTransformations doDocumentTransofrmation = new DocumentsTransformations();
-                    doDocumentTransofrmation.TransformDocument(db, newDocument, documentsFrom, documentTransactionsBindingSource);
+                    doDocumentTransofrmation.TransformDocument(db, newDocument, documentsFrom, documentTransactionsBindingSource, thisAction);
                 }
             }
         }
+
+        bool thisAction = false;
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
@@ -924,6 +948,18 @@ namespace FlameTradeSS
         {
             Button sendr = (Button)sender;
             sendr.Parent.Dispose();
+        }
+
+        private void chkBoxThisAction_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked == true)
+            {
+                thisAction = true;
+            } else
+            {
+                thisAction = false;
+            }
         }
     }
 }
