@@ -17,6 +17,7 @@ namespace FlameTradeSS
         public int ID { get; set; }
         public int OriginDocID { get; set; }
         public int DocID { get; set; }
+        public Nullable<int> isActive { get; set; }
     
         public virtual Documents Documents { get; set; }
         public virtual Documents Documents1 { get; set; }

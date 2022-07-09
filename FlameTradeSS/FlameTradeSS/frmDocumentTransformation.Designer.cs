@@ -67,7 +67,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(950, 6);
+            this.btnClose.Location = new System.Drawing.Point(1209, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
@@ -95,7 +95,7 @@
             this.dgvTransofrmationFrom.ReadOnly = true;
             this.dgvTransofrmationFrom.RowHeadersWidth = 5;
             this.dgvTransofrmationFrom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransofrmationFrom.Size = new System.Drawing.Size(488, 243);
+            this.dgvTransofrmationFrom.Size = new System.Drawing.Size(611, 243);
             this.dgvTransofrmationFrom.TabIndex = 10;
             this.dgvTransofrmationFrom.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransofrmationFrom_CellDoubleClick);
             // 
@@ -196,13 +196,13 @@
             this.toPartnerDataGridViewComboBoxColumn2,
             this.dataGridViewTextBoxColumn1});
             this.dgvDocumentsTo.DataSource = this.documentsBindingSource1;
-            this.dgvDocumentsTo.Location = new System.Drawing.Point(506, 65);
+            this.dgvDocumentsTo.Location = new System.Drawing.Point(629, 65);
             this.dgvDocumentsTo.MultiSelect = false;
             this.dgvDocumentsTo.Name = "dgvDocumentsTo";
             this.dgvDocumentsTo.ReadOnly = true;
             this.dgvDocumentsTo.RowHeadersWidth = 5;
             this.dgvDocumentsTo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentsTo.Size = new System.Drawing.Size(488, 243);
+            this.dgvDocumentsTo.Size = new System.Drawing.Size(623, 243);
             this.dgvDocumentsTo.TabIndex = 16;
             this.dgvDocumentsTo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentsTo_CellDoubleClick);
             // 
@@ -276,7 +276,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(503, 43);
+            this.label1.Location = new System.Drawing.Point(626, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 16);
             this.label1.TabIndex = 18;
@@ -287,7 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1005, 320);
+            this.ClientSize = new System.Drawing.Size(1264, 320);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFromTransformation);
             this.Controls.Add(this.dgvDocumentsTo);

@@ -157,6 +157,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OriginDocID" Type="int" Nullable="false" />
           <Property Name="DocID" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="int" />
         </EntityType>
         <EntityType Name="FinancialCategories">
           <Key>
@@ -2795,6 +2796,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="DocID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Documents" Relationship="Self.FK_DocumentTransformation_DocID" FromRole="DocumentTransformation" ToRole="Documents" />
           <NavigationProperty Name="Documents1" Relationship="Self.FK_DocumentTransformation_OriginDocID" FromRole="DocumentTransformation" ToRole="Documents" />
+          <Property Name="isActive" Type="Int32" />
         </EntityType>
         <EntityType Name="FunctionRoles">
           <Key>
@@ -5625,6 +5627,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransformation">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransformation">
               <MappingFragment StoreEntitySet="DocumentTransformation">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OriginDocID" ColumnName="OriginDocID" />
                 <ScalarProperty Name="DocID" ColumnName="DocID" />

@@ -342,7 +342,15 @@ namespace FlameTradeSS
                 DocumentTransformation newDocTransformation = new DocumentTransformation();
                 newDocTransformation.DocID = documentsTo.ID;
                 newDocTransformation.OriginDocID = document.ID;
+                if (thisAction == true)
+                {
+                    newDocTransformation.isActive = 1;
+                } else
+                {
+                    newDocTransformation.isActive = 0;
+                }
                 db.DocumentTransformation.Add(newDocTransformation);
+               
             }
         }
     }
