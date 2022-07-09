@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FlameTradeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutoStringDocuments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="DocumentsStringLineID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Colors">
           <Key>
             <PropertyRef Name="ID" />
@@ -108,6 +116,23 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocumentsID" Type="int" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentsStrings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentStringName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentStringLines">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentStringID" Type="int" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="int" Nullable="false" />
+          <Property Name="SequencePosition" Type="int" Nullable="false" />
+          <Property Name="AttachFinancialPlan" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentTransactions">
           <Key>
@@ -745,6 +770,7 @@
           <Property Name="TransactionMultiplier" Type="int" Nullable="false" />
           <Property Name="LinesRelation" Type="int" Nullable="false" />
           <Property Name="IsFinancialType" Type="int" Nullable="false" />
+          <Property Name="DefaultSurfaceTypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -775,6 +801,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person_Name" Type="varchar" MaxLength="201" />
         </EntityType>
+        <Association Name="FK_AutoStringDocuments_Documents">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+          <End Role="AutoStringDocuments" Type="Self.AutoStringDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AutoStringDocuments">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoStringDocuments_DocumentStringLines">
+          <End Role="DocumentStringLines" Type="Self.DocumentStringLines" Multiplicity="1" />
+          <End Role="AutoStringDocuments" Type="Self.AutoStringDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentStringLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AutoStringDocuments">
+              <PropertyRef Name="DocumentsStringLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CurrentlyLoggedUsers_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="CurrentlyLoggedUsers" Type="Self.CurrentlyLoggedUsers" Multiplicity="*" />
@@ -940,6 +990,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="DocumentsProjects">
               <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentStringLines_DocumentSequences">
+          <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
+          <End Role="DocumentStringLines" Type="Self.DocumentStringLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentStringLines">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentStringLines_DocumentsStrings">
+          <End Role="DocumentsStrings" Type="Self.DocumentsStrings" Multiplicity="1" />
+          <End Role="DocumentStringLines" Type="Self.DocumentStringLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsStrings">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentStringLines">
+              <PropertyRef Name="DocumentStringID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2083,6 +2157,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionsType_SurfaceTypes">
+          <End Role="SurfaceTypes" Type="Self.SurfaceTypes" Multiplicity="1" />
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurfaceTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionsType">
+              <PropertyRef Name="DefaultSurfaceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_PersonID">
           <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -2120,6 +2206,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FlameTradeDbModelStoreContainer">
+          <EntitySet Name="AutoStringDocuments" EntityType="Self.AutoStringDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CostingModels" EntityType="Self.CostingModels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentlyLoggedUsers" EntityType="Self.CurrentlyLoggedUsers" Schema="dbo" store:Type="Tables" />
@@ -2131,6 +2218,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="DocumentSequencesProperties" EntityType="Self.DocumentSequencesProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsFinancialPlan" EntityType="Self.DocumentsFinancialPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsProjects" EntityType="Self.DocumentsProjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentsStrings" EntityType="Self.DocumentsStrings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentStringLines" EntityType="Self.DocumentStringLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactions" EntityType="Self.DocumentTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactionsComments" EntityType="Self.DocumentTransactionsComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransformation" EntityType="Self.DocumentTransformation" Schema="dbo" store:Type="Tables" />
@@ -2198,6 +2287,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
     [PersonsFullNameView].[Person_Name] AS [Person_Name]
     FROM [dbo].[PersonsFullNameView] AS [PersonsFullNameView]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AutoStringDocuments_Documents" Association="Self.FK_AutoStringDocuments_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="AutoStringDocuments" EntitySet="AutoStringDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoStringDocuments_DocumentStringLines" Association="Self.FK_AutoStringDocuments_DocumentStringLines">
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+            <End Role="AutoStringDocuments" EntitySet="AutoStringDocuments" />
+          </AssociationSet>
           <AssociationSet Name="FK_CurrentlyLoggedUsers_Users" Association="Self.FK_CurrentlyLoggedUsers_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="CurrentlyLoggedUsers" EntitySet="CurrentlyLoggedUsers" />
@@ -2253,6 +2350,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_DocumentsProjects_ProjectID" Association="Self.FK_DocumentsProjects_ProjectID">
             <End Role="Project" EntitySet="Project" />
             <End Role="DocumentsProjects" EntitySet="DocumentsProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentStringLines_DocumentSequences" Association="Self.FK_DocumentStringLines_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentStringLines_DocumentsStrings" Association="Self.FK_DocumentStringLines_DocumentsStrings">
+            <End Role="DocumentsStrings" EntitySet="DocumentsStrings" />
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentTransactions_ColorID" Association="Self.FK_DocumentTransactions_ColorID">
             <End Role="Colors" EntitySet="Colors" />
@@ -2634,6 +2739,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="LinesType" EntitySet="LinesType" />
             <End Role="TransactionsType" EntitySet="TransactionsType" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionsType_SurfaceTypes" Association="Self.FK_TransactionsType_SurfaceTypes">
+            <End Role="SurfaceTypes" EntitySet="SurfaceTypes" />
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_PersonID" Association="Self.FK_Users_PersonID">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Users" EntitySet="Users" />
@@ -2705,6 +2814,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="InvoiceNumbering" Relationship="Self.FK_InvoiceNumbering_documentID" FromRole="Documents" ToRole="InvoiceNumbering" />
           <Property Name="Issued" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DocumentsFinancialPlan" Relationship="FlameTradeDbModel.FK_DocumentsFinancialPlan_Documents" FromRole="Documents" ToRole="DocumentsFinancialPlan" />
+          <NavigationProperty Name="AutoStringDocuments" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_Documents" FromRole="Documents" ToRole="AutoStringDocuments" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -2732,6 +2842,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentSequencesProperties" Relationship="FlameTradeDbModel.FK_DocumentSequencesProperties_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentSequencesProperties" />
           <NavigationProperty Name="PossibleSequenceTransofrmation" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
           <NavigationProperty Name="PossibleSequenceTransofrmation1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
+          <NavigationProperty Name="DocumentStringLines" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentStringLines" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -3338,6 +3449,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="PossibleFinancialCategoryTransactionsType" Relationship="FlameTradeDbModel.FK_PossibleFinancialCategoryTransactionsType_TransactionsType" FromRole="TransactionsType" ToRole="PossibleFinancialCategoryTransactionsType" />
           <NavigationProperty Name="PossibleSequenceTransformationsProperties" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType" FromRole="TransactionsType" ToRole="PossibleSequenceTransformationsProperties" />
           <NavigationProperty Name="PossibleSequenceTransformationsProperties1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransformationsProperties_TransactionsType1" FromRole="TransactionsType" ToRole="PossibleSequenceTransformationsProperties" />
+          <Property Name="DefaultSurfaceTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SurfaceTypes" Relationship="FlameTradeDbModel.FK_TransactionsType_SurfaceTypes" FromRole="TransactionsType" ToRole="SurfaceTypes" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -4695,6 +4808,29 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionLines" EntitySet="TransactionLines" />
             <End Role="TransactionRowsDependancy" EntitySet="TransactionRowsDependancy" />
           </AssociationSet>
+          <EntitySet Name="AutoStringDocuments" EntityType="FlameTradeDbModel.AutoStringDocuments" />
+          <EntitySet Name="DocumentsStrings" EntityType="FlameTradeDbModel.DocumentsStrings" />
+          <EntitySet Name="DocumentStringLines" EntityType="FlameTradeDbModel.DocumentStringLines" />
+          <AssociationSet Name="FK_AutoStringDocuments_Documents" Association="FlameTradeDbModel.FK_AutoStringDocuments_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="AutoStringDocuments" EntitySet="AutoStringDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoStringDocuments_DocumentStringLines" Association="FlameTradeDbModel.FK_AutoStringDocuments_DocumentStringLines">
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+            <End Role="AutoStringDocuments" EntitySet="AutoStringDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentStringLines_DocumentSequences" Association="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentStringLines_DocumentsStrings" Association="FlameTradeDbModel.FK_DocumentStringLines_DocumentsStrings">
+            <End Role="DocumentsStrings" EntitySet="DocumentsStrings" />
+            <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionsType_SurfaceTypes" Association="FlameTradeDbModel.FK_TransactionsType_SurfaceTypes">
+            <End Role="SurfaceTypes" EntitySet="SurfaceTypes" />
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5460,6 +5596,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" FromRole="SurfaceTypes" ToRole="Surfaces" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_TransactionsType_SurfaceTypes" FromRole="SurfaceTypes" ToRole="TransactionsType" />
         </EntityType>
         <Association Name="FK_Surfaces_SurfaceTypes">
           <End Type="FlameTradeDbModel.SurfaceTypes" Role="SurfaceTypes" Multiplicity="1" />
@@ -5507,6 +5644,97 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="TransactionRowsDependancy">
               <PropertyRef Name="ControlledTransactionRowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AutoStringDocuments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentsStringLineID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_Documents" FromRole="AutoStringDocuments" ToRole="Documents" />
+          <NavigationProperty Name="DocumentStringLines" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_DocumentStringLines" FromRole="AutoStringDocuments" ToRole="DocumentStringLines" />
+        </EntityType>
+        <EntityType Name="DocumentsStrings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentStringName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentStringLines" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentsStrings" FromRole="DocumentsStrings" ToRole="DocumentStringLines" />
+        </EntityType>
+        <EntityType Name="DocumentStringLines">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentStringID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="Int32" Nullable="false" />
+          <Property Name="SequencePosition" Type="Int32" Nullable="false" />
+          <Property Name="AttachFinancialPlan" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AutoStringDocuments" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_DocumentStringLines" FromRole="DocumentStringLines" ToRole="AutoStringDocuments" />
+          <NavigationProperty Name="DocumentSequences" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences" FromRole="DocumentStringLines" ToRole="DocumentSequences" />
+          <NavigationProperty Name="DocumentsStrings" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentsStrings" FromRole="DocumentStringLines" ToRole="DocumentsStrings" />
+        </EntityType>
+        <Association Name="FK_AutoStringDocuments_Documents">
+          <End Type="FlameTradeDbModel.Documents" Role="Documents" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AutoStringDocuments" Role="AutoStringDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AutoStringDocuments">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoStringDocuments_DocumentStringLines">
+          <End Type="FlameTradeDbModel.DocumentStringLines" Role="DocumentStringLines" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AutoStringDocuments" Role="AutoStringDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentStringLines">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AutoStringDocuments">
+              <PropertyRef Name="DocumentsStringLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentStringLines_DocumentSequences">
+          <End Type="FlameTradeDbModel.DocumentSequences" Role="DocumentSequences" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentStringLines" Role="DocumentStringLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentStringLines">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentStringLines_DocumentsStrings">
+          <End Type="FlameTradeDbModel.DocumentsStrings" Role="DocumentsStrings" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentStringLines" Role="DocumentStringLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentsStrings">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentStringLines">
+              <PropertyRef Name="DocumentStringID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionsType_SurfaceTypes">
+          <End Type="FlameTradeDbModel.SurfaceTypes" Role="SurfaceTypes" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurfaceTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionsType">
+              <PropertyRef Name="DefaultSurfaceTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6077,6 +6305,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionsType">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionsType">
               <MappingFragment StoreEntitySet="TransactionsType">
+                <ScalarProperty Name="DefaultSurfaceTypeID" ColumnName="DefaultSurfaceTypeID" />
                 <ScalarProperty Name="IsFinancialType" ColumnName="IsFinancialType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -6353,6 +6582,34 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="ControlledParameter" ColumnName="ControlledParameter" />
                 <ScalarProperty Name="ControlledTransactionRowID" ColumnName="ControlledTransactionRowID" />
                 <ScalarProperty Name="ControllingTransactionRowID" ColumnName="ControllingTransactionRowID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoStringDocuments">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AutoStringDocuments">
+              <MappingFragment StoreEntitySet="AutoStringDocuments">
+                <ScalarProperty Name="DocumentsStringLineID" ColumnName="DocumentsStringLineID" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentsStrings">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentsStrings">
+              <MappingFragment StoreEntitySet="DocumentsStrings">
+                <ScalarProperty Name="DocumentStringName" ColumnName="DocumentStringName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentStringLines">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentStringLines">
+              <MappingFragment StoreEntitySet="DocumentStringLines">
+                <ScalarProperty Name="AttachFinancialPlan" ColumnName="AttachFinancialPlan" />
+                <ScalarProperty Name="SequencePosition" ColumnName="SequencePosition" />
+                <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
+                <ScalarProperty Name="DocumentStringID" ColumnName="DocumentStringID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

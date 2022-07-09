@@ -411,12 +411,21 @@ namespace FlameTradeSS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
+            DocumentTransactions documentTransactions = new DocumentTransactions();
+            documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+
+            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null && e.ColumnIndex == Surfaces_TransactionSurfaceID_SurfaceName_ID.Index)
+            {
+                frmSurfaceSelector frmSurfaceSelector = new frmSurfaceSelector();
+                frmSurfaceSelector.db = db;
+                frmSurfaceSelector.surfaceTypes = db.SurfaceTypes.Where(st => st.ID == documentTransactions.TransactionsType.DefaultSurfaceTypeID).SingleOrDefault();
+                frmSurfaceSelector.FormClosing += FrmSurfaceSelector_FormClosing;
+                CommonTasks.OpenForm(frmSurfaceSelector);
+            }
+            else if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
             {
                 bool isOpened = false;
 
-                DocumentTransactions documentTransactions = new DocumentTransactions();
-                documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
 
                 newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + documentTransactions.tempID.ToString();
@@ -463,7 +472,7 @@ namespace FlameTradeSS
                     //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
                     tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
                     newTabFrmDocumentTransactions.Parent = tabControlMain;
-
+                    
                     newTabFrmDocumentTransactions.Show();
                     newfrmDocumentTransactions.TabCtrl = tabControlMain;
                     newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
@@ -473,6 +482,18 @@ namespace FlameTradeSS
                 } else
                 {                   
                 }
+            }
+        }
+
+        private void FrmSurfaceSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmSurfaceSelector frmSurfaceSelector = sender as frmSurfaceSelector;
+            
+            if (frmSurfaceSelector.xClicked!=true && frmSurfaceSelector.dgvItemsSelector.CurrentRow.DataBoundItem!=null)
+            {
+                Surfaces surfaces = frmSurfaceSelector.dgvItemsSelector.CurrentRow.DataBoundItem as Surfaces;
+                dgvDocumentTransactions.CurrentRow.Cells[Surfaces_TransactionSurfaceID_SurfaceName_ID.Index].Value = surfaces.ID;
+
             }
         }
 

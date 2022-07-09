@@ -139,5 +139,11 @@ namespace FlameTradeSS
             frmDocumentsAdmin frmDocumentsAdmin = new frmDocumentsAdmin();
             CommonTasks.OpenForm(frmDocumentsAdmin);
         }
+
+        private void btnSurfaceTypes_Click(object sender, EventArgs e)
+        {
+            frmSurfacesTypes frmSurfacesTypes = new frmSurfacesTypes();
+            CommonTasks.OpenForm(frmSurfacesTypes);
+        }
     }
 }

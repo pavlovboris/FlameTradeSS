@@ -644,6 +644,7 @@
             this.Text = "Document Transactions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocumentTransactions_FormClosing);
             this.Load += new System.EventHandler(this.frmDocumentTransactions_Load);
+            this.VisibleChanged += new System.EventHandler(this.frmDocumentTransactions_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).EndInit();

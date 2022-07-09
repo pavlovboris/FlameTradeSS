@@ -67,7 +67,13 @@ namespace FlameTradeSS
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
             try
             {
-                CommonTasks.ReadDataGridViewSetting(dgvTransactionLines, Name + dgvTransactionLines.Name + CurrentSessionData.CurrentUser.UserName);
+                CommonTasks.ReadDataGridViewSetting(dgvTransactionLines, "DocumentTransactions" + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
+
+            try
+            {
+                CommonTasks.RestoreForm(this, Properties.Settings.Default.frmDocumentsTransactionsSize, Properties.Settings.Default.frmDocumentsTransactionsState, Properties.Settings.Default.frmDocumentsTransactionsLocation);
             }
             catch { }
 
@@ -100,6 +106,8 @@ namespace FlameTradeSS
 
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
+                    Items_ItemID_Code_ID.Visible = true;
+                    Items_ItemID_Description_ID.Visible = true;
                     
                     itemsBindingSource.DataSource = db.Items.ToList();
                     transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
@@ -112,7 +120,7 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Services_ServiceID_Code_ID.Name].Visible = false;
-                    
+                    Machines_MachineID_Code_ID.Visible = true;
                     
                     break;
                 case "ServiceID":
@@ -120,6 +128,7 @@ namespace FlameTradeSS
                     dgvTransactionLines.Columns[Items_ItemID_Code_ID.Name].Visible = false;
                     dgvTransactionLines.Columns[Machines_MachineID_Code_ID.Name].Visible = false;
                     servicesBindingSource.DataSource= db.Services.ToList();
+                    Services_ServiceID_Code_ID.Visible = true;
                     break;
             }
             if (RemainingQTY.Visible == true)
@@ -343,7 +352,7 @@ namespace FlameTradeSS
         {
             try
             {
-                CommonTasks.WriteGrideViewSetting(dgvTransactionLines, Name + dgvTransactionLines.Name + CurrentSessionData.CurrentUser.UserName);
+                CommonTasks.WriteGrideViewSetting(dgvTransactionLines, "DocumentTransactions" +CurrentSessionData.CurrentUser.UserName);
             }
             catch { }
         }
@@ -361,7 +370,6 @@ namespace FlameTradeSS
                     transactionLinesBindingSource.MoveLast();
                     transactionLines.DocumentTransactions = documentTransactions;
                     db.TransactionLines.Add(transactionLines);
-
                 }
 
                 if (transactionLines.DocumentTransactions == null)
@@ -408,9 +416,6 @@ namespace FlameTradeSS
                         dgvTransactionLines.Rows[e.RowIndex].Cells[FinancialCategoryID.Index].Value = item.FinancialCategoryID; 
                     }
                 }
-
-               // dgvTransactionLines.Rows[e.RowIndex].Cells[Items_ItemID_Description_ID.Index].Value = item.ID;
-
             } else if (e.RowIndex!=-1 && e.ColumnIndex == Qty.Index)
             {
                 if(RemainingQTY.Visible == true)
@@ -434,7 +439,6 @@ namespace FlameTradeSS
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
                     }
-
                 }
             }
         }
@@ -503,6 +507,32 @@ namespace FlameTradeSS
                     qtyOldValue = (double)dgvTransactionLines.CurrentCell.Value;
                 }
             }
+        }
+
+        private void frmDocumentTransactions_VisibleChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.frmDocumentsTransactionsState = this.WindowState;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                // save location and size if the state is normal
+                Properties.Settings.Default.frmDocumentsTransactionsLocation = this.Location;
+                Properties.Settings.Default.frmDocumentsTransactionsSize = this.Size;
+            }
+            else
+            {
+                // save the RestoreBounds if the form is minimized or maximized!
+                Properties.Settings.Default.frmDocumentsTransactionsLocation = this.RestoreBounds.Location;
+                Properties.Settings.Default.frmDocumentsTransactionsSize = this.RestoreBounds.Size;
+            }
+
+            // don't forget to save the settings
+            Properties.Settings.Default.Save();
+
+            try
+            {
+                CommonTasks.WriteGrideViewSetting(dgvTransactionLines, "DocumentTransactions" + CurrentSessionData.CurrentUser.UserName);
+            }
+            catch { }
         }
     }
 }

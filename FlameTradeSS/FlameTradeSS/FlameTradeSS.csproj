@@ -73,7 +73,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoStringDocuments.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsStrings.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsTransformations.cs" />
+    <Compile Include="DocumentStringLines.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="frmDocumentsAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +100,12 @@
     </Compile>
     <Compile Include="frmFinancialPlanDgv.Designer.cs">
       <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSurfaceSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSurfaceSelector.Designer.cs">
+      <DependentUpon>frmSurfaceSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPossibleSequenceTransformations.cs">
       <SubType>Form</SubType>
@@ -115,6 +130,12 @@
     </Compile>
     <Compile Include="frmProjectsConfig.Designer.cs">
       <DependentUpon>frmProjectsConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSurfacesTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSurfacesTypes.Designer.cs">
+      <DependentUpon>frmSurfacesTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadingItems.cs" />
     <Compile Include="AddingItems.cs" />
@@ -589,6 +610,9 @@
     <EmbeddedResource Include="frmFinancialPlanDgv.resx">
       <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSurfaceSelector.resx">
+      <DependentUpon>frmSurfaceSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPossibleSequenceTransformations.resx">
       <DependentUpon>frmPossibleSequenceTransformations.cs</DependentUpon>
     </EmbeddedResource>
@@ -627,6 +651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProjectsConfig.resx">
       <DependentUpon>frmProjectsConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSurfacesTypes.resx">
+      <DependentUpon>frmSurfacesTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSurfaces.resx">
       <DependentUpon>frmSurfaces.cs</DependentUpon>

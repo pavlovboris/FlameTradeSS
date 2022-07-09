@@ -98,5 +98,8 @@ namespace FlameTradeSS
         public virtual DbSet<ProjectAttachments> ProjectAttachments { get; set; }
         public virtual DbSet<SurfaceTypes> SurfaceTypes { get; set; }
         public virtual DbSet<TransactionRowsDependancy> TransactionRowsDependancy { get; set; }
+        public virtual DbSet<AutoStringDocuments> AutoStringDocuments { get; set; }
+        public virtual DbSet<DocumentsStrings> DocumentsStrings { get; set; }
+        public virtual DbSet<DocumentStringLines> DocumentStringLines { get; set; }
     }
 }

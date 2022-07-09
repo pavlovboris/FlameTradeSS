@@ -45,6 +45,7 @@
             this.btnFinancialColors = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDocumentsList = new System.Windows.Forms.Button();
+            this.btnSurfaceTypes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -239,6 +240,18 @@
             this.btnDocumentsList.UseVisualStyleBackColor = true;
             this.btnDocumentsList.Click += new System.EventHandler(this.btnDocumentsList_Click);
             // 
+            // btnSurfaceTypes
+            // 
+            this.btnSurfaceTypes.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSurfaceTypes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSurfaceTypes.Location = new System.Drawing.Point(446, 49);
+            this.btnSurfaceTypes.Name = "btnSurfaceTypes";
+            this.btnSurfaceTypes.Size = new System.Drawing.Size(82, 39);
+            this.btnSurfaceTypes.TabIndex = 35;
+            this.btnSurfaceTypes.Text = "Syrface Types";
+            this.btnSurfaceTypes.UseVisualStyleBackColor = true;
+            this.btnSurfaceTypes.Click += new System.EventHandler(this.btnSurfaceTypes_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +259,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(955, 338);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSurfaceTypes);
             this.Controls.Add(this.btnDocumentsList);
             this.Controls.Add(this.btnFinancialColors);
             this.Controls.Add(this.btnPersonsType);
@@ -293,5 +307,6 @@
         private System.Windows.Forms.Button btnPersonsType;
         private System.Windows.Forms.Button btnFinancialColors;
         private System.Windows.Forms.Button btnDocumentsList;
+        private System.Windows.Forms.Button btnSurfaceTypes;
     }
 }

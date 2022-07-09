@@ -32,6 +32,7 @@ namespace FlameTradeSS
         public int TransactionMultiplier { get; set; }
         public int LinesRelation { get; set; }
         public int IsFinancialType { get; set; }
+        public int DefaultSurfaceTypeID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
@@ -50,5 +51,6 @@ namespace FlameTradeSS
         public virtual ICollection<PossibleSequenceTransformationsProperties> PossibleSequenceTransformationsProperties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PossibleSequenceTransformationsProperties> PossibleSequenceTransformationsProperties1 { get; set; }
+        public virtual SurfaceTypes SurfaceTypes { get; set; }
     }
 }

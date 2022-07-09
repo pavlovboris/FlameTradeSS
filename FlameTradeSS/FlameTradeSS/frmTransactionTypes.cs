@@ -55,6 +55,8 @@ namespace FlameTradeSS
 
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             linesTypeBindingSource.DataSource = db.LinesType.ToList();
+            surfaceTypesBindingSource.DataSource = db.SurfaceTypes.ToList();
+            surfaceTypesBindingSource.Add(new SurfaceTypes());
             LinesType nullLinesType = new LinesType();
             linesTypeBindingSource.Add(nullLinesType);
         }

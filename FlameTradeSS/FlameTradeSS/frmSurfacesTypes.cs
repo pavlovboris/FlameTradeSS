@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FlameTradeSS
 {
-    public partial class frmSurfaces : Form
+    public partial class frmSurfacesTypes : Form
     {
-        public frmSurfaces()
+        public frmSurfacesTypes()
         {
             InitializeComponent();
         }
@@ -52,10 +52,7 @@ namespace FlameTradeSS
         private void frmPartnerGroups_Load(object sender, EventArgs e)
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
-
-            surfacesBindingSource.DataSource = db.Surfaces.ToList();
             surfaceTypesBindingSource.DataSource = db.SurfaceTypes.ToList();
-            surfaceTypesBindingSource.Add(new SurfaceTypes());
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -65,10 +62,10 @@ namespace FlameTradeSS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Surfaces newSurface = new Surfaces();
-            surfacesBindingSource.Add(newSurface);
-            surfacesBindingSource.MoveLast();
-            db.Surfaces.Add(newSurface);
+            SurfaceTypes newSurfaceType = new SurfaceTypes();
+            surfaceTypesBindingSource.Add(newSurfaceType);
+            surfaceTypesBindingSource.MoveLast();
+            db.SurfaceTypes.Add(newSurfaceType);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -93,15 +90,15 @@ namespace FlameTradeSS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Surfaces surface= dgvSurfaces.CurrentRow.DataBoundItem as Surfaces;
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + surface.SurfaceName + "?") == true)
+            SurfaceTypes surfaceType = dgvSurfacesTypes.CurrentRow.DataBoundItem as SurfaceTypes;
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : " + surfaceType.TypeName + "?") == true)
             {
-                if (dgvSurfaces.CurrentRow.Index != -1)
+                if (dgvSurfacesTypes.CurrentRow.Index != -1)
                 {
-                    if (surface != null)
+                    if (surfaceType != null)
                     {
-                        surfacesBindingSource.Remove(surface);
-                        db.Surfaces.Remove(surface);
+                        surfaceTypesBindingSource.Remove(surfaceType);
+                        db.SurfaceTypes.Remove(surfaceType);
                     }
                 }
             }

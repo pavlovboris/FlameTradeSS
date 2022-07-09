@@ -1,6 +1,6 @@
 ﻿namespace FlameTradeSS
 {
-    partial class frmTransactionTypes
+    partial class frmSurfacesTypes
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransactionTypes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSurfacesTypes));
             this.btnClose = new System.Windows.Forms.Button();
-            this.dgvTransactionTypes = new System.Windows.Forms.DataGridView();
+            this.dgvSurfacesTypes = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.DefaultSurfaceTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionMultiplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linesRelationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.linesTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).BeginInit();
+            this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSurfacesTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -54,37 +48,34 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(505, 6);
+            this.btnClose.Location = new System.Drawing.Point(401, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // dgvTransactionTypes
+            // dgvSurfacesTypes
             // 
-            this.dgvTransactionTypes.AllowUserToAddRows = false;
-            this.dgvTransactionTypes.AllowUserToDeleteRows = false;
-            this.dgvTransactionTypes.AllowUserToOrderColumns = true;
-            this.dgvTransactionTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSurfacesTypes.AllowUserToAddRows = false;
+            this.dgvSurfacesTypes.AllowUserToDeleteRows = false;
+            this.dgvSurfacesTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvTransactionTypes.AutoGenerateColumns = false;
-            this.dgvTransactionTypes.BackgroundColor = System.Drawing.Color.White;
-            this.dgvTransactionTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvTransactionTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransactionTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSurfacesTypes.AutoGenerateColumns = false;
+            this.dgvSurfacesTypes.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSurfacesTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSurfacesTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSurfacesTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.typeNameDataGridViewTextBoxColumn,
-            this.transactionMultiplierDataGridViewTextBoxColumn,
-            this.linesRelationDataGridViewTextBoxColumn,
-            this.DefaultSurfaceTypeID});
-            this.dgvTransactionTypes.DataSource = this.transactionsTypeBindingSource;
-            this.dgvTransactionTypes.Location = new System.Drawing.Point(12, 65);
-            this.dgvTransactionTypes.Name = "dgvTransactionTypes";
-            this.dgvTransactionTypes.RowHeadersWidth = 20;
-            this.dgvTransactionTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransactionTypes.Size = new System.Drawing.Size(536, 346);
-            this.dgvTransactionTypes.TabIndex = 10;
+            this.typeDescriptionDataGridViewTextBoxColumn});
+            this.dgvSurfacesTypes.DataSource = this.surfaceTypesBindingSource;
+            this.dgvSurfacesTypes.Location = new System.Drawing.Point(18, 65);
+            this.dgvSurfacesTypes.Name = "dgvSurfacesTypes";
+            this.dgvSurfacesTypes.RowHeadersWidth = 20;
+            this.dgvSurfacesTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSurfacesTypes.Size = new System.Drawing.Size(426, 346);
+            this.dgvSurfacesTypes.TabIndex = 10;
             // 
             // btnAdd
             // 
@@ -128,7 +119,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(455, 417);
+            this.btnSave.Location = new System.Drawing.Point(350, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -137,82 +128,46 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // DefaultSurfaceTypeID
-            // 
-            this.DefaultSurfaceTypeID.DataPropertyName = "DefaultSurfaceTypeID";
-            this.DefaultSurfaceTypeID.DataSource = this.surfaceTypesBindingSource;
-            this.DefaultSurfaceTypeID.DisplayMember = "TypeName";
-            this.DefaultSurfaceTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.DefaultSurfaceTypeID.HeaderText = "Default Surface Type";
-            this.DefaultSurfaceTypeID.Name = "DefaultSurfaceTypeID";
-            this.DefaultSurfaceTypeID.ValueMember = "ID";
-            this.DefaultSurfaceTypeID.Width = 150;
-            // 
-            // typeNameDataGridViewTextBoxColumn
-            // 
-            this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
-            this.typeNameDataGridViewTextBoxColumn.HeaderText = "Type Name";
-            this.typeNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
-            // 
-            // transactionMultiplierDataGridViewTextBoxColumn
-            // 
-            this.transactionMultiplierDataGridViewTextBoxColumn.DataPropertyName = "TransactionMultiplier";
-            this.transactionMultiplierDataGridViewTextBoxColumn.HeaderText = "Transaction Multiplier";
-            this.transactionMultiplierDataGridViewTextBoxColumn.MaxInputLength = 100;
-            this.transactionMultiplierDataGridViewTextBoxColumn.Name = "transactionMultiplierDataGridViewTextBoxColumn";
-            this.transactionMultiplierDataGridViewTextBoxColumn.Width = 156;
-            // 
-            // linesRelationDataGridViewTextBoxColumn
-            // 
-            this.linesRelationDataGridViewTextBoxColumn.DataPropertyName = "LinesRelation";
-            this.linesRelationDataGridViewTextBoxColumn.DataSource = this.linesTypeBindingSource;
-            this.linesRelationDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.linesRelationDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.linesRelationDataGridViewTextBoxColumn.HeaderText = "Lines Type";
-            this.linesRelationDataGridViewTextBoxColumn.Name = "linesRelationDataGridViewTextBoxColumn";
-            this.linesRelationDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.linesRelationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.linesRelationDataGridViewTextBoxColumn.ValueMember = "ID";
-            // 
-            // linesTypeBindingSource
-            // 
-            this.linesTypeBindingSource.DataSource = typeof(FlameTradeSS.LinesType);
-            // 
             // surfaceTypesBindingSource
             // 
             this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
             // 
-            // transactionsTypeBindingSource
+            // typeNameDataGridViewTextBoxColumn
             // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            this.typeNameDataGridViewTextBoxColumn.DataPropertyName = "TypeName";
+            this.typeNameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.typeNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.typeNameDataGridViewTextBoxColumn.Name = "typeNameDataGridViewTextBoxColumn";
             // 
-            // frmTransactionTypes
+            // typeDescriptionDataGridViewTextBoxColumn
+            // 
+            this.typeDescriptionDataGridViewTextBoxColumn.DataPropertyName = "TypeDescription";
+            this.typeDescriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.typeDescriptionDataGridViewTextBoxColumn.MaxInputLength = 250;
+            this.typeDescriptionDataGridViewTextBoxColumn.Name = "typeDescriptionDataGridViewTextBoxColumn";
+            this.typeDescriptionDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // frmSurfacesTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(560, 481);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(456, 481);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dgvTransactionTypes);
+            this.Controls.Add(this.dgvSurfacesTypes);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(560, 481);
-            this.MinimumSize = new System.Drawing.Size(560, 481);
-            this.Name = "frmTransactionTypes";
+            this.Name = "frmSurfacesTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartnerGroups";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmPartnerGroups_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmPartnerGroups_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSurfacesTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -220,16 +175,12 @@
         #endregion
 
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridView dgvTransactionTypes;
+        private System.Windows.Forms.DataGridView dgvSurfacesTypes;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.BindingSource linesTypeBindingSource;
-        private System.Windows.Forms.BindingSource transactionsTypeBindingSource;
-        private System.Windows.Forms.BindingSource surfaceTypesBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transactionMultiplierDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn linesRelationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn DefaultSurfaceTypeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDescriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource surfaceTypesBindingSource;
     }
 }

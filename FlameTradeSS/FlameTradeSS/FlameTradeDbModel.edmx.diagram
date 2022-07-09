@@ -190,6 +190,14 @@
         <EntityTypeShape EntityType="FlameTradeDbModel.TransactionRowsDependancy" Width="1.5" PointX="21" PointY="0.75" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AutoStringDocuments" Width="1.5" PointX="17.5" PointY="1" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DocumentsStrings" Width="1.5" PointX="9" PointY="36.375" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DocumentStringLines" Width="1.5" PointX="11.25" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AutoStringDocuments_Documents" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AutoStringDocuments_DocumentStringLines" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentStringLines_DocumentsStrings" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionsType_SurfaceTypes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
