@@ -569,6 +569,7 @@ namespace FlameTradeSS
                     frmFinancialPlans.transactionsType = transaction;
                     frmFinancialPlans.financialPlans = new FinancialPlans();
                     frmFinancialPlans.documents = currentRowBI;
+                    
 
                     if (currentRowBI.DocumentsProjects.Count > 0)
                     {
@@ -587,6 +588,7 @@ namespace FlameTradeSS
                 {
                     frmFinancialPlansList frmFinancialPlansList = new frmFinancialPlansList();
                     frmFinancialPlansList.senderDocument = currentRowBI;
+                    frmFinancialPlansList.docfinPlans = db.DocumentsFinancialPlan.Where(dfp => dfp.DocumentID == currentRowBI.ID).ToList();
                     CommonTasks.OpenForm(frmFinancialPlansList);
                 }
             } else if (e.ClickedItem == toolStripMenuDocumentTransformations)

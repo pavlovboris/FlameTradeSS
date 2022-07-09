@@ -38,17 +38,28 @@ namespace FlameTradeSS
         private static readonly SecurityService securityService = new SecurityService();
         static FlameTradeDbEntities db = securityService.NewDatabaseEntity();
 
+        public List<DocumentsFinancialPlan> docfinPlans;
+        public bool fromDocument = true;
+
         private  void frmFunctions_Load(object sender, EventArgs e)
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
 
             projectBindingSource.DataSource = db.Project.ToList();
-            List<DocumentsFinancialPlan> docfinPlans = db.DocumentsFinancialPlan.Where(dfp => dfp.DocumentID == senderDocument.ID).ToList(); 
+            //docfinPlans = db.DocumentsFinancialPlan.Where(dfp => dfp.DocumentID == senderDocument.ID).ToList(); 
 
-            foreach(DocumentsFinancialPlan doc in docfinPlans)
+            if (fromDocument == true)
             {
-                financialPlansBindingSource.Add(db.FinancialPlans.Where(fp => fp.ID == doc.FinancialPlanID).SingleOrDefault());
+                foreach (DocumentsFinancialPlan doc in docfinPlans)
+                {
+                    financialPlansBindingSource.Add(db.FinancialPlans.Where(fp => fp.ID == doc.FinancialPlanID).SingleOrDefault());
+                }
+            } else
+            {
+                financialPlansBindingSource.DataSource = db.FinancialPlans.ToList();
             }
+
+ 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -95,6 +106,40 @@ namespace FlameTradeSS
 
                 int y = Screen.PrimaryScreen.Bounds.Bottom - this.Height;
                 this.Location = new Point(0, y);
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvFinancialPlans.CurrentRow.Index == -1 | dgvFinancialPlans.CurrentRow.DataBoundItem==null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == toolStripMenuGraphicalFinancialPlan)
+            {
+                frmFinancialPlans frmFinancialPlans = new frmFinancialPlans();
+                FinancialPlans financial = dgvFinancialPlans.CurrentRow.DataBoundItem as FinancialPlans;
+
+                frmFinancialPlans.financialPlans = financial;
+                frmFinancialPlans.autoLoad = true;
+                frmFinancialPlans.btnLoadFromDocument.Visible = false;
+                frmFinancialPlans.isNew = false;
+                Close();
+                CommonTasks.OpenForm(frmFinancialPlans);
+
+                int y = Screen.PrimaryScreen.Bounds.Bottom - this.Height;
+                this.Location = new Point(0, y);
+            } else if (e.ClickedItem == toolStripMenuDgvFinancialPlan)
+            {
+                frmFinancialPlanDgv frmFinancialPlanDgv = new frmFinancialPlanDgv();
+                frmFinancialPlanDgv.db = db;
+                frmFinancialPlanDgv.financialPlans = dgvFinancialPlans.CurrentRow.DataBoundItem as FinancialPlans;
+                Close();
+                CommonTasks.OpenForm(frmFinancialPlanDgv);
             }
         }
     }

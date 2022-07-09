@@ -41,9 +41,13 @@
             this.currentBudgetValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currentRealValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.financialPlansBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuGraphicalFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuDgvFinancialPlan = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinancialPlans)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialPlansBindingSource)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -78,6 +82,7 @@
             this.currentOfferValueDataGridViewTextBoxColumn,
             this.currentBudgetValueDataGridViewTextBoxColumn,
             this.currentRealValueDataGridViewTextBoxColumn});
+            this.dgvFinancialPlans.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvFinancialPlans.DataSource = this.financialPlansBindingSource;
             this.dgvFinancialPlans.Location = new System.Drawing.Point(13, 65);
             this.dgvFinancialPlans.MultiSelect = false;
@@ -154,6 +159,28 @@
             // 
             this.financialPlansBindingSource.DataSource = typeof(FlameTradeSS.FinancialPlans);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuGraphicalFinancialPlan,
+            this.toolStripMenuDgvFinancialPlan});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(221, 70);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuGraphicalFinancialPlan
+            // 
+            this.toolStripMenuGraphicalFinancialPlan.Name = "toolStripMenuGraphicalFinancialPlan";
+            this.toolStripMenuGraphicalFinancialPlan.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuGraphicalFinancialPlan.Text = "Отвори с графичен изглед";
+            // 
+            // toolStripMenuDgvFinancialPlan
+            // 
+            this.toolStripMenuDgvFinancialPlan.Name = "toolStripMenuDgvFinancialPlan";
+            this.toolStripMenuDgvFinancialPlan.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuDgvFinancialPlan.Text = "Отвори с табличен изглед";
+            // 
             // frmFinancialPlansList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinancialPlans)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.financialPlansBindingSource)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,5 +218,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn currentOfferValueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn currentBudgetValueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn currentRealValueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuGraphicalFinancialPlan;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDgvFinancialPlan;
     }
 }

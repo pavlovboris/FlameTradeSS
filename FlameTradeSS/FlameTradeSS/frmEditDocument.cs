@@ -199,12 +199,69 @@ namespace FlameTradeSS
                             switch (transactionRowsDependancy.ControlledParameter)
                             {
                                 case "RemainingQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        transactionLines.RemainingQTY = transactionLines.RemainingQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingQTY = transactionLines.RemainingQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+
                                     break;
                                 case "RemainingInvoiceQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
                                         transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty );
+                                        transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                                case "RemainingDeliveryQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                                case "RemainingPackagingQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    else 
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;  
+                                case "RemainingProductionQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
                                     }
                                     break;
                             }

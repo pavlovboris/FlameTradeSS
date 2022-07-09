@@ -86,6 +86,12 @@
     <Compile Include="frmDocumentTransformation.Designer.cs">
       <DependentUpon>frmDocumentTransformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFinancialPlanDgv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinancialPlanDgv.Designer.cs">
+      <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPossibleSequenceTransformations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentTransformation.resx">
       <DependentUpon>frmDocumentTransformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinancialPlanDgv.resx">
+      <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPossibleSequenceTransformations.resx">
       <DependentUpon>frmPossibleSequenceTransformations.cs</DependentUpon>

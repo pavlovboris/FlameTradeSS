@@ -240,5 +240,12 @@ namespace FlameTradeSS
                     break;
             }
         }
+
+        private void btnFinancialPlans_Click(object sender, EventArgs e)
+        {
+            frmFinancialPlansList frmFinancialPlansList = new frmFinancialPlansList();
+            frmFinancialPlansList.fromDocument = false;
+            CommonTasks.OpenForm(frmFinancialPlansList);
+        }
     }
 }

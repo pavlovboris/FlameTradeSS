@@ -73,6 +73,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnFinancialPlans = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCurentUserLabel
@@ -100,7 +101,7 @@
             this.btnAdminTools.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdminTools.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAdminTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdminTools.Location = new System.Drawing.Point(906, 607);
+            this.btnAdminTools.Location = new System.Drawing.Point(1069, 607);
             this.btnAdminTools.Name = "btnAdminTools";
             this.btnAdminTools.Size = new System.Drawing.Size(75, 23);
             this.btnAdminTools.TabIndex = 21;
@@ -282,7 +283,7 @@
             this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
-            this.btnMinimize.Location = new System.Drawing.Point(832, 3);
+            this.btnMinimize.Location = new System.Drawing.Point(995, 3);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(49, 48);
             this.btnMinimize.TabIndex = 25;
@@ -295,7 +296,7 @@
             this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
-            this.btnMaximize.Location = new System.Drawing.Point(887, 3);
+            this.btnMaximize.Location = new System.Drawing.Point(1050, 3);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(49, 48);
             this.btnMaximize.TabIndex = 24;
@@ -308,19 +309,36 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(942, 3);
+            this.btnClose.Location = new System.Drawing.Point(1105, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 48);
             this.btnClose.TabIndex = 23;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
+            // btnFinancialPlans
+            // 
+            this.btnFinancialPlans.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnFinancialPlans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinancialPlans.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnFinancialPlans.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_power_Icon_48;
+            this.btnFinancialPlans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFinancialPlans.Location = new System.Drawing.Point(945, 73);
+            this.btnFinancialPlans.Name = "btnFinancialPlans";
+            this.btnFinancialPlans.Size = new System.Drawing.Size(199, 52);
+            this.btnFinancialPlans.TabIndex = 36;
+            this.btnFinancialPlans.Text = "Финансови Планове";
+            this.btnFinancialPlans.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFinancialPlans.UseVisualStyleBackColor = true;
+            this.btnFinancialPlans.Click += new System.EventHandler(this.btnFinancialPlans_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(993, 642);
+            this.ClientSize = new System.Drawing.Size(1156, 642);
+            this.Controls.Add(this.btnFinancialPlans);
             this.Controls.Add(this.treeViewInventory);
             this.Controls.Add(this.btnNewDocument);
             this.Controls.Add(this.btnProduction);
@@ -365,5 +383,6 @@
         private System.Windows.Forms.Button btnProduction;
         private System.Windows.Forms.Button btnNewDocument;
         private System.Windows.Forms.TreeView treeViewInventory;
+        private System.Windows.Forms.Button btnFinancialPlans;
     }
 }

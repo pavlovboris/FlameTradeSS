@@ -125,11 +125,9 @@ namespace FlameTradeSS
 
                 if (dialogResult == DialogResult.Yes)
                 {
-               
-
                     try
                     {
-                        foreach(TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID==newDocument.ID))
+                        //foreach(TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID==newDocument.ID))
 
                         dgvDocumentTransactions.Dispose();
                         await db.SaveChangesAsync();
@@ -147,6 +145,11 @@ namespace FlameTradeSS
                                         if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                         {
                                             transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                        } else
+                                        {
+
+                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - (transactionRowsDependancy.TransactionLines.Qty - transactionRowsDependancy.LastValue);
                                             transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
                                         }
                                         break;
