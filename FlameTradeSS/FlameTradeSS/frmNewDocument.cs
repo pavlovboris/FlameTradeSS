@@ -31,7 +31,7 @@ namespace FlameTradeSS
 
             maxID = db.DocumentTransactions.Max(dt => (int)dt.tempID);
 
-            CurrentSessionData.Counter = maxID;
+            CurrentSessionData.Counter = maxID;            
 
             newDocument.DocumentDate = DateTime.Now;
             partnersBindingSource.DataSource = db.Partners.ToList();
@@ -49,6 +49,11 @@ namespace FlameTradeSS
             cmbDocumentSequence.SelectedItem = nullDocumentSequence;
             transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
             usersBindingSource.DataSource = db.Users.ToList();
+            surfacesBindingSource.DataSource = db.Surfaces.ToList();
+            receiptModelsBindingSource.DataSource = db.ReceiptModels.ToList();
+            TransactionSurfaceID.ReadOnly = true;
+
+            
 
             transactionsTypeBindingSource1.Add(new TransactionsType() { TypeName = "Всички" });
             foreach (DataGridViewRow dgvr in dgvDocumentTransactions.Rows)
@@ -140,17 +145,69 @@ namespace FlameTradeSS
                                 switch (transactionRowsDependancy.ControlledParameter)
                                 {
                                     case "RemainingQTY":
+                                        if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                        {
+                                            transactionLines.RemainingQTY = transactionLines.RemainingQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        else
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingQTY = transactionLines.RemainingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+
                                         break;
                                     case "RemainingInvoiceQTY":
                                         if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                         {
                                             transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                            transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
-                                        } else
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        else
                                         {
-
-                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - (transactionRowsDependancy.TransactionLines.Qty - transactionRowsDependancy.LastValue);
-                                            transactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        break;
+                                    case "RemainingDeliveryQTY":
+                                        if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                        {
+                                            transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        else
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        break;
+                                    case "RemainingPackagingQTY":
+                                        if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                        {
+                                            transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        else
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        break;
+                                    case "RemainingProductionQTY":
+                                        if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                        {
+                                            transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY - transactionRowsDependancy.TransactionLines.Qty;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                        else
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
                                         }
                                         break;
                                 }
@@ -321,11 +378,21 @@ namespace FlameTradeSS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null )
+            DocumentTransactions documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+
+
+            if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null && e.ColumnIndex == TransactionSurfaceID.Index)
+            {
+                frmSurfaceSelector frmSurfaceSelector = new frmSurfaceSelector();
+                frmSurfaceSelector.db = db;
+                frmSurfaceSelector.surfaceTypes = db.SurfaceTypes.Where(st => st.ID == documentTransactions.TransactionsType.DefaultSurfaceTypeID).SingleOrDefault();
+                frmSurfaceSelector.FormClosing += FrmSurfaceSelector_FormClosing;
+                CommonTasks.OpenForm(frmSurfaceSelector);
+            }else if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null )
             {
                 bool isOpened = false;
 
-                DocumentTransactions documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
 
                 newfrmDocumentTransactions.Name = newfrmDocumentTransactions.Name + documentTransactions.tempID.ToString();
@@ -370,6 +437,18 @@ namespace FlameTradeSS
 
                     newfrmDocumentTransactions.Show();
                 }
+            }
+        }
+
+        private void FrmSurfaceSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmSurfaceSelector frmSurfaceSelector = sender as frmSurfaceSelector;
+
+            if (frmSurfaceSelector.xClicked != true && frmSurfaceSelector.dgvItemsSelector.CurrentRow.DataBoundItem != null)
+            {
+                Surfaces surfaces = frmSurfaceSelector.dgvItemsSelector.CurrentRow.DataBoundItem as Surfaces;
+                dgvDocumentTransactions.CurrentRow.Cells[TransactionSurfaceID.Index].Value = surfaces.ID;
+
             }
         }
 

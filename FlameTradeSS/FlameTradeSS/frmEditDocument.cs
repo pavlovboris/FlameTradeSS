@@ -43,6 +43,7 @@ namespace FlameTradeSS
             documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
             documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
             usersBindingSource.DataSource = db.Users.ToList();
+            Surfaces_TransactionSurfaceID_SurfaceName_ID.ReadOnly = true;
             
 
             transactionsTypeBindingSource1.Add(new TransactionsType() { TypeName = "Всички"});
@@ -337,8 +338,9 @@ namespace FlameTradeSS
 
                 }
             } catch { }
-     
         }
+
+        int tempID;
 
         private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
@@ -347,7 +349,7 @@ namespace FlameTradeSS
                 TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
                 DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 
-                int tempID = CurrentSessionData.Counter + 1;
+                tempID = CurrentSessionData.Counter + 1;
 
                 CurrentSessionData.Counter = tempID;
 
@@ -810,6 +812,63 @@ namespace FlameTradeSS
                     cmbSequenceFilter.Width = TransactionTypes_TransactionTypeID_TypeName_ID.Width;
                 }
             } catch { }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if(dgvDocumentTransactions.CurrentRow.Index == -1 | dgvDocumentTransactions.CurrentRow.DataBoundItem== null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void contextMenuStripDocumentTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == toolStripMenuSplitTransaction)
+            {
+                DocumentTransactions currentDocumentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                if (currentDocumentTransaction != null)
+                {
+                    tempID = CurrentSessionData.Counter + 1;
+
+                    CurrentSessionData.Counter = tempID;
+
+                    DocumentTransactions newDocumentTransactions = new DocumentTransactions();
+                    newDocumentTransactions.Documents = currentDocumentTransaction.Documents;
+                    newDocumentTransactions.TransactionsType = currentDocumentTransaction.TransactionsType;
+                    newDocumentTransactions.CreationDateTime = DateTime.Now;
+                    newDocumentTransactions.TransactionDate = currentDocumentTransaction.TransactionDate;
+                    newDocumentTransactions.tempID = tempID;
+                    newDocumentTransactions.TransactionSurfaceID = currentDocumentTransaction.TransactionSurfaceID;
+                    newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
+                    newDocumentTransactions.ColorID = currentDocumentTransaction.ColorID;
+                    newDocumentTransactions.Comment = currentDocumentTransaction.Comment;
+                    newDocumentTransactions.ExpectedMatDate = currentDocumentTransaction.ExpectedMatDate;
+                    newDocumentTransactions.NotForInvoice = currentDocumentTransaction.NotForInvoice;
+                    newDocumentTransactions.ReceiptModels = currentDocumentTransaction.ReceiptModels;
+                    newDocumentTransactions.RequestedDeliveryDate = currentDocumentTransaction.RequestedDeliveryDate;  
+                    newDocumentTransactions.RequestedDate = currentDocumentTransaction.RequestedDate;
+                    newDocumentTransactions.ReceivedDate = currentDocumentTransaction.ReceivedDate;
+                    newDocumentTransactions.IsReady = currentDocumentTransaction.IsReady;
+
+                    documentTransactionsBindingSource.Add(newDocumentTransactions);
+                    db.DocumentTransactions.Add(newDocumentTransactions);
+
+                    TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
+                    transactionsTransformations.DocumentTransactions = newDocumentTransactions;
+                    transactionsTransformations.DocumentTransactions1 = currentDocumentTransaction;
+                    db.TransactionsTransformations.Add(transactionsTransformations);
+
+                    frmSplitTransactions frmSplitTransactions = new frmSplitTransactions();
+                    frmSplitTransactions.currentDocumetTransaction = currentDocumentTransaction;
+                    frmSplitTransactions.newDocumentTransactions = newDocumentTransactions;
+                    frmSplitTransactions.db = db;
+                    frmSplitTransactions.documentTransactionsbindingSource = documentTransactionsBindingSource;
+                    frmSplitTransactions.transactionsTransformations = transactionsTransformations;
+
+                    CommonTasks.OpenForm(frmSplitTransactions);
+                }
+            }
         }
     }
 }

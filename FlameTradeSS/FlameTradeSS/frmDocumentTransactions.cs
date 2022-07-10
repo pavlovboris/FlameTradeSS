@@ -141,6 +141,21 @@ namespace FlameTradeSS
                 RemainingInvoiceQTY.ReadOnly = true;
                 RemainingInvoiceQTY.DefaultCellStyle.BackColor = Color.LightYellow;
             }
+            if (RemainingDeliveryQTY.Visible == true)
+            {
+                RemainingDeliveryQTY.ReadOnly = true;
+                RemainingDeliveryQTY.DefaultCellStyle.BackColor = Color.LightYellow;
+            }
+            if (RemainingPackagingQTY.Visible == true)
+            {
+                RemainingPackagingQTY.ReadOnly = true;
+                RemainingPackagingQTY.DefaultCellStyle.BackColor = Color.LightYellow;
+            }
+            if (RemainingProductionQTY.Visible == true)
+            {
+                RemainingProductionQTY.ReadOnly = true;
+                RemainingProductionQTY.DefaultCellStyle.BackColor = Color.LightYellow;
+            }
         }
 
         private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)
@@ -438,6 +453,42 @@ namespace FlameTradeSS
                     } else
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
+                    }
+                }
+                if (RemainingDeliveryQTY.Visible == true)
+                {
+                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    if (dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value != null)
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value + oldNewDiff;
+                    }
+                    else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
+                    }
+                }
+                if (RemainingPackagingQTY.Visible == true)
+                {
+                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    if (dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value != null)
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value + oldNewDiff;
+                    }
+                    else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
+                    }
+                }
+                if (RemainingProductionQTY.Visible == true)
+                {
+                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    if (dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value != null)
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value + oldNewDiff;
+                    }
+                    else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value = dgvTransactionLines.CurrentCell.Value;
                     }
                 }
             }

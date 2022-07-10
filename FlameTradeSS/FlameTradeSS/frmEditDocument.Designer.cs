@@ -103,6 +103,8 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.contextMenuStripDocumentTransactions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuSplitTransaction = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -119,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
+            this.contextMenuStripDocumentTransactions.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbPartners
@@ -469,6 +472,7 @@
             this.CreationDateTime,
             this.ColorID,
             this.IsCanceled});
+            this.dgvDocumentTransactions.ContextMenuStrip = this.contextMenuStripDocumentTransactions;
             this.dgvDocumentTransactions.DataSource = this.documentTransactionsBindingSource;
             this.dgvDocumentTransactions.Location = new System.Drawing.Point(27, 116);
             this.dgvDocumentTransactions.MultiSelect = false;
@@ -738,6 +742,21 @@
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
+            // contextMenuStripDocumentTransactions
+            // 
+            this.contextMenuStripDocumentTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuSplitTransaction});
+            this.contextMenuStripDocumentTransactions.Name = "contextMenuStripDocumentTransactions";
+            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(185, 48);
+            this.contextMenuStripDocumentTransactions.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStripDocumentTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocumentTransactions_ItemClicked);
+            // 
+            // toolStripMenuSplitTransaction
+            // 
+            this.toolStripMenuSplitTransaction.Name = "toolStripMenuSplitTransaction";
+            this.toolStripMenuSplitTransaction.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuSplitTransaction.Text = "Раздели Транзакция";
+            // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -770,6 +789,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
+            this.contextMenuStripDocumentTransactions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -843,5 +863,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IsCanceled;
         private System.Windows.Forms.ComboBox cmbSequenceFilter;
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDocumentTransactions;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSplitTransaction;
     }
 }

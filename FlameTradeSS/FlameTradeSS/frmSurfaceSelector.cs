@@ -78,7 +78,7 @@ namespace FlameTradeSS
             surfaceTypes = (SurfaceTypes)cmbSurfaceTypes.SelectedItem;
             if (!string.IsNullOrEmpty( txtFilter.Text))
             {
-                surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceCode.Contains(txtFilter.Text) || s.SurfaceDescription.Contains(txtFilter.Text) || s.SurfaceTypeID == surfaceTypes.ID).ToList();
+                surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceCode.Contains(txtFilter.Text) | s.SurfaceDescription.Contains(txtFilter.Text) | s.SurfaceName.Contains(txtFilter.Text) && s.SurfaceTypeID == surfaceTypes.ID).ToList();
             } else
             {
                 surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceTypeID == surfaceTypes.ID).ToList();
@@ -124,15 +124,19 @@ namespace FlameTradeSS
 
         private void cmbSurfaceTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            surfaceTypes = (SurfaceTypes)cmbSurfaceTypes.SelectedItem;
-            if (!string.IsNullOrEmpty(txtFilter.Text))
+            try
             {
-                surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceCode.Contains(txtFilter.Text) || s.SurfaceDescription.Contains(txtFilter.Text) || s.SurfaceTypeID == surfaceTypes.ID).ToList();
-            }
-            else
-            {
-                surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceTypeID == surfaceTypes.ID).ToList();
-            }
+                surfaceTypes = (SurfaceTypes)cmbSurfaceTypes.SelectedItem;
+                if (!string.IsNullOrEmpty(txtFilter.Text))
+                {
+                    surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceCode.Contains(txtFilter.Text) || s.SurfaceDescription.Contains(txtFilter.Text) || s.SurfaceTypeID == surfaceTypes.ID).ToList();
+                }
+                else
+                {
+                    surfacesBindingSource.DataSource = db.Surfaces.Where(s => s.SurfaceTypeID == surfaceTypes.ID).ToList();
+                }
+            } catch { }
+ 
         }
     }
 }

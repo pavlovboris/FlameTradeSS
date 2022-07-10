@@ -225,6 +225,15 @@ namespace FlameTradeSS
                         List<TransactionLines> transactionLinesList = db.TransactionLines.Where(tl => tl.TransactionsID == dt.ID).ToList();
                         foreach (TransactionLines transactionLine in transactionLinesList)
                         {
+                            List<TransactionRowsDependancy> transactionRowsDependancies = db.TransactionRowsDependancy.Where(trd => trd.ControlledTransactionRowID == transactionLine.ID | trd.ControllingTransactionRowID == transactionLine.ID).ToList();
+
+                            foreach(TransactionRowsDependancy transactionRowsDependancy in transactionRowsDependancies)
+                            {
+                                db.TransactionRowsDependancy.Remove(transactionRowsDependancy);
+                            }
+
+                            await db.SaveChangesAsync();
+
                             db.TransactionLines.Remove(transactionLine);
                         }
 

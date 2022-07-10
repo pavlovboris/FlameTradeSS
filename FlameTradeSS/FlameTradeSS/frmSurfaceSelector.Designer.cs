@@ -32,17 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSurfaceSelector));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvItemsSelector = new System.Windows.Forms.DataGridView();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.cmbSurfaceTypes = new System.Windows.Forms.ComboBox();
             this.surfaceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surfaceNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surfaceDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.surfaceTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surfaceTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemsSelector)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -80,13 +80,21 @@
             this.dgvItemsSelector.MultiSelect = false;
             this.dgvItemsSelector.Name = "dgvItemsSelector";
             this.dgvItemsSelector.ReadOnly = true;
-            this.dgvItemsSelector.RowHeadersWidth = 20;
-            this.dgvItemsSelector.RowTemplate.Height = 40;
+            this.dgvItemsSelector.RowHeadersWidth = 5;
+            this.dgvItemsSelector.RowTemplate.Height = 30;
             this.dgvItemsSelector.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItemsSelector.Size = new System.Drawing.Size(622, 218);
             this.dgvItemsSelector.TabIndex = 1;
             this.dgvItemsSelector.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
             this.dgvItemsSelector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+            // 
+            // surfaceTypesBindingSource
+            // 
+            this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
+            // 
+            // surfacesBindingSource
+            // 
+            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
             // 
             // txtFilter
             // 
@@ -99,14 +107,11 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilter_KeyDown);
             // 
-            // surfacesBindingSource
-            // 
-            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
-            // 
             // cmbSurfaceTypes
             // 
             this.cmbSurfaceTypes.DataSource = this.surfaceTypesBindingSource;
             this.cmbSurfaceTypes.DisplayMember = "TypeName";
+            this.cmbSurfaceTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSurfaceTypes.FormattingEnabled = true;
             this.cmbSurfaceTypes.Location = new System.Drawing.Point(482, 92);
             this.cmbSurfaceTypes.Name = "cmbSurfaceTypes";
@@ -141,14 +146,16 @@
             // surfaceTypeIDDataGridViewTextBoxColumn
             // 
             this.surfaceTypeIDDataGridViewTextBoxColumn.DataPropertyName = "SurfaceTypeID";
+            this.surfaceTypeIDDataGridViewTextBoxColumn.DataSource = this.surfaceTypesBindingSource;
+            this.surfaceTypeIDDataGridViewTextBoxColumn.DisplayMember = "TypeName";
+            this.surfaceTypeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.surfaceTypeIDDataGridViewTextBoxColumn.HeaderText = "Тип";
             this.surfaceTypeIDDataGridViewTextBoxColumn.Name = "surfaceTypeIDDataGridViewTextBoxColumn";
             this.surfaceTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.surfaceTypeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.surfaceTypeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.surfaceTypeIDDataGridViewTextBoxColumn.ValueMember = "ID";
             this.surfaceTypeIDDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // surfaceTypesBindingSource
-            // 
-            this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
             // 
             // frmSurfaceSelector
             // 
@@ -171,8 +178,8 @@
             this.Shown += new System.EventHandler(this.frmItemSelector_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmProjectSelector_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemsSelector)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,12 +190,12 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox txtFilter;
         public System.Windows.Forms.DataGridView dgvItemsSelector;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceDescriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceTypeIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource surfacesBindingSource;
         private System.Windows.Forms.ComboBox cmbSurfaceTypes;
         private System.Windows.Forms.BindingSource surfaceTypesBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceDescriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn surfaceTypeIDDataGridViewTextBoxColumn;
     }
 }
