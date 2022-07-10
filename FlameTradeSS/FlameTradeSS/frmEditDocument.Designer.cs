@@ -96,6 +96,8 @@
             this.CreationDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStripDocumentTransactions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuSplitTransaction = new System.Windows.Forms.ToolStripMenuItem();
             this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDocumentNumber = new System.Windows.Forms.Label();
             this.txtDocumentNumber = new System.Windows.Forms.TextBox();
@@ -103,8 +105,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.contextMenuStripDocumentTransactions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuSplitTransaction = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnApplyReceiptModel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -120,8 +121,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             this.contextMenuStripDocumentTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbPartners
@@ -208,6 +209,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnApplyReceiptModel);
             this.panel1.Controls.Add(this.cmbSequenceFilter);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnIssueDocument);
@@ -695,6 +697,21 @@
             this.IsCanceled.HeaderText = "IsCanceled";
             this.IsCanceled.Name = "IsCanceled";
             // 
+            // contextMenuStripDocumentTransactions
+            // 
+            this.contextMenuStripDocumentTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuSplitTransaction});
+            this.contextMenuStripDocumentTransactions.Name = "contextMenuStripDocumentTransactions";
+            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(185, 26);
+            this.contextMenuStripDocumentTransactions.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStripDocumentTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocumentTransactions_ItemClicked);
+            // 
+            // toolStripMenuSplitTransaction
+            // 
+            this.toolStripMenuSplitTransaction.Name = "toolStripMenuSplitTransaction";
+            this.toolStripMenuSplitTransaction.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuSplitTransaction.Text = "Раздели Транзакция";
+            // 
             // documentTransactionsBindingSource
             // 
             this.documentTransactionsBindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
@@ -742,20 +759,15 @@
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
-            // contextMenuStripDocumentTransactions
+            // btnApplyReceiptModel
             // 
-            this.contextMenuStripDocumentTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuSplitTransaction});
-            this.contextMenuStripDocumentTransactions.Name = "contextMenuStripDocumentTransactions";
-            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(185, 48);
-            this.contextMenuStripDocumentTransactions.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            this.contextMenuStripDocumentTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocumentTransactions_ItemClicked);
-            // 
-            // toolStripMenuSplitTransaction
-            // 
-            this.toolStripMenuSplitTransaction.Name = "toolStripMenuSplitTransaction";
-            this.toolStripMenuSplitTransaction.Size = new System.Drawing.Size(184, 22);
-            this.toolStripMenuSplitTransaction.Text = "Раздели Транзакция";
+            this.btnApplyReceiptModel.Location = new System.Drawing.Point(705, 91);
+            this.btnApplyReceiptModel.Name = "btnApplyReceiptModel";
+            this.btnApplyReceiptModel.Size = new System.Drawing.Size(278, 23);
+            this.btnApplyReceiptModel.TabIndex = 30;
+            this.btnApplyReceiptModel.Text = "Приложи Модел на Рецепта";
+            this.btnApplyReceiptModel.UseVisualStyleBackColor = true;
+            this.btnApplyReceiptModel.Click += new System.EventHandler(this.btnApplyReceiptModel_Click);
             // 
             // frmEditDocument
             // 
@@ -788,8 +800,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             this.contextMenuStripDocumentTransactions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -865,5 +877,6 @@
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripDocumentTransactions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuSplitTransaction;
+        private System.Windows.Forms.Button btnApplyReceiptModel;
     }
 }

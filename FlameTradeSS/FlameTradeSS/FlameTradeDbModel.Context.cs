@@ -101,5 +101,8 @@ namespace FlameTradeSS
         public virtual DbSet<AutoStringDocuments> AutoStringDocuments { get; set; }
         public virtual DbSet<DocumentsStrings> DocumentsStrings { get; set; }
         public virtual DbSet<DocumentStringLines> DocumentStringLines { get; set; }
+        public virtual DbSet<ItemsParameters> ItemsParameters { get; set; }
+        public virtual DbSet<ItemsParametersItems> ItemsParametersItems { get; set; }
+        public virtual DbSet<ReceiptModelsItemsParameters> ReceiptModelsItemsParameters { get; set; }
     }
 }

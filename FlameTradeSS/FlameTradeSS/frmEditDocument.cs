@@ -870,5 +870,48 @@ namespace FlameTradeSS
                 }
             }
         }
+
+        private void btnApplyReceiptModel_Click(object sender, EventArgs e)
+        {
+            if (dgvDocumentTransactions.CurrentRow.Index!=-1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
+            {
+                DocumentTransactions currentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                ReceiptModels receiptModels = currentTransaction.ReceiptModels;
+                
+                if (currentTransaction.ReceiptModelID!=1 && currentTransaction.ReceiptModelID!=0)
+                {
+                    foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.DocumentTransactions==currentTransaction).ToList())
+                    {
+                        TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== currentTransaction.TransactionSurfaceID).FirstOrDefault();
+                        
+                        if (existingReceipt != null)
+                        {
+                            transactionLines.TransactionReceipt = existingReceipt;
+                        } else
+                        {
+                            TransactionReceipt newTransactionReceipt = new TransactionReceipt();
+                            newTransactionReceipt.Items = transactionLines.Items;
+                            
+                            if(currentTransaction.Colors!=null)
+                            {
+                                newTransactionReceipt.ColorID = (int)currentTransaction.ColorID;
+                            } else
+                            {
+                                newTransactionReceipt.ColorID = 1;
+                            }
+
+                            if (currentTransaction.Surfaces!= null)
+                            {
+                                newTransactionReceipt.SurfaceID = (int)transactionLines.SurfaceID;
+                            } else
+                            {
+                                newTransactionReceipt.SurfaceID = 1;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 }

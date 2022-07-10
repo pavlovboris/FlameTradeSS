@@ -149,6 +149,12 @@
     <Compile Include="frmSurfacesTypes.Designer.cs">
       <DependentUpon>frmSurfacesTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemsParameters.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsParametersItems.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LoadingItems.cs" />
     <Compile Include="AddingItems.cs" />
     <Compile Include="AppForms.cs" />
@@ -511,6 +517,9 @@
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReceiptModelsItemCategories.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptModelsItemsParameters.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleOfPersons.cs">
