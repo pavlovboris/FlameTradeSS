@@ -101,6 +101,12 @@
     <Compile Include="frmFinancialPlanDgv.Designer.cs">
       <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditItemsReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditItemsReceipt.Designer.cs">
+      <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSplitTransactions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -631,6 +637,9 @@
     <EmbeddedResource Include="frmFinancialPlanDgv.resx">
       <DependentUpon>frmFinancialPlanDgv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditItemsReceipt.resx">
+      <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSplitTransactions.resx">
       <DependentUpon>frmSplitTransactions.cs</DependentUpon>
     </EmbeddedResource>
@@ -778,6 +787,7 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Colors.datasource" />
     <None Include="Properties\DataSources\CostingModels.datasource" />
     <None Include="Properties\DataSources\DgvFields.datasource" />
     <None Include="Properties\DataSources\Documents.datasource" />
@@ -796,6 +806,7 @@
     <None Include="Properties\DataSources\ItemCategory.datasource" />
     <None Include="Properties\DataSources\Items.datasource" />
     <None Include="Properties\DataSources\ItemsGroups.datasource" />
+    <None Include="Properties\DataSources\ItemsParameters.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
     <None Include="Properties\DataSources\Machines.datasource" />
     <None Include="Properties\DataSources\Mu.datasource" />
@@ -814,6 +825,7 @@
     <None Include="Properties\DataSources\PossibleSequenceTransofrmation.datasource" />
     <None Include="Properties\DataSources\Project.datasource" />
     <None Include="Properties\DataSources\ProjectAttachments.datasource" />
+    <None Include="Properties\DataSources\ReceiptLines.datasource" />
     <None Include="Properties\DataSources\ReceiptModels.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />

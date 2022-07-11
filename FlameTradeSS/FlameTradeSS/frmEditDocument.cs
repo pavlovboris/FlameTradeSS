@@ -918,6 +918,7 @@ namespace FlameTradeSS
                                         {
                                             newReceiptLine.Surfaces = db.Surfaces.Where(s => s.ID==1).SingleOrDefault();
                                         }
+                                        db.ReceiptLines.Add(newReceiptLine);
                                     }
                                 }
                             }

@@ -98,6 +98,7 @@
             this.transactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnTasks = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.contextMenuTransactionLines = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionLines)).BeginInit();
@@ -189,6 +190,7 @@
             this.CostPrice2,
             this.CostPrice3,
             this.IsCanceled});
+            this.dgvTransactionLines.ContextMenuStrip = this.contextMenuTransactionLines;
             this.dgvTransactionLines.DataSource = this.transactionLinesBindingSource;
             this.dgvTransactionLines.Location = new System.Drawing.Point(12, 211);
             this.dgvTransactionLines.Name = "dgvTransactionLines";
@@ -626,6 +628,12 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // contextMenuTransactionLines
+            // 
+            this.contextMenuTransactionLines.Name = "contextMenuTransactionLines";
+            this.contextMenuTransactionLines.Size = new System.Drawing.Size(181, 26);
+            this.contextMenuTransactionLines.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuTransactionLines_Opening);
+            // 
             // frmDocumentTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,5 +721,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CostPrice2;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostPrice3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
+        private System.Windows.Forms.ContextMenuStrip contextMenuTransactionLines;
     }
 }

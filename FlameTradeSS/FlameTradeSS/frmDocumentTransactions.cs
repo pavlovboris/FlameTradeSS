@@ -585,5 +585,44 @@ namespace FlameTradeSS
             }
             catch { }
         }
+
+        private void contextMenuTransactionLines_Opening(object sender, CancelEventArgs e)
+        {
+            if (dgvTransactionLines.CurrentRow.Index==-1 | dgvTransactionLines.CurrentRow.DataBoundItem==null)
+            {
+                e.Cancel = true;
+
+               
+            }
+            else if (dgvTransactionLines.CurrentCell.ColumnIndex == TransactionReceipt_ReceiptID_Name_ID.Index && dgvTransactionLines.CurrentCell.Value != null)
+            {
+                bool editReceiptMenuItemExists = false;
+
+                foreach(ToolStripMenuItem toolStripMenuItem in contextMenuTransactionLines.Items)
+                {
+                    if (toolStripMenuItem.Text== "Редакция на рецепта")
+                    {
+                        editReceiptMenuItemExists = true;
+                    }
+                }
+
+                if (editReceiptMenuItemExists== false)
+                {
+                    ToolStripMenuItem editReceipt = new ToolStripMenuItem();
+                    editReceipt.Text = "Редакция на рецепта";
+                    editReceipt.Click += EditReceipt_Click;
+                    contextMenuTransactionLines.Items.Add(editReceipt);
+                }
+            }
+        }
+
+        private void EditReceipt_Click(object sender, EventArgs e)
+        {
+            frmEditItemsReceipt frmEditItemsReceipt = new frmEditItemsReceipt();
+            frmEditItemsReceipt.db = db;
+            int transactionReceiptID = (int)dgvTransactionLines.CurrentRow.Cells[TransactionReceipt_ReceiptID_Name_ID.Index].Value;
+            frmEditItemsReceipt.transactionReceipt =db.TransactionReceipt.Where(tr => tr.ID == transactionReceiptID ).SingleOrDefault();
+            CommonTasks.OpenForm(frmEditItemsReceipt);
+        }
     }
 }
