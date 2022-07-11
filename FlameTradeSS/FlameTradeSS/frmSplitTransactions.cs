@@ -144,7 +144,7 @@ namespace FlameTradeSS
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да затворите без да потвърдите промените? Всички непотвърдени промени ще бъдат изгубени!")==true)
+            if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да затворите без да потвърдите промените? \nВсички непотвърдени промени ще бъдат изгубени!")==true)
             {
 
                 List<TransactionLines> lines = new List<TransactionLines>();

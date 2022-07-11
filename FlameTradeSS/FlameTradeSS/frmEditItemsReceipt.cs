@@ -181,7 +181,7 @@ namespace FlameTradeSS
                 receiptLinesBindingSource.DataSource = db.ReceiptLines.Where(rl => rl.TransactionReceiptID==transactionReceipt.ID && rl.Surfaces.SurfaceCode.Contains(txtFilter.Text)).ToList();
             } else
             {
-                receiptLinesBindingSource.DataSource = db.ReceiptLines.Where(rl => rl.TransactionReceiptID == transactionReceipt.ID);
+                receiptLinesBindingSource.DataSource = db.ReceiptLines.Where(rl => rl.TransactionReceiptID == transactionReceipt.ID).ToList();
             }
         }
     }

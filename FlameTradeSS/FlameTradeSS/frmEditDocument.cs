@@ -202,8 +202,12 @@ namespace FlameTradeSS
                                 case "RemainingQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
-                                        transactionLines.RemainingQTY = transactionLines.RemainingQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingQTY = transactionLines.RemainingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
                                     }
                                     else
                                     {
@@ -216,8 +220,12 @@ namespace FlameTradeSS
                                 case "RemainingInvoiceQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
-                                        transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
                                     }
                                     else
                                     {
@@ -229,8 +237,12 @@ namespace FlameTradeSS
                                 case "RemainingDeliveryQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
-                                        transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
                                     }
                                     else
                                     {
@@ -242,8 +254,12 @@ namespace FlameTradeSS
                                 case "RemainingPackagingQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
-                                        transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
                                     }
                                     else 
                                     {
@@ -255,8 +271,12 @@ namespace FlameTradeSS
                                 case "RemainingProductionQTY":
                                     if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
                                     {
-                                        transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY - transactionRowsDependancy.TransactionLines.Qty;
-                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        if (transactionRowsDependancy.TransactionLines.Qty!= transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
                                     }
                                     else
                                     {
@@ -869,8 +889,53 @@ namespace FlameTradeSS
                     frmSplitTransactions.db = db;
                     frmSplitTransactions.documentTransactionsbindingSource = documentTransactionsBindingSource;
                     frmSplitTransactions.transactionsTransformations = transactionsTransformations;
+                    frmSplitTransactions.FormClosed += FrmSplitTransactions_FormClosed;
+
+                    Enabled = false;
 
                     CommonTasks.OpenForm(frmSplitTransactions);
+                }
+            }
+        }
+
+        private void FrmSplitTransactions_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Enabled = true;
+            DocumentTransactions currentDocumentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+            foreach (TransactionLines emptyLine in currentDocumentTransactions.TransactionLines)
+            {
+                if (emptyLine.Qty==0)
+                {
+                    List<TransactionRowsDependancy> emptyLineDependancy = new List<TransactionRowsDependancy>();
+
+                    foreach(TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(trd => trd.ControlledTransactionRowID == emptyLine.ID | trd.ControllingTransactionRowID== emptyLine.ID).ToList())
+                    {
+                        emptyLineDependancy.Add(transactionRowsDependancy);
+                    }
+
+                    if (emptyLineDependancy.Count>0)
+                    {
+                        foreach (TransactionRowsDependancy forRemoving in emptyLineDependancy)
+                        {
+                            db.TransactionRowsDependancy.Remove(forRemoving);
+                        }
+                    }
+
+                    List<TransactionLinesTransformation> emtyTransactionLinesTransformation = new List<TransactionLinesTransformation>();
+                    foreach(TransactionLinesTransformation transactionLinesTransformation in db.TransactionLinesTransformation.Where(tlt => tlt.TransactionLineID== emptyLine.ID | tlt.OriginTransactionLineID== emptyLine.ID).ToList())
+                    {
+                        emtyTransactionLinesTransformation.Add(transactionLinesTransformation);
+                    }
+
+                    if(emtyTransactionLinesTransformation.Count>0)
+                    {
+                        foreach(TransactionLinesTransformation forRemoving in emtyTransactionLinesTransformation)
+                        {
+                            db.TransactionLinesTransformation.Remove(forRemoving);
+                        }
+                    }
+
+                    db.TransactionLines.Remove(emptyLine);
                 }
             }
         }
@@ -888,45 +953,74 @@ namespace FlameTradeSS
                     {
                         if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
-                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID).FirstOrDefault();
+                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID==currentTransaction.TransactionSurfaceID).FirstOrDefault();
 
                             if (existingReceipt != null)
                             {
                                 transactionLines.TransactionReceipt = existingReceipt;
 
-                                foreach(ReceiptLines receiptLines in existingReceipt.ReceiptLines)
+                                List<ReceiptLines> existingReceiptLines = new List<ReceiptLines>();
+                                foreach (ReceiptLines receiptLines in existingReceipt.ReceiptLines)
                                 {
-                                    bool exists = false;
-                                    if (receiptLines.Surfaces == existingReceipt.Surfaces)
+                                    existingReceiptLines.Add(receiptLines);
+                                }
+
+                                if (existingReceiptLines.Count==0)
+                                {
+                                    foreach (ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID == existingReceipt.ItemID).ToList())
                                     {
-                                        exists = true;
-                                    }
-                                    if (exists==false)
-                                    {
-                                        ReceiptLines newReceiptLine = new ReceiptLines();
-                                        newReceiptLine.Items = receiptLines.Items;
-                                        newReceiptLine.ItemQTY = receiptLines.ItemQTY;
-                                        newReceiptLine.ItemsParameters = receiptLines.ItemsParameters;
-                                        newReceiptLine.Partitions = receiptLines.Partitions;
-                                        newReceiptLine.Partitions1 = receiptLines.Partitions1;
-                                        newReceiptLine.Colors = receiptLines.Colors;
-                                        newReceiptLine.TransactionReceipt = receiptLines.TransactionReceipt;
-                                        if (currentTransaction.Surfaces != null)
+                                        foreach (ReceiptModelsItemsParameters receiptModelsItemsParameters in receiptModels.ReceiptModelsItemsParameters)
                                         {
-                                            newReceiptLine.Surfaces = currentTransaction.Surfaces;
-                                        } else
-                                        {
-                                            newReceiptLine.Surfaces = db.Surfaces.Where(s => s.ID==1).SingleOrDefault();
+                                            if (receiptModelsItemsParameters.ItemsParameterID == itemsParameters.ItemsParameterID)
+                                            {
+                                                ReceiptLines receiptLines = new ReceiptLines();
+                                                receiptLines.TransactionReceipt = existingReceipt;
+                                                receiptLines.Items = itemsParameters.Items1;
+                                                receiptLines.ItemColorID = existingReceipt.ColorID;
+                                                receiptLines.ItemPartitionID = existingReceipt.PartitionID;
+                                                receiptLines.SecondPartitionID = existingReceipt.SecondPartitionID;
+                                                receiptLines.Surfaces = existingReceipt.Surfaces;
+                                                receiptLines.ItemQTY = itemsParameters.ParameterValue;
+                                                receiptLines.ItemsParameters = itemsParameters.ItemsParameters;
+                                                db.ReceiptLines.Add(receiptLines);
+                                            }
                                         }
-                                        db.ReceiptLines.Add(newReceiptLine);
                                     }
                                 }
+
+                                /*  foreach (ReceiptLines receiptLines in existingReceiptLines)
+                                  {
+                                      bool exists = false;
+                                      if (receiptLines.Surfaces == currentTransaction.Surfaces)
+                                      {
+                                          exists = true;
+                                      }
+                                      if (exists==false)
+                                      {
+                                          ReceiptLines newReceiptLine = new ReceiptLines();
+                                          newReceiptLine.Items = receiptLines.Items;
+                                          newReceiptLine.ItemQTY = receiptLines.ItemQTY;
+                                          newReceiptLine.ItemsParameters = receiptLines.ItemsParameters;
+                                          newReceiptLine.Partitions = receiptLines.Partitions;
+                                          newReceiptLine.Partitions1 = receiptLines.Partitions1;
+                                          newReceiptLine.Colors = receiptLines.Colors;
+                                          newReceiptLine.TransactionReceipt = receiptLines.TransactionReceipt;
+                                          if (currentTransaction.Surfaces != null)
+                                          {
+                                              newReceiptLine.Surfaces = currentTransaction.Surfaces;
+                                          } else
+                                          {
+                                              newReceiptLine.Surfaces = db.Surfaces.Where(s => s.ID==1).SingleOrDefault();
+                                          }
+                                          db.ReceiptLines.Add(newReceiptLine);
+                                      }
+                                  } */
                             }
                             else
                             {
                                 TransactionReceipt newTransactionReceipt = new TransactionReceipt();
                                 newTransactionReceipt.Items = transactionLines.Items;
-                                newTransactionReceipt.Name = "A-"+receiptModels.ModelName + "-" + currentTransaction.Surfaces.SurfaceCode+currentTransaction+transactionLines.Items.Code.ToString();
+                                newTransactionReceipt.Name = "A-"+receiptModels.ModelName + "-" + currentTransaction.Surfaces.SurfaceCode+"-"+transactionLines.Items.Code.ToString();
 
                                 newTransactionReceipt.ReceiptModels = receiptModels;
 
@@ -974,7 +1068,6 @@ namespace FlameTradeSS
                                         }
                                     }
                                 }
-
                                 transactionLines.TransactionReceipt = newTransactionReceipt;
                             }
                         }

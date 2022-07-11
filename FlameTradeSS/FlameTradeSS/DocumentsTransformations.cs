@@ -108,27 +108,27 @@ namespace FlameTradeSS
 
                                                 if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainDeliveryQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingDeliveryQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingDeliveryQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainPackagingQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingPackagingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingPackagingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainProductionQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingProductionQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingProductionQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
                                                 }
 
                                                 TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
@@ -154,30 +154,30 @@ namespace FlameTradeSS
 
                                                 if (possibleSequenceTransformationsProperties.RemainDeliveryQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingDeliveryQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingDeliveryQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainPackagingQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingPackagingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingPackagingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainProductionQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingProductionQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingProductionQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
                                                 }
 
                                                 TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
                                                 newTransactionRowsDependancy.TransactionLines = newTransactionLine;
                                                 newTransactionRowsDependancy.TransactionLines1 = transactionLines;
                                                 newTransactionRowsDependancy.ControlledParameter = "RemainingInvoiceQTY";
-                                                newTransactionRowsDependancy.InitialValue = transactionLines.RemainingInvoiceQTY;
-                                                newTransactionRowsDependancy.LastValue = transactionLines.RemainingInvoiceQTY;
+                                                newTransactionRowsDependancy.InitialValue = newTransactionLine.RemainingInvoiceQTY;
+                                                newTransactionRowsDependancy.LastValue = newTransactionLine.RemainingInvoiceQTY;
                                                 db.TransactionRowsDependancy.Add(newTransactionRowsDependancy);
                                             }
                                         }
@@ -190,35 +190,35 @@ namespace FlameTradeSS
 
                                                 if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainDeliveryQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingDeliveryQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingDeliveryQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainPackagingQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingPackagingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingPackagingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainProductionQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingProductionQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingProductionQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
                                                 }
 
                                                 TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
                                                 newTransactionRowsDependancy.TransactionLines = newTransactionLine;
                                                 newTransactionRowsDependancy.TransactionLines1 = transactionLines;
                                                 newTransactionRowsDependancy.ControlledParameter = "RemainingDeliveryQTY";
-                                                newTransactionRowsDependancy.InitialValue = transactionLines.RemainingDeliveryQTY;
-                                                newTransactionRowsDependancy.LastValue = transactionLines.RemainingDeliveryQTY;
+                                                newTransactionRowsDependancy.InitialValue = newTransactionLine.RemainingDeliveryQTY;
+                                                newTransactionRowsDependancy.LastValue = newTransactionLine.RemainingDeliveryQTY;
                                                 db.TransactionRowsDependancy.Add(newTransactionRowsDependancy);
                                             }
                                         }
@@ -231,27 +231,27 @@ namespace FlameTradeSS
 
                                                 if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainDeliveryQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingDeliveryQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingDeliveryQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainPackagingQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingPackagingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingPackagingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainProductionQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingProductionQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingProductionQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
                                                 }
 
                                                 TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();
@@ -272,27 +272,27 @@ namespace FlameTradeSS
 
                                                 if (possibleSequenceTransformationsProperties.RemainQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainDeliveryQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingDeliveryQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingDeliveryQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainPackagingQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingPackagingQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingPackagingQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainProductionQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingProductionQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingProductionQTY = newTransactionLine.Qty;
                                                 }
 
                                                 if (possibleSequenceTransformationsProperties.RemainInvoiceQTYAction == 1)
                                                 {
-                                                    newTransactionLine.RemainingInvoiceQTY = transactionLines.Qty;
+                                                    newTransactionLine.RemainingInvoiceQTY = newTransactionLine.Qty;
                                                 }
 
                                                 TransactionRowsDependancy newTransactionRowsDependancy = new TransactionRowsDependancy();

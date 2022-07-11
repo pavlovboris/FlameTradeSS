@@ -23,10 +23,11 @@ namespace FlameTradeSS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (currentTransactionLines.Qty <= Convert.ToDouble(txtQty.Text))
+            if (currentTransactionLines.Qty < Convert.ToDouble(txtQty.Text))
             {
-                CommonTasks.SendErrorMsg("Не можете да прехвърлите по-голямо или равно количество в новата транзакция!");
-            } else
+                CommonTasks.SendErrorMsg("Не можете да прехвърлите по-голямо  количество в новата транзакция от количеството в транзакцията!");
+            
+            } else 
             {
                 double qtyOldValue = (double)currentTransactionLines.Qty;
                 newTransactionLines.Qty = Convert.ToDouble(txtQty.Text);
