@@ -22,11 +22,14 @@ namespace FlameTradeSS
         public int ItemPartitionID { get; set; }
         public int SecondPartitionID { get; set; }
         public int SurfaceID { get; set; }
+        public int ItemsParameterID { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Items Items { get; set; }
         public virtual Partitions Partitions { get; set; }
         public virtual Partitions Partitions1 { get; set; }
         public virtual TransactionReceipt TransactionReceipt { get; set; }
+        public virtual Surfaces Surfaces { get; set; }
+        public virtual ItemsParameters ItemsParameters { get; set; }
     }
 }

@@ -39,5 +39,6 @@ namespace FlameTradeSS
         public virtual Partitions Partitions { get; set; }
         public virtual Partitions Partitions1 { get; set; }
         public virtual ReceiptModels ReceiptModels { get; set; }
+        public virtual Surfaces Surfaces { get; set; }
     }
 }

@@ -207,6 +207,10 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptModelsItemsParameters_ItemsParameters" />
         <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptModelsItemsParameters_ReceiptModels" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionsType_ReceiptModels" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptLines_Surfaces" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_Surfaces" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_Surfaces" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptLines_ItemsParameters" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

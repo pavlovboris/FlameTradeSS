@@ -19,6 +19,7 @@ namespace FlameTradeSS
         {
             this.ItemsParametersItems = new HashSet<ItemsParametersItems>();
             this.ReceiptModelsItemsParameters = new HashSet<ReceiptModelsItemsParameters>();
+            this.ReceiptLines = new HashSet<ReceiptLines>();
         }
     
         public int ID { get; set; }
@@ -29,5 +30,7 @@ namespace FlameTradeSS
         public virtual ICollection<ItemsParametersItems> ItemsParametersItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReceiptModelsItemsParameters> ReceiptModelsItemsParameters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReceiptLines> ReceiptLines { get; set; }
     }
 }

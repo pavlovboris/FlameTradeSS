@@ -555,6 +555,7 @@
           <Property Name="ItemPartitionID" Type="int" Nullable="false" />
           <Property Name="SecondPartitionID" Type="int" Nullable="false" />
           <Property Name="SurfaceID" Type="int" Nullable="false" />
+          <Property Name="ItemsParameterID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ReceiptModels">
           <Key>
@@ -759,8 +760,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
           <Property Name="ItemID" Type="int" Nullable="false" />
           <Property Name="ReceiptModelID" Type="int" Nullable="false" />
           <Property Name="ColorID" Type="int" Nullable="false" />
@@ -1776,6 +1777,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReceiptLines_ItemsParameters">
+          <End Role="ItemsParameters" Type="Self.ItemsParameters" Multiplicity="1" />
+          <End Role="ReceiptLines" Type="Self.ReceiptLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemsParameters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptLines">
+              <PropertyRef Name="ItemsParameterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReceiptLines_SecondPartitionID">
           <End Role="Partitions" Type="Self.Partitions" Multiplicity="1" />
           <End Role="ReceiptLines" Type="Self.ReceiptLines" Multiplicity="*" />
@@ -1785,6 +1798,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="ReceiptLines">
               <PropertyRef Name="SecondPartitionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptLines_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="1" />
+          <End Role="ReceiptLines" Type="Self.ReceiptLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptLines">
+              <PropertyRef Name="SurfaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2028,6 +2053,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionLines_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="0..1" />
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionLines_TransactionsID">
           <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
           <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="*" />
@@ -2181,6 +2218,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="TransactionReceipt">
               <PropertyRef Name="ReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="1" />
+          <End Role="TransactionReceipt" Type="Self.TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="SurfaceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2705,8 +2754,16 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Partitions" EntitySet="Partitions" />
             <End Role="ReceiptLines" EntitySet="ReceiptLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReceiptLines_ItemsParameters" Association="Self.FK_ReceiptLines_ItemsParameters">
+            <End Role="ItemsParameters" EntitySet="ItemsParameters" />
+            <End Role="ReceiptLines" EntitySet="ReceiptLines" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReceiptLines_SecondPartitionID" Association="Self.FK_ReceiptLines_SecondPartitionID">
             <End Role="Partitions" EntitySet="Partitions" />
+            <End Role="ReceiptLines" EntitySet="ReceiptLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptLines_Surfaces" Association="Self.FK_ReceiptLines_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
             <End Role="ReceiptLines" EntitySet="ReceiptLines" />
           </AssociationSet>
           <AssociationSet Name="FK_ReceiptLines_TransactionReceiptID" Association="Self.FK_ReceiptLines_TransactionReceiptID">
@@ -2789,6 +2846,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Services" EntitySet="Services" />
             <End Role="TransactionLines" EntitySet="TransactionLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_Surfaces" Association="Self.FK_TransactionLines_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionLines_TransactionsID" Association="Self.FK_TransactionLines_TransactionsID">
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionLines" EntitySet="TransactionLines" />
@@ -2839,6 +2900,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </AssociationSet>
           <AssociationSet Name="FK_TransactionReceipt_ReceiptModels" Association="Self.FK_TransactionReceipt_ReceiptModels">
             <End Role="ReceiptModels" EntitySet="ReceiptModels" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Surfaces" Association="Self.FK_TransactionReceipt_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
             <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
           </AssociationSet>
           <AssociationSet Name="FK_TransactionRowsDependancy_TransactionLines" Association="Self.FK_TransactionRowsDependancy_TransactionLines">
@@ -3374,6 +3439,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Partitions1" Relationship="Self.FK_ReceiptLines_SecondPartitionID" FromRole="ReceiptLines" ToRole="Partitions" />
           <NavigationProperty Name="TransactionReceipt" Relationship="Self.FK_ReceiptLines_TransactionReceiptID" FromRole="ReceiptLines" ToRole="TransactionReceipt" />
           <Property Name="SurfaceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_ReceiptLines_Surfaces" FromRole="ReceiptLines" ToRole="Surfaces" />
+          <Property Name="ItemsParameterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemsParameters" Relationship="FlameTradeDbModel.FK_ReceiptLines_ItemsParameters" FromRole="ReceiptLines" ToRole="ItemsParameters" />
         </EntityType>
         <EntityType Name="RoleOfPersons">
           <Key>
@@ -3500,6 +3568,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="WH" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TransactionRowsDependancy" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
           <NavigationProperty Name="TransactionRowsDependancy1" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_TransactionLines_Surfaces" FromRole="TransactionLines" ToRole="Surfaces" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -3534,8 +3603,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ItemID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Items" Relationship="Self.FK_TransactionReceipt_ItemID" FromRole="TransactionReceipt" ToRole="Items" />
           <NavigationProperty Name="ReceiptLines" Relationship="Self.FK_ReceiptLines_TransactionReceiptID" FromRole="TransactionReceipt" ToRole="ReceiptLines" />
@@ -3548,6 +3617,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Partitions" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions" FromRole="TransactionReceipt" ToRole="Partitions" />
           <NavigationProperty Name="Partitions1" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Partitions1" FromRole="TransactionReceipt" ToRole="Partitions" />
           <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_TransactionReceipt_ReceiptModels" FromRole="TransactionReceipt" ToRole="ReceiptModels" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Surfaces" FromRole="TransactionReceipt" ToRole="Surfaces" />
         </EntityType>
         <EntityType Name="TransactionsTransformations">
           <Key>
@@ -4988,6 +5058,22 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="ReceiptModels" EntitySet="ReceiptModels" />
             <End Role="TransactionsType" EntitySet="TransactionsType" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReceiptLines_Surfaces" Association="FlameTradeDbModel.FK_ReceiptLines_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="ReceiptLines" EntitySet="ReceiptLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionReceipt_Surfaces" Association="FlameTradeDbModel.FK_TransactionReceipt_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="TransactionReceipt" EntitySet="TransactionReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_Surfaces" Association="FlameTradeDbModel.FK_TransactionLines_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptLines_ItemsParameters" Association="FlameTradeDbModel.FK_ReceiptLines_ItemsParameters">
+            <End Role="ItemsParameters" EntitySet="ItemsParameters" />
+            <End Role="ReceiptLines" EntitySet="ReceiptLines" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5064,6 +5150,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="Surfaces" ToRole="DocumentTransactions" />
           <Property Name="SurfaceTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SurfaceTypes" Relationship="FlameTradeDbModel.FK_Surfaces_SurfaceTypes" FromRole="Surfaces" ToRole="SurfaceTypes" />
+          <NavigationProperty Name="ReceiptLines" Relationship="FlameTradeDbModel.FK_ReceiptLines_Surfaces" FromRole="Surfaces" ToRole="ReceiptLines" />
+          <NavigationProperty Name="TransactionReceipt" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Surfaces" FromRole="Surfaces" ToRole="TransactionReceipt" />
+          <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLines_Surfaces" FromRole="Surfaces" ToRole="TransactionLines" />
         </EntityType>
         <Association Name="FK_Items_Surfaces">
           <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
@@ -5906,6 +5995,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="ParameterName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ItemsParametersItems" Relationship="FlameTradeDbModel.FK_ItemsParametersItems_ItemsParameters" FromRole="ItemsParameters" ToRole="ItemsParametersItems" />
           <NavigationProperty Name="ReceiptModelsItemsParameters" Relationship="FlameTradeDbModel.FK_ReceiptModelsItemsParameters_ItemsParameters" FromRole="ItemsParameters" ToRole="ReceiptModelsItemsParameters" />
+          <NavigationProperty Name="ReceiptLines" Relationship="FlameTradeDbModel.FK_ReceiptLines_ItemsParameters" FromRole="ItemsParameters" ToRole="ReceiptLines" />
         </EntityType>
         <EntityType Name="ItemsParametersItems">
           <Key>
@@ -5999,6 +6089,54 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="TransactionsType">
               <PropertyRef Name="DefaultReceiptModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptLines_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.ReceiptLines" Role="ReceiptLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptLines">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionReceipt_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionReceipt" Role="TransactionReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionReceipt">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLines_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptLines_ItemsParameters">
+          <End Type="FlameTradeDbModel.ItemsParameters" Role="ItemsParameters" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.ReceiptLines" Role="ReceiptLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemsParameters">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceiptLines">
+              <PropertyRef Name="ItemsParameterID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6399,6 +6537,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="ReceiptLines">
             <EntityTypeMapping TypeName="FlameTradeDbModel.ReceiptLines">
               <MappingFragment StoreEntitySet="ReceiptLines">
+                <ScalarProperty Name="ItemsParameterID" ColumnName="ItemsParameterID" />
                 <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionReceiptID" ColumnName="TransactionReceiptID" />
