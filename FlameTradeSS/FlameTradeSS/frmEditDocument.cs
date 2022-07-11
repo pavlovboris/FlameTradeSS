@@ -882,32 +882,73 @@ namespace FlameTradeSS
                 {
                     foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.DocumentTransactions==currentTransaction).ToList())
                     {
-                        TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== currentTransaction.TransactionSurfaceID).FirstOrDefault();
-                        
-                        if (existingReceipt != null)
+                        if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
-                            transactionLines.TransactionReceipt = existingReceipt;
-                        } else
-                        {
-                            TransactionReceipt newTransactionReceipt = new TransactionReceipt();
-                            newTransactionReceipt.Items = transactionLines.Items;
-                            
-                            if(currentTransaction.Colors!=null)
-                            {
-                                newTransactionReceipt.ColorID = (int)currentTransaction.ColorID;
-                            } else
-                            {
-                                newTransactionReceipt.ColorID = 1;
-                            }
+                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID).FirstOrDefault();
 
-                            if (currentTransaction.Surfaces!= null)
+                            if (existingReceipt != null)
                             {
-                                newTransactionReceipt.SurfaceID = (int)transactionLines.SurfaceID;
-                            } else
-                            {
-                                newTransactionReceipt.SurfaceID = 1;
+                                transactionLines.TransactionReceipt = existingReceipt;
                             }
+                            else
+                            {
+                                TransactionReceipt newTransactionReceipt = new TransactionReceipt();
+                                newTransactionReceipt.Items = transactionLines.Items;
 
+                                newTransactionReceipt.ReceiptModels = receiptModels;
+
+                                if (currentTransaction.Colors != null)
+                                {
+                                    newTransactionReceipt.ColorID = (int)currentTransaction.ColorID;
+                                }
+                                else
+                                {
+                                    newTransactionReceipt.ColorID = 1;
+                                }
+
+                                if (currentTransaction.Surfaces != null)
+                                {
+                                    newTransactionReceipt.SurfaceID = (int)transactionLines.SurfaceID;
+                                }
+                                else
+                                {
+                                    newTransactionReceipt.SurfaceID = 1;
+                                }
+
+                                if (transactionLines.PartitionID != null)
+                                {
+                                    newTransactionReceipt.PartitionID = (int)transactionLines.PartitionID;
+                                } else
+                                {
+                                    newTransactionReceipt.PartitionID = 1;
+                                }
+
+                                if (transactionLines.SecondPartitionID != null )
+                                {
+                                    newTransactionReceipt.SecondPartitionID = (int)transactionLines.SecondPartitionID;
+                                } else
+                                {
+                                    newTransactionReceipt.SecondPartitionID = 1;
+                                }
+
+                                List<Items> generalItems = new List<Items>();
+
+                                foreach(ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID==newTransactionReceipt.ItemID).ToList())
+                                {
+                                    foreach(ReceiptModelsItemsParameters receiptModelsItemsParameters in receiptModels.ReceiptModelsItemsParameters)
+                                    {
+                                        if (receiptModelsItemsParameters.ItemsParameterID == itemsParameters.ItemsParameterID)
+                                        {
+                                            ReceiptLines receiptLines = new ReceiptLines();
+                                            receiptLines.TransactionReceipt = newTransactionReceipt;
+                                            receiptLines.Items = itemsParameters.Items1;
+                                            receiptLines.Partitions = newTransactionReceipt.Partitions;
+                                            receiptLines.Partitions1 = newTransactionReceipt.Partitions1;
+                                            
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
