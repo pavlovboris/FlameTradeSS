@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -297,6 +299,8 @@ namespace FlameTradeSS
                 else if (dialogResult == DialogResult.No)
                 {
                     dgvDocumentTransactions.Dispose();
+
+                    UndoingChangesDbContextLevel(db);
                 }
                 else
                 {
@@ -310,6 +314,26 @@ namespace FlameTradeSS
                 dgvDocumentTransactions.Dispose();
             }
             
+        }
+
+        public static void UndoingChangesDbContextLevel(FlameTradeDbEntities context)
+        {
+            foreach (DbEntityEntry entry in context.ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        entry.Reload();
+                        break;
+                    default: break;
+                }
+            }
         }
 
         private void cmbDocumentSequence_SelectionChangeCommitted(object sender, EventArgs e)
@@ -674,7 +698,7 @@ namespace FlameTradeSS
                             }
                             catch
                             {
-                                MessageBox.Show("Възникна грешка при записшане на файла, файла не записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Възникна грешка при записшане на файла, файла НЕ е записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
@@ -949,7 +973,7 @@ namespace FlameTradeSS
                 
                 if (currentTransaction.ReceiptModelID!=1 && currentTransaction.ReceiptModelID!=0)
                 {
-                    foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.TransactionsID==currentTransaction.ID).ToList())
+                    foreach (TransactionLines transactionLines in currentTransaction.TransactionLines)
                     {
                         if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
@@ -957,7 +981,7 @@ namespace FlameTradeSS
 
                             if (existingReceipt != null)
                             {
-                                transactionLines.TransactionReceipt = existingReceipt;
+                                transactionLines.ReceiptID = existingReceipt.ID;
 
                                 List<ReceiptLines> existingReceiptLines = new List<ReceiptLines>();
                                 foreach (ReceiptLines receiptLines in existingReceipt.ReceiptLines)
@@ -1048,6 +1072,7 @@ namespace FlameTradeSS
                                 
 
                                 db.TransactionReceipt.Add(newTransactionReceipt);
+                                
 
                                 foreach(ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID==newTransactionReceipt.ItemID).ToList())
                                 {
@@ -1071,6 +1096,22 @@ namespace FlameTradeSS
                                 transactionLines.TransactionReceipt = newTransactionReceipt;
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        private void contextMenuTabs_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            
+            if(tabControlMain.SelectedTab!=null)
+            {
+                foreach(Form form in MdiChildren)
+                {
+                    if (form.Name == tabControlMain.SelectedTab.Name)
+                    {
+                        form.Close();
+                        tabControlMain.SelectedTab.Dispose();
                     }
                 }
             }

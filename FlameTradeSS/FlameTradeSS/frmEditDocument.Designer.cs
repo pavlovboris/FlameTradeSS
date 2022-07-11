@@ -46,6 +46,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnApplyReceiptModel = new System.Windows.Forms.Button();
             this.cmbSequenceFilter = new System.Windows.Forms.ComboBox();
             this.transactionsTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
@@ -105,7 +106,8 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.btnApplyReceiptModel = new System.Windows.Forms.Button();
+            this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -123,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             this.contextMenuStripDocumentTransactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).BeginInit();
+            this.contextMenuTabs.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbPartners
@@ -239,6 +242,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1550, 239);
             this.panel1.TabIndex = 12;
+            // 
+            // btnApplyReceiptModel
+            // 
+            this.btnApplyReceiptModel.Location = new System.Drawing.Point(705, 91);
+            this.btnApplyReceiptModel.Name = "btnApplyReceiptModel";
+            this.btnApplyReceiptModel.Size = new System.Drawing.Size(278, 23);
+            this.btnApplyReceiptModel.TabIndex = 30;
+            this.btnApplyReceiptModel.Text = "Приложи Модел на Рецепта";
+            this.btnApplyReceiptModel.UseVisualStyleBackColor = true;
+            this.btnApplyReceiptModel.Click += new System.EventHandler(this.btnApplyReceiptModel_Click);
             // 
             // cmbSequenceFilter
             // 
@@ -751,6 +764,7 @@
             // 
             // tabControlMain
             // 
+            this.tabControlMain.ContextMenuStrip = this.contextMenuTabs;
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControlMain.Location = new System.Drawing.Point(0, 239);
             this.tabControlMain.Name = "tabControlMain";
@@ -759,15 +773,19 @@
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
-            // btnApplyReceiptModel
+            // contextMenuTabs
             // 
-            this.btnApplyReceiptModel.Location = new System.Drawing.Point(705, 91);
-            this.btnApplyReceiptModel.Name = "btnApplyReceiptModel";
-            this.btnApplyReceiptModel.Size = new System.Drawing.Size(278, 23);
-            this.btnApplyReceiptModel.TabIndex = 30;
-            this.btnApplyReceiptModel.Text = "Приложи Модел на Рецепта";
-            this.btnApplyReceiptModel.UseVisualStyleBackColor = true;
-            this.btnApplyReceiptModel.Click += new System.EventHandler(this.btnApplyReceiptModel_Click);
+            this.contextMenuTabs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuClose});
+            this.contextMenuTabs.Name = "contextMenuTabs";
+            this.contextMenuTabs.Size = new System.Drawing.Size(104, 26);
+            this.contextMenuTabs.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuTabs_ItemClicked);
+            // 
+            // toolStripMenuClose
+            // 
+            this.toolStripMenuClose.Name = "toolStripMenuClose";
+            this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuClose.Text = "Close";
             // 
             // frmEditDocument
             // 
@@ -802,6 +820,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             this.contextMenuStripDocumentTransactions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsBindingSource)).EndInit();
+            this.contextMenuTabs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -878,5 +897,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripDocumentTransactions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuSplitTransaction;
         private System.Windows.Forms.Button btnApplyReceiptModel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuTabs;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuClose;
     }
 }
