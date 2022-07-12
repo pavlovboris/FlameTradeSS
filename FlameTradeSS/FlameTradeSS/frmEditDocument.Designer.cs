@@ -496,8 +496,11 @@
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocumentTransactions.Size = new System.Drawing.Size(1361, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
+            this.dgvDocumentTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentTransactions_CellClick);
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dgvDocumentTransactions.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentTransactions_CellValueChanged);
             this.dgvDocumentTransactions.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocumentTransactions_ColumnWidthChanged);
+            this.dgvDocumentTransactions.CurrentCellChanged += new System.EventHandler(this.dgvDocumentTransactions_CurrentCellChanged);
             // 
             // TransactionTypes_TransactionTypeID_TypeName_ID
             // 

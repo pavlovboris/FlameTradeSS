@@ -390,7 +390,7 @@ namespace FlameTradeSS
 
         int tempID;
 
-        private async void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
+        private  void listBoxTransactionsAdd_DoubleClick(object sender, EventArgs e)
         {
             if (listBoxTransactionsAdd.SelectedItem != null)
             {
@@ -401,8 +401,8 @@ namespace FlameTradeSS
 
                 CurrentSessionData.Counter = tempID;
 
-                newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
-                newDocumentTransaction.DocumentsID = newDocument.ID;
+                newDocumentTransaction.TransactionsType = selectedTransactionType;
+                newDocumentTransaction.Documents = newDocument;
                 newDocumentTransaction.UserID = CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
@@ -438,7 +438,7 @@ namespace FlameTradeSS
                 //newDocument.IsBlocked = 1;
                 cmbDocumentSequence.Enabled = false;
 
-                await db.SaveChangesAsync();
+                //await db.SaveChangesAsync();
 
                 if (existingTransactionTypes.Where(trt => trt.Equals(selectedTransactionType)).SingleOrDefault()==null)
                 {
@@ -459,10 +459,12 @@ namespace FlameTradeSS
             closingForm.Hide();
         }
 
+        DocumentTransactions documentTransactions;
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DocumentTransactions documentTransactions = new DocumentTransactions();
-            documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+            //DocumentTransactions documentTransactions = new DocumentTransactions();
+            //documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
 
             if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null && e.ColumnIndex == Surfaces_TransactionSurfaceID_SurfaceName_ID.Index)
             {
@@ -568,11 +570,11 @@ namespace FlameTradeSS
                 {
                     Project project = projectSelector.dgvProjects.CurrentRow.DataBoundItem as Project;
                     DocumentsProjects addProject = new DocumentsProjects();
-                    addProject.ProjectID = project.ID;
-                    addProject.DocumentsID = newDocument.ID;
+                    addProject.Project = project;
+                    addProject.Documents = newDocument;
                     documentsProjectsBindingSource.Add(addProject);
                     db.DocumentsProjects.Add(addProject);
-                    documentsProjectsBindingSource.DataSource = db.DocumentsProjects.Where(dp => dp.DocumentsID == newDocument.ID).ToList();
+                    documentsProjectsBindingSource.DataSource = newDocument.DocumentsProjects;
                     projectBindingSource.Add(project);
                 }
             }
@@ -831,7 +833,25 @@ namespace FlameTradeSS
 
         private void cmbSequenceFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ComboBox filter = (ComboBox)sender;
+            TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
             try
+            {
+                if (transactionsType!=null)
+                {
+                    if (filter.SelectedIndex!=0)
+                    {
+                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.SqlQuery("select * from DocumentTransactions dt where dt.DocumentsID=" + newDocument.ID + " AND dt.TransactionTypeID =" + transactionsType.ID).ToList();
+                    } else
+                    {
+                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
+                    }
+
+                }
+
+            }
+            catch { }
+           /* try
             {
                 ComboBox filter = (ComboBox)sender;
                 TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
@@ -848,7 +868,7 @@ namespace FlameTradeSS
                     }
                 }
             }
-            catch { }
+            catch { } */
         }
 
         private void dgvDocumentTransactions_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -874,41 +894,41 @@ namespace FlameTradeSS
         {
             if (e.ClickedItem == toolStripMenuSplitTransaction)
             {
-                DocumentTransactions currentDocumentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
-                if (currentDocumentTransaction != null)
+               // DocumentTransactions currentDocumentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                if (documentTransactions != null)
                 {
                     tempID = CurrentSessionData.Counter + 1;
 
                     CurrentSessionData.Counter = tempID;
 
                     DocumentTransactions newDocumentTransactions = new DocumentTransactions();
-                    newDocumentTransactions.Documents = currentDocumentTransaction.Documents;
-                    newDocumentTransactions.TransactionsType = currentDocumentTransaction.TransactionsType;
+                    newDocumentTransactions.Documents = documentTransactions.Documents;
+                    newDocumentTransactions.TransactionsType = documentTransactions.TransactionsType;
                     newDocumentTransactions.CreationDateTime = DateTime.Now;
-                    newDocumentTransactions.TransactionDate = currentDocumentTransaction.TransactionDate;
+                    newDocumentTransactions.TransactionDate = documentTransactions.TransactionDate;
                     newDocumentTransactions.tempID = tempID;
-                    newDocumentTransactions.TransactionSurfaceID = currentDocumentTransaction.TransactionSurfaceID;
+                    newDocumentTransactions.TransactionSurfaceID = documentTransactions.TransactionSurfaceID;
                     newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
-                    newDocumentTransactions.ColorID = currentDocumentTransaction.ColorID;
-                    newDocumentTransactions.Comment = currentDocumentTransaction.Comment;
-                    newDocumentTransactions.ExpectedMatDate = currentDocumentTransaction.ExpectedMatDate;
-                    newDocumentTransactions.NotForInvoice = currentDocumentTransaction.NotForInvoice;
-                    newDocumentTransactions.ReceiptModels = currentDocumentTransaction.ReceiptModels;
-                    newDocumentTransactions.RequestedDeliveryDate = currentDocumentTransaction.RequestedDeliveryDate;  
-                    newDocumentTransactions.RequestedDate = currentDocumentTransaction.RequestedDate;
-                    newDocumentTransactions.ReceivedDate = currentDocumentTransaction.ReceivedDate;
-                    newDocumentTransactions.IsReady = currentDocumentTransaction.IsReady;
+                    newDocumentTransactions.ColorID = documentTransactions.ColorID;
+                    newDocumentTransactions.Comment = documentTransactions.Comment;
+                    newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
+                    newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
+                    newDocumentTransactions.ReceiptModels = documentTransactions.ReceiptModels;
+                    newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;  
+                    newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
+                    newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
+                    newDocumentTransactions.IsReady = documentTransactions.IsReady;
 
                     documentTransactionsBindingSource.Add(newDocumentTransactions);
                     db.DocumentTransactions.Add(newDocumentTransactions);
 
                     TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
                     transactionsTransformations.DocumentTransactions = newDocumentTransactions;
-                    transactionsTransformations.DocumentTransactions1 = currentDocumentTransaction;
+                    transactionsTransformations.DocumentTransactions1 = documentTransactions;
                     db.TransactionsTransformations.Add(transactionsTransformations);
 
                     frmSplitTransactions frmSplitTransactions = new frmSplitTransactions();
-                    frmSplitTransactions.currentDocumetTransaction = currentDocumentTransaction;
+                    frmSplitTransactions.currentDocumetTransaction = documentTransactions;
                     frmSplitTransactions.newDocumentTransactions = newDocumentTransactions;
                     frmSplitTransactions.db = db;
                     frmSplitTransactions.documentTransactionsbindingSource = documentTransactionsBindingSource;
@@ -925,8 +945,15 @@ namespace FlameTradeSS
         private void FrmSplitTransactions_FormClosed(object sender, FormClosedEventArgs e)
         {
             Enabled = true;
-            DocumentTransactions currentDocumentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
-            foreach (TransactionLines emptyLine in currentDocumentTransactions.TransactionLines)
+            //DocumentTransactions currentDocumentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+            List<TransactionLines> linesList = new List<TransactionLines>();
+
+            foreach (TransactionLines lines in documentTransactions.TransactionLines)
+            {
+                linesList.Add(lines);
+            }
+
+            foreach (TransactionLines emptyLine in linesList)
             {
                 if (emptyLine.Qty==0)
                 {
@@ -968,16 +995,16 @@ namespace FlameTradeSS
         {
             if (dgvDocumentTransactions.CurrentRow.Index!=-1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
             {
-                DocumentTransactions currentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
-                ReceiptModels receiptModels = currentTransaction.ReceiptModels;
+               // DocumentTransactions currentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                ReceiptModels receiptModels = documentTransactions.ReceiptModels;
                 
-                if (currentTransaction.ReceiptModelID!=1 && currentTransaction.ReceiptModelID!=0)
+                if (documentTransactions.ReceiptModelID!=1 && documentTransactions.ReceiptModelID!=0 && documentTransactions.TransactionSurfaceID!=0)
                 {
-                    foreach (TransactionLines transactionLines in currentTransaction.TransactionLines)
+                    foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
                     {
                         if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
-                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID==currentTransaction.TransactionSurfaceID).FirstOrDefault();
+                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== documentTransactions.TransactionSurfaceID).FirstOrDefault();
 
                             if (existingReceipt != null)
                             {
@@ -1044,22 +1071,22 @@ namespace FlameTradeSS
                             {
                                 TransactionReceipt newTransactionReceipt = new TransactionReceipt();
                                 newTransactionReceipt.Items = transactionLines.Items;
-                                newTransactionReceipt.Name = "A-"+receiptModels.ModelName + "-" + currentTransaction.Surfaces.SurfaceCode+"-"+transactionLines.Items.Code.ToString();
+                                newTransactionReceipt.Name = "A-"+receiptModels.ModelName + "-" + documentTransactions.Surfaces.SurfaceCode+"-"+transactionLines.Items.Code.ToString();
 
                                 newTransactionReceipt.ReceiptModels = receiptModels;
 
-                                if (currentTransaction.ColorID != null)
+                                if (documentTransactions.ColorID != null)
                                 {
-                                    newTransactionReceipt.ColorID = (int)currentTransaction.ColorID;
+                                    newTransactionReceipt.ColorID = (int)documentTransactions.ColorID;
                                 }
                                 else
                                 {
                                     newTransactionReceipt.ColorID = 1;
                                 }
 
-                                if (currentTransaction.Surfaces != null)
+                                if (documentTransactions.Surfaces != null)
                                 {
-                                    newTransactionReceipt.Surfaces = currentTransaction.Surfaces;
+                                    newTransactionReceipt.Surfaces = documentTransactions.Surfaces;
                                 }
                                 else
                                 {
@@ -1097,6 +1124,9 @@ namespace FlameTradeSS
                             }
                         }
                     }
+                } else
+                {
+                    CommonTasks.SendErrorMsg("Не е приложен модел на рецепта. За да приложите модел е необходимо да сте избрали повърхност и активен модел за формиране на рецепта ");
                 }
             }
         }
@@ -1113,6 +1143,48 @@ namespace FlameTradeSS
                         form.Close();
                         tabControlMain.SelectedTab.Dispose();
                     }
+                }
+            }
+        }
+
+        private void dgvDocumentTransactions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex!=-1 && dgvDocumentTransactions.CurrentRow.DataBoundItem!=null)
+            {
+                documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+            }
+        }
+
+        private void dgvDocumentTransactions_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (documentTransactions!=null)
+            {
+                if (e.ColumnIndex == ReceiptModel_ReceiptModelID_ModelName_ID.Index)
+                {
+
+                    documentTransactions.ReceiptModels = db.ReceiptModels.Where(rm => rm.ID == documentTransactions.ReceiptModelID).SingleOrDefault();
+                }
+                else if (e.ColumnIndex == Surfaces_TransactionSurfaceID_SurfaceName_ID.Index)
+                {
+                    documentTransactions.Surfaces = db.Surfaces.Where(s => s.ID == documentTransactions.TransactionSurfaceID).SingleOrDefault();
+                }
+                else if (e.ColumnIndex == ColorID.Index)
+                {
+                    documentTransactions.Colors = db.Colors.Where(c => c.ID == documentTransactions.ColorID).SingleOrDefault();
+                }
+            }
+        }
+
+        private void dgvDocumentTransactions_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if(dgvDocumentTransactions.CurrentRow!=null && dgvDocumentTransactions.CurrentRow.DataBoundItem !=documentTransactions)
+            {
+                if (dgvDocumentTransactions.CurrentRow.Index != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
+                {
+                    documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
+                } else
+                {
+                    documentTransactions = null;
                 }
             }
         }
