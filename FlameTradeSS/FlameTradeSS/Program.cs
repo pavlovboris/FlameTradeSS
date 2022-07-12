@@ -29,7 +29,7 @@ namespace FlameTradeSS
                 Application.Run(new frmLogin());
             } else
             {
-                if (MessageBox.Show("Не може да бъде осъществена връзка с базата данни, възможен е проблем с интернет връзката да предизвиква тази грешка. \n Искате ли да опитате отново?", "FlameTradeSS.exe Critical Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                if (MessageBox.Show("Не може да бъде осъществена връзка с базата данни. Възможно е, проблем с интернет връзката да предизвиква тази грешка. \n Искате ли да опитате отново?", "FlameTradeSS.exe Critical Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
                     Application.Restart();
                 } else
