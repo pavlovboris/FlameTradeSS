@@ -108,6 +108,7 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -212,6 +213,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnApplyReceiptModel);
             this.panel1.Controls.Add(this.cmbSequenceFilter);
             this.panel1.Controls.Add(this.btnCancel);
@@ -790,6 +792,16 @@
             this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuClose.Text = "Close";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(1079, 52);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(74, 36);
+            this.btnPrint.TabIndex = 31;
+            this.btnPrint.Text = "Принтирай";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -902,5 +914,6 @@
         private System.Windows.Forms.Button btnApplyReceiptModel;
         private System.Windows.Forms.ContextMenuStrip contextMenuTabs;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuClose;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

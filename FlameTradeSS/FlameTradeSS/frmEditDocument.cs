@@ -1188,5 +1188,13 @@ namespace FlameTradeSS
                 }
             }
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            frmRpt frmRpt = new frmRpt();
+            frmRpt.db = db;
+            frmRpt.document = newDocument;
+            frmRpt.Show();
+        }
     }
 }
