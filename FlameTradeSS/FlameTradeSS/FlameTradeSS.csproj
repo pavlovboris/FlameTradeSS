@@ -51,6 +51,9 @@
     <ApplicationIcon>Defined Solutions_LOGO-08.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -61,11 +64,44 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.19.4\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -77,6 +113,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\Ubiety.Dns.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.29\lib\net48\ZstdNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoStringDocuments.cs">
@@ -88,6 +130,12 @@
     <Compile Include="DocumentsTransformations.cs" />
     <Compile Include="DocumentStringLines.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="frmCrystalReportsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCrystalReportsViewer.Designer.cs">
+      <DependentUpon>frmCrystalReportsViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDocumentsAdmin.cs">
       <SubType>Form</SubType>
@@ -112,12 +160,6 @@
     </Compile>
     <Compile Include="frmEditItemsReceipt.Designer.cs">
       <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmRpt.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmRpt.Designer.cs">
-      <DependentUpon>frmRpt.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSplitTransactions.cs">
       <SubType>Form</SubType>
@@ -546,10 +588,10 @@
     <Compile Include="Roles.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="rptOffers.cs">
+    <Compile Include="rptLoadSingleDocument.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptOffers.rpt</DependentUpon>
+      <DependentUpon>rptLoadSingleDocument.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SequencesTransactions.cs">
@@ -646,6 +688,9 @@
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCrystalReportsViewer.resx">
+      <DependentUpon>frmCrystalReportsViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentsAdmin.resx">
       <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -657,9 +702,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditItemsReceipt.resx">
       <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRpt.resx">
-      <DependentUpon>frmRpt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSplitTransactions.resx">
       <DependentUpon>frmSplitTransactions.cs</DependentUpon>
@@ -800,9 +842,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="rptOffers.rpt">
+    <EmbeddedResource Include="rptLoadSingleDocument.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptOffers.cs</LastGenOutput>
+      <LastGenOutput>rptLoadSingleDocument.cs</LastGenOutput>
     </EmbeddedResource>
     <EntityDeploy Include="FlameTradeDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
