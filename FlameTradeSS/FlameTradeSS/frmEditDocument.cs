@@ -811,6 +811,25 @@ namespace FlameTradeSS
                        
                             await db.SaveChangesAsync();
                             CommonTasks.SendInfoMsg("Документа е издаден успешно : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
+
+                            foreach(DocumentTransactions docTransactions in newDocument.DocumentTransactions)
+                            {
+                                int maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+
+                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+
+                                TransactionNumbering transactionNumbering = new TransactionNumbering();
+                                transactionNumbering.TransactionsType = docTransactions.TransactionsType;
+                                transactionNumbering.Documents = newDocument;
+                                transactionNumbering.Number = maxTransactionNumber + 1;
+                                transactionNumbering.DocumentTransactions = docTransactions;
+
+                                db.TransactionNumbering.Add(transactionNumbering);
+
+                                await db.SaveChangesAsync();
+
+
+                            }
                         }
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
                     }

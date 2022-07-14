@@ -31,6 +31,7 @@ namespace FlameTradeSS
            // crystalReportViewer.ReportSource = null;
             rptSingleDocumentOffer1.SetParameterValue(0, document.ID);
             crystalReportViewer.ReportSource = rptSingleDocumentOffer1;
+            crystalReportViewer.RefreshReport();
             rptSingleDocumentOffer1.DataDefinition.FormulaFields["MainCompany"].Text = "\""+mainCompany.Partner_name+"\"";
            
         }
