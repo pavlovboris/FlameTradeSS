@@ -52,15 +52,15 @@ namespace FlameTradeSS
             transactionsTypeBindingSource1.Add(new TransactionsType() { TypeName = "Всички"});
             foreach(DataGridViewRow dgvr in dgvDocumentTransactions.Rows)
             {
-                DocumentTransactions documentTransactions = dgvr.DataBoundItem as DocumentTransactions;
-                if (documentTransactions != null)
+                DocumentTransactions dcmTransactions = dgvr.DataBoundItem as DocumentTransactions;
+                if (dcmTransactions != null)
                 {
                     //TransactionsType trt = documentTransactions.TransactionsType;
                     
-                    if (existingTransactionTypes.Where(trt => trt.Equals(documentTransactions.TransactionsType)).SingleOrDefault()==null)
+                    if (existingTransactionTypes.Where(trt => trt.Equals(dcmTransactions.TransactionsType)).SingleOrDefault()==null)
                     {
-                        transactionsTypeBindingSource1.Add(documentTransactions.TransactionsType);
-                        existingTransactionTypes.Add(documentTransactions.TransactionsType);
+                        transactionsTypeBindingSource1.Add(dcmTransactions.TransactionsType);
+                        existingTransactionTypes.Add(dcmTransactions.TransactionsType);
                     }
                 }
             }
@@ -88,6 +88,7 @@ namespace FlameTradeSS
                 {
                     listBoxTransactionsAdd.Items.Add(possible.TransactionsType);
                     listBoxTransactionsAdd.DisplayMember = "TypeName";
+                    
                 }
             }
 
@@ -814,7 +815,16 @@ namespace FlameTradeSS
 
                             foreach(DocumentTransactions docTransactions in newDocument.DocumentTransactions)
                             {
-                                int maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+                                int maxTransactionNumber = 0;
+
+                                try
+                                {
+                                    maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+
+                                } catch
+                                {
+
+                                }
 
                                 docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
 
@@ -827,8 +837,6 @@ namespace FlameTradeSS
                                 db.TransactionNumbering.Add(transactionNumbering);
 
                                 await db.SaveChangesAsync();
-
-
                             }
                         }
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
