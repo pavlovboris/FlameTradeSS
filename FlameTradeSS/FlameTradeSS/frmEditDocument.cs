@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -1194,7 +1195,15 @@ namespace FlameTradeSS
             frmCrystalReportsViewer frmCrystalReportsViewer = new frmCrystalReportsViewer();
             frmCrystalReportsViewer.db = db;
             frmCrystalReportsViewer.document = newDocument;
+            frmCrystalReportsViewer.rptSingleDocumentOffer1.SetDatabaseLogon("CstmDBDefSol", "uncloak-TAIWAN-peccary-listless");
+            //ParameterDiscreteValue parameter = new ParameterDiscreteValue();
+            //parameter.Value = newDocument.ID;
+            //parameter.IsRange = true;
 
+            //frmCrystalReportsViewer.rptSingleDocument1.Parameter_DocumentID.CurrentValues.AddValue(newDocument.ID);
+            //frmCrystalReportsViewer.rptSingleDocument1.Parameter_DocumentID.DefaultValues.Add(parameter);
+           // frmCrystalReportsViewer.rptSingleDocument1.SetParameterValue(0,newDocument.ID);
+            
             frmCrystalReportsViewer.Show();
         }
     }

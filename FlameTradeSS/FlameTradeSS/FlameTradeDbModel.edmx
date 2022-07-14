@@ -165,6 +165,7 @@
           <Property Name="ReceiptModelID" Type="int" Nullable="false" />
           <Property Name="TransactionSurfaceID" Type="int" />
           <Property Name="Comment" Type="varchar" MaxLength="250" />
+          <Property Name="TransactionNumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DocumentTransactionsComments">
           <Key>
@@ -740,6 +741,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TransactionLineID" Type="int" Nullable="false" />
           <Property Name="OriginTransactionLineID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionNumbering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+          <Property Name="DocumentTransactionID" Type="int" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TransactionPersons">
           <Key>
@@ -2125,6 +2136,42 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionNumbering_Documents">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+          <End Role="TransactionNumbering" Type="Self.TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionNumbering_DocumentTransactions">
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
+          <End Role="TransactionNumbering" Type="Self.TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="DocumentTransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionNumbering_TransactionsType">
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="1" />
+          <End Role="TransactionNumbering" Type="Self.TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionPersons_DocumentTransactionsID">
           <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="1" />
           <End Role="TransactionPersons" Type="Self.TransactionPersons" Multiplicity="*" />
@@ -2425,6 +2472,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="TransactionLines" EntityType="Self.TransactionLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLinesComments" EntityType="Self.TransactionLinesComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionLinesTransformation" EntityType="Self.TransactionLinesTransformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionNumbering" EntityType="Self.TransactionNumbering" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionPersons" EntityType="Self.TransactionPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionReceipt" EntityType="Self.TransactionReceipt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionRowsDependancy" EntityType="Self.TransactionRowsDependancy" Schema="dbo" store:Type="Tables" />
@@ -2870,6 +2918,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionLines" EntitySet="TransactionLines" />
             <End Role="TransactionLinesTransformation" EntitySet="TransactionLinesTransformation" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionNumbering_Documents" Association="Self.FK_TransactionNumbering_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionNumbering_DocumentTransactions" Association="Self.FK_TransactionNumbering_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionNumbering_TransactionsType" Association="Self.FK_TransactionNumbering_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionPersons_DocumentTransactionsID" Association="Self.FK_TransactionPersons_DocumentTransactionsID">
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionPersons" EntitySet="TransactionPersons" />
@@ -3006,6 +3066,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="Issued" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DocumentsFinancialPlan" Relationship="FlameTradeDbModel.FK_DocumentsFinancialPlan_Documents" FromRole="Documents" ToRole="DocumentsFinancialPlan" />
           <NavigationProperty Name="AutoStringDocuments" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_Documents" FromRole="Documents" ToRole="AutoStringDocuments" />
+          <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_Documents" FromRole="Documents" ToRole="TransactionNumbering" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -3088,6 +3149,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_DocumentTransactions_Surfaces" FromRole="DocumentTransactions" ToRole="Surfaces" />
           <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DocumentTransactionsComments" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions" FromRole="DocumentTransactions" ToRole="DocumentTransactionsComments" />
+          <Property Name="TransactionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions" FromRole="DocumentTransactions" ToRole="TransactionNumbering" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -3651,6 +3714,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="SurfaceTypes" Relationship="FlameTradeDbModel.FK_TransactionsType_SurfaceTypes" FromRole="TransactionsType" ToRole="SurfaceTypes" />
           <Property Name="DefaultReceiptModelID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_TransactionsType_ReceiptModels" FromRole="TransactionsType" ToRole="ReceiptModels" />
+          <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" FromRole="TransactionsType" ToRole="TransactionNumbering" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -5074,6 +5138,19 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="ItemsParameters" EntitySet="ItemsParameters" />
             <End Role="ReceiptLines" EntitySet="ReceiptLines" />
           </AssociationSet>
+          <EntitySet Name="TransactionNumbering" EntityType="FlameTradeDbModel.TransactionNumbering" />
+          <AssociationSet Name="FK_TransactionNumbering_Documents" Association="FlameTradeDbModel.FK_TransactionNumbering_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionNumbering_DocumentTransactions" Association="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionNumbering_TransactionsType" Association="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType">
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+            <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -6140,6 +6217,55 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TransactionNumbering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentTransactionID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="FlameTradeDbModel.FK_TransactionNumbering_Documents" FromRole="TransactionNumbering" ToRole="Documents" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions" FromRole="TransactionNumbering" ToRole="DocumentTransactions" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" FromRole="TransactionNumbering" ToRole="TransactionsType" />
+        </EntityType>
+        <Association Name="FK_TransactionNumbering_Documents">
+          <End Type="FlameTradeDbModel.Documents" Role="Documents" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionNumbering" Role="TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionNumbering_DocumentTransactions">
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionNumbering" Role="TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="DocumentTransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionNumbering_TransactionsType">
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionNumbering" Role="TransactionNumbering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionNumbering">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6224,6 +6350,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="TransactionSurfaceID" ColumnName="TransactionSurfaceID" />
                 <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
@@ -7043,6 +7170,17 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
               <MappingFragment StoreEntitySet="ReceiptModelsItemsParameters">
                 <ScalarProperty Name="ItemsParameterID" ColumnName="ItemsParameterID" />
                 <ScalarProperty Name="ReceiptModelID" ColumnName="ReceiptModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionNumbering">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionNumbering">
+              <MappingFragment StoreEntitySet="TransactionNumbering">
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="DocumentTransactionID" ColumnName="DocumentTransactionID" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -59,6 +59,8 @@ namespace FlameTradeSS
             surfaceTypesBindingSource.Add(new SurfaceTypes());
             LinesType nullLinesType = new LinesType();
             linesTypeBindingSource.Add(nullLinesType);
+            receiptModelsBindingSource.DataSource = db.ReceiptModels.ToList();
+            receiptModelsBindingSource.Add(new ReceiptModels());
         }
 
         private void btnClose_Click(object sender, EventArgs e)

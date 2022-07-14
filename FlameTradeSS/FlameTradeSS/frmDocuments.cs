@@ -205,10 +205,10 @@ namespace FlameTradeSS
         private void dgvDocuments_ColumnDisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
         {
             Rectangle pointIsCanceled = new Rectangle();
-            Rectangle pointSequence = new Rectangle();
+            _ = new Rectangle();
 
             pointIsCanceled = dgvDocuments.GetColumnDisplayRectangle(isCanceledDataGridViewTextBoxColumn.Index, false);
-            pointSequence = dgvDocuments.GetColumnDisplayRectangle(documentSequenceIDDataGridViewTextBoxColumn.Index, false);
+            Rectangle pointSequence = dgvDocuments.GetColumnDisplayRectangle(documentSequenceIDDataGridViewTextBoxColumn.Index, false);
 
             pointIsCanceled.Y += 100;
             pointIsCanceled.X += 12;

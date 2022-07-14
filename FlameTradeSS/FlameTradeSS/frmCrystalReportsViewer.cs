@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CrystalDecisions.Shared;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,22 +25,15 @@ namespace FlameTradeSS
 
         private void crystalReportViewer_Load(object sender, EventArgs e)
         {
-           /* string connectionString = @"Data Source=definedsolutions-sql-server.database.windows.net;Initial Catalog=FlameTradeDb;User ID=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless;"; 
 
+            Partners mainCompany = db.Partners.Where(p => p.PartnerGroups.GroupName == "Main Company").FirstOrDefault();
 
-            SqlConnection mySqlConnection = new SqlConnection(connectionString);
-            SqlCommand mySqlCommand = new SqlCommand("select * from Documents;select * from DocumentSequences",mySqlConnection);
-            SqlDataAdapter mySqlDataAdapter = new SqlDataAdapter(mySqlCommand);
-
-            DataSet ds = new DataSet();
-
-            mySqlDataAdapter.Fill(ds);*/
-
-
-           // rptLoadSingleDocument2.SetDatabaseLogon("CstmDBDefSol","uncloak-TAIWAN-peccary-listless");
-            /*rptLoadSingleDocument1.Database.Tables["Documents"].SetDataSource(ds.Tables["Documents"]);
-            rptLoadSingleDocument1.Database.Tables["DocumentSequences"].SetDataSource(ds.Tables["DocumentSequences"]);*/
-
+           // crystalReportViewer.ReportSource = null;
+            rptSingleDocumentOffer1.SetParameterValue(0, document.ID);
+            crystalReportViewer.ReportSource = rptSingleDocumentOffer1;
+            rptSingleDocumentOffer1.DataDefinition.FormulaFields["MainCompany"].Text = "\""+mainCompany.Partner_name+"\"";
+           
         }
+
     }
 }

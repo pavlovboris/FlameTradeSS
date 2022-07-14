@@ -25,6 +25,7 @@ namespace FlameTradeSS
             this.PossibleFinancialCategoryTransactionsType = new HashSet<PossibleFinancialCategoryTransactionsType>();
             this.PossibleSequenceTransformationsProperties = new HashSet<PossibleSequenceTransformationsProperties>();
             this.PossibleSequenceTransformationsProperties1 = new HashSet<PossibleSequenceTransformationsProperties>();
+            this.TransactionNumbering = new HashSet<TransactionNumbering>();
         }
     
         public int ID { get; set; }
@@ -54,5 +55,7 @@ namespace FlameTradeSS
         public virtual ICollection<PossibleSequenceTransformationsProperties> PossibleSequenceTransformationsProperties1 { get; set; }
         public virtual SurfaceTypes SurfaceTypes { get; set; }
         public virtual ReceiptModels ReceiptModels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionNumbering> TransactionNumbering { get; set; }
     }
 }

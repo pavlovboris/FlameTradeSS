@@ -32,20 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransactionTypes));
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvTransactionTypes = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.DefaultSurfaceTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionMultiplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linesRelationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.linesTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.receiptModelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionMultiplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.linesRelationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DefaultSurfaceTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DefaultReceiptModelID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -54,7 +57,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(505, 6);
+            this.btnClose.Location = new System.Drawing.Point(601, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
@@ -77,14 +80,27 @@
             this.typeNameDataGridViewTextBoxColumn,
             this.transactionMultiplierDataGridViewTextBoxColumn,
             this.linesRelationDataGridViewTextBoxColumn,
-            this.DefaultSurfaceTypeID});
+            this.DefaultSurfaceTypeID,
+            this.DefaultReceiptModelID});
             this.dgvTransactionTypes.DataSource = this.transactionsTypeBindingSource;
             this.dgvTransactionTypes.Location = new System.Drawing.Point(12, 65);
             this.dgvTransactionTypes.Name = "dgvTransactionTypes";
             this.dgvTransactionTypes.RowHeadersWidth = 20;
             this.dgvTransactionTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransactionTypes.Size = new System.Drawing.Size(536, 346);
+            this.dgvTransactionTypes.Size = new System.Drawing.Size(632, 346);
             this.dgvTransactionTypes.TabIndex = 10;
+            // 
+            // linesTypeBindingSource
+            // 
+            this.linesTypeBindingSource.DataSource = typeof(FlameTradeSS.LinesType);
+            // 
+            // surfaceTypesBindingSource
+            // 
+            this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
+            // 
+            // transactionsTypeBindingSource
+            // 
+            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
             // 
             // btnAdd
             // 
@@ -128,7 +144,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(455, 417);
+            this.btnSave.Location = new System.Drawing.Point(551, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -137,16 +153,9 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // DefaultSurfaceTypeID
+            // receiptModelsBindingSource
             // 
-            this.DefaultSurfaceTypeID.DataPropertyName = "DefaultSurfaceTypeID";
-            this.DefaultSurfaceTypeID.DataSource = this.surfaceTypesBindingSource;
-            this.DefaultSurfaceTypeID.DisplayMember = "TypeName";
-            this.DefaultSurfaceTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.DefaultSurfaceTypeID.HeaderText = "Default Surface Type";
-            this.DefaultSurfaceTypeID.Name = "DefaultSurfaceTypeID";
-            this.DefaultSurfaceTypeID.ValueMember = "ID";
-            this.DefaultSurfaceTypeID.Width = 150;
+            this.receiptModelsBindingSource.DataSource = typeof(FlameTradeSS.ReceiptModels);
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
@@ -175,24 +184,32 @@
             this.linesRelationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.linesRelationDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
-            // linesTypeBindingSource
+            // DefaultSurfaceTypeID
             // 
-            this.linesTypeBindingSource.DataSource = typeof(FlameTradeSS.LinesType);
+            this.DefaultSurfaceTypeID.DataPropertyName = "DefaultSurfaceTypeID";
+            this.DefaultSurfaceTypeID.DataSource = this.surfaceTypesBindingSource;
+            this.DefaultSurfaceTypeID.DisplayMember = "TypeName";
+            this.DefaultSurfaceTypeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.DefaultSurfaceTypeID.HeaderText = "Default Surface Type";
+            this.DefaultSurfaceTypeID.Name = "DefaultSurfaceTypeID";
+            this.DefaultSurfaceTypeID.ValueMember = "ID";
+            this.DefaultSurfaceTypeID.Width = 150;
             // 
-            // surfaceTypesBindingSource
+            // DefaultReceiptModelID
             // 
-            this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
-            // 
-            // transactionsTypeBindingSource
-            // 
-            this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            this.DefaultReceiptModelID.DataPropertyName = "DefaultReceiptModelID";
+            this.DefaultReceiptModelID.DataSource = this.receiptModelsBindingSource;
+            this.DefaultReceiptModelID.DisplayMember = "ModelName";
+            this.DefaultReceiptModelID.HeaderText = "DefaultReceiptModelID";
+            this.DefaultReceiptModelID.Name = "DefaultReceiptModelID";
+            this.DefaultReceiptModelID.ValueMember = "ID";
             // 
             // frmTransactionTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(560, 481);
+            this.ClientSize = new System.Drawing.Size(656, 481);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
@@ -201,8 +218,8 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(560, 481);
-            this.MinimumSize = new System.Drawing.Size(560, 481);
+            this.MaximumSize = new System.Drawing.Size(656, 481);
+            this.MinimumSize = new System.Drawing.Size(656, 481);
             this.Name = "frmTransactionTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPartnerGroups";
@@ -213,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,5 +249,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionMultiplierDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn linesRelationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn DefaultSurfaceTypeID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn DefaultReceiptModelID;
+        private System.Windows.Forms.BindingSource receiptModelsBindingSource;
     }
 }

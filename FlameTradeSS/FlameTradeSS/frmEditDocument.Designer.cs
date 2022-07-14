@@ -46,6 +46,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnApplyReceiptModel = new System.Windows.Forms.Button();
             this.cmbSequenceFilter = new System.Windows.Forms.ComboBox();
             this.transactionsTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -108,7 +109,6 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -244,6 +244,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1550, 239);
             this.panel1.TabIndex = 12;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(1070, 52);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 36);
+            this.btnPrint.TabIndex = 31;
+            this.btnPrint.Text = "Визуализиране";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnApplyReceiptModel
             // 
@@ -791,16 +801,6 @@
             this.toolStripMenuClose.Name = "toolStripMenuClose";
             this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuClose.Text = "Close";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1079, 52);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(74, 36);
-            this.btnPrint.TabIndex = 31;
-            this.btnPrint.Text = "Принтирай";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmEditDocument
             // 

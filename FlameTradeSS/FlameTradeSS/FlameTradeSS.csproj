@@ -588,10 +588,10 @@
     <Compile Include="Roles.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="rptLoadSingleDocument.cs">
+    <Compile Include="rptSingleDocumentOffer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptLoadSingleDocument.rpt</DependentUpon>
+      <DependentUpon>rptSingleDocumentOffer.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SequencesTransactions.cs">
@@ -629,6 +629,9 @@
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransactionLinesTransformation.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionNumbering.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransactionPersons.cs">
@@ -690,6 +693,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCrystalReportsViewer.resx">
       <DependentUpon>frmCrystalReportsViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentsAdmin.resx">
       <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
@@ -842,9 +846,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="rptLoadSingleDocument.rpt">
+    <EmbeddedResource Include="rptSingleDocumentOffer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptLoadSingleDocument.cs</LastGenOutput>
+      <LastGenOutput>rptSingleDocumentOffer.cs</LastGenOutput>
     </EmbeddedResource>
     <EntityDeploy Include="FlameTradeDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

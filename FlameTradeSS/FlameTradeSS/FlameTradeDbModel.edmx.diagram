@@ -211,6 +211,10 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionReceipt_Surfaces" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_Surfaces" />
         <AssociationConnector Association="FlameTradeDbModel.FK_ReceiptLines_ItemsParameters" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.TransactionNumbering" Width="1.5" PointX="23.75" PointY="3.625" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_Documents" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
