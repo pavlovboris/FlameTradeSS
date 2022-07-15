@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.rptSingleDocumentOffer1 = new rptSingleDocumentOffer();
+            this.rptSingleDocumentOffer1 = new FlameTradeSS.rptSingleDocumentOffer();
             this.SuspendLayout();
             // 
             // crystalReportViewer
@@ -40,7 +40,7 @@
             this.crystalReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer.Name = "crystalReportViewer";
-            this.crystalReportViewer.Size = new System.Drawing.Size(800, 450);
+            this.crystalReportViewer.Size = new System.Drawing.Size(1184, 961);
             this.crystalReportViewer.TabIndex = 0;
             this.crystalReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.ParameterPanel;
             this.crystalReportViewer.Load += new System.EventHandler(this.crystalReportViewer_Load);
@@ -49,9 +49,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 961);
             this.Controls.Add(this.crystalReportViewer);
             this.Name = "frmCrystalReportsViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCrystalReportsViewer";
             this.ResumeLayout(false);
 
