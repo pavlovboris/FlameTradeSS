@@ -109,7 +109,15 @@ namespace FlameTradeSS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-          
+            PossibleSequenceTransofrmation possibleSequenceTransofrmation = dgvPossibleSequenceTransformations.CurrentRow.DataBoundItem as PossibleSequenceTransofrmation;
+            if (possibleSequenceTransofrmation!=null)
+            {
+                if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната трансформация ?") == true)
+                {
+                    possibleSequenceTransofrmationBindingSource.Remove(possibleSequenceTransofrmation);
+                    db.PossibleSequenceTransofrmation.Remove(possibleSequenceTransofrmation);
+                }
+            }
         }
 
         private void buttonAdd2_Click(object sender, EventArgs e)
@@ -127,11 +135,13 @@ namespace FlameTradeSS
 
         private void buttonRemove2_Click(object sender, EventArgs e)
         {
-            DocumentSequencesProperties documentSequencesProperties = dgvTransformationsProperties.CurrentRow.DataBoundItem as DocumentSequencesProperties;
+            PossibleSequenceTransformationsProperties documentSequencesProperties = dgvTransformationsProperties.CurrentRow.DataBoundItem as PossibleSequenceTransformationsProperties;
             if (CommonTasks.SendWarningMsg("Сигурни ли сте, че искате да премахнете избраната рестрикция : ?") == true)
             {
                 if (documentSequencesProperties != null)
                 {
+                    possibleSequenceTransformationsPropertiesBindingSource.Remove(documentSequencesProperties);
+                    db.PossibleSequenceTransformationsProperties.Remove(documentSequencesProperties);
                 }
             }
         }

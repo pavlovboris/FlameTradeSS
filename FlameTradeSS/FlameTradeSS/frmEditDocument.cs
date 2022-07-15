@@ -919,25 +919,46 @@ namespace FlameTradeSS
             {
                 if (documentTransactions!=null)
                 {
+                    List<ToolStripMenuItem> menu = new List<ToolStripMenuItem>();
+
+                    foreach(ToolStripMenuItem toolStripMenuItem in toolStripMenuCreateFrom.DropDownItems)
+                    {
+                        menu.Add(toolStripMenuItem);
+                    }
+
                     foreach (SequencesTransactions sequencesTransactions in db.SequencesTransactions.Where(st => st.SquenceID == newDocument.DocumentSequenceID))
                     {
-                        ToolStripMenuItem newToolStripMenuItem = new ToolStripMenuItem();
-                        newToolStripMenuItem.Text = sequencesTransactions.TransactionsType.TypeName;
-                        
-                        toolStripMenuCreateFrom.DropDownItems.Add(newToolStripMenuItem);
+                        bool exists = false;
+                        foreach(ToolStripMenuItem existingStripMunu in menu)
+                        {
+                            if (sequencesTransactions.TransactionsType == existingStripMunu.Tag)
+                            {
+                                exists = true;
+                            }
+                        } 
 
-                        ToolStripMenuItem allToolStripMenu = new ToolStripMenuItem();
-                        allToolStripMenu.Text = "всиюки редове";
-                        allToolStripMenu.Tag = sequencesTransactions.TransactionsType;
-                        allToolStripMenu.Click += NewToolStripMenuItem_Click;
+                        if (exists == false)
+                        {
 
-                        newToolStripMenuItem.DropDownItems.Add(allToolStripMenu);
+                            ToolStripMenuItem newToolStripMenuItem = new ToolStripMenuItem();
+                            newToolStripMenuItem.Text = sequencesTransactions.TransactionsType.TypeName;
+                            newToolStripMenuItem.Tag = sequencesTransactions.TransactionsType;
 
-                        ToolStripMenuItem specificToolStripMenu = new ToolStripMenuItem();
-                        specificToolStripMenu.Text = "избор на редове";
+                            toolStripMenuCreateFrom.DropDownItems.Add(newToolStripMenuItem);
 
-                        newToolStripMenuItem.DropDownItems.Add(specificToolStripMenu);
+                            ToolStripMenuItem allToolStripMenu = new ToolStripMenuItem();
+                            allToolStripMenu.Text = "всиюки редове";
+                            allToolStripMenu.Tag = sequencesTransactions.TransactionsType;
+                            allToolStripMenu.Click += NewToolStripMenuItem_Click;
 
+                            newToolStripMenuItem.DropDownItems.Add(allToolStripMenu);
+
+                            ToolStripMenuItem specificToolStripMenu = new ToolStripMenuItem();
+                            specificToolStripMenu.Text = "избор на редове";
+
+                            newToolStripMenuItem.DropDownItems.Add(specificToolStripMenu);
+
+                        }
                     }
                 }
             }
@@ -962,7 +983,7 @@ namespace FlameTradeSS
             newDocumentTransactions.Comment = documentTransactions.Comment;
             newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
             newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
-            //newDocumentTransactions.ReceiptModels = documentTransactions.ReceiptModels;
+            newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
             //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
             //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
             newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
@@ -976,10 +997,25 @@ namespace FlameTradeSS
             transactionsTransformations.DocumentTransactions1 = documentTransactions;
             db.TransactionsTransformations.Add(transactionsTransformations);
 
+            //List<PossibleSequenceTransformationsProperties> possibleSequenceTransformationsProperties = new List<PossibleSequenceTransformationsProperties>();
+
+
+
+            PossibleSequenceTransformationsProperties newTransactionSettings = db.PossibleSequenceTransformationsProperties.Where(pstp =>pstp.PossibleSequenceTransofrmation.DocumentSequenceID == newDocument.DocumentSequenceID && pstp.PossibleSequenceTransofrmation.PossibleDocumentSequenceID == newDocument.DocumentSequenceID && pstp.TransactionTypeID == documentTransactions.TransactionsType.ID && pstp.TransactionTypeIDTo == newDocumentTransactions.TransactionsType.ID).SingleOrDefault();
+            
+             //   possibleSequenceTransformationsProperties.Add(newTransactionSettings);
+            
+
+            List<TransactionLines> currentLines = new List<TransactionLines>();
+            foreach (TransactionLines currentLine in documentTransactions.TransactionLines)
+            {
+
+            }
+
             foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
             {
                 TransactionLines newTransactionLines = new TransactionLines();
-                newTransactionLines.DocumentTransactions = documentTransactions;
+                newTransactionLines.DocumentTransactions = newDocumentTransactions;
                 newTransactionLines.Items = transactionLines.Items;
                 newTransactionLines.Machines = transactionLines.Machines;
                 newTransactionLines.Services = transactionLines.Services;
@@ -1005,12 +1041,36 @@ namespace FlameTradeSS
                 newTransactionLines.Ordering = transactionLines.Ordering;
                 newTransactionLines.SurfaceID = transactionLines.SurfaceID;
                 newTransactionLines.Qty = transactionLines.Qty;
+                
+                if(newTransactionSettings.RemainDeliveryQTYAction ==1 )
+                {
+                    newTransactionLines.RemainingDeliveryQTY = transactionLines.Qty;
+                }
 
-                documentTransactionsBindingSource.Add(newTransactionLines);
+                if(newTransactionSettings.RemainInvoiceQTYAction == 1)
+                {
+                    newTransactionLines.RemainingInvoiceQTY = transactionLines.Qty;
+                }
+
+                if ( newTransactionSettings.RemainPackagingQTYAction == 1) 
+                { 
+                    newTransactionLines.RemainingPackagingQTY = transactionLines.Qty;
+                }
+
+                if (newTransactionSettings.RemainProductionQTYAction==1)
+                {
+                    newTransactionLines.RemainingProductionQTY = transactionLines.Qty;
+                }
+
+                if (newTransactionSettings.RemainQTYAction == 1 )
+                {
+                    newTransactionLines.RemainingQTY = transactionLines.Qty;
+                }
+
                 db.TransactionLines.Add(newTransactionLines);
             }
 
-            Enabled = false;
+           // Enabled = false;
         }
 
         private void contextMenuStripDocumentTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
