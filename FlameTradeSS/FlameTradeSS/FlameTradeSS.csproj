@@ -131,6 +131,12 @@
     <Compile Include="DocumentStringLines.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="frmCreateFromTransactionOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateFromTransactionOptions.Designer.cs">
+      <DependentUpon>frmCreateFromTransactionOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCrystalReportsViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,12 @@
     </Compile>
     <Compile Include="frmEditItemsReceipt.Designer.cs">
       <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreateFromTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateFromTransaction.Designer.cs">
+      <DependentUpon>frmCreateFromTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSplitTransactions.cs">
       <SubType>Form</SubType>
@@ -691,6 +703,9 @@
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCreateFromTransactionOptions.resx">
+      <DependentUpon>frmCreateFromTransactionOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCrystalReportsViewer.resx">
       <DependentUpon>frmCrystalReportsViewer.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -706,6 +721,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditItemsReceipt.resx">
       <DependentUpon>frmEditItemsReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCreateFromTransaction.resx">
+      <DependentUpon>frmCreateFromTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSplitTransactions.resx">
       <DependentUpon>frmSplitTransactions.cs</DependentUpon>

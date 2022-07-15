@@ -888,7 +888,102 @@ namespace FlameTradeSS
             if(dgvDocumentTransactions.CurrentRow.Index == -1 | dgvDocumentTransactions.CurrentRow.DataBoundItem== null)
             {
                 e.Cancel = true;
+            } else
+            {
+                if (documentTransactions!=null)
+                {
+                    foreach (SequencesTransactions sequencesTransactions in db.SequencesTransactions.Where(st => st.SquenceID == newDocument.DocumentSequenceID))
+                    {
+                        ToolStripMenuItem newToolStripMenuItem = new ToolStripMenuItem();
+                        newToolStripMenuItem.Text = sequencesTransactions.TransactionsType.TypeName;
+                        
+                        toolStripMenuCreateFrom.DropDownItems.Add(newToolStripMenuItem);
+
+                        ToolStripMenuItem allToolStripMenu = new ToolStripMenuItem();
+                        allToolStripMenu.Text = "всиюки редове";
+                        allToolStripMenu.Tag = sequencesTransactions.TransactionsType;
+                        allToolStripMenu.Click += NewToolStripMenuItem_Click;
+
+                        newToolStripMenuItem.DropDownItems.Add(allToolStripMenu);
+
+                        ToolStripMenuItem specificToolStripMenu = new ToolStripMenuItem();
+                        specificToolStripMenu.Text = "избор на редове";
+
+                        newToolStripMenuItem.DropDownItems.Add(specificToolStripMenu);
+
+                    }
+                }
             }
+        }
+
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem sndrMenu = (ToolStripMenuItem)sender;
+            tempID = CurrentSessionData.Counter + 1;
+
+            CurrentSessionData.Counter = tempID;
+
+            DocumentTransactions newDocumentTransactions = new DocumentTransactions();
+            newDocumentTransactions.Documents = documentTransactions.Documents;
+            newDocumentTransactions.TransactionsType = (TransactionsType)sndrMenu.Tag;
+            newDocumentTransactions.CreationDateTime = DateTime.Now;
+            newDocumentTransactions.TransactionDate = documentTransactions.TransactionDate;
+            newDocumentTransactions.tempID = tempID;
+            newDocumentTransactions.TransactionSurfaceID = documentTransactions.TransactionSurfaceID;
+            newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
+            newDocumentTransactions.ColorID = documentTransactions.ColorID;
+            newDocumentTransactions.Comment = documentTransactions.Comment;
+            newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
+            newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
+            //newDocumentTransactions.ReceiptModels = documentTransactions.ReceiptModels;
+            //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
+            //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
+            newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
+            //newDocumentTransactions.IsReady = documentTransactions.IsReady;
+
+            documentTransactionsBindingSource.Add(newDocumentTransactions);
+            db.DocumentTransactions.Add(newDocumentTransactions);
+
+            TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
+            transactionsTransformations.DocumentTransactions = newDocumentTransactions;
+            transactionsTransformations.DocumentTransactions1 = documentTransactions;
+            db.TransactionsTransformations.Add(transactionsTransformations);
+
+            foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
+            {
+                TransactionLines newTransactionLines = new TransactionLines();
+                newTransactionLines.DocumentTransactions = documentTransactions;
+                newTransactionLines.Items = transactionLines.Items;
+                newTransactionLines.Machines = transactionLines.Machines;
+                newTransactionLines.Services = transactionLines.Services;
+                newTransactionLines.AdditionExpense = transactionLines.AdditionExpense;
+                newTransactionLines.Comment = transactionLines.Comment;
+                newTransactionLines.TransactionReceipt = transactionLines.TransactionReceipt;
+                newTransactionLines.WH = transactionLines.WH;
+                newTransactionLines.StartDate = transactionLines.StartDate;
+                newTransactionLines.SecondPartitionID = transactionLines.SecondPartitionID;
+                newTransactionLines.RequestDate = transactionLines.RequestDate;
+                newTransactionLines.CostPrice2 = transactionLines.CostPrice2;
+                newTransactionLines.CostPrice1 = transactionLines.CostPrice1;
+                newTransactionLines.CostPrice3 = transactionLines.CostPrice3;
+                newTransactionLines.SalePrice2 = transactionLines.SalePrice2;
+                newTransactionLines.SalePrice1 = transactionLines.SalePrice1;
+                newTransactionLines.SalePrice3 = transactionLines.SalePrice3;
+                newTransactionLines.Cycles = transactionLines.Cycles;
+                newTransactionLines.DurationHours = transactionLines.DurationHours;
+                newTransactionLines.Mu = transactionLines.Mu;
+                newTransactionLines.EndDate = transactionLines.EndDate;
+                newTransactionLines.FinancialCategories = transactionLines.FinancialCategories;
+                newTransactionLines.Partitions = transactionLines.Partitions;
+                newTransactionLines.Ordering = transactionLines.Ordering;
+                newTransactionLines.SurfaceID = transactionLines.SurfaceID;
+                newTransactionLines.Qty = transactionLines.Qty;
+
+                documentTransactionsBindingSource.Add(newTransactionLines);
+                db.TransactionLines.Add(newTransactionLines);
+            }
+
+            Enabled = false;
         }
 
         private void contextMenuStripDocumentTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -940,6 +1035,9 @@ namespace FlameTradeSS
 
                     CommonTasks.OpenForm(frmSplitTransactions);
                 }
+            } else if (e.ClickedItem == toolStripMenuCreateFrom)
+            {
+               
             }
         }
 

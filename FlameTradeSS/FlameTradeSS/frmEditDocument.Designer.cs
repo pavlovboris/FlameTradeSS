@@ -100,6 +100,8 @@
             this.IsCanceled = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripDocumentTransactions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuSplitTransaction = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuCreateFrom = new System.Windows.Forms.ToolStripMenuItem();
             this.documentTransactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDocumentNumber = new System.Windows.Forms.Label();
             this.txtDocumentNumber = new System.Windows.Forms.TextBox();
@@ -728,17 +730,30 @@
             // contextMenuStripDocumentTransactions
             // 
             this.contextMenuStripDocumentTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuSplitTransaction});
+            this.toolStripMenuSplitTransaction,
+            this.toolStripSeparator2,
+            this.toolStripMenuCreateFrom});
             this.contextMenuStripDocumentTransactions.Name = "contextMenuStripDocumentTransactions";
-            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(185, 26);
+            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(275, 76);
             this.contextMenuStripDocumentTransactions.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             this.contextMenuStripDocumentTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocumentTransactions_ItemClicked);
             // 
             // toolStripMenuSplitTransaction
             // 
             this.toolStripMenuSplitTransaction.Name = "toolStripMenuSplitTransaction";
-            this.toolStripMenuSplitTransaction.Size = new System.Drawing.Size(184, 22);
+            this.toolStripMenuSplitTransaction.Size = new System.Drawing.Size(274, 22);
             this.toolStripMenuSplitTransaction.Text = "Раздели Транзакция";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(271, 6);
+            // 
+            // toolStripMenuCreateFrom
+            // 
+            this.toolStripMenuCreateFrom.Name = "toolStripMenuCreateFrom";
+            this.toolStripMenuCreateFrom.Size = new System.Drawing.Size(274, 22);
+            this.toolStripMenuCreateFrom.Text = "Създай Транзакция от Маркираната ";
             // 
             // documentTransactionsBindingSource
             // 
@@ -915,5 +930,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuTabs;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuClose;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreateFrom;
     }
 }
