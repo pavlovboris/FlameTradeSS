@@ -1005,6 +1005,7 @@ namespace FlameTradeSS
             db.TransactionsTransformations.Add(transactionsTransformations);
 
             frmcreateFromTransactionOptions.newDocumentTransactions = newDocumentTransactions;
+            frmcreateFromTransactionOptions.transactionsTransformations = transactionsTransformations;
 
             Enabled = false;
 
@@ -1016,7 +1017,7 @@ namespace FlameTradeSS
 
         private void FrmcreateFromTransactionOptions_FormClosing(object sender, FormClosingEventArgs e)
         {
-            throw new NotImplementedException();
+          
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)

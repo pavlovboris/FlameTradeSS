@@ -76,13 +76,21 @@ namespace FlameTradeSS
 
             foreach (Surfaces surfaces in existingSurfaces)
             {
-                CheckBox newCheckBox = new CheckBox();
-                newCheckBox.Appearance = Appearance.Button;
-                checkedListBoxPartitions.Items.Add(newCheckBox);
-                newCheckBox.Tag = surfaces;
-                newCheckBox.CheckState = CheckState.Checked;
-                newCheckBox.Name = surfaces.SurfaceCode.ToString();
+                
+               // CheckBox newCheckBox = new CheckBox();
+                //newCheckBox.Appearance = Appearance.Button;
+                checkedListBoxPartitions.Items.Add(surfaces.SurfaceCode);
+                checkedListBoxPartitions.CheckOnClick = true;
+                
+                //newCheckBox.Tag = surfaces;
+                //newCheckBox.CheckState = CheckState.Checked;
+                //newCheckBox.Name = surfaces.SurfaceCode.ToString();
             }
+
+         //   foreach(CheckBox checkBox in checkedListBoxPartitions.Items)
+           // {
+             //   checkBox.Checked = true;
+           // }
         }
 
         private void cmbRoles_SelectionChangeCommitted(object sender, EventArgs e)
@@ -92,55 +100,51 @@ namespace FlameTradeSS
       
         private  void btnMoveRight_Click(object sender, EventArgs e)
         {
-            TransactionLines currentTransactionLines = dgvLeft.CurrentRow.DataBoundItem as TransactionLines;
 
-            if (currentTransactionLines!=null)
-            { 
-                TransactionLines newTransactionLines = new TransactionLines();
-                newTransactionLines.DocumentTransactions = newDocumentTransactions;
-                newTransactionLines.Items = currentTransactionLines.Items;
-                newTransactionLines.Machines = currentTransactionLines.Machines;
-                newTransactionLines.Services = currentTransactionLines.Services;
-                newTransactionLines.AdditionExpense = currentTransactionLines.AdditionExpense;
-                newTransactionLines.Comment = currentTransactionLines.Comment;
-                newTransactionLines.TransactionReceipt = currentTransactionLines.TransactionReceipt;
-                newTransactionLines.WH = currentTransactionLines.WH;
-                newTransactionLines.StartDate = currentTransactionLines.StartDate;
-                newTransactionLines.SecondPartitionID = currentTransactionLines.SecondPartitionID;
-                newTransactionLines.RequestDate = currentTransactionLines.RequestDate;
-                newTransactionLines.CostPrice2 = currentTransactionLines.CostPrice2;
-                newTransactionLines.CostPrice1 = currentTransactionLines.CostPrice1;
-                newTransactionLines.CostPrice3 = currentTransactionLines.CostPrice3;
-                newTransactionLines.SalePrice2 = currentTransactionLines.SalePrice2;
-                newTransactionLines.SalePrice1 = currentTransactionLines.SalePrice1;
-                newTransactionLines.SalePrice3 = currentTransactionLines.SalePrice3;
-                newTransactionLines.Cycles = currentTransactionLines.Cycles;
-                newTransactionLines.DurationHours = currentTransactionLines.DurationHours;
-                newTransactionLines.Mu = currentTransactionLines.Mu;
-                newTransactionLines.EndDate = currentTransactionLines.EndDate;
-                newTransactionLines.FinancialCategories = currentTransactionLines.FinancialCategories;
-                newTransactionLines.Partitions = currentTransactionLines.Partitions;
-                newTransactionLines.Ordering = currentTransactionLines.Ordering;
-                newTransactionLines.SurfaceID = currentTransactionLines.SurfaceID;
-                newTransactionLines.Qty = currentTransactionLines.Qty;
-                btnClose.Enabled = false;
-                btnConfirm.Enabled = false;
-                btnMoveLeft.Enabled = false;
-                btnMoveRight.Enabled = false;
-                dgvLeft.Enabled = false;
-                dgvRight.Enabled = false;
+            foreach(DataGridViewRow dgvr in dgvLeft.Rows)
+            {
+                //bool sss = (bool)dgvr.Cells[ChkBoxSelected.Index].Value;
 
-                //db.TransactionLines.Add(newTransactionLines);
-                //newTransactionLinesBindingSource.Add(newTransactionLines);
 
-                frmSplitTransactionsLinesQty frmSplitTransactionsLinesQty = new frmSplitTransactionsLinesQty();
-                
-                frmSplitTransactionsLinesQty.newTransactionLines = newTransactionLines;
-                frmSplitTransactionsLinesQty.transactionLinesBindingSource = newTransactionLinesBindingSource;
-                frmSplitTransactionsLinesQty.db = db;                
-                frmSplitTransactionsLinesQty.currentTransactionLines = currentTransactionLines;
-                frmSplitTransactionsLinesQty.FormClosing += FrmSplitTransactionsLinesQty_FormClosing;
-                frmSplitTransactionsLinesQty.ShowDialog();
+                if (dgvr.Cells[ChkBoxSelected.Index]!=null && (int)dgvr.Cells[ChkBoxSelected.Index].Value == 1)
+                {
+                    TransactionLines currentTransactionLines = dgvLeft.CurrentRow.DataBoundItem as TransactionLines;
+
+                    if (currentTransactionLines != null)
+                    {
+                        TransactionLines newTransactionLines = new TransactionLines();
+                        newTransactionLines.DocumentTransactions = newDocumentTransactions;
+                        newTransactionLines.Items = currentTransactionLines.Items;
+                        newTransactionLines.Machines = currentTransactionLines.Machines;
+                        newTransactionLines.Services = currentTransactionLines.Services;
+                        newTransactionLines.AdditionExpense = currentTransactionLines.AdditionExpense;
+                        newTransactionLines.Comment = currentTransactionLines.Comment;
+                        newTransactionLines.TransactionReceipt = currentTransactionLines.TransactionReceipt;
+                        newTransactionLines.WH = currentTransactionLines.WH;
+                        newTransactionLines.StartDate = currentTransactionLines.StartDate;
+                        newTransactionLines.SecondPartitionID = currentTransactionLines.SecondPartitionID;
+                        newTransactionLines.RequestDate = currentTransactionLines.RequestDate;
+                        newTransactionLines.CostPrice2 = currentTransactionLines.CostPrice2;
+                        newTransactionLines.CostPrice1 = currentTransactionLines.CostPrice1;
+                        newTransactionLines.CostPrice3 = currentTransactionLines.CostPrice3;
+                        newTransactionLines.SalePrice2 = currentTransactionLines.SalePrice2;
+                        newTransactionLines.SalePrice1 = currentTransactionLines.SalePrice1;
+                        newTransactionLines.SalePrice3 = currentTransactionLines.SalePrice3;
+                        newTransactionLines.Cycles = currentTransactionLines.Cycles;
+                        newTransactionLines.DurationHours = currentTransactionLines.DurationHours;
+                        newTransactionLines.Mu = currentTransactionLines.Mu;
+                        newTransactionLines.EndDate = currentTransactionLines.EndDate;
+                        newTransactionLines.FinancialCategories = currentTransactionLines.FinancialCategories;
+                        newTransactionLines.Partitions = currentTransactionLines.Partitions;
+                        newTransactionLines.Ordering = currentTransactionLines.Ordering;
+                        newTransactionLines.SurfaceID = currentTransactionLines.SurfaceID;
+                        newTransactionLines.Qty = currentTransactionLines.Qty;
+
+                        db.TransactionLines.Add(newTransactionLines);
+                        newTransactionLinesBindingSource.Add(newTransactionLines);
+
+                    }
+                }
             }
         }
 
@@ -177,16 +181,7 @@ namespace FlameTradeSS
 
                 foreach(TransactionLines transactionLines in lines )
                 {
-                    List<TransactionRowsDependancy> rowsDependancies = new List<TransactionRowsDependancy>();
-                    foreach(TransactionRowsDependancy transactionRowsDependancy in transactionLines.TransactionRowsDependancy)
-                    {
-                        rowsDependancies.Add(transactionRowsDependancy);
-                    }
 
-                    foreach(TransactionRowsDependancy transactionRowsDependancy in rowsDependancies)
-                    {
-                        db.TransactionRowsDependancy.Remove(transactionRowsDependancy);
-                    }
                     db.TransactionLines.Remove(transactionLines);
                 }
 
@@ -216,6 +211,22 @@ namespace FlameTradeSS
             {
                 Close();
             }
+        }
+
+        private void dgvLeft_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+           
+
+            if (e.ColumnIndex == ChkBoxSelected.Index && e.Value == null)
+            {
+                e.Value = true;
+                dgvLeft.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+            }
+        }
+
+        private void dgvLeft_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+         
         }
     }
 }
