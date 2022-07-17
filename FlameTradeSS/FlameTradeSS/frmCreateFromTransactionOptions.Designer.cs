@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateFromTransaction));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateFromTransactionOptions));
             this.lbTransactionlbl = new System.Windows.Forms.Label();
             this.dgvLeft = new System.Windows.Forms.DataGridView();
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -57,6 +57,7 @@
             this.btnMoveLeft = new System.Windows.Forms.Button();
             this.btnMoveRight = new System.Windows.Forms.Button();
             this.documentTransactionsbindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.checkedListBoxPartitions = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
@@ -72,7 +73,7 @@
             // 
             this.lbTransactionlbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTransactionlbl.AutoSize = true;
-            this.lbTransactionlbl.Location = new System.Drawing.Point(79, 22);
+            this.lbTransactionlbl.Location = new System.Drawing.Point(217, 22);
             this.lbTransactionlbl.Name = "lbTransactionlbl";
             this.lbTransactionlbl.Size = new System.Drawing.Size(77, 13);
             this.lbTransactionlbl.TabIndex = 1;
@@ -94,7 +95,7 @@
             this.surfaceIDDataGridViewTextBoxColumn,
             this.commentDataGridViewTextBoxColumn});
             this.dgvLeft.DataSource = this.currentTransactionLinesBindingSource;
-            this.dgvLeft.Location = new System.Drawing.Point(15, 57);
+            this.dgvLeft.Location = new System.Drawing.Point(146, 115);
             this.dgvLeft.Name = "dgvLeft";
             this.dgvLeft.ReadOnly = true;
             this.dgvLeft.RowHeadersWidth = 5;
@@ -204,7 +205,7 @@
             this.surfaceIDDataGridViewTextBoxColumn1,
             this.commentDataGridViewTextBoxColumn1});
             this.dgvRight.DataSource = this.newTransactionLinesBindingSource;
-            this.dgvRight.Location = new System.Drawing.Point(852, 57);
+            this.dgvRight.Location = new System.Drawing.Point(986, 115);
             this.dgvRight.Name = "dgvRight";
             this.dgvRight.ReadOnly = true;
             this.dgvRight.RowHeadersWidth = 5;
@@ -262,7 +263,7 @@
             // 
             this.lblTransactionType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTransactionType.AutoSize = true;
-            this.lblTransactionType.Location = new System.Drawing.Point(152, 23);
+            this.lblTransactionType.Location = new System.Drawing.Point(290, 23);
             this.lblTransactionType.Name = "lblTransactionType";
             this.lblTransactionType.Size = new System.Drawing.Size(13, 13);
             this.lblTransactionType.TabIndex = 7;
@@ -276,7 +277,7 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirm.Location = new System.Drawing.Point(1465, 394);
+            this.btnConfirm.Location = new System.Drawing.Point(1603, 446);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(113, 52);
             this.btnConfirm.TabIndex = 14;
@@ -291,7 +292,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(1536, 6);
+            this.btnClose.Location = new System.Drawing.Point(1674, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 45);
             this.btnClose.TabIndex = 6;
@@ -303,7 +304,7 @@
             this.btnMoveLeft.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveLeft.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_056_Icon_64;
-            this.btnMoveLeft.Location = new System.Drawing.Point(759, 253);
+            this.btnMoveLeft.Location = new System.Drawing.Point(893, 253);
             this.btnMoveLeft.Name = "btnMoveLeft";
             this.btnMoveLeft.Size = new System.Drawing.Size(75, 66);
             this.btnMoveLeft.TabIndex = 5;
@@ -315,7 +316,7 @@
             this.btnMoveRight.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveRight.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_055_Icon_64;
-            this.btnMoveRight.Location = new System.Drawing.Point(759, 180);
+            this.btnMoveRight.Location = new System.Drawing.Point(893, 180);
             this.btnMoveRight.Name = "btnMoveRight";
             this.btnMoveRight.Size = new System.Drawing.Size(75, 67);
             this.btnMoveRight.TabIndex = 4;
@@ -326,12 +327,21 @@
             // 
             this.documentTransactionsbindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
             // 
-            // frmCreateFromTransaction
+            // checkedListBoxPartitions
+            // 
+            this.checkedListBoxPartitions.FormattingEnabled = true;
+            this.checkedListBoxPartitions.Location = new System.Drawing.Point(12, 23);
+            this.checkedListBoxPartitions.Name = "checkedListBoxPartitions";
+            this.checkedListBoxPartitions.Size = new System.Drawing.Size(111, 184);
+            this.checkedListBoxPartitions.TabIndex = 15;
+            // 
+            // frmCreateFromTransactionOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1590, 458);
+            this.ClientSize = new System.Drawing.Size(1728, 510);
+            this.Controls.Add(this.checkedListBoxPartitions);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.lblTransactionType);
             this.Controls.Add(this.btnClose);
@@ -342,7 +352,7 @@
             this.Controls.Add(this.lbTransactionlbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmCreateFromTransaction";
+            this.Name = "frmCreateFromTransactionOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Roles Restrictions";
             this.Load += new System.EventHandler(this.frmRolesFunctions_Load);
@@ -389,5 +399,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn partitionIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn surfaceIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckedListBox checkedListBoxPartitions;
     }
 }

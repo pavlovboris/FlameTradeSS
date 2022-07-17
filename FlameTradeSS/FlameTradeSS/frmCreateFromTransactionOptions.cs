@@ -44,12 +44,45 @@ namespace FlameTradeSS
         {
             UserRestrictions.ApplyUserRestrictions(frmLogin.Instance.UserInfo, this);
             lblTransactionType.Text = currentDocumetTransaction.ID + "@" + currentDocumetTransaction.TransactionsType.TypeName;
-            currentTransactionLinesBindingSource.DataSource = db.TransactionLines.Where(tl => tl.TransactionsID == currentDocumetTransaction.ID).ToList();
+            currentTransactionLinesBindingSource.DataSource = currentDocumetTransaction.TransactionLines ;
             muBindingSource.DataSource = db.Mu.ToList();
             partitionsBindingSource.DataSource = db.Partitions.ToList();
             surfacesBindingSource.DataSource = db.Surfaces.ToList();
             itemsBindingSource.DataSource = db.Items.ToList();
- 
+
+            List<Surfaces> existingSurfaces = new List<Surfaces>();
+
+            foreach (TransactionLines transactionLines in currentDocumetTransaction.TransactionLines)
+            {
+                bool exist = false;
+
+
+                foreach(Surfaces surfaces in existingSurfaces)
+                {
+
+                    if (surfaces == transactionLines.Surfaces)
+                    {
+                        exist = true;
+                    }
+
+                  
+                }
+
+                if (exist == false)
+                {
+                    existingSurfaces.Add(transactionLines.Surfaces);
+                }
+            }
+
+            foreach (Surfaces surfaces in existingSurfaces)
+            {
+                CheckBox newCheckBox = new CheckBox();
+                newCheckBox.Appearance = Appearance.Button;
+                checkedListBoxPartitions.Items.Add(newCheckBox);
+                newCheckBox.Tag = surfaces;
+                newCheckBox.CheckState = CheckState.Checked;
+                newCheckBox.Name = surfaces.SurfaceCode.ToString();
+            }
         }
 
         private void cmbRoles_SelectionChangeCommitted(object sender, EventArgs e)

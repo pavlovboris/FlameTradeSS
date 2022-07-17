@@ -947,7 +947,7 @@ namespace FlameTradeSS
                             toolStripMenuCreateFrom.DropDownItems.Add(newToolStripMenuItem);
 
                             ToolStripMenuItem allToolStripMenu = new ToolStripMenuItem();
-                            allToolStripMenu.Text = "всиюки редове";
+                            allToolStripMenu.Text = "всички редове";
                             allToolStripMenu.Tag = sequencesTransactions.TransactionsType;
                             allToolStripMenu.Click += NewToolStripMenuItem_Click;
 
@@ -956,12 +956,67 @@ namespace FlameTradeSS
                             ToolStripMenuItem specificToolStripMenu = new ToolStripMenuItem();
                             specificToolStripMenu.Text = "избор на редове";
 
+                            specificToolStripMenu.Tag = sequencesTransactions.TransactionsType;
+                            specificToolStripMenu.Click += SpecificToolStripMenu_Click;
+
                             newToolStripMenuItem.DropDownItems.Add(specificToolStripMenu);
 
                         }
                     }
                 }
             }
+        }
+
+        private void SpecificToolStripMenu_Click(object sender, EventArgs e)
+        {
+            frmCreateFromTransactionOptions frmcreateFromTransactionOptions = new frmCreateFromTransactionOptions();
+            frmcreateFromTransactionOptions.db = db;
+            frmcreateFromTransactionOptions.currentDocumetTransaction = documentTransactions;
+
+            ToolStripMenuItem sndrMenu = (ToolStripMenuItem)sender;
+            tempID = CurrentSessionData.Counter + 1;
+
+            CurrentSessionData.Counter = tempID;
+
+            DocumentTransactions newDocumentTransactions = new DocumentTransactions();
+            newDocumentTransactions.Documents = documentTransactions.Documents;
+            newDocumentTransactions.TransactionsType = (TransactionsType)sndrMenu.Tag;
+            newDocumentTransactions.CreationDateTime = DateTime.Now;
+            newDocumentTransactions.TransactionDate = documentTransactions.TransactionDate;
+            newDocumentTransactions.tempID = tempID;
+            newDocumentTransactions.TransactionSurfaceID = documentTransactions.TransactionSurfaceID;
+            newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
+            newDocumentTransactions.ColorID = documentTransactions.ColorID;
+            newDocumentTransactions.Comment = documentTransactions.Comment;
+            newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
+            newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
+            newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
+            //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
+            //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
+            newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
+            //newDocumentTransactions.IsReady = documentTransactions.IsReady;
+
+            documentTransactionsBindingSource.Add(newDocumentTransactions);
+            db.DocumentTransactions.Add(newDocumentTransactions);
+
+            TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
+            transactionsTransformations.DocumentTransactions = newDocumentTransactions;
+            transactionsTransformations.DocumentTransactions1 = documentTransactions;
+            db.TransactionsTransformations.Add(transactionsTransformations);
+
+            frmcreateFromTransactionOptions.newDocumentTransactions = newDocumentTransactions;
+
+            Enabled = false;
+
+            frmcreateFromTransactionOptions.FormClosing += FrmcreateFromTransactionOptions_FormClosing;
+
+            CommonTasks.OpenForm(frmcreateFromTransactionOptions);
+
+        }
+
+        private void FrmcreateFromTransactionOptions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
