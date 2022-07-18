@@ -247,5 +247,10 @@ namespace FlameTradeSS
             frmFinancialPlansList.fromDocument = false;
             CommonTasks.OpenForm(frmFinancialPlansList);
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

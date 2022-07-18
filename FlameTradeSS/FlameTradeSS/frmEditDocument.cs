@@ -1003,10 +1003,10 @@ namespace FlameTradeSS
             transactionsTransformations.DocumentTransactions = newDocumentTransactions;
             transactionsTransformations.DocumentTransactions1 = documentTransactions;
             db.TransactionsTransformations.Add(transactionsTransformations);
-
+            
             frmcreateFromTransactionOptions.newDocumentTransactions = newDocumentTransactions;
             frmcreateFromTransactionOptions.transactionsTransformations = transactionsTransformations;
-
+            frmcreateFromTransactionOptions.documentTransactionsbindingSource = documentTransactionsBindingSource;
             Enabled = false;
 
             frmcreateFromTransactionOptions.FormClosing += FrmcreateFromTransactionOptions_FormClosing;
@@ -1017,116 +1017,115 @@ namespace FlameTradeSS
 
         private void FrmcreateFromTransactionOptions_FormClosing(object sender, FormClosingEventArgs e)
         {
-          
+            Enabled = true;
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem sndrMenu = (ToolStripMenuItem)sender;
-            tempID = CurrentSessionData.Counter + 1;
-
-            CurrentSessionData.Counter = tempID;
-
-            DocumentTransactions newDocumentTransactions = new DocumentTransactions();
-            newDocumentTransactions.Documents = documentTransactions.Documents;
-            newDocumentTransactions.TransactionsType = (TransactionsType)sndrMenu.Tag;
-            newDocumentTransactions.CreationDateTime = DateTime.Now;
-            newDocumentTransactions.TransactionDate = documentTransactions.TransactionDate;
-            newDocumentTransactions.tempID = tempID;
-            newDocumentTransactions.TransactionSurfaceID = documentTransactions.TransactionSurfaceID;
-            newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
-            newDocumentTransactions.ColorID = documentTransactions.ColorID;
-            newDocumentTransactions.Comment = documentTransactions.Comment;
-            newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
-            newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
-            newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
-            //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
-            //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
-            newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
-            //newDocumentTransactions.IsReady = documentTransactions.IsReady;
-
-            documentTransactionsBindingSource.Add(newDocumentTransactions);
-            db.DocumentTransactions.Add(newDocumentTransactions);
-
-            TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
-            transactionsTransformations.DocumentTransactions = newDocumentTransactions;
-            transactionsTransformations.DocumentTransactions1 = documentTransactions;
-            db.TransactionsTransformations.Add(transactionsTransformations);
-
-            //List<PossibleSequenceTransformationsProperties> possibleSequenceTransformationsProperties = new List<PossibleSequenceTransformationsProperties>();
-
-
-
-            PossibleSequenceTransformationsProperties newTransactionSettings = db.PossibleSequenceTransformationsProperties.Where(pstp =>pstp.PossibleSequenceTransofrmation.DocumentSequenceID == newDocument.DocumentSequenceID && pstp.PossibleSequenceTransofrmation.PossibleDocumentSequenceID == newDocument.DocumentSequenceID && pstp.TransactionTypeID == documentTransactions.TransactionsType.ID && pstp.TransactionTypeIDTo == newDocumentTransactions.TransactionsType.ID).SingleOrDefault();
-            
-             //   possibleSequenceTransformationsProperties.Add(newTransactionSettings);
-            
-
-            List<TransactionLines> currentLines = new List<TransactionLines>();
-            foreach (TransactionLines currentLine in documentTransactions.TransactionLines)
+            try
             {
 
-            }
+                ToolStripMenuItem sndrMenu = (ToolStripMenuItem)sender;
+                tempID = CurrentSessionData.Counter + 1;
 
-            foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
+                CurrentSessionData.Counter = tempID;
+
+                DocumentTransactions newDocumentTransactions = new DocumentTransactions();
+                newDocumentTransactions.Documents = documentTransactions.Documents;
+                newDocumentTransactions.TransactionsType = (TransactionsType)sndrMenu.Tag;
+                newDocumentTransactions.CreationDateTime = DateTime.Now;
+                newDocumentTransactions.TransactionDate = documentTransactions.TransactionDate;
+                newDocumentTransactions.tempID = tempID;
+                newDocumentTransactions.TransactionSurfaceID = documentTransactions.TransactionSurfaceID;
+                newDocumentTransactions.UserID = CurrentSessionData.CurrentUser.ID;
+                newDocumentTransactions.ColorID = documentTransactions.ColorID;
+                newDocumentTransactions.Comment = documentTransactions.Comment;
+                newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
+                newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
+                newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
+                //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
+                //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
+                newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
+                //newDocumentTransactions.IsReady = documentTransactions.IsReady;
+
+                documentTransactionsBindingSource.Add(newDocumentTransactions);
+                db.DocumentTransactions.Add(newDocumentTransactions);
+
+                TransactionsTransformations transactionsTransformations = new TransactionsTransformations();
+                transactionsTransformations.DocumentTransactions = newDocumentTransactions;
+                transactionsTransformations.DocumentTransactions1 = documentTransactions;
+                db.TransactionsTransformations.Add(transactionsTransformations);
+
+                //List<PossibleSequenceTransformationsProperties> possibleSequenceTransformationsProperties = new List<PossibleSequenceTransformationsProperties>();
+
+
+
+                PossibleSequenceTransformationsProperties newTransactionSettings = db.PossibleSequenceTransformationsProperties.Where(pstp => pstp.PossibleSequenceTransofrmation.DocumentSequenceID == newDocument.DocumentSequenceID && pstp.PossibleSequenceTransofrmation.PossibleDocumentSequenceID == newDocument.DocumentSequenceID && pstp.TransactionTypeID == documentTransactions.TransactionsType.ID && pstp.TransactionTypeIDTo == newDocumentTransactions.TransactionsType.ID).SingleOrDefault();
+
+                //   possibleSequenceTransformationsProperties.Add(newTransactionSettings);
+
+                foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
+                {
+                    TransactionLines newTransactionLines = new TransactionLines();
+                    newTransactionLines.DocumentTransactions = newDocumentTransactions;
+                    newTransactionLines.Items = transactionLines.Items;
+                    newTransactionLines.Machines = transactionLines.Machines;
+                    newTransactionLines.Services = transactionLines.Services;
+                    newTransactionLines.AdditionExpense = transactionLines.AdditionExpense;
+                    newTransactionLines.Comment = transactionLines.Comment;
+                    newTransactionLines.TransactionReceipt = transactionLines.TransactionReceipt;
+                    newTransactionLines.WH = transactionLines.WH;
+                    newTransactionLines.StartDate = transactionLines.StartDate;
+                    newTransactionLines.SecondPartitionID = transactionLines.SecondPartitionID;
+                    newTransactionLines.RequestDate = transactionLines.RequestDate;
+                    newTransactionLines.CostPrice2 = transactionLines.CostPrice2;
+                    newTransactionLines.CostPrice1 = transactionLines.CostPrice1;
+                    newTransactionLines.CostPrice3 = transactionLines.CostPrice3;
+                    newTransactionLines.SalePrice2 = transactionLines.SalePrice2;
+                    newTransactionLines.SalePrice1 = transactionLines.SalePrice1;
+                    newTransactionLines.SalePrice3 = transactionLines.SalePrice3;
+                    newTransactionLines.Cycles = transactionLines.Cycles;
+                    newTransactionLines.DurationHours = transactionLines.DurationHours;
+                    newTransactionLines.Mu = transactionLines.Mu;
+                    newTransactionLines.EndDate = transactionLines.EndDate;
+                    newTransactionLines.FinancialCategories = transactionLines.FinancialCategories;
+                    newTransactionLines.Partitions = transactionLines.Partitions;
+                    newTransactionLines.Ordering = transactionLines.Ordering;
+                    newTransactionLines.SurfaceID = transactionLines.SurfaceID;
+                    newTransactionLines.Qty = transactionLines.Qty;
+
+                    if (newTransactionSettings.RemainDeliveryQTYAction == 1)
+                    {
+                        newTransactionLines.RemainingDeliveryQTY = transactionLines.Qty;
+                    }
+
+                    if (newTransactionSettings.RemainInvoiceQTYAction == 1)
+                    {
+                        newTransactionLines.RemainingInvoiceQTY = transactionLines.Qty;
+                    }
+
+                    if (newTransactionSettings.RemainPackagingQTYAction == 1)
+                    {
+                        newTransactionLines.RemainingPackagingQTY = transactionLines.Qty;
+                    }
+
+                    if (newTransactionSettings.RemainProductionQTYAction == 1)
+                    {
+                        newTransactionLines.RemainingProductionQTY = transactionLines.Qty;
+                    }
+
+                    if (newTransactionSettings.RemainQTYAction == 1)
+                    {
+                        newTransactionLines.RemainingQTY = transactionLines.Qty;
+                    }
+
+                    db.TransactionLines.Add(newTransactionLines);
+                }
+            } catch
             {
-                TransactionLines newTransactionLines = new TransactionLines();
-                newTransactionLines.DocumentTransactions = newDocumentTransactions;
-                newTransactionLines.Items = transactionLines.Items;
-                newTransactionLines.Machines = transactionLines.Machines;
-                newTransactionLines.Services = transactionLines.Services;
-                newTransactionLines.AdditionExpense = transactionLines.AdditionExpense;
-                newTransactionLines.Comment = transactionLines.Comment;
-                newTransactionLines.TransactionReceipt = transactionLines.TransactionReceipt;
-                newTransactionLines.WH = transactionLines.WH;
-                newTransactionLines.StartDate = transactionLines.StartDate;
-                newTransactionLines.SecondPartitionID = transactionLines.SecondPartitionID;
-                newTransactionLines.RequestDate = transactionLines.RequestDate;
-                newTransactionLines.CostPrice2 = transactionLines.CostPrice2;
-                newTransactionLines.CostPrice1 = transactionLines.CostPrice1;
-                newTransactionLines.CostPrice3 = transactionLines.CostPrice3;
-                newTransactionLines.SalePrice2 = transactionLines.SalePrice2;
-                newTransactionLines.SalePrice1 = transactionLines.SalePrice1;
-                newTransactionLines.SalePrice3 = transactionLines.SalePrice3;
-                newTransactionLines.Cycles = transactionLines.Cycles;
-                newTransactionLines.DurationHours = transactionLines.DurationHours;
-                newTransactionLines.Mu = transactionLines.Mu;
-                newTransactionLines.EndDate = transactionLines.EndDate;
-                newTransactionLines.FinancialCategories = transactionLines.FinancialCategories;
-                newTransactionLines.Partitions = transactionLines.Partitions;
-                newTransactionLines.Ordering = transactionLines.Ordering;
-                newTransactionLines.SurfaceID = transactionLines.SurfaceID;
-                newTransactionLines.Qty = transactionLines.Qty;
-                
-                if(newTransactionSettings.RemainDeliveryQTYAction ==1 )
-                {
-                    newTransactionLines.RemainingDeliveryQTY = transactionLines.Qty;
-                }
-
-                if(newTransactionSettings.RemainInvoiceQTYAction == 1)
-                {
-                    newTransactionLines.RemainingInvoiceQTY = transactionLines.Qty;
-                }
-
-                if ( newTransactionSettings.RemainPackagingQTYAction == 1) 
-                { 
-                    newTransactionLines.RemainingPackagingQTY = transactionLines.Qty;
-                }
-
-                if (newTransactionSettings.RemainProductionQTYAction==1)
-                {
-                    newTransactionLines.RemainingProductionQTY = transactionLines.Qty;
-                }
-
-                if (newTransactionSettings.RemainQTYAction == 1 )
-                {
-                    newTransactionLines.RemainingQTY = transactionLines.Qty;
-                }
-
-                db.TransactionLines.Add(newTransactionLines);
+                CommonTasks.SendErrorMsg("Възникна грешка при автоматичното трансформиране, възможни са проблеми с новата транзакция! \n За да създадете нова транзакция базирана на друга транзакция коректно, трябва да са спазени следните условия:\n 1. Транзакцията от която се създава нова транзакция трябва да бъде запаметена. \n " +
+                    "2. Транзакцията която създавате трябва да бъде конфигурана в трансформациите на транзакцията от която създавате");
             }
-
-           // Enabled = false;
         }
 
         private void contextMenuStripDocumentTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

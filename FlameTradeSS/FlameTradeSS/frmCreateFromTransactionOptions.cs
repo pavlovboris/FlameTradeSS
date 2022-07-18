@@ -80,72 +80,108 @@ namespace FlameTradeSS
                // CheckBox newCheckBox = new CheckBox();
                 //newCheckBox.Appearance = Appearance.Button;
                 checkedListBoxPartitions.Items.Add(surfaces.SurfaceCode);
+
+                checkedListBoxPartitions.SetItemChecked(checkedListBoxPartitions.Items.Count - 1,true);
                 checkedListBoxPartitions.CheckOnClick = true;
-                
-                //newCheckBox.Tag = surfaces;
-                //newCheckBox.CheckState = CheckState.Checked;
-                //newCheckBox.Name = surfaces.SurfaceCode.ToString();
             }
-
-         //   foreach(CheckBox checkBox in checkedListBoxPartitions.Items)
-           // {
-             //   checkBox.Checked = true;
-           // }
         }
 
-        private void cmbRoles_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-          
-        }
-      
         private  void btnMoveRight_Click(object sender, EventArgs e)
         {
-
-            foreach(DataGridViewRow dgvr in dgvLeft.Rows)
+            try
             {
-                //bool sss = (bool)dgvr.Cells[ChkBoxSelected.Index].Value;
-
-
-                if (dgvr.Cells[ChkBoxSelected.Index]!=null && (int)dgvr.Cells[ChkBoxSelected.Index].Value == 1)
-                {
-                    TransactionLines currentTransactionLines = dgvLeft.CurrentRow.DataBoundItem as TransactionLines;
-
-                    if (currentTransactionLines != null)
+                foreach (DataGridViewRow dgvr in dgvLeft.Rows)
+                {                  
+                    if (dgvr.Cells[ChkBoxSelected.Index] != null && dgvr.Cells[ChkBoxSelected.Index].Value.ToString() == "1")
                     {
-                        TransactionLines newTransactionLines = new TransactionLines();
-                        newTransactionLines.DocumentTransactions = newDocumentTransactions;
-                        newTransactionLines.Items = currentTransactionLines.Items;
-                        newTransactionLines.Machines = currentTransactionLines.Machines;
-                        newTransactionLines.Services = currentTransactionLines.Services;
-                        newTransactionLines.AdditionExpense = currentTransactionLines.AdditionExpense;
-                        newTransactionLines.Comment = currentTransactionLines.Comment;
-                        newTransactionLines.TransactionReceipt = currentTransactionLines.TransactionReceipt;
-                        newTransactionLines.WH = currentTransactionLines.WH;
-                        newTransactionLines.StartDate = currentTransactionLines.StartDate;
-                        newTransactionLines.SecondPartitionID = currentTransactionLines.SecondPartitionID;
-                        newTransactionLines.RequestDate = currentTransactionLines.RequestDate;
-                        newTransactionLines.CostPrice2 = currentTransactionLines.CostPrice2;
-                        newTransactionLines.CostPrice1 = currentTransactionLines.CostPrice1;
-                        newTransactionLines.CostPrice3 = currentTransactionLines.CostPrice3;
-                        newTransactionLines.SalePrice2 = currentTransactionLines.SalePrice2;
-                        newTransactionLines.SalePrice1 = currentTransactionLines.SalePrice1;
-                        newTransactionLines.SalePrice3 = currentTransactionLines.SalePrice3;
-                        newTransactionLines.Cycles = currentTransactionLines.Cycles;
-                        newTransactionLines.DurationHours = currentTransactionLines.DurationHours;
-                        newTransactionLines.Mu = currentTransactionLines.Mu;
-                        newTransactionLines.EndDate = currentTransactionLines.EndDate;
-                        newTransactionLines.FinancialCategories = currentTransactionLines.FinancialCategories;
-                        newTransactionLines.Partitions = currentTransactionLines.Partitions;
-                        newTransactionLines.Ordering = currentTransactionLines.Ordering;
-                        newTransactionLines.SurfaceID = currentTransactionLines.SurfaceID;
-                        newTransactionLines.Qty = currentTransactionLines.Qty;
+                        TransactionLines currentTransactionLines = dgvr.DataBoundItem as TransactionLines;
 
-                        db.TransactionLines.Add(newTransactionLines);
-                        newTransactionLinesBindingSource.Add(newTransactionLines);
+                        bool checkedSurface = false;                       
 
+                        for (int i = 0; i<=checkedListBoxPartitions.Items.Count-1;i++)
+                        {
+                            if (checkedListBoxPartitions.GetItemChecked(i) == true)
+                            {
+                                if (currentTransactionLines.Surfaces.SurfaceCode == checkedListBoxPartitions.Items[i].ToString())
+                                {
+                                    checkedSurface = true;
+                                }
+                            }
+                        }
+
+                        if (currentTransactionLines != null && checkedSurface==true)
+                        {
+                            TransactionLines newTransactionLines = new TransactionLines();
+                            newTransactionLines.DocumentTransactions = newDocumentTransactions;
+                            newTransactionLines.Items = currentTransactionLines.Items;
+                            newTransactionLines.Machines = currentTransactionLines.Machines;
+                            newTransactionLines.Services = currentTransactionLines.Services;
+                            newTransactionLines.AdditionExpense = currentTransactionLines.AdditionExpense;
+                            newTransactionLines.Comment = currentTransactionLines.Comment;
+                            newTransactionLines.TransactionReceipt = currentTransactionLines.TransactionReceipt;
+                            newTransactionLines.WH = currentTransactionLines.WH;
+                            newTransactionLines.StartDate = currentTransactionLines.StartDate;
+                            newTransactionLines.SecondPartitionID = currentTransactionLines.SecondPartitionID;
+                            newTransactionLines.RequestDate = currentTransactionLines.RequestDate;
+                            newTransactionLines.CostPrice2 = currentTransactionLines.CostPrice2;
+                            newTransactionLines.CostPrice1 = currentTransactionLines.CostPrice1;
+                            newTransactionLines.CostPrice3 = currentTransactionLines.CostPrice3;
+                            newTransactionLines.SalePrice2 = currentTransactionLines.SalePrice2;
+                            newTransactionLines.SalePrice1 = currentTransactionLines.SalePrice1;
+                            newTransactionLines.SalePrice3 = currentTransactionLines.SalePrice3;
+                            newTransactionLines.Cycles = currentTransactionLines.Cycles;
+                            newTransactionLines.DurationHours = currentTransactionLines.DurationHours;
+                            newTransactionLines.Mu = currentTransactionLines.Mu;
+                            newTransactionLines.EndDate = currentTransactionLines.EndDate;
+                            newTransactionLines.FinancialCategories = currentTransactionLines.FinancialCategories;
+                            newTransactionLines.Partitions = currentTransactionLines.Partitions;
+                            newTransactionLines.Ordering = currentTransactionLines.Ordering;
+                            newTransactionLines.SurfaceID = currentTransactionLines.SurfaceID;
+                            newTransactionLines.Qty = currentTransactionLines.Qty;
+
+                            db.TransactionLines.Add(newTransactionLines);
+                            newTransactionLinesBindingSource.Add(newTransactionLines);
+
+                            PossibleSequenceTransformationsProperties newTransactionSettings = db.PossibleSequenceTransformationsProperties.Where(pstp => pstp.PossibleSequenceTransofrmation.DocumentSequenceID == newDocumentTransactions.Documents.DocumentSequenceID && pstp.PossibleSequenceTransofrmation.PossibleDocumentSequenceID == newDocumentTransactions.Documents.DocumentSequenceID && pstp.TransactionTypeID == currentDocumetTransaction.TransactionsType.ID && pstp.TransactionTypeIDTo == newDocumentTransactions.TransactionsType.ID).SingleOrDefault();
+
+                            if (newTransactionSettings.RemainDeliveryQTYAction == 1)
+                            {
+                                newTransactionLines.RemainingDeliveryQTY = currentTransactionLines.Qty;
+                            }
+
+                            if (newTransactionSettings.RemainInvoiceQTYAction == 1)
+                            {
+                                newTransactionLines.RemainingInvoiceQTY = currentTransactionLines.Qty;
+                            }
+
+                            if (newTransactionSettings.RemainPackagingQTYAction == 1)
+                            {
+                                newTransactionLines.RemainingPackagingQTY = currentTransactionLines.Qty;
+                            }
+
+                            if (newTransactionSettings.RemainProductionQTYAction == 1)
+                            {
+                                newTransactionLines.RemainingProductionQTY = currentTransactionLines.Qty;
+                            }
+
+                            if (newTransactionSettings.RemainQTYAction == 1)
+                            {
+                                newTransactionLines.RemainingQTY = currentTransactionLines.Qty;
+                            }
+
+                            db.TransactionLines.Add(newTransactionLines);
+
+                        }
                     }
                 }
+            } catch
+            {
+                CommonTasks.SendErrorMsg("Възникна грешка при автоматичното трансформиране, възможни са проблеми с новата транзакция! \n За да създадете нова транзакция базирана на друга транзакция коректно, трябва да са спазени следните условия:\n 1. Транзакцията от която се създава нова транзакция трябва да бъде запаметена. \n " +
+                "2. Транзакцията която създавате трябва да бъде конфигурана в трансформациите на транзакцията от която създавате");
+
             }
+
+           
         }
 
         private void FrmSplitTransactionsLinesQty_FormClosing(object sender, FormClosingEventArgs e)
@@ -220,13 +256,45 @@ namespace FlameTradeSS
             if (e.ColumnIndex == ChkBoxSelected.Index && e.Value == null)
             {
                 e.Value = true;
-                dgvLeft.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+                dgvLeft.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
             }
         }
 
         private void dgvLeft_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
          
+        }
+
+        private void dgvRight_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex!=-1 && e.ColumnIndex== qtyDataGridViewTextBoxColumn1.Index && dgvRight.Rows[e.RowIndex]!=null)
+            {
+                TransactionLines transactionLines = dgvRight.Rows[e.RowIndex].DataBoundItem as TransactionLines;
+                if ( transactionLines.RemainingDeliveryQTY!=0)
+                {
+                    transactionLines.RemainingDeliveryQTY = transactionLines.Qty;
+                }
+
+                if (transactionLines.RemainingInvoiceQTY != 0)
+                {
+                    transactionLines.RemainingInvoiceQTY = transactionLines.Qty;
+                }
+
+                if (transactionLines.RemainingPackagingQTY != 0)
+                {
+                    transactionLines.RemainingPackagingQTY = transactionLines.Qty;
+                }
+
+                if (transactionLines.RemainingProductionQTY != 0)
+                {
+                    transactionLines.RemainingProductionQTY = transactionLines.Qty;
+                }
+
+                if (transactionLines.RemainingQTY != 0)
+                {
+                    transactionLines.RemainingQTY = transactionLines.Qty;
+                }
+            }
         }
     }
 }

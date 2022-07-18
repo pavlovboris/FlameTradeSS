@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateFromTransactionOptions));
             this.lbTransactionlbl = new System.Windows.Forms.Label();
             this.dgvLeft = new System.Windows.Forms.DataGridView();
+            this.ChkBoxSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvRight = new System.Windows.Forms.DataGridView();
             this.lblTransactionType = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
@@ -40,33 +41,32 @@
             this.btnMoveLeft = new System.Windows.Forms.Button();
             this.btnMoveRight = new System.Windows.Forms.Button();
             this.checkedListBoxPartitions = new System.Windows.Forms.CheckedListBox();
-            this.itemIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.muIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partitionIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.partitionIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qtyDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.surfaceIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.surfaceIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.newTransactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.muBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.partitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.surfacesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.currentTransactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentTransactionsbindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ChkBoxSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.muIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.partitionIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.surfaceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentTransactionLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.documentTransactionsbindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.newTransactionLinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newTransactionLinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentTransactionLinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsbindingSource)).BeginInit();
             this.SuspendLayout();
@@ -98,14 +98,24 @@
             this.surfaceIDDataGridViewTextBoxColumn,
             this.commentDataGridViewTextBoxColumn});
             this.dgvLeft.DataSource = this.currentTransactionLinesBindingSource;
-            this.dgvLeft.Location = new System.Drawing.Point(12, 115);
+            this.dgvLeft.Location = new System.Drawing.Point(12, 59);
             this.dgvLeft.Name = "dgvLeft";
             this.dgvLeft.RowHeadersWidth = 5;
             this.dgvLeft.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLeft.Size = new System.Drawing.Size(627, 331);
+            this.dgvLeft.Size = new System.Drawing.Size(627, 387);
             this.dgvLeft.TabIndex = 2;
             this.dgvLeft.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLeft_CellContentClick);
             this.dgvLeft.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLeft_CellFormatting);
+            // 
+            // ChkBoxSelected
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "False";
+            this.ChkBoxSelected.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ChkBoxSelected.FalseValue = "0";
+            this.ChkBoxSelected.HeaderText = "Избран";
+            this.ChkBoxSelected.Name = "ChkBoxSelected";
+            this.ChkBoxSelected.TrueValue = "1";
             // 
             // dgvRight
             // 
@@ -123,13 +133,13 @@
             this.surfaceIDDataGridViewTextBoxColumn1,
             this.commentDataGridViewTextBoxColumn1});
             this.dgvRight.DataSource = this.newTransactionLinesBindingSource;
-            this.dgvRight.Location = new System.Drawing.Point(759, 115);
+            this.dgvRight.Location = new System.Drawing.Point(759, 59);
             this.dgvRight.Name = "dgvRight";
-            this.dgvRight.ReadOnly = true;
             this.dgvRight.RowHeadersWidth = 5;
             this.dgvRight.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRight.Size = new System.Drawing.Size(630, 331);
+            this.dgvRight.Size = new System.Drawing.Size(630, 387);
             this.dgvRight.TabIndex = 3;
+            this.dgvRight.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRight_CellValueChanged);
             // 
             // lblTransactionType
             // 
@@ -206,37 +216,72 @@
             // itemIDDataGridViewTextBoxColumn1
             // 
             this.itemIDDataGridViewTextBoxColumn1.DataPropertyName = "ItemID";
+            this.itemIDDataGridViewTextBoxColumn1.DataSource = this.itemsBindingSource;
+            this.itemIDDataGridViewTextBoxColumn1.DisplayMember = "Code";
             this.itemIDDataGridViewTextBoxColumn1.HeaderText = "ItemID";
             this.itemIDDataGridViewTextBoxColumn1.Name = "itemIDDataGridViewTextBoxColumn1";
             this.itemIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.itemIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.itemIDDataGridViewTextBoxColumn1.ValueMember = "ID";
+            // 
+            // itemsBindingSource
+            // 
+            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
             // 
             // muIDDataGridViewTextBoxColumn1
             // 
             this.muIDDataGridViewTextBoxColumn1.DataPropertyName = "MuID";
+            this.muIDDataGridViewTextBoxColumn1.DataSource = this.muBindingSource;
+            this.muIDDataGridViewTextBoxColumn1.DisplayMember = "Code";
             this.muIDDataGridViewTextBoxColumn1.HeaderText = "MuID";
             this.muIDDataGridViewTextBoxColumn1.Name = "muIDDataGridViewTextBoxColumn1";
             this.muIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.muIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.muIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.muIDDataGridViewTextBoxColumn1.ValueMember = "ID";
+            // 
+            // muBindingSource
+            // 
+            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
             // 
             // partitionIDDataGridViewTextBoxColumn1
             // 
             this.partitionIDDataGridViewTextBoxColumn1.DataPropertyName = "PartitionID";
+            this.partitionIDDataGridViewTextBoxColumn1.DataSource = this.partitionsBindingSource;
+            this.partitionIDDataGridViewTextBoxColumn1.DisplayMember = "Code";
             this.partitionIDDataGridViewTextBoxColumn1.HeaderText = "PartitionID";
             this.partitionIDDataGridViewTextBoxColumn1.Name = "partitionIDDataGridViewTextBoxColumn1";
             this.partitionIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.partitionIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.partitionIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.partitionIDDataGridViewTextBoxColumn1.ValueMember = "ID";
+            // 
+            // partitionsBindingSource
+            // 
+            this.partitionsBindingSource.DataSource = typeof(FlameTradeSS.Partitions);
             // 
             // qtyDataGridViewTextBoxColumn1
             // 
             this.qtyDataGridViewTextBoxColumn1.DataPropertyName = "Qty";
             this.qtyDataGridViewTextBoxColumn1.HeaderText = "Qty";
             this.qtyDataGridViewTextBoxColumn1.Name = "qtyDataGridViewTextBoxColumn1";
-            this.qtyDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // surfaceIDDataGridViewTextBoxColumn1
             // 
             this.surfaceIDDataGridViewTextBoxColumn1.DataPropertyName = "SurfaceID";
+            this.surfaceIDDataGridViewTextBoxColumn1.DataSource = this.surfacesBindingSource;
+            this.surfaceIDDataGridViewTextBoxColumn1.DisplayMember = "SurfaceCode";
             this.surfaceIDDataGridViewTextBoxColumn1.HeaderText = "SurfaceID";
             this.surfaceIDDataGridViewTextBoxColumn1.Name = "surfaceIDDataGridViewTextBoxColumn1";
             this.surfaceIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.surfaceIDDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.surfaceIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.surfaceIDDataGridViewTextBoxColumn1.ValueMember = "ID";
+            // 
+            // surfacesBindingSource
+            // 
+            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
             // 
             // commentDataGridViewTextBoxColumn1
             // 
@@ -248,40 +293,6 @@
             // newTransactionLinesBindingSource
             // 
             this.newTransactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
-            // 
-            // itemsBindingSource
-            // 
-            this.itemsBindingSource.DataSource = typeof(FlameTradeSS.Items);
-            // 
-            // muBindingSource
-            // 
-            this.muBindingSource.DataSource = typeof(FlameTradeSS.Mu);
-            // 
-            // partitionsBindingSource
-            // 
-            this.partitionsBindingSource.DataSource = typeof(FlameTradeSS.Partitions);
-            // 
-            // surfacesBindingSource
-            // 
-            this.surfacesBindingSource.DataSource = typeof(FlameTradeSS.Surfaces);
-            // 
-            // currentTransactionLinesBindingSource
-            // 
-            this.currentTransactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
-            // 
-            // documentTransactionsbindingSource
-            // 
-            this.documentTransactionsbindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
-            // 
-            // ChkBoxSelected
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "False";
-            this.ChkBoxSelected.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ChkBoxSelected.FalseValue = "0";
-            this.ChkBoxSelected.HeaderText = "Избран";
-            this.ChkBoxSelected.Name = "ChkBoxSelected";
-            this.ChkBoxSelected.TrueValue = "1";
             // 
             // itemIDDataGridViewTextBoxColumn
             // 
@@ -349,6 +360,14 @@
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             this.commentDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // currentTransactionLinesBindingSource
+            // 
+            this.currentTransactionLinesBindingSource.DataSource = typeof(FlameTradeSS.TransactionLines);
+            // 
+            // documentTransactionsbindingSource
+            // 
+            this.documentTransactionsbindingSource.DataSource = typeof(FlameTradeSS.DocumentTransactions);
+            // 
             // frmCreateFromTransactionOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,11 +392,11 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmRolesFunctions_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.newTransactionLinesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.muBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partitionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfacesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newTransactionLinesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentTransactionLinesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentTransactionsbindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -395,12 +414,6 @@
         private System.Windows.Forms.Label lblTransactionType;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.BindingSource currentTransactionLinesBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn muIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partitionIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surfaceIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource newTransactionLinesBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
         private System.Windows.Forms.BindingSource muBindingSource;
@@ -415,5 +428,11 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn partitionIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn surfaceIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn itemIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn muIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn partitionIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn surfaceIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
     }
 }
