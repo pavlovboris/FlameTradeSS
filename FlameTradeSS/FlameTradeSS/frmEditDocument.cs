@@ -8,8 +8,6 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace FlameTradeSS
@@ -1496,41 +1494,12 @@ namespace FlameTradeSS
                 {
                     if (frmDocumentsEditsRequests.newLogReason.SendRequestNow==1)
                     {
-                        Email("Моля да ми бъде разрешема редакция на документ :"+ frmDocumentsEditsRequests.newLogReason.Documents.DocumentNumber +". Причината за редакция е : "+ frmDocumentsEditsRequests.newLogReason.LogReason, frmDocumentsEditsRequests.newLogReason);
+                        CommonTasks.SendEditRequestEmail("Моля да ми бъде разрешена редакция на документ :"+ frmDocumentsEditsRequests.newLogReason.Documents.DocumentNumber +"@"+ frmDocumentsEditsRequests.newLogReason.Documents.DocumentSequences.SequenceName+". Причината за редакция е : " + frmDocumentsEditsRequests.newLogReason.LogReason, frmDocumentsEditsRequests.newLogReason);
                     }
                     CommonTasks.SendInfoMsg("Вашето искане за редакция на документ е прието, моля изчакайте потвърждение");
                     await db.SaveChangesAsync();
                 }
             }
-        }
-
-        public static void Email(string htmlString, LogsEditRestrictedDocuments logsEditRestrictedDocuments)
-        {
-            try
-            {
-                MailMessage message = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
-                smtp.Timeout = 10000;
-                message.From = new MailAddress("b.pavlov@apello-bg.com");
-                foreach(Users users in logsEditRestrictedDocuments.Roles.Users)
-                {
-                   if (users.SystemEmail != null)
-                    {
-                        message.To.Add(new MailAddress(users.SystemEmail));
-                    }
-                }
-                message.Subject = ""+ logsEditRestrictedDocuments.Documents.DocumentNumber.ToString()+"@"+ logsEditRestrictedDocuments.Documents.DocumentSequences.SequenceName + " Edit Request from User :"+ logsEditRestrictedDocuments.Users.UserName;
-                message.IsBodyHtml = false; //to make message body as html  
-                message.Body = htmlString;
-                smtp.Port = 26;
-                smtp.Host = "mail.apello-bg.com"; 
-                smtp.EnableSsl = false;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("b.pavlov@apello-bg.com", "cs1938cscscs");
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
-            }
-            catch (Exception) { }
         }
     }
 }

@@ -68,5 +68,17 @@
     <Setting Name="frmDocumentsTransactionsSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
+    <Setting Name="editRequestEmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">no-reply.autoeditrequest@definedsolutions-bg.com</Value>
+    </Setting>
+    <Setting Name="editRequestPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aer123pswd</Value>
+    </Setting>
+    <Setting Name="editRequestHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mail.definedsolutions-bg.com</Value>
+    </Setting>
+    <Setting Name="editRequestUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">no-reply.autoeditrequest@definedsolutions-bg.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

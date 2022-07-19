@@ -126,6 +126,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimumSize = new System.Drawing.Size(292, 228);
             this.Name = "frmDocumentsEditsRequests";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Искане за редакция на документ";
             this.Load += new System.EventHandler(this.frmDocumentsEditsRequests_Load);
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).EndInit();

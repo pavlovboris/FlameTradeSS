@@ -286,5 +286,53 @@ namespace FlameTradeSS.Properties {
                 this["frmDocumentsTransactionsSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("no-reply.autoeditrequest@definedsolutions-bg.com")]
+        public string editRequestEmail {
+            get {
+                return ((string)(this["editRequestEmail"]));
+            }
+            set {
+                this["editRequestEmail"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("aer123pswd")]
+        public string editRequestPassword {
+            get {
+                return ((string)(this["editRequestPassword"]));
+            }
+            set {
+                this["editRequestPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mail.definedsolutions-bg.com")]
+        public string editRequestHost {
+            get {
+                return ((string)(this["editRequestHost"]));
+            }
+            set {
+                this["editRequestHost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("no-reply.autoeditrequest@definedsolutions-bg.com")]
+        public string editRequestUserName {
+            get {
+                return ((string)(this["editRequestUserName"]));
+            }
+            set {
+                this["editRequestUserName"] = value;
+            }
+        }
     }
 }

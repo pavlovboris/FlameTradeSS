@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -287,7 +289,38 @@ namespace FlameTradeSS
                 }
                 
             } catch (Exception ex) { SendErrorMsg(ex.Message); }
-        } 
+        }
+
+
+        public static void SendEditRequestEmail(string htmlString, LogsEditRestrictedDocuments logsEditRestrictedDocuments)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                smtp.Timeout = 10000;
+                message.From = new MailAddress(Properties.Settings.Default.editRequestEmail);
+                foreach (Users users in logsEditRestrictedDocuments.Roles.Users)
+                {
+                    if (users.SystemEmail != null)
+                    {
+                        message.To.Add(new MailAddress(users.SystemEmail));
+                    }
+                }
+                message.Subject = "" + logsEditRestrictedDocuments.Documents.DocumentNumber.ToString() + "@" + logsEditRestrictedDocuments.Documents.DocumentSequences.SequenceName + " Edit Request from User :" + logsEditRestrictedDocuments.Users.UserName;
+                message.IsBodyHtml = false; //to make message body as html  
+                message.Body = htmlString;
+                message.Priority = MailPriority.High;
+                smtp.Port = 26;
+                smtp.Host = Properties.Settings.Default.editRequestHost;
+                smtp.EnableSsl = false;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(Properties.Settings.Default.editRequestUserName, Properties.Settings.Default.editRequestPassword);
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
+        }
 
         public static async void PerformInventoryTransactions(FlameTradeDbEntities db, Documents document, BindingSource documentTransactionsBindingSource)
         {
