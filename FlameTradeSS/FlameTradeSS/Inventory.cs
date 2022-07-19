@@ -24,11 +24,15 @@ namespace FlameTradeSS
         public double QTY { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> Value { get; set; }
+        public int SurfaceID { get; set; }
+        public int WH { get; set; }
     
         public virtual Colors Colors { get; set; }
         public virtual Items Items { get; set; }
         public virtual Partitions Partitions { get; set; }
         public virtual Partitions Partitions1 { get; set; }
         public virtual TransactionLines TransactionLines { get; set; }
+        public virtual Surfaces Surfaces { get; set; }
+        public virtual Warehouses Warehouses { get; set; }
     }
 }

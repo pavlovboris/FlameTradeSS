@@ -124,6 +124,9 @@
     <Compile Include="AutoStringDocuments.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsRolesRestrictions.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsStrings.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,12 @@
     </Compile>
     <Compile Include="frmDocumentsAdmin.Designer.cs">
       <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentsEditsRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumentsEditsRequests.Designer.cs">
+      <DependentUpon>frmDocumentsEditsRequests.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDocumentTransformation.cs">
       <SubType>Form</SubType>
@@ -516,6 +525,9 @@
     <Compile Include="LinesType.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LogsEditRestrictedDocuments.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Machines.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -700,6 +712,9 @@
     <Compile Include="UsersLogInLogs.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Warehouses.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmAdminTools.resx">
       <DependentUpon>frmAdminTools.cs</DependentUpon>
     </EmbeddedResource>
@@ -712,6 +727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentsAdmin.resx">
       <DependentUpon>frmDocumentsAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumentsEditsRequests.resx">
+      <DependentUpon>frmDocumentsEditsRequests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentTransformation.resx">
       <DependentUpon>frmDocumentTransformation.cs</DependentUpon>
@@ -927,6 +945,7 @@
     <None Include="Properties\DataSources\TransactionReceipt.datasource" />
     <None Include="Properties\DataSources\TransactionsType.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
+    <None Include="Properties\DataSources\Warehouses.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

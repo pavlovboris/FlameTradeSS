@@ -117,6 +117,17 @@
           <Property Name="DocumentsID" Type="int" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DocumentsRolesRestrictions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolesID" Type="int" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="int" Nullable="false" />
+          <Property Name="AllowEdits" Type="int" Nullable="false" />
+          <Property Name="AllowCreate" Type="int" Nullable="false" />
+          <Property Name="AllowDelete" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="DocumentsStrings">
           <Key>
             <PropertyRef Name="ID" />
@@ -259,6 +270,8 @@
           <Property Name="QTY" Type="float" Nullable="false" />
           <Property Name="Price" Type="float" />
           <Property Name="Value" Type="float" />
+          <Property Name="SurfaceID" Type="int" Nullable="false" />
+          <Property Name="WH" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="InvoiceNumbering">
           <Key>
@@ -342,6 +355,23 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ToTable" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogsEditRestrictedDocuments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDate" Type="datetime" Nullable="false" />
+          <Property Name="LogUserID" Type="int" Nullable="false" />
+          <Property Name="LogReason" Type="varchar" MaxLength="250" />
+          <Property Name="LogAction" Type="int" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="RestrictionControlUserID" Type="int" />
+          <Property Name="TargetRolesGroupID" Type="int" />
+          <Property Name="AnswerStatus" Type="int" />
+          <Property Name="RequestSessionID" Type="int" />
+          <Property Name="SendRequestNow" Type="int" />
+          <Property Name="LogAllowedDeclinedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Machines">
           <Key>
@@ -820,6 +850,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleID" Type="int" />
           <Property Name="PersonID" Type="int" />
+          <Property Name="SystemEmail" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -830,6 +861,15 @@
           <Property Name="LogInTime" Type="datetime" />
           <Property Name="IsLogIn" Type="int" Nullable="false" />
           <Property Name="LogOutTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WhID" />
+          </Key>
+          <Property Name="WhID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WhName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WhCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsReal" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1029,6 +1069,30 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="DocumentsProjects">
               <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentsRolesRestrictions_DocumentSequences">
+          <End Role="DocumentSequences" Type="Self.DocumentSequences" Multiplicity="1" />
+          <End Role="DocumentsRolesRestrictions" Type="Self.DocumentsRolesRestrictions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentsRolesRestrictions">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentsRolesRestrictions_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="DocumentsRolesRestrictions" Type="Self.DocumentsRolesRestrictions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="DocumentsRolesRestrictions">
+              <PropertyRef Name="RolesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1308,6 +1372,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_Surfaces">
+          <End Role="Surfaces" Type="Self.Surfaces" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inventory_TransactionLineID">
           <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -1317,6 +1393,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="Inventory">
               <PropertyRef Name="TransactionLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WhID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="WH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1473,6 +1561,54 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="ItemsParametersItems">
               <PropertyRef Name="ItemsParameterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Documents">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+          <End Role="LogsEditRestrictedDocuments" Type="Self.LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="LogsEditRestrictedDocuments" Type="Self.LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="TargetRolesGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="LogsEditRestrictedDocuments" Type="Self.LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="LogUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="LogsEditRestrictedDocuments" Type="Self.LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="RestrictionControlUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2088,6 +2224,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionLines_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+          <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WhID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="WH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionLinesComments_TransactionLines">
           <End Role="TransactionLines" Type="Self.TransactionLines" Multiplicity="1" />
           <End Role="TransactionLinesComments" Type="Self.TransactionLinesComments" Multiplicity="*" />
@@ -2413,6 +2561,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="DocumentSequencesProperties" EntityType="Self.DocumentSequencesProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsFinancialPlan" EntityType="Self.DocumentsFinancialPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsProjects" EntityType="Self.DocumentsProjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentsRolesRestrictions" EntityType="Self.DocumentsRolesRestrictions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentsStrings" EntityType="Self.DocumentsStrings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentStringLines" EntityType="Self.DocumentStringLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTransactions" EntityType="Self.DocumentTransactions" Schema="dbo" store:Type="Tables" />
@@ -2433,6 +2582,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="ItemsParameters" EntityType="Self.ItemsParameters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemsParametersItems" EntityType="Self.ItemsParametersItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinesType" EntityType="Self.LinesType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogsEditRestrictedDocuments" EntityType="Self.LogsEditRestrictedDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Machines" EntityType="Self.Machines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachinesInventory" EntityType="Self.MachinesInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MachineType" EntityType="Self.MachineType" Schema="dbo" store:Type="Tables" />
@@ -2480,6 +2630,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="TransactionsType" EntityType="Self.TransactionsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersLogInLogs" EntityType="Self.UsersLogInLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsFullNameView" EntityType="Self.PersonsFullNameView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PersonsFullNameView].[ID] AS [ID], 
@@ -2549,6 +2700,14 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_DocumentsProjects_ProjectID" Association="Self.FK_DocumentsProjects_ProjectID">
             <End Role="Project" EntitySet="Project" />
             <End Role="DocumentsProjects" EntitySet="DocumentsProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentsRolesRestrictions_DocumentSequences" Association="Self.FK_DocumentsRolesRestrictions_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentsRolesRestrictions" EntitySet="DocumentsRolesRestrictions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentsRolesRestrictions_Roles" Association="Self.FK_DocumentsRolesRestrictions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="DocumentsRolesRestrictions" EntitySet="DocumentsRolesRestrictions" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentStringLines_DocumentSequences" Association="Self.FK_DocumentStringLines_DocumentSequences">
             <End Role="DocumentSequences" EntitySet="DocumentSequences" />
@@ -2642,8 +2801,16 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Partitions" EntitySet="Partitions" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Surfaces" Association="Self.FK_Inventory_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inventory_TransactionLineID" Association="Self.FK_Inventory_TransactionLineID">
             <End Role="TransactionLines" EntitySet="TransactionLines" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Warehouses" Association="Self.FK_Inventory_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_InvoiceNumbering_documentID" Association="Self.FK_InvoiceNumbering_documentID">
@@ -2697,6 +2864,22 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_ItemsParametersItems_ItemsParameters" Association="Self.FK_ItemsParametersItems_ItemsParameters">
             <End Role="ItemsParameters" EntitySet="ItemsParameters" />
             <End Role="ItemsParametersItems" EntitySet="ItemsParametersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Documents" Association="Self.FK_LogsEditRestrictedDocuments_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Roles" Association="Self.FK_LogsEditRestrictedDocuments_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Users" Association="Self.FK_LogsEditRestrictedDocuments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Users1" Association="Self.FK_LogsEditRestrictedDocuments_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
           </AssociationSet>
           <AssociationSet Name="FK_Machines_FinancialCategories" Association="Self.FK_Machines_FinancialCategories">
             <End Role="FinancialCategories" EntitySet="FinancialCategories" />
@@ -2902,6 +3085,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionLines" EntitySet="TransactionLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_Warehouses" Association="Self.FK_TransactionLines_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionLinesComments_TransactionLines" Association="Self.FK_TransactionLinesComments_TransactionLines">
             <End Role="TransactionLines" EntitySet="TransactionLines" />
             <End Role="TransactionLinesComments" EntitySet="TransactionLinesComments" />
@@ -3067,6 +3254,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentsFinancialPlan" Relationship="FlameTradeDbModel.FK_DocumentsFinancialPlan_Documents" FromRole="Documents" ToRole="DocumentsFinancialPlan" />
           <NavigationProperty Name="AutoStringDocuments" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_Documents" FromRole="Documents" ToRole="AutoStringDocuments" />
           <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_Documents" FromRole="Documents" ToRole="TransactionNumbering" />
+          <NavigationProperty Name="LogsEditRestrictedDocuments" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents" FromRole="Documents" ToRole="LogsEditRestrictedDocuments" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -3095,6 +3283,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="PossibleSequenceTransofrmation" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
           <NavigationProperty Name="PossibleSequenceTransofrmation1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
           <NavigationProperty Name="DocumentStringLines" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentStringLines" />
+          <NavigationProperty Name="DocumentsRolesRestrictions" Relationship="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentsRolesRestrictions" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -3203,6 +3392,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="Partitions" Relationship="Self.FK_Inventory_ItemPartitionID" FromRole="Inventory" ToRole="Partitions" />
           <NavigationProperty Name="Partitions1" Relationship="Self.FK_Inventory_SecondPartitionID" FromRole="Inventory" ToRole="Partitions" />
           <NavigationProperty Name="TransactionLines" Relationship="Self.FK_Inventory_TransactionLineID" FromRole="Inventory" ToRole="TransactionLines" />
+          <Property Name="SurfaceID" Type="Int32" Nullable="false" />
+          <Property Name="WH" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_Inventory_Surfaces" FromRole="Inventory" ToRole="Surfaces" />
+          <NavigationProperty Name="Warehouses" Relationship="FlameTradeDbModel.FK_Inventory_Warehouses" FromRole="Inventory" ToRole="Warehouses" />
         </EntityType>
         <EntityType Name="InvoiceNumbering">
           <Key>
@@ -3524,6 +3717,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="RoleDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="FunctionRoles" Relationship="Self.FK_FunctionRoles_RoleID" FromRole="Roles" ToRole="FunctionRoles" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_RoleID" FromRole="Roles" ToRole="Users" />
+          <NavigationProperty Name="LogsEditRestrictedDocuments" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Roles" FromRole="Roles" ToRole="LogsEditRestrictedDocuments" />
+          <NavigationProperty Name="DocumentsRolesRestrictions" Relationship="FlameTradeDbModel.FK_DocumentsRolesRestrictions_Roles" FromRole="Roles" ToRole="DocumentsRolesRestrictions" />
         </EntityType>
         <EntityType Name="SequencesTransactions">
           <Key>
@@ -3632,6 +3827,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionRowsDependancy" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
           <NavigationProperty Name="TransactionRowsDependancy1" Relationship="FlameTradeDbModel.FK_TransactionRowsDependancy_TransactionLines1" FromRole="TransactionLines" ToRole="TransactionRowsDependancy" />
           <NavigationProperty Name="Surfaces" Relationship="FlameTradeDbModel.FK_TransactionLines_Surfaces" FromRole="TransactionLines" ToRole="Surfaces" />
+          <NavigationProperty Name="Warehouses" Relationship="FlameTradeDbModel.FK_TransactionLines_Warehouses" FromRole="TransactionLines" ToRole="Warehouses" />
         </EntityType>
         <EntityType Name="TransactionLinesTransformation">
           <Key>
@@ -3733,6 +3929,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="CurrentlyLoggedUsers" Relationship="FlameTradeDbModel.FK_CurrentlyLoggedUsers_Users" FromRole="Users" ToRole="CurrentlyLoggedUsers" />
           <NavigationProperty Name="DocumentTransactionsComments" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_Users" FromRole="Users" ToRole="DocumentTransactionsComments" />
           <NavigationProperty Name="TransactionLinesComments" Relationship="FlameTradeDbModel.FK_TransactionLinesComments_Users" FromRole="Users" ToRole="TransactionLinesComments" />
+          <NavigationProperty Name="LogsEditRestrictedDocuments" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users" FromRole="Users" ToRole="LogsEditRestrictedDocuments" />
+          <NavigationProperty Name="LogsEditRestrictedDocuments1" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users1" FromRole="Users" ToRole="LogsEditRestrictedDocuments" />
+          <Property Name="SystemEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_DocumentTransactions_ColorID">
           <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
@@ -5151,6 +5350,45 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="TransactionsType" EntitySet="TransactionsType" />
             <End Role="TransactionNumbering" EntitySet="TransactionNumbering" />
           </AssociationSet>
+          <EntitySet Name="Warehouses" EntityType="FlameTradeDbModel.Warehouses" />
+          <AssociationSet Name="FK_Inventory_Surfaces" Association="FlameTradeDbModel.FK_Inventory_Surfaces">
+            <End Role="Surfaces" EntitySet="Surfaces" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Warehouses" Association="FlameTradeDbModel.FK_Inventory_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionLines_Warehouses" Association="FlameTradeDbModel.FK_TransactionLines_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="TransactionLines" EntitySet="TransactionLines" />
+          </AssociationSet>
+          <EntitySet Name="LogsEditRestrictedDocuments" EntityType="FlameTradeDbModel.LogsEditRestrictedDocuments" />
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Roles" Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Users" Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Users1" Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
+          <EntitySet Name="DocumentsRolesRestrictions" EntityType="FlameTradeDbModel.DocumentsRolesRestrictions" />
+          <AssociationSet Name="FK_DocumentsRolesRestrictions_DocumentSequences" Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences">
+            <End Role="DocumentSequences" EntitySet="DocumentSequences" />
+            <End Role="DocumentsRolesRestrictions" EntitySet="DocumentsRolesRestrictions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentsRolesRestrictions_Roles" Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="DocumentsRolesRestrictions" EntitySet="DocumentsRolesRestrictions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogsEditRestrictedDocuments_Documents" Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -5230,6 +5468,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="ReceiptLines" Relationship="FlameTradeDbModel.FK_ReceiptLines_Surfaces" FromRole="Surfaces" ToRole="ReceiptLines" />
           <NavigationProperty Name="TransactionReceipt" Relationship="FlameTradeDbModel.FK_TransactionReceipt_Surfaces" FromRole="Surfaces" ToRole="TransactionReceipt" />
           <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLines_Surfaces" FromRole="Surfaces" ToRole="TransactionLines" />
+          <NavigationProperty Name="Inventory" Relationship="FlameTradeDbModel.FK_Inventory_Surfaces" FromRole="Surfaces" ToRole="Inventory" />
         </EntityType>
         <Association Name="FK_Items_Surfaces">
           <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
@@ -6266,6 +6505,159 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WhID" />
+          </Key>
+          <Property Name="WhID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WhName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WhCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsReal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="FlameTradeDbModel.FK_Inventory_Warehouses" FromRole="Warehouses" ToRole="Inventory" />
+          <NavigationProperty Name="TransactionLines" Relationship="FlameTradeDbModel.FK_TransactionLines_Warehouses" FromRole="Warehouses" ToRole="TransactionLines" />
+        </EntityType>
+        <Association Name="FK_Inventory_Surfaces">
+          <End Type="FlameTradeDbModel.Surfaces" Role="Surfaces" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surfaces">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Warehouses">
+          <End Type="FlameTradeDbModel.Warehouses" Role="Warehouses" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WhID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="WH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionLines_Warehouses">
+          <End Type="FlameTradeDbModel.Warehouses" Role="Warehouses" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.TransactionLines" Role="TransactionLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WhID" />
+            </Principal>
+            <Dependent Role="TransactionLines">
+              <PropertyRef Name="WH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LogsEditRestrictedDocuments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LogUserID" Type="Int32" Nullable="false" />
+          <Property Name="LogReason" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LogAction" Type="Int32" Nullable="false" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="RestrictionControlUserID" Type="Int32" />
+          <Property Name="TargetRolesGroupID" Type="Int32" />
+          <Property Name="AnswerStatus" Type="Int32" />
+          <Property Name="RequestSessionID" Type="Int32" />
+          <Property Name="SendRequestNow" Type="Int32" />
+          <Property Name="LogAllowedDeclinedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Roles" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Roles" FromRole="LogsEditRestrictedDocuments" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users" FromRole="LogsEditRestrictedDocuments" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users1" FromRole="LogsEditRestrictedDocuments" ToRole="Users" />
+          <NavigationProperty Name="Documents" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents" FromRole="LogsEditRestrictedDocuments" ToRole="Documents" />
+        </EntityType>
+        <Association Name="FK_LogsEditRestrictedDocuments_Roles">
+          <End Type="FlameTradeDbModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.LogsEditRestrictedDocuments" Role="LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="TargetRolesGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Users">
+          <End Type="FlameTradeDbModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.LogsEditRestrictedDocuments" Role="LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="LogUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Users1">
+          <End Type="FlameTradeDbModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.LogsEditRestrictedDocuments" Role="LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="RestrictionControlUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DocumentsRolesRestrictions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolesID" Type="Int32" Nullable="false" />
+          <Property Name="DocumentSequenceID" Type="Int32" Nullable="false" />
+          <Property Name="AllowEdits" Type="Int32" Nullable="false" />
+          <Property Name="AllowCreate" Type="Int32" Nullable="false" />
+          <Property Name="AllowDelete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentSequences" Relationship="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences" FromRole="DocumentsRolesRestrictions" ToRole="DocumentSequences" />
+          <NavigationProperty Name="Roles" Relationship="FlameTradeDbModel.FK_DocumentsRolesRestrictions_Roles" FromRole="DocumentsRolesRestrictions" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_DocumentsRolesRestrictions_DocumentSequences">
+          <End Type="FlameTradeDbModel.DocumentSequences" Role="DocumentSequences" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentsRolesRestrictions" Role="DocumentsRolesRestrictions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentSequences">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentsRolesRestrictions">
+              <PropertyRef Name="DocumentSequenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentsRolesRestrictions_Roles">
+          <End Type="FlameTradeDbModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.DocumentsRolesRestrictions" Role="DocumentsRolesRestrictions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="DocumentsRolesRestrictions">
+              <PropertyRef Name="RolesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogsEditRestrictedDocuments_Documents">
+          <End Type="FlameTradeDbModel.Documents" Role="Documents" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.LogsEditRestrictedDocuments" Role="LogsEditRestrictedDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogsEditRestrictedDocuments">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6414,6 +6806,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="WH" ColumnName="WH" />
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TransactionLineID" ColumnName="TransactionLineID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
@@ -6848,6 +7242,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="FlameTradeDbModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SystemEmail" ColumnName="SystemEmail" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -7181,6 +7576,46 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="DocumentTransactionID" ColumnName="DocumentTransactionID" />
                 <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.Warehouses">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="IsReal" ColumnName="IsReal" />
+                <ScalarProperty Name="WhCode" ColumnName="WhCode" />
+                <ScalarProperty Name="WhName" ColumnName="WhName" />
+                <ScalarProperty Name="WhID" ColumnName="WhID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogsEditRestrictedDocuments">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.LogsEditRestrictedDocuments">
+              <MappingFragment StoreEntitySet="LogsEditRestrictedDocuments">
+                <ScalarProperty Name="LogAllowedDeclinedDate" ColumnName="LogAllowedDeclinedDate" />
+                <ScalarProperty Name="SendRequestNow" ColumnName="SendRequestNow" />
+                <ScalarProperty Name="RequestSessionID" ColumnName="RequestSessionID" />
+                <ScalarProperty Name="AnswerStatus" ColumnName="AnswerStatus" />
+                <ScalarProperty Name="TargetRolesGroupID" ColumnName="TargetRolesGroupID" />
+                <ScalarProperty Name="RestrictionControlUserID" ColumnName="RestrictionControlUserID" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="LogAction" ColumnName="LogAction" />
+                <ScalarProperty Name="LogReason" ColumnName="LogReason" />
+                <ScalarProperty Name="LogUserID" ColumnName="LogUserID" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentsRolesRestrictions">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentsRolesRestrictions">
+              <MappingFragment StoreEntitySet="DocumentsRolesRestrictions">
+                <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+                <ScalarProperty Name="AllowCreate" ColumnName="AllowCreate" />
+                <ScalarProperty Name="AllowEdits" ColumnName="AllowEdits" />
+                <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
+                <ScalarProperty Name="RolesID" ColumnName="RolesID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

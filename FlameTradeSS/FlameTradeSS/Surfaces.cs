@@ -22,6 +22,7 @@ namespace FlameTradeSS
             this.ReceiptLines = new HashSet<ReceiptLines>();
             this.TransactionReceipt = new HashSet<TransactionReceipt>();
             this.TransactionLines = new HashSet<TransactionLines>();
+            this.Inventory = new HashSet<Inventory>();
         }
     
         public int ID { get; set; }
@@ -41,5 +42,7 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionReceipt> TransactionReceipt { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLines> TransactionLines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

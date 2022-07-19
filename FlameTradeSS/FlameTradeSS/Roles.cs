@@ -19,6 +19,8 @@ namespace FlameTradeSS
         {
             this.FunctionRoles = new HashSet<FunctionRoles>();
             this.Users = new HashSet<Users>();
+            this.LogsEditRestrictedDocuments = new HashSet<LogsEditRestrictedDocuments>();
+            this.DocumentsRolesRestrictions = new HashSet<DocumentsRolesRestrictions>();
         }
     
         public int RoleID { get; set; }
@@ -29,5 +31,9 @@ namespace FlameTradeSS
         public virtual ICollection<FunctionRoles> FunctionRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentsRolesRestrictions> DocumentsRolesRestrictions { get; set; }
     }
 }

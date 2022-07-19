@@ -287,6 +287,153 @@ namespace FlameTradeSS
                 }
                 
             } catch (Exception ex) { SendErrorMsg(ex.Message); }
+        } 
+
+        public static async void PerformInventoryTransactions(FlameTradeDbEntities db, Documents document, BindingSource documentTransactionsBindingSource)
+        {
+            try
+            {
+                if (document.DocumentSequences.IsReal==1)
+                {
+                    foreach(DocumentTransactions documentTransactions in documentTransactionsBindingSource)
+                    {
+                        foreach(TransactionLines transactionLines in documentTransactions.TransactionLines)
+                        {
+                            if (transactionLines.Items != null)
+                            {
+                                if (transactionLines.Inventory.Count == 0 && transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier != 0)
+                                {
+                                    Inventory inventory = new Inventory();
+                                    inventory.Items = transactionLines.Items;
+                                    inventory.TransactionLines = transactionLines;
+
+                                    if (transactionLines.Qty != null )
+                                    {
+                                        if (transactionLines.Partitions1 != null && transactionLines.Partitions != null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions.Value * transactionLines.Partitions1.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = transactionLines.Partitions;
+                                            inventory.Partitions1 = transactionLines.Partitions1;
+                                        }
+                                        else if (transactionLines.Partitions != null && transactionLines.Partitions1 == null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = transactionLines.Partitions;
+                                        }
+                                        else if (transactionLines.Partitions == null && transactionLines.Partitions1 != null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions1.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = db.Partitions.Where(p => p.ID == 1).SingleOrDefault();
+                                            inventory.Partitions1 = transactionLines.Partitions1;
+                                        }
+                                        else
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = db.Partitions.Where(p => p.ID == 1).SingleOrDefault();
+                                        }
+                                    }
+                                    else 
+                                    {
+                                        inventory.QTY = 0;
+                                    }
+
+                                    inventory.Price = transactionLines.CostPrice1;
+                                    inventory.TransactionDate = DateTime.Now;
+
+                                    if (transactionLines.Surfaces != null)
+                                    {
+                                        inventory.Surfaces = transactionLines.Surfaces;
+                                    }
+                                    else
+                                    {
+                                        inventory.Surfaces = db.Surfaces.Where(s => s.ID == 1).SingleOrDefault();
+                                    }
+
+                                    if (transactionLines.Warehouses != null)
+                                    {
+                                        inventory.Warehouses = transactionLines.Warehouses;
+                                    } else
+                                    {
+                                        inventory.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
+                                    }
+
+                                    db.Inventory.Add(inventory);
+
+                                } else if (transactionLines.Inventory.Count>0 && transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier != 0)
+                                {
+                                    Inventory inventory = (Inventory)transactionLines.Inventory.SingleOrDefault();
+                                    inventory.Items = transactionLines.Items;
+                                   // inventory.TransactionLines = transactionLines;
+                                    if (transactionLines.Qty != null && transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier != 0)
+                                    {
+                                        if (transactionLines.Partitions1 != null && transactionLines.Partitions != null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions.Value * transactionLines.Partitions1.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = transactionLines.Partitions;
+                                            inventory.Partitions1 = transactionLines.Partitions1;
+                                        }
+                                        else if (transactionLines.Partitions != null && transactionLines.Partitions1 == null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = transactionLines.Partitions;
+                                        }
+                                        else if (transactionLines.Partitions == null && transactionLines.Partitions1 != null)
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.Partitions1.Value * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = db.Partitions.Where(p => p.ID == 1).SingleOrDefault();
+                                            inventory.Partitions1 = transactionLines.Partitions1;
+                                        }
+                                        else
+                                        {
+                                            inventory.QTY = (double)transactionLines.Qty * transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier;
+                                            inventory.Partitions = db.Partitions.Where(p => p.ID == 1).SingleOrDefault();
+                                        }
+                                    }
+                                    else if (transactionLines.DocumentTransactions.TransactionsType.TransactionMultiplier != 0)
+                                    {
+                                        inventory.QTY = 0;
+                                    }
+
+                                    inventory.Price = transactionLines.CostPrice1;
+                                    inventory.TransactionDate = DateTime.Now;
+
+                                    if (transactionLines.Surfaces != null)
+                                    {
+                                        inventory.Surfaces = transactionLines.Surfaces;
+                                    }
+                                    else
+                                    {
+                                        inventory.Surfaces = db.Surfaces.Where(s => s.ID == 1).SingleOrDefault();
+                                    }
+
+                                    if (transactionLines.Warehouses != null)
+                                    {
+                                        inventory.Warehouses = transactionLines.Warehouses;
+                                    }
+                                    else
+                                    {
+                                        inventory.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
+                                    }
+                                }
+                            }
+
+                            if (transactionLines.Services!=null)
+                            {
+
+                            } 
+                            
+                            if (transactionLines.Machines!=null) 
+                            {
+
+                            }
+                        }
+                    }
+                }
+                await db.SaveChangesAsync();
+            } catch 
+            {
+                CommonTasks.SendErrorMsg("Нещо се обърка при запаметяване на операциите свързани със склада");
+            }
         }
     }
 }

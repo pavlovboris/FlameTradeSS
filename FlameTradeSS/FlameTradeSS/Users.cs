@@ -23,6 +23,8 @@ namespace FlameTradeSS
             this.CurrentlyLoggedUsers = new HashSet<CurrentlyLoggedUsers>();
             this.DocumentTransactionsComments = new HashSet<DocumentTransactionsComments>();
             this.TransactionLinesComments = new HashSet<TransactionLinesComments>();
+            this.LogsEditRestrictedDocuments = new HashSet<LogsEditRestrictedDocuments>();
+            this.LogsEditRestrictedDocuments1 = new HashSet<LogsEditRestrictedDocuments>();
         }
     
         public int ID { get; set; }
@@ -30,6 +32,7 @@ namespace FlameTradeSS
         public string Password { get; set; }
         public Nullable<int> RoleID { get; set; }
         public Nullable<int> PersonID { get; set; }
+        public string SystemEmail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documents> Documents { get; set; }
@@ -45,5 +48,9 @@ namespace FlameTradeSS
         public virtual ICollection<DocumentTransactionsComments> DocumentTransactionsComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionLinesComments> TransactionLinesComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments1 { get; set; }
     }
 }

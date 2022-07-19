@@ -89,16 +89,11 @@ namespace FlameTradeSS
                 financialCategoriesBindingSource.Add(db.FinancialCategories.Where(fc => fc.ID == possible.FinancialCategoryID).SingleOrDefault());
             }
             documentTransactionsBindingSource.DataSource = documentTransactions;
-            transactionLinesBindingSource.DataSource = documentTransactions.TransactionLines.ToList(); //db.TransactionLines.Where(tl => tl.TransactionsID == documentTransactions.ID).ToList();
+            transactionLinesBindingSource.DataSource = documentTransactions.TransactionLines.ToList();
             muBindingSource.DataSource = db.Mu.ToList();
             itemsBindingSource.DataSource = db.Items.ToList();
+           
             
-            //if (dgvTransactionLines.CurrentRow != null && dgvTransactionLines.CurrentRow.DataBoundItem != null && documentTransactions.TransactionLines.Count>0)
-            //{
-             //   TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
-           ///     transactionLines.DocumentTransactions = documentTransactions;
-         //   }
-
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
                 case "ItemID":
@@ -115,6 +110,7 @@ namespace FlameTradeSS
                     partitionsBindingSource.DataSource = db.Partitions.ToList();
                     partitionsBindingSource1.DataSource = db.Partitions.ToList();
                     muBindingSource.DataSource = db.Mu.ToList();
+                    warehousesBindingSource.DataSource = db.Warehouses.ToList();
                     break;
                 case "MachineID":
                     dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
@@ -384,12 +380,14 @@ namespace FlameTradeSS
                     transactionLinesBindingSource.Add(transactionLines);
                     transactionLinesBindingSource.MoveLast();
                     transactionLines.DocumentTransactions = documentTransactions;
+                    transactionLines.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
                     db.TransactionLines.Add(transactionLines);
                 }
 
                 if (transactionLines.DocumentTransactions == null)
                 {
                     transactionLines.DocumentTransactions = documentTransactions;
+                    transactionLines.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
                     db.TransactionLines.Add(transactionLines);
                 }
             }

@@ -105,5 +105,8 @@ namespace FlameTradeSS
         public virtual DbSet<ItemsParametersItems> ItemsParametersItems { get; set; }
         public virtual DbSet<ReceiptModelsItemsParameters> ReceiptModelsItemsParameters { get; set; }
         public virtual DbSet<TransactionNumbering> TransactionNumbering { get; set; }
+        public virtual DbSet<Warehouses> Warehouses { get; set; }
+        public virtual DbSet<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments { get; set; }
+        public virtual DbSet<DocumentsRolesRestrictions> DocumentsRolesRestrictions { get; set; }
     }
 }

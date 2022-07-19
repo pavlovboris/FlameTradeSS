@@ -215,6 +215,18 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_Documents" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions" />
         <AssociationConnector Association="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.Warehouses" Width="1.5" PointX="0.75" PointY="10.875" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Inventory_Surfaces" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Inventory_Warehouses" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionLines_Warehouses" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.LogsEditRestrictedDocuments" Width="1.5" PointX="21.25" PointY="27.125" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Roles" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Users1" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.DocumentsRolesRestrictions" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_Roles" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

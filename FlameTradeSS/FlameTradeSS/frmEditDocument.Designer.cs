@@ -111,6 +111,7 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEdits = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -215,6 +216,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnEdits);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnApplyReceiptModel);
             this.panel1.Controls.Add(this.cmbSequenceFilter);
@@ -734,7 +736,7 @@
             this.toolStripSeparator2,
             this.toolStripMenuCreateFrom});
             this.contextMenuStripDocumentTransactions.Name = "contextMenuStripDocumentTransactions";
-            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(275, 76);
+            this.contextMenuStripDocumentTransactions.Size = new System.Drawing.Size(275, 54);
             this.contextMenuStripDocumentTransactions.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             this.contextMenuStripDocumentTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStripDocumentTransactions_ItemClicked);
             // 
@@ -816,6 +818,17 @@
             this.toolStripMenuClose.Name = "toolStripMenuClose";
             this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuClose.Text = "Close";
+            // 
+            // btnEdits
+            // 
+            this.btnEdits.Location = new System.Drawing.Point(1070, 9);
+            this.btnEdits.Name = "btnEdits";
+            this.btnEdits.Size = new System.Drawing.Size(97, 33);
+            this.btnEdits.TabIndex = 32;
+            this.btnEdits.Text = "Редакция";
+            this.btnEdits.UseVisualStyleBackColor = true;
+            this.btnEdits.Visible = false;
+            this.btnEdits.Click += new System.EventHandler(this.btnEdits_Click);
             // 
             // frmEditDocument
             // 
@@ -932,5 +945,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreateFrom;
+        private System.Windows.Forms.Button btnEdits;
     }
 }

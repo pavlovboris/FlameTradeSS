@@ -677,6 +677,7 @@ namespace FlameTradeSS
                                   
                                     await db.SaveChangesAsync();
                                     CommonTasks.SendInfoMsg("Документа е успешно издаден : "+newDocument.DocumentNumber.ToString()+"@"+newDocument.DocumentSequences.SequenceName);
+                                    CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                                 }
                                 catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                             }

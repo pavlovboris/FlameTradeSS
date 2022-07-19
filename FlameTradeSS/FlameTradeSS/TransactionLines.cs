@@ -86,5 +86,6 @@ namespace FlameTradeSS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionRowsDependancy> TransactionRowsDependancy1 { get; set; }
         public virtual Surfaces Surfaces { get; set; }
+        public virtual Warehouses Warehouses { get; set; }
     }
 }

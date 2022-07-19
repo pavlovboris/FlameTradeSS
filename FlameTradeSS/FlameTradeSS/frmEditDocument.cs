@@ -8,6 +8,8 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace FlameTradeSS
@@ -105,7 +107,7 @@ namespace FlameTradeSS
                 cmbPartners.Enabled = false;
                 dateTimeDocDate.Enabled = false;
                 dgvDocumentTransactions.ReadOnly = true;
-              
+                btnEdits.Visible = true;
             }
 
             if (newDocument.DocumentSequences.SequenceType.NumberingReference == "Invoice Numbering ")
@@ -151,6 +153,8 @@ namespace FlameTradeSS
 
         public Documents newDocument;
 
+        bool editable = false;
+
         private async void frmNewDocument_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -179,7 +183,7 @@ namespace FlameTradeSS
 
             bool dispose = true;
 
-            if (newDocument.Issued == 0)
+            if (newDocument.Issued == 0 | editable == true ) 
             {
                 DialogResult dialogResult = CommonTasks.SendQuestionMsg("Искате ли да запазите документа?");
 
@@ -192,7 +196,7 @@ namespace FlameTradeSS
                     {
    
                         //make isBlocked=1;
-                        await db.SaveChangesAsync();              
+                        await db.SaveChangesAsync();      
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }
 
@@ -465,9 +469,6 @@ namespace FlameTradeSS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //DocumentTransactions documentTransactions = new DocumentTransactions();
-            //documentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
-
             if (e.RowIndex != -1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null && e.ColumnIndex == Surfaces_TransactionSurfaceID_SurfaceName_ID.Index)
             {
                 frmSurfaceSelector frmSurfaceSelector = new frmSurfaceSelector();
@@ -505,7 +506,7 @@ namespace FlameTradeSS
                     }
                 }
 
-                if (newDocument.Issued == 1)
+                if (newDocument.Issued == 1 && editable ==false)
                 {
                     newfrmDocumentTransactions.dgvTransactionLines.ReadOnly = true;
                     newfrmDocumentTransactions.dateTimeTransactionDate.Enabled = false;
@@ -772,6 +773,7 @@ namespace FlameTradeSS
                            
                                 await db.SaveChangesAsync();
                                 CommonTasks.SendInfoMsg("Документа е успешно издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
+                                CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                             }
                             catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                         }                        
@@ -837,6 +839,8 @@ namespace FlameTradeSS
                                 db.TransactionNumbering.Add(transactionNumbering);
 
                                 await db.SaveChangesAsync();
+                                
+                                CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                             }
                         }
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
@@ -879,24 +883,6 @@ namespace FlameTradeSS
 
             }
             catch { }
-           /* try
-            {
-                ComboBox filter = (ComboBox)sender;
-                TransactionsType transactionsType = filter.SelectedItem as TransactionsType;
-         
-                if (transactionsType != null)
-                {
-                    if (filter.SelectedIndex != 0)
-                    {
-                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID && dt.TransactionTypeID == transactionsType.ID).ToList();
-                    }
-                    else
-                    {
-                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
-                    }
-                }
-            }
-            catch { } */
         }
 
         private void dgvDocumentTransactions_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -1245,7 +1231,7 @@ namespace FlameTradeSS
                     {
                         if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
-                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== documentTransactions.TransactionSurfaceID).FirstOrDefault();
+                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== documentTransactions.TransactionSurfaceID).SingleOrDefault();
 
                             if (existingReceipt != null)
                             {
@@ -1279,34 +1265,6 @@ namespace FlameTradeSS
                                         }
                                     }
                                 }
-
-                                /*  foreach (ReceiptLines receiptLines in existingReceiptLines)
-                                  {
-                                      bool exists = false;
-                                      if (receiptLines.Surfaces == currentTransaction.Surfaces)
-                                      {
-                                          exists = true;
-                                      }
-                                      if (exists==false)
-                                      {
-                                          ReceiptLines newReceiptLine = new ReceiptLines();
-                                          newReceiptLine.Items = receiptLines.Items;
-                                          newReceiptLine.ItemQTY = receiptLines.ItemQTY;
-                                          newReceiptLine.ItemsParameters = receiptLines.ItemsParameters;
-                                          newReceiptLine.Partitions = receiptLines.Partitions;
-                                          newReceiptLine.Partitions1 = receiptLines.Partitions1;
-                                          newReceiptLine.Colors = receiptLines.Colors;
-                                          newReceiptLine.TransactionReceipt = receiptLines.TransactionReceipt;
-                                          if (currentTransaction.Surfaces != null)
-                                          {
-                                              newReceiptLine.Surfaces = currentTransaction.Surfaces;
-                                          } else
-                                          {
-                                              newReceiptLine.Surfaces = db.Surfaces.Where(s => s.ID==1).SingleOrDefault();
-                                          }
-                                          db.ReceiptLines.Add(newReceiptLine);
-                                      }
-                                  } */
                             }
                             else
                             {
@@ -1374,7 +1332,6 @@ namespace FlameTradeSS
 
         private void contextMenuTabs_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            
             if(tabControlMain.SelectedTab!=null)
             {
                 foreach(Form form in MdiChildren)
@@ -1436,15 +1393,144 @@ namespace FlameTradeSS
             frmCrystalReportsViewer.db = db;
             frmCrystalReportsViewer.document = newDocument;
             frmCrystalReportsViewer.rptSingleDocumentOffer1.SetDatabaseLogon("CstmDBDefSol", "uncloak-TAIWAN-peccary-listless");
-            //ParameterDiscreteValue parameter = new ParameterDiscreteValue();
-            //parameter.Value = newDocument.ID;
-            //parameter.IsRange = true;
-
-            //frmCrystalReportsViewer.rptSingleDocument1.Parameter_DocumentID.CurrentValues.AddValue(newDocument.ID);
-            //frmCrystalReportsViewer.rptSingleDocument1.Parameter_DocumentID.DefaultValues.Add(parameter);
-           // frmCrystalReportsViewer.rptSingleDocument1.SetParameterValue(0,newDocument.ID);
             
             frmCrystalReportsViewer.Show();
+        }
+
+        private void btnEdits_Click(object sender, EventArgs e)
+        {
+            if (CurrentSessionData.CurrentUser.RoleID != 1) 
+            {
+                DocumentsRolesRestrictions documentsRolesRestrictions = newDocument.DocumentSequences.DocumentsRolesRestrictions.SingleOrDefault();
+                
+                if (documentsRolesRestrictions != null)
+                {
+                    if (documentsRolesRestrictions.RolesID == CurrentSessionData.CurrentUser.RoleID)
+                    {
+                        if (documentsRolesRestrictions.AllowEdits==1)
+                        {
+                            frmDocumentsEditsRequests frmDocumentsEditsRequests = new frmDocumentsEditsRequests();
+                            frmDocumentsEditsRequests.document = newDocument;
+                            frmDocumentsEditsRequests.newLogReason = new LogsEditRestrictedDocuments();
+                            frmDocumentsEditsRequests.allowed = true;
+                            frmDocumentsEditsRequests.db = db;
+                            frmDocumentsEditsRequests.FormClosing += FrmDocumentsEditsRequests_FormClosing;
+                            frmDocumentsEditsRequests.ShowDialog();
+                        } else
+                        {
+                            frmDocumentsEditsRequests frmDocumentsEditsRequests = new frmDocumentsEditsRequests();
+                            frmDocumentsEditsRequests.document = newDocument;
+                            frmDocumentsEditsRequests.newLogReason = new LogsEditRestrictedDocuments();
+                            frmDocumentsEditsRequests.db = db;
+                            frmDocumentsEditsRequests.FormClosing += FrmDocumentsEditsRequests_FormClosing;
+                            frmDocumentsEditsRequests.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        frmDocumentsEditsRequests frmDocumentsEditsRequests = new frmDocumentsEditsRequests();
+                        frmDocumentsEditsRequests.document = newDocument;
+                        frmDocumentsEditsRequests.newLogReason = new LogsEditRestrictedDocuments();
+                        frmDocumentsEditsRequests.db = db;
+                        frmDocumentsEditsRequests.FormClosing += FrmDocumentsEditsRequests_FormClosing;
+                        frmDocumentsEditsRequests.ShowDialog();
+                    }
+                } else
+                {
+                    frmDocumentsEditsRequests frmDocumentsEditsRequests = new frmDocumentsEditsRequests();
+                    frmDocumentsEditsRequests.document = newDocument;
+                    frmDocumentsEditsRequests.newLogReason = new LogsEditRestrictedDocuments();
+                    frmDocumentsEditsRequests.db = db;
+                    frmDocumentsEditsRequests.FormClosing += FrmDocumentsEditsRequests_FormClosing;
+                    frmDocumentsEditsRequests.ShowDialog();
+                }
+            } else
+            {
+
+                DialogResult result = CommonTasks.SendQuestionMsg("Искате ли да запазите Log за редакцията на документа ?");
+
+                if (result==DialogResult.Yes)
+                {
+                    frmDocumentsEditsRequests frmDocumentsEditsRequests = new frmDocumentsEditsRequests();
+                    frmDocumentsEditsRequests.document = newDocument;
+                    frmDocumentsEditsRequests.newLogReason = new LogsEditRestrictedDocuments();
+                    frmDocumentsEditsRequests.db = db;
+                    frmDocumentsEditsRequests.FormClosing += FrmDocumentsEditsRequests_FormClosing;
+                    frmDocumentsEditsRequests.ShowDialog();
+                } else if (result == DialogResult.No)
+                {
+                    editable = true;
+                    listBoxTransactionsAdd.Enabled = true;
+                    btnCancel.Enabled = true;
+                    cmbDocumentSequence.Enabled = true;
+                    cmbPartners.Enabled = true;
+                    dateTimeDocDate.Enabled = true;
+                    dgvDocumentTransactions.ReadOnly = false;
+                    btnEdits.Visible = false;
+                }                
+            }
+        }
+
+        private async void FrmDocumentsEditsRequests_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmDocumentsEditsRequests frmDocumentsEditsRequests = (frmDocumentsEditsRequests)sender;
+
+            if (frmDocumentsEditsRequests.cancel == false)
+            {
+                if (frmDocumentsEditsRequests.isNew==true)
+                {
+                    db.LogsEditRestrictedDocuments.Add(frmDocumentsEditsRequests.newLogReason);
+                }
+
+                if (frmDocumentsEditsRequests.allowed == true)
+                {
+                    editable = true;
+                    listBoxTransactionsAdd.Enabled = true;
+                    btnCancel.Enabled = true;
+                    cmbDocumentSequence.Enabled = true;
+                    cmbPartners.Enabled = true;
+                    dateTimeDocDate.Enabled = true;
+                    dgvDocumentTransactions.ReadOnly = false;
+                    btnEdits.Visible = false;
+                } else
+                {
+                    if (frmDocumentsEditsRequests.newLogReason.SendRequestNow==1)
+                    {
+                        Email("Моля да ми бъде разрешема редакция на документ :"+ frmDocumentsEditsRequests.newLogReason.Documents.DocumentNumber +". Причината за редакция е : "+ frmDocumentsEditsRequests.newLogReason.LogReason, frmDocumentsEditsRequests.newLogReason);
+                    }
+                    CommonTasks.SendInfoMsg("Вашето искане за редакция на документ е прието, моля изчакайте потвърждение");
+                    await db.SaveChangesAsync();
+                }
+            }
+        }
+
+        public static void Email(string htmlString, LogsEditRestrictedDocuments logsEditRestrictedDocuments)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                smtp.Timeout = 10000;
+                message.From = new MailAddress("b.pavlov@apello-bg.com");
+                foreach(Users users in logsEditRestrictedDocuments.Roles.Users)
+                {
+                   if (users.SystemEmail != null)
+                    {
+                        message.To.Add(new MailAddress(users.SystemEmail));
+                    }
+                }
+                message.Subject = ""+ logsEditRestrictedDocuments.Documents.DocumentNumber.ToString()+"@"+ logsEditRestrictedDocuments.Documents.DocumentSequences.SequenceName + " Edit Request from User :"+ logsEditRestrictedDocuments.Users.UserName;
+                message.IsBodyHtml = false; //to make message body as html  
+                message.Body = htmlString;
+                smtp.Port = 26;
+                smtp.Host = "mail.apello-bg.com"; 
+                smtp.EnableSsl = false;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("b.pavlov@apello-bg.com", "cs1938cscscs");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
         }
     }
 }
