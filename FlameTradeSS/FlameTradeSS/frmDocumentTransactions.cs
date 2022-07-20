@@ -92,8 +92,11 @@ namespace FlameTradeSS
             transactionLinesBindingSource.DataSource = documentTransactions.TransactionLines.ToList();
             muBindingSource.DataSource = db.Mu.ToList();
             itemsBindingSource.DataSource = db.Items.ToList();
-           
-            
+            warehousesBindingSource.DataSource = db.Warehouses.ToList();
+            warehousesBindingSource.Add(new Warehouses());
+
+
+
             switch (documentTransactions.TransactionsType.LinesType.Name)
             {
                 case "ItemID":
@@ -110,7 +113,7 @@ namespace FlameTradeSS
                     partitionsBindingSource.DataSource = db.Partitions.ToList();
                     partitionsBindingSource1.DataSource = db.Partitions.ToList();
                     muBindingSource.DataSource = db.Mu.ToList();
-                    warehousesBindingSource.DataSource = db.Warehouses.ToList();
+
                     break;
                 case "MachineID":
                     dgvTransactionLines.Columns[Items_ItemID_Description_ID.Name].Visible = false;
@@ -154,19 +157,9 @@ namespace FlameTradeSS
             }
         }
 
-        private void FrmDocumentTransactions_GotFocus(object sender, EventArgs e)
-        {
-
-        }
-
         public  FlameTradeDbEntities db;
 
         public  DocumentTransactions documentTransactions;
-
-        private void dgvTransactionLines_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
 
         private void FrmReceiptSelector_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -185,10 +178,6 @@ namespace FlameTradeSS
         DataGridView dgvTasks;
         private void btnTasks_Click(object sender, EventArgs e)
         {
-            
-
-            
-
             btnTasks.Visible = false;
             dgvTasks = new DataGridView();
             
@@ -279,7 +268,6 @@ namespace FlameTradeSS
             cancelPoint.X = okPoint.X + 150;
             cancel.Location= cancelPoint;
             Controls.Add(cancel);
-
         }
 
         Button ok;
@@ -374,17 +362,7 @@ namespace FlameTradeSS
             {
                 TransactionLines transactionLines = dgvTransactionLines.CurrentRow.DataBoundItem as TransactionLines;
 
-                if (transactionLines == null)
-                {
-                    transactionLines = new TransactionLines();
-                    transactionLinesBindingSource.Add(transactionLines);
-                    transactionLinesBindingSource.MoveLast();
-                    transactionLines.DocumentTransactions = documentTransactions;
-                    transactionLines.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
-                    db.TransactionLines.Add(transactionLines);
-                }
-
-                if (transactionLines.DocumentTransactions == null)
+                if (transactionLines!=null && transactionLines.DocumentTransactions == null)
                 {
                     transactionLines.DocumentTransactions = documentTransactions;
                     transactionLines.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
@@ -509,42 +487,98 @@ namespace FlameTradeSS
                     frmReceiptSelector.item = item;
                     CommonTasks.OpenForm(frmReceiptSelector);
                 }
-            } else if (e.ColumnIndex != -1 && e.ColumnIndex == Items_ItemID_Description_ID.Index)
+            } else if (e.ColumnIndex != -1 && e.ColumnIndex == Items_ItemID_Description_ID.Index | e.ColumnIndex == Items_ItemID_Code_ID.Index)
             {
+                if (dgvTransactionLines.Rows[e.RowIndex].IsNewRow==true)
+                {
+                    dgvTransactionLines.AllowUserToAddRows = false;
+                   // transactionLinesBindingSource.RemoveCurrent();
+                }
                 frmItemSelector frmItemSelector  = new frmItemSelector();
                 frmItemSelector.db = db;
                 frmItemSelector.FormClosing += FrmItemSelector_FormClosing;
                 CommonTasks.OpenForm(frmItemSelector);
             }
         }
-
+        
         private void FrmItemSelector_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             frmItemSelector frmItemSelector = (frmItemSelector)sender;
-            Items selectedItem = frmItemSelector.dgvItemsSelector.CurrentRow.DataBoundItem as Items;
+
+            Items selectedItem = null;
+
+
+            if (frmItemSelector.dgvItemsSelector.CurrentRow!=null)
+            {
+                selectedItem = frmItemSelector.dgvItemsSelector.CurrentRow.DataBoundItem as Items;
+            }
+
             if (selectedItem != null)
             {
-                if(frmItemSelector.xClicked==false)
+                if (frmItemSelector.xClicked == false)
                 {
-                    dgvTransactionLines.CurrentRow.Cells[Items_ItemID_Code_ID.Index].Value = selectedItem.ID;
+                    if (dgvTransactionLines.AllowUserToAddRows == false)
+                    {
 
+                        transactionLinesBindingSource.RemoveAt(transactionLinesBindingSource.Count-1);
+                        TransactionLines newline = new TransactionLines();
+                       
+                        newline.Items = selectedItem;
+                        newline.DocumentTransactions = documentTransactions;
+                        newline.Warehouses = db.Warehouses.Where(w => w.WhID == 1).SingleOrDefault();
+                        transactionLinesBindingSource.Add(newline);
+                        transactionLinesBindingSource.MoveLast();
+                        db.TransactionLines.Add(newline);
+                        dgvTransactionLines.CurrentRow.Cells[Items_ItemID_Code_ID.Index].Value = selectedItem.ID;
+
+                        if (selectedItem.DefaultMu != 0)
+                        {
+                            dgvTransactionLines.Rows[dgvTransactionLines.RowCount-1].Cells[Mu_MuID_Code_ID.Index].Value = selectedItem.DefaultMu;
+                        }
+
+                        if (selectedItem.DefaultPartition != 0)
+                        {
+                            dgvTransactionLines.Rows[dgvTransactionLines.RowCount - 1].Cells[Partitions_PartitionID_code_ID.Index].Value = selectedItem.DefaultPartition;
+                        }
+
+                        if (selectedItem.DefaultSurfaceID != 0)
+                        {
+                            dgvTransactionLines.Rows[dgvTransactionLines.RowCount - 1].Cells[Surfaces_SurfaceID_SurfaceName_ID.Index].Value = selectedItem.DefaultSurfaceID;
+                        }
+
+                        if (selectedItem.FinancialCategoryID != null)
+                        {
+                            bool exists = false;
+                            foreach (FinancialCategories financialCategories in financialCategoriesBindingSource)
+                            {
+                                if (financialCategories.ID == selectedItem.FinancialCategoryID)
+                                {
+                                    exists = true;
+                                }
+                            }
+                            if (exists == true)
+                            {
+                                dgvTransactionLines.Rows[dgvTransactionLines.RowCount - 1].Cells[FinancialCategoryID.Index].Value = selectedItem.FinancialCategoryID;
+                            }
+                        }
+
+                        dgvTransactionLines.AllowUserToAddRows = true;
+
+                    } else
+                    {
+                        dgvTransactionLines.CurrentRow.Cells[Items_ItemID_Code_ID.Index].Value = selectedItem.ID;
+                    }
+
+                } else
+                {
+                    if (dgvTransactionLines.AllowUserToAddRows == false)
+                    {
+                        transactionLinesBindingSource.RemoveAt(transactionLinesBindingSource.Count - 1);
+                        dgvTransactionLines.AllowUserToAddRows = true;
+                    }
                 }
             }
-        }
-
-        private void dgvTransactionLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            DataGridView dgvr =(DataGridView)sender;
-
-           // if(dgvr.CurrentRow!=null && !dgvr.CurrentRow.IsNewRow && dgvr.CurrentRow.DataBoundItem!=null)
-          //  {
-         //       TransactionLines transactionLines = dgvr.Rows[e.RowIndex].DataBoundItem as TransactionLines;
-
-         //       transactionLines = new TransactionLines();
-       // / //       transactionLines.DocumentTransactions = documentTransactions;
-        //        db.TransactionLines.Add(transactionLines);
-         //       
-        //    }
         }
 
         private void dgvTransactionLines_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -589,8 +623,6 @@ namespace FlameTradeSS
             if (dgvTransactionLines.CurrentRow.Index==-1 | dgvTransactionLines.CurrentRow.DataBoundItem==null)
             {
                 e.Cancel = true;
-
-               
             }
             else if (dgvTransactionLines.CurrentCell.ColumnIndex == TransactionReceipt_ReceiptID_Name_ID.Index && dgvTransactionLines.CurrentCell.Value != null)
             {
@@ -621,6 +653,24 @@ namespace FlameTradeSS
             int transactionReceiptID = (int)dgvTransactionLines.CurrentRow.Cells[TransactionReceipt_ReceiptID_Name_ID.Index].Value;
             frmEditItemsReceipt.transactionReceipt =db.TransactionReceipt.Where(tr => tr.ID == transactionReceiptID ).SingleOrDefault();
             CommonTasks.OpenForm(frmEditItemsReceipt);
+        }
+
+        private void dgvTransactionLines_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          
+           if (dgvTransactionLines.CurrentRow!=null && dgvTransactionLines.CurrentRow.Index != -1 && char.IsNumber(e.KeyChar) | char.IsSymbol(e.KeyChar) && dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Code_ID.Index | dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Description_ID.Index)
+           {
+              if (dgvTransactionLines.CurrentRow.IsNewRow == true)
+              {
+                  dgvTransactionLines.AllowUserToAddRows = false;
+              }
+              frmItemSelector frmItemSelector = new frmItemSelector();
+              frmItemSelector.db = db;
+              frmItemSelector.txtFilter.Text = e.KeyChar.ToString();
+              frmItemSelector.txtFilter.SelectedText = null;
+              frmItemSelector.FormClosing += FrmItemSelector_FormClosing;
+              CommonTasks.OpenForm(frmItemSelector);
+           }
         }
     }
 }

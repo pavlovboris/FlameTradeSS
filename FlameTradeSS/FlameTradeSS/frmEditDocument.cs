@@ -192,8 +192,6 @@ namespace FlameTradeSS
 
                     try
                     {
-   
-                        //make isBlocked=1;
                         await db.SaveChangesAsync();      
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message+"\n"+ex.InnerException.Message); }

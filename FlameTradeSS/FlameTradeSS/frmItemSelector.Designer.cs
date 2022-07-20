@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemSelector));
-            this.btnClose = new System.Windows.Forms.Button();
             this.dgvItemsSelector = new System.Windows.Forms.DataGridView();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.btmProjectAdd = new System.Windows.Forms.Button();
@@ -48,20 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(591, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 53);
-            this.btnClose.TabIndex = 8;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // dgvItemsSelector
             // 
@@ -82,14 +67,14 @@
             this.secondCodeDataGridViewTextBoxColumn,
             this.PictureData});
             this.dgvItemsSelector.DataSource = this.itemsBindingSource;
-            this.dgvItemsSelector.Location = new System.Drawing.Point(12, 92);
+            this.dgvItemsSelector.Location = new System.Drawing.Point(12, 41);
             this.dgvItemsSelector.MultiSelect = false;
             this.dgvItemsSelector.Name = "dgvItemsSelector";
             this.dgvItemsSelector.ReadOnly = true;
             this.dgvItemsSelector.RowHeadersWidth = 20;
             this.dgvItemsSelector.RowTemplate.Height = 40;
             this.dgvItemsSelector.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItemsSelector.Size = new System.Drawing.Size(623, 228);
+            this.dgvItemsSelector.Size = new System.Drawing.Size(623, 220);
             this.dgvItemsSelector.TabIndex = 1;
             this.dgvItemsSelector.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
             this.dgvItemsSelector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
@@ -98,7 +83,7 @@
             // 
             this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilter.Location = new System.Drawing.Point(13, 61);
+            this.txtFilter.Location = new System.Drawing.Point(13, 10);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(622, 20);
             this.txtFilter.TabIndex = 0;
@@ -191,17 +176,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(647, 332);
+            this.ClientSize = new System.Drawing.Size(647, 273);
             this.Controls.Add(this.btmProjectAdd);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.dgvItemsSelector);
-            this.Controls.Add(this.btnClose);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmItemSelector";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmProjectSelector";
+            this.Text = "Избор на Артикул";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmProjectSelector_Load);
             this.Shown += new System.EventHandler(this.frmItemSelector_Shown);
@@ -216,14 +200,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox txtFilter;
         public System.Windows.Forms.DataGridView dgvItemsSelector;
         private System.Windows.Forms.Button btmProjectAdd;
         private System.Windows.Forms.BindingSource itemsGroupsBindingSource;
         private System.Windows.Forms.BindingSource itemCategoryBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
+        public System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn itemsGroupIDDataGridViewTextBoxColumn;
