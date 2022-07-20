@@ -296,7 +296,45 @@ namespace FlameTradeSS
                     {
                         await db.SaveChangesAsync();
                     } catch { }
-                    
+
+                    if (newDocument.Issued == 1)
+                    {
+                        documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
+
+                        foreach (DocumentTransactions docTransactions in newDocument.DocumentTransactions)
+                        {
+                            if (docTransactions.TransactionNumber == null)
+                            {
+                                int maxTransactionNumber = 0;
+
+                                try
+                                {
+                                    maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+
+                                }
+                                catch
+                                {
+
+                                }
+
+                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+
+                                TransactionNumbering transactionNumbering = new TransactionNumbering();
+                                transactionNumbering.TransactionsType = docTransactions.TransactionsType;
+                                transactionNumbering.Documents = newDocument;
+                                transactionNumbering.Number = maxTransactionNumber + 1;
+                                transactionNumbering.DocumentTransactions = docTransactions;
+
+                                db.TransactionNumbering.Add(transactionNumbering);
+
+                                await db.SaveChangesAsync();
+                            }
+                        }
+
+
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                    }
+
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -309,7 +347,7 @@ namespace FlameTradeSS
                     e.Cancel = true;
                     dispose = false;
                 }
-            }
+            } 
 
             if(dispose == true)
             {
@@ -396,6 +434,12 @@ namespace FlameTradeSS
         {
             if (listBoxTransactionsAdd.SelectedItem != null)
             {
+
+                if (cmbPartners.SelectedValue==null)
+                {
+                    CommonTasks.SendErrorMsg("Не е избран Партьор! \n Моля не забравяйте да изберете партьор преди да продъжите.");
+                }
+
                 TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
                 DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 
@@ -450,16 +494,12 @@ namespace FlameTradeSS
             }           
         }
 
-        private void NewTabFrmDocumentTransactions_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
+      /*  private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmDocumentTransactions closingForm = (frmDocumentTransactions)sender;
             e.Cancel = true;
             closingForm.Hide();
-        }
+        }*/
 
         DocumentTransactions documentTransactions;
 
@@ -813,35 +853,39 @@ namespace FlameTradeSS
 
                             foreach(DocumentTransactions docTransactions in newDocument.DocumentTransactions)
                             {
-                                int maxTransactionNumber = 0;
-
-                                try
+                                if (docTransactions.TransactionNumber=="")
                                 {
-                                    maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+                                    int maxTransactionNumber = 0;
 
-                                } catch
-                                {
+                                    try
+                                    {
+                                        maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
 
+                                    }
+                                    catch
+                                    {
+
+                                    }
+
+                                    docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+
+                                    TransactionNumbering transactionNumbering = new TransactionNumbering();
+                                    transactionNumbering.TransactionsType = docTransactions.TransactionsType;
+                                    transactionNumbering.Documents = newDocument;
+                                    transactionNumbering.Number = maxTransactionNumber + 1;
+                                    transactionNumbering.DocumentTransactions = docTransactions;
+
+                                    db.TransactionNumbering.Add(transactionNumbering);
+
+                                    await db.SaveChangesAsync();
                                 }
-
-                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
-
-                                TransactionNumbering transactionNumbering = new TransactionNumbering();
-                                transactionNumbering.TransactionsType = docTransactions.TransactionsType;
-                                transactionNumbering.Documents = newDocument;
-                                transactionNumbering.Number = maxTransactionNumber + 1;
-                                transactionNumbering.DocumentTransactions = docTransactions;
-
-                                db.TransactionNumbering.Add(transactionNumbering);
-
-                                await db.SaveChangesAsync();
-                                
-                                CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                             }
                         }
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+
                     }
-                        break;
+                    break;
             }
         }
 
@@ -1209,6 +1253,20 @@ namespace FlameTradeSS
                         }
                     }
 
+                    List<Inventory> emptyInvetory = new List<Inventory>();
+                    foreach (Inventory oldInventoryLine in emptyLine.Inventory)
+                    {
+                        emptyInvetory.Add(oldInventoryLine);
+                    }
+
+                    if (emptyInvetory.Count>0)
+                    {
+                        foreach(Inventory inventoryForRemoving in emptyInvetory)
+                        {
+                            db.Inventory.Remove(inventoryForRemoving);
+                        }
+                    }
+
                     db.TransactionLines.Remove(emptyLine);
                 }
             }
@@ -1496,6 +1554,158 @@ namespace FlameTradeSS
                     }
                     CommonTasks.SendInfoMsg("Вашето искане за редакция на документ е прието, моля изчакайте потвърждение");
                     await db.SaveChangesAsync();
+                }
+            }
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            if (newDocument.Issued == 0 | editable == true)
+            {
+                DialogResult dialogResult = CommonTasks.SendQuestionMsg("Искате ли да запазите документа?");
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message + "\n" + ex.InnerException.Message); }
+
+                    foreach (TransactionRowsDependancy transactionRowsDependancy in db.TransactionRowsDependancy.Where(tlrd => tlrd.TransactionLines.DocumentTransactions.DocumentsID == newDocument.ID))
+                    {
+                        foreach (TransactionLines transactionLines in db.TransactionLines.Where(tl => tl.ID == transactionRowsDependancy.TransactionLines1.ID))
+                        {
+                            TransactionLines dependantTL = transactionRowsDependancy.TransactionLines;
+                            switch (transactionRowsDependancy.ControlledParameter)
+                            {
+                                case "RemainingQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingQTY = transactionLines.RemainingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingQTY = transactionLines.RemainingQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+
+                                    break;
+                                case "RemainingInvoiceQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingInvoiceQTY = transactionLines.RemainingInvoiceQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                                case "RemainingDeliveryQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingDeliveryQTY = transactionLines.RemainingDeliveryQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                                case "RemainingPackagingQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingPackagingQTY = transactionLines.RemainingPackagingQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                                case "RemainingProductionQTY":
+                                    if (transactionRowsDependancy.InitialValue == transactionRowsDependancy.LastValue)
+                                    {
+                                        if (transactionRowsDependancy.TransactionLines.Qty != transactionRowsDependancy.InitialValue)
+                                        {
+                                            double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                            transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY + diff;
+                                            transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        double diff = (double)(transactionRowsDependancy.LastValue - transactionRowsDependancy.TransactionLines.Qty);
+                                        transactionLines.RemainingProductionQTY = transactionLines.RemainingProductionQTY + diff;
+                                        transactionRowsDependancy.LastValue = transactionRowsDependancy.TransactionLines.Qty;
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    try
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                    catch { }
+
+                    if (newDocument.Issued == 1)
+                    {
+                        foreach (DocumentTransactions docTransactions in newDocument.DocumentTransactions)
+                        {
+                            if (docTransactions.TransactionNumber == null)
+                            {
+                                int maxTransactionNumber = 0;
+
+                                try
+                                {
+                                    maxTransactionNumber = db.TransactionNumbering.Where(tn => tn.DocumentID == newDocument.ID && tn.TransactionTypeID == docTransactions.TransactionTypeID).Max(tn => tn.Number);
+                                }
+                                catch
+                                {
+
+                                }
+
+                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+
+                                TransactionNumbering transactionNumbering = new TransactionNumbering();
+                                transactionNumbering.TransactionsType = docTransactions.TransactionsType;
+                                transactionNumbering.Documents = newDocument;
+                                transactionNumbering.Number = maxTransactionNumber + 1;
+                                transactionNumbering.DocumentTransactions = docTransactions;
+
+                                db.TransactionNumbering.Add(transactionNumbering);
+
+                                await db.SaveChangesAsync();
+                            }
+                        }
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@ namespace FlameTradeSS
         }
 
         private const int cGrip = 10;      // Grip size
-        private const int cCaption = 600;   // Caption bar height;
+        private const int cCaption = 300;   // Caption bar height;
 
         protected override void WndProc(ref Message m)
         {
@@ -62,6 +62,15 @@ namespace FlameTradeSS
 
             Cursor.Current = Cursors.Default;
             Show();
+
+            try
+            {
+                btnDocuments.Location = Properties.Settings.Default.btnDocumentsLocation;
+                btnNewDocument.Location = Properties.Settings.Default.btnNewDocumentLocation;
+                btnFinancialPlans.Location = Properties.Settings.Default.btnFinancialPlans;
+                btnProjects.Location = Properties.Settings.Default.btnProjectsLocation;
+                btnProduction.Location = Properties.Settings.Default.btnProductionLocation;
+            } catch { }
         }
 
         private void pictureBoxMinimize_Click(object sender, EventArgs e)
@@ -115,10 +124,6 @@ namespace FlameTradeSS
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
-            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
-            // rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
-            //  e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
             Graphics g = this.CreateGraphics();
             // create  a  pen object with which to draw
             Pen p = new Pen(Color.LightBlue, 2);  // draw the line
@@ -127,6 +132,11 @@ namespace FlameTradeSS
                                                   //g.DrawLine(p,2,2,2,Size.Height-4);
             Rectangle r = new Rectangle(2, 2, Size.Width - 4, Size.Height - 4);
             g.DrawRectangle(p, r);
+
+            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
+            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
+            // rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
+            //  e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
         }
 
         private void btnPartnersMng_Click(object sender, EventArgs e)
@@ -172,6 +182,13 @@ namespace FlameTradeSS
                 Properties.Settings.Default.frmMainLocation = this.RestoreBounds.Location;
                 Properties.Settings.Default.frmMainSize = this.RestoreBounds.Size;
             }
+
+            Properties.Settings.Default.btnDocumentsLocation = btnDocuments.Location;
+            Properties.Settings.Default.btnNewDocumentLocation = btnNewDocument.Location;
+            Properties.Settings.Default.btnFinancialPlans = btnFinancialPlans.Location;
+            Properties.Settings.Default.btnProjectsLocation = btnProjects.Location;
+            Properties.Settings.Default.btnProductionLocation = btnProduction.Location;
+
             // don't forget to save the settings
             Properties.Settings.Default.Save();
         }
@@ -248,7 +265,85 @@ namespace FlameTradeSS
             CommonTasks.OpenForm(frmFinancialPlansList);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private Point pointMouse = new Point();
+        private Control ctrlMoved = new Control();
+        private bool bMoving = false;
+
+        private void Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.Name == btnDocuments.Name)
+            {
+                btn.Click += btnDocuments_Click;
+            }
+            else if (btn.Name == btnNewDocument.Name)
+            {
+                btn.Click += btnNewDocument_Click;
+            }
+            else if (btn.Name == btnFinancialPlans.Name)
+            {
+                btn.Click += btnFinancialPlans_Click;
+            }
+            else if (btn.Name == btnProduction.Name)
+            {
+                btn.Click += btnProduction_Click;
+            }
+            else if (btn.Name == btnProjects.Name)
+            {
+                btn.Click += btnProjects_Click;
+            }
+
+            //if not left mouse button, exit
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+            // save cursor location
+            pointMouse = e.Location;
+            //remember that we're moving
+            bMoving = true;
+        }
+
+        private void Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            bMoving = false;
+        }
+
+        private void Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            btn.BringToFront();
+            //if not being moved or left mouse button not used, exit
+            if (!bMoving || e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+            //get control reference
+            ctrlMoved = (Control)sender;
+            //set control's position based upon mouse's position change
+            ctrlMoved.Left += e.X - pointMouse.X;
+            ctrlMoved.Top += e.Y - pointMouse.Y;
+            
+            if (btn.Name == btnDocuments.Name)
+            {
+                btn.Click -= btnDocuments_Click;
+            } else if (btn.Name == btnNewDocument.Name)
+            {
+                btn.Click -= btnNewDocument_Click;
+            } else if (btn.Name == btnFinancialPlans.Name)
+            {
+                btn.Click -= btnFinancialPlans_Click;
+            } else if (btn.Name == btnProduction.Name)
+            {
+                btn.Click -= btnProduction_Click;
+            } else if (btn.Name == btnProjects.Name)
+            {
+                btn.Click -= btnProjects_Click;
+            }
+        }
+
+        private void btnProduction_Click(object sender, EventArgs e)
         {
 
         }

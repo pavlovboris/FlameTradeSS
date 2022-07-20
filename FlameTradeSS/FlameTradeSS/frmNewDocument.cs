@@ -318,6 +318,12 @@ namespace FlameTradeSS
         {
             if (listBoxTransactionsAdd.SelectedItem!=null)
             {
+
+                if (cmbPartners.SelectedValue == null)
+                {
+                    CommonTasks.SendErrorMsg("Не е избран Партьор! \n Моля не забравяйте да изберете партьор преди да продъжите.");
+                }
+
                 TransactionsType selectedTransactionType = listBoxTransactionsAdd.SelectedItem as TransactionsType;
                 DocumentTransactions newDocumentTransaction = new DocumentTransactions();
 

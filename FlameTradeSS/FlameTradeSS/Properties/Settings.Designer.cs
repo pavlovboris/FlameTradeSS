@@ -334,5 +334,65 @@ namespace FlameTradeSS.Properties {
                 this["editRequestUserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point btnDocumentsLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["btnDocumentsLocation"]));
+            }
+            set {
+                this["btnDocumentsLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point btnNewDocumentLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["btnNewDocumentLocation"]));
+            }
+            set {
+                this["btnNewDocumentLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point btnFinancialPlans {
+            get {
+                return ((global::System.Drawing.Point)(this["btnFinancialPlans"]));
+            }
+            set {
+                this["btnFinancialPlans"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point btnProjectsLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["btnProjectsLocation"]));
+            }
+            set {
+                this["btnProjectsLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point btnProductionLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["btnProductionLocation"]));
+            }
+            set {
+                this["btnProductionLocation"] = value;
+            }
+        }
     }
 }

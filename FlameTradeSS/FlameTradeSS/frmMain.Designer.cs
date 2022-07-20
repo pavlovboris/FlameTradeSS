@@ -81,7 +81,7 @@
             this.btnAdminTools.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdminTools.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAdminTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdminTools.Location = new System.Drawing.Point(1062, 603);
+            this.btnAdminTools.Location = new System.Drawing.Point(1062, 533);
             this.btnAdminTools.Name = "btnAdminTools";
             this.btnAdminTools.Size = new System.Drawing.Size(75, 23);
             this.btnAdminTools.TabIndex = 21;
@@ -93,7 +93,7 @@
             // 
             this.treeViewInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeViewInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeViewInventory.Location = new System.Drawing.Point(540, 131);
+            this.treeViewInventory.Location = new System.Drawing.Point(196, 109);
             this.treeViewInventory.Name = "treeViewInventory";
             treeNode1.Name = "ItemsNewItem";
             treeNode1.Text = "Добави Артикул";
@@ -132,7 +132,7 @@
             this.btnNewDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNewDocument.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_051_Icon_48;
             this.btnNewDocument.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewDocument.Location = new System.Drawing.Point(191, 131);
+            this.btnNewDocument.Location = new System.Drawing.Point(728, 200);
             this.btnNewDocument.Name = "btnNewDocument";
             this.btnNewDocument.Size = new System.Drawing.Size(153, 50);
             this.btnNewDocument.TabIndex = 34;
@@ -140,6 +140,9 @@
             this.btnNewDocument.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNewDocument.UseVisualStyleBackColor = true;
             this.btnNewDocument.Click += new System.EventHandler(this.btnNewDocument_Click);
+            this.btnNewDocument.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnNewDocument.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnNewDocument.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // btnProduction
             // 
@@ -155,6 +158,10 @@
             this.btnProduction.Text = "Производство";
             this.btnProduction.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProduction.UseVisualStyleBackColor = true;
+            this.btnProduction.Click += new System.EventHandler(this.btnProduction_Click);
+            this.btnProduction.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnProduction.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnProduction.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // btnWarehouse
             // 
@@ -163,7 +170,7 @@
             this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnWarehouse.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_132_Icon_48;
             this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWarehouse.Location = new System.Drawing.Point(540, 73);
+            this.btnWarehouse.Location = new System.Drawing.Point(196, 51);
             this.btnWarehouse.Name = "btnWarehouse";
             this.btnWarehouse.Size = new System.Drawing.Size(97, 52);
             this.btnWarehouse.TabIndex = 32;
@@ -178,7 +185,7 @@
             this.btnProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnProjects.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_web_Icon_48;
             this.btnProjects.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProjects.Location = new System.Drawing.Point(384, 73);
+            this.btnProjects.Location = new System.Drawing.Point(938, 131);
             this.btnProjects.Name = "btnProjects";
             this.btnProjects.Size = new System.Drawing.Size(113, 52);
             this.btnProjects.TabIndex = 31;
@@ -186,6 +193,9 @@
             this.btnProjects.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProjects.UseVisualStyleBackColor = true;
             this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
+            this.btnProjects.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnProjects.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnProjects.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // btnDocuments
             // 
@@ -194,7 +204,7 @@
             this.btnDocuments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnDocuments.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_095_Icon_48;
             this.btnDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDocuments.Location = new System.Drawing.Point(191, 73);
+            this.btnDocuments.Location = new System.Drawing.Point(728, 142);
             this.btnDocuments.Name = "btnDocuments";
             this.btnDocuments.Size = new System.Drawing.Size(130, 52);
             this.btnDocuments.TabIndex = 30;
@@ -202,6 +212,9 @@
             this.btnDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDocuments.UseVisualStyleBackColor = true;
             this.btnDocuments.Click += new System.EventHandler(this.btnDocuments_Click);
+            this.btnDocuments.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnDocuments.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnDocuments.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // btnMinimize
             // 
@@ -246,7 +259,7 @@
             // 
             this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeViewPartners.Location = new System.Drawing.Point(17, 131);
+            this.treeViewPartners.Location = new System.Drawing.Point(17, 109);
             this.treeViewPartners.Name = "treeViewPartners";
             treeNode12.Name = "PartnerGroup";
             treeNode12.Text = "Групи";
@@ -274,7 +287,7 @@
             this.btnPartnersMng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnPartnersMng.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_109_Icon_48;
             this.btnPartnersMng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPartnersMng.Location = new System.Drawing.Point(17, 73);
+            this.btnPartnersMng.Location = new System.Drawing.Point(17, 51);
             this.btnPartnersMng.Name = "btnPartnersMng";
             this.btnPartnersMng.Size = new System.Drawing.Size(132, 52);
             this.btnPartnersMng.TabIndex = 28;
@@ -298,12 +311,15 @@
             this.btnFinancialPlans.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinancialPlans.UseVisualStyleBackColor = true;
             this.btnFinancialPlans.Click += new System.EventHandler(this.btnFinancialPlans_Click);
+            this.btnFinancialPlans.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnFinancialPlans.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnFinancialPlans.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // lblCurrentUserName
             // 
             this.lblCurrentUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentUserName.AutoSize = true;
-            this.lblCurrentUserName.Location = new System.Drawing.Point(135, 605);
+            this.lblCurrentUserName.Location = new System.Drawing.Point(135, 535);
             this.lblCurrentUserName.Name = "lblCurrentUserName";
             this.lblCurrentUserName.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentUserName.TabIndex = 18;
@@ -313,7 +329,7 @@
             // 
             this.lblCurentUserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurentUserLabel.AutoSize = true;
-            this.lblCurentUserLabel.Location = new System.Drawing.Point(64, 605);
+            this.lblCurentUserLabel.Location = new System.Drawing.Point(64, 535);
             this.lblCurentUserLabel.Name = "lblCurentUserLabel";
             this.lblCurentUserLabel.Size = new System.Drawing.Size(72, 13);
             this.lblCurentUserLabel.TabIndex = 17;
@@ -325,7 +341,7 @@
             this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogOut.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_076_Icon_48;
-            this.btnLogOut.Location = new System.Drawing.Point(10, 575);
+            this.btnLogOut.Location = new System.Drawing.Point(10, 505);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(49, 47);
             this.btnLogOut.TabIndex = 26;
@@ -337,7 +353,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1149, 638);
+            this.ClientSize = new System.Drawing.Size(1149, 568);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnPartnersMng);
             this.Controls.Add(this.lblCurentUserLabel);

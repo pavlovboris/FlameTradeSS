@@ -46,6 +46,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEdits = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnApplyReceiptModel = new System.Windows.Forms.Button();
             this.cmbSequenceFilter = new System.Windows.Forms.ComboBox();
@@ -111,7 +112,7 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEdits = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -142,7 +143,7 @@
             this.cmbPartners.FormattingEnabled = true;
             this.cmbPartners.Location = new System.Drawing.Point(27, 67);
             this.cmbPartners.Name = "cmbPartners";
-            this.cmbPartners.Size = new System.Drawing.Size(347, 21);
+            this.cmbPartners.Size = new System.Drawing.Size(299, 21);
             this.cmbPartners.TabIndex = 1;
             this.cmbPartners.ValueMember = "ID";
             // 
@@ -186,7 +187,7 @@
             this.cmbDocumentSequence.FormattingEnabled = true;
             this.cmbDocumentSequence.Location = new System.Drawing.Point(27, 27);
             this.cmbDocumentSequence.Name = "cmbDocumentSequence";
-            this.cmbDocumentSequence.Size = new System.Drawing.Size(347, 21);
+            this.cmbDocumentSequence.Size = new System.Drawing.Size(299, 21);
             this.cmbDocumentSequence.TabIndex = 4;
             this.cmbDocumentSequence.ValueMember = "ID";
             this.cmbDocumentSequence.SelectionChangeCommitted += new System.EventHandler(this.cmbDocumentSequence_SelectionChangeCommitted);
@@ -198,7 +199,7 @@
             // lblDocumentDate
             // 
             this.lblDocumentDate.AutoSize = true;
-            this.lblDocumentDate.Location = new System.Drawing.Point(423, 9);
+            this.lblDocumentDate.Location = new System.Drawing.Point(338, 9);
             this.lblDocumentDate.Name = "lblDocumentDate";
             this.lblDocumentDate.Size = new System.Drawing.Size(108, 13);
             this.lblDocumentDate.TabIndex = 7;
@@ -208,7 +209,7 @@
             // 
             this.dateTimeDocDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.documentsBindingSource, "DocumentDate", true));
             this.dateTimeDocDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeDocDate.Location = new System.Drawing.Point(421, 27);
+            this.dateTimeDocDate.Location = new System.Drawing.Point(336, 27);
             this.dateTimeDocDate.Name = "dateTimeDocDate";
             this.dateTimeDocDate.Size = new System.Drawing.Size(110, 20);
             this.dateTimeDocDate.TabIndex = 8;
@@ -216,6 +217,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnEdits);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnApplyReceiptModel);
@@ -244,16 +246,27 @@
             this.panel1.Controls.Add(this.lblSequence);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(1450, 239);
+            this.panel1.MinimumSize = new System.Drawing.Size(1584, 239);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1550, 239);
+            this.panel1.Size = new System.Drawing.Size(1584, 239);
             this.panel1.TabIndex = 12;
+            // 
+            // btnEdits
+            // 
+            this.btnEdits.Location = new System.Drawing.Point(904, 6);
+            this.btnEdits.Name = "btnEdits";
+            this.btnEdits.Size = new System.Drawing.Size(75, 35);
+            this.btnEdits.TabIndex = 32;
+            this.btnEdits.Text = "Редакция";
+            this.btnEdits.UseVisualStyleBackColor = true;
+            this.btnEdits.Visible = false;
+            this.btnEdits.Click += new System.EventHandler(this.btnEdits_Click);
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(1070, 52);
+            this.btnPrint.Location = new System.Drawing.Point(985, 52);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 36);
+            this.btnPrint.Size = new System.Drawing.Size(94, 36);
             this.btnPrint.TabIndex = 31;
             this.btnPrint.Text = "Визуализиране";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -261,7 +274,7 @@
             // 
             // btnApplyReceiptModel
             // 
-            this.btnApplyReceiptModel.Location = new System.Drawing.Point(705, 91);
+            this.btnApplyReceiptModel.Location = new System.Drawing.Point(620, 91);
             this.btnApplyReceiptModel.Name = "btnApplyReceiptModel";
             this.btnApplyReceiptModel.Size = new System.Drawing.Size(278, 23);
             this.btnApplyReceiptModel.TabIndex = 30;
@@ -289,7 +302,7 @@
             // 
             this.btnCancel.Enabled = false;
             this.btnCancel.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnCancel.Location = new System.Drawing.Point(989, 52);
+            this.btnCancel.Location = new System.Drawing.Point(904, 52);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 36);
             this.btnCancel.TabIndex = 28;
@@ -300,7 +313,7 @@
             // 
             this.btnIssueDocument.Enabled = false;
             this.btnIssueDocument.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnIssueDocument.Location = new System.Drawing.Point(989, 6);
+            this.btnIssueDocument.Location = new System.Drawing.Point(904, 6);
             this.btnIssueDocument.Name = "btnIssueDocument";
             this.btnIssueDocument.Size = new System.Drawing.Size(75, 36);
             this.btnIssueDocument.TabIndex = 27;
@@ -313,7 +326,7 @@
             this.checkBoxIsBlocked.AutoSize = true;
             this.checkBoxIsBlocked.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.documentsBindingSource, "IsBlocked", true));
             this.checkBoxIsBlocked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxIsBlocked.Location = new System.Drawing.Point(554, 91);
+            this.checkBoxIsBlocked.Location = new System.Drawing.Point(469, 91);
             this.checkBoxIsBlocked.Name = "checkBoxIsBlocked";
             this.checkBoxIsBlocked.Size = new System.Drawing.Size(140, 17);
             this.checkBoxIsBlocked.TabIndex = 26;
@@ -324,7 +337,7 @@
             // lblComment
             // 
             this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(702, 9);
+            this.lblComment.Location = new System.Drawing.Point(617, 9);
             this.lblComment.Name = "lblComment";
             this.lblComment.Size = new System.Drawing.Size(57, 13);
             this.lblComment.TabIndex = 25;
@@ -333,7 +346,7 @@
             // txtComment
             // 
             this.txtComment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "Comment", true));
-            this.txtComment.Location = new System.Drawing.Point(705, 29);
+            this.txtComment.Location = new System.Drawing.Point(620, 29);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(278, 56);
@@ -342,7 +355,7 @@
             // btnRemoveFile
             // 
             this.btnRemoveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveFile.Location = new System.Drawing.Point(1491, 199);
+            this.btnRemoveFile.Location = new System.Drawing.Point(1525, 199);
             this.btnRemoveFile.Name = "btnRemoveFile";
             this.btnRemoveFile.Size = new System.Drawing.Size(47, 23);
             this.btnRemoveFile.TabIndex = 23;
@@ -353,7 +366,7 @@
             // btnAddFile
             // 
             this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddFile.Location = new System.Drawing.Point(1394, 199);
+            this.btnAddFile.Location = new System.Drawing.Point(1428, 199);
             this.btnAddFile.Name = "btnAddFile";
             this.btnAddFile.Size = new System.Drawing.Size(47, 23);
             this.btnAddFile.TabIndex = 22;
@@ -365,7 +378,7 @@
             // 
             this.lblAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttachments.AutoSize = true;
-            this.lblAttachments.Location = new System.Drawing.Point(1391, 9);
+            this.lblAttachments.Location = new System.Drawing.Point(1425, 9);
             this.lblAttachments.Name = "lblAttachments";
             this.lblAttachments.Size = new System.Drawing.Size(54, 13);
             this.lblAttachments.TabIndex = 21;
@@ -384,7 +397,7 @@
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
             this.dgvAttachments.DataSource = this.documentsAttachmentsBindingSource;
-            this.dgvAttachments.Location = new System.Drawing.Point(1394, 29);
+            this.dgvAttachments.Location = new System.Drawing.Point(1428, 29);
             this.dgvAttachments.MultiSelect = false;
             this.dgvAttachments.Name = "dgvAttachments";
             this.dgvAttachments.ReadOnly = true;
@@ -410,7 +423,7 @@
             // 
             this.lblProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProjects.AutoSize = true;
-            this.lblProjects.Location = new System.Drawing.Point(1173, 9);
+            this.lblProjects.Location = new System.Drawing.Point(1207, 9);
             this.lblProjects.Name = "lblProjects";
             this.lblProjects.Size = new System.Drawing.Size(50, 13);
             this.lblProjects.TabIndex = 16;
@@ -419,7 +432,7 @@
             // lblPossibleTransactons
             // 
             this.lblPossibleTransactons.AutoSize = true;
-            this.lblPossibleTransactons.Location = new System.Drawing.Point(551, 9);
+            this.lblPossibleTransactons.Location = new System.Drawing.Point(466, 9);
             this.lblPossibleTransactons.Name = "lblPossibleTransactons";
             this.lblPossibleTransactons.Size = new System.Drawing.Size(125, 13);
             this.lblPossibleTransactons.TabIndex = 15;
@@ -433,7 +446,7 @@
             this.listBoxProjects.DataSource = this.projectBindingSource;
             this.listBoxProjects.DisplayMember = "ProjectName";
             this.listBoxProjects.FormattingEnabled = true;
-            this.listBoxProjects.Location = new System.Drawing.Point(1176, 29);
+            this.listBoxProjects.Location = new System.Drawing.Point(1210, 29);
             this.listBoxProjects.Name = "listBoxProjects";
             this.listBoxProjects.Size = new System.Drawing.Size(212, 82);
             this.listBoxProjects.TabIndex = 14;
@@ -510,7 +523,7 @@
             this.dgvDocumentTransactions.Name = "dgvDocumentTransactions";
             this.dgvDocumentTransactions.RowHeadersWidth = 20;
             this.dgvDocumentTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1361, 105);
+            this.dgvDocumentTransactions.Size = new System.Drawing.Size(1395, 105);
             this.dgvDocumentTransactions.TabIndex = 12;
             this.dgvDocumentTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentTransactions_CellClick);
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -764,7 +777,7 @@
             // lblDocumentNumber
             // 
             this.lblDocumentNumber.AutoSize = true;
-            this.lblDocumentNumber.Location = new System.Drawing.Point(418, 52);
+            this.lblDocumentNumber.Location = new System.Drawing.Point(333, 52);
             this.lblDocumentNumber.Name = "lblDocumentNumber";
             this.lblDocumentNumber.Size = new System.Drawing.Size(116, 13);
             this.lblDocumentNumber.TabIndex = 11;
@@ -773,7 +786,7 @@
             // txtDocumentNumber
             // 
             this.txtDocumentNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.documentsBindingSource, "DocumentNumber", true));
-            this.txtDocumentNumber.Location = new System.Drawing.Point(421, 68);
+            this.txtDocumentNumber.Location = new System.Drawing.Point(336, 68);
             this.txtDocumentNumber.MaxLength = 20;
             this.txtDocumentNumber.Name = "txtDocumentNumber";
             this.txtDocumentNumber.Size = new System.Drawing.Size(110, 20);
@@ -783,7 +796,7 @@
             // listBoxTransactionsAdd
             // 
             this.listBoxTransactionsAdd.FormattingEnabled = true;
-            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(554, 29);
+            this.listBoxTransactionsAdd.Location = new System.Drawing.Point(469, 29);
             this.listBoxTransactionsAdd.Name = "listBoxTransactionsAdd";
             this.listBoxTransactionsAdd.Size = new System.Drawing.Size(145, 56);
             this.listBoxTransactionsAdd.TabIndex = 9;
@@ -801,7 +814,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 239);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1550, 26);
+            this.tabControlMain.Size = new System.Drawing.Size(1584, 26);
             this.tabControlMain.TabIndex = 14;
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
@@ -819,23 +832,22 @@
             this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuClose.Text = "Close";
             // 
-            // btnEdits
+            // btnSave
             // 
-            this.btnEdits.Location = new System.Drawing.Point(1070, 9);
-            this.btnEdits.Name = "btnEdits";
-            this.btnEdits.Size = new System.Drawing.Size(97, 33);
-            this.btnEdits.TabIndex = 32;
-            this.btnEdits.Text = "Редакция";
-            this.btnEdits.UseVisualStyleBackColor = true;
-            this.btnEdits.Visible = false;
-            this.btnEdits.Click += new System.EventHandler(this.btnEdits_Click);
+            this.btnSave.Location = new System.Drawing.Point(904, 91);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(175, 23);
+            this.btnSave.TabIndex = 33;
+            this.btnSave.Text = "Запамети";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1550, 858);
+            this.ClientSize = new System.Drawing.Size(1584, 858);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -946,5 +958,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreateFrom;
         private System.Windows.Forms.Button btnEdits;
+        private System.Windows.Forms.Button btnSave;
     }
 }
