@@ -121,6 +121,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingCatalogs.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountingEntries.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountingEntriesModel.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountingEntriesModelDetails.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsGroups.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsType.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AutoStringDocuments.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
@@ -562,6 +583,9 @@
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PartnerStaticPriceGroup.cs">
+      <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsType.cs">
       <DependentUpon>FlameTradeDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Persons.cs">

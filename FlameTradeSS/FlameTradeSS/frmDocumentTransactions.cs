@@ -409,9 +409,11 @@ namespace FlameTradeSS
                 }
             } else if (e.RowIndex!=-1 && e.ColumnIndex == Qty.Index)
             {
-                if(RemainingQTY.Visible == true)
+
+                if (RemainingQTY.Visible == true)
                 {
-                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    
+                    double oldNewDiff = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue) - qtyOldValue;
                     if (dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value!=null)
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingQTY.Index].Value + oldNewDiff;
@@ -422,7 +424,7 @@ namespace FlameTradeSS
                 }
                 if (RemainingInvoiceQTY.Visible == true)
                 {
-                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    double oldNewDiff = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue) - qtyOldValue;
                     if (dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value != null)
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingInvoiceQTY.Index].Value + oldNewDiff;
@@ -433,7 +435,7 @@ namespace FlameTradeSS
                 }
                 if (RemainingDeliveryQTY.Visible == true)
                 {
-                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    double oldNewDiff = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue) - qtyOldValue;
                     if (dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value != null)
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingDeliveryQTY.Index].Value + oldNewDiff;
@@ -445,7 +447,7 @@ namespace FlameTradeSS
                 }
                 if (RemainingPackagingQTY.Visible == true)
                 {
-                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    double oldNewDiff = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue) - qtyOldValue;
                     if (dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value != null)
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingPackagingQTY.Index].Value + oldNewDiff;
@@ -457,7 +459,7 @@ namespace FlameTradeSS
                 }
                 if (RemainingProductionQTY.Visible == true)
                 {
-                    double oldNewDiff = (double)dgvTransactionLines.CurrentCell.Value - qtyOldValue;
+                    double oldNewDiff = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue) - qtyOldValue;
                     if (dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value != null)
                     {
                         dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value = (double)dgvTransactionLines.CurrentRow.Cells[RemainingProductionQTY.Index].Value + oldNewDiff;
@@ -585,9 +587,9 @@ namespace FlameTradeSS
         {
             if (e.ColumnIndex == Qty.Index )
             {
-                if (dgvTransactionLines.CurrentCell.Value!=null)
+                if (dgvTransactionLines.CurrentCell.EditedFormattedValue!=null)
                 {
-                    qtyOldValue = (double)dgvTransactionLines.CurrentCell.Value;
+                    qtyOldValue = Convert.ToDouble(dgvTransactionLines.CurrentCell.EditedFormattedValue);
                 }
             }
         }
@@ -658,19 +660,35 @@ namespace FlameTradeSS
         private void dgvTransactionLines_KeyPress(object sender, KeyPressEventArgs e)
         {
           
-           if (dgvTransactionLines.CurrentRow!=null && dgvTransactionLines.CurrentRow.Index != -1 && char.IsNumber(e.KeyChar) | char.IsSymbol(e.KeyChar) && dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Code_ID.Index | dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Description_ID.Index)
-           {
-              if (dgvTransactionLines.CurrentRow.IsNewRow == true)
-              {
-                  dgvTransactionLines.AllowUserToAddRows = false;
-              }
-              frmItemSelector frmItemSelector = new frmItemSelector();
-              frmItemSelector.db = db;
-              frmItemSelector.txtFilter.Text = e.KeyChar.ToString();
-              frmItemSelector.txtFilter.SelectedText = null;
-              frmItemSelector.FormClosing += FrmItemSelector_FormClosing;
-              CommonTasks.OpenForm(frmItemSelector);
-           }
+           if (dgvTransactionLines.CurrentRow!=null && dgvTransactionLines.CurrentRow.Index != -1)
+            {
+                if ( dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Code_ID.Index | dgvTransactionLines.CurrentCell.ColumnIndex == Items_ItemID_Description_ID.Index)
+                {
+                    if (char.IsLetterOrDigit(e.KeyChar))
+                    {
+                        if (dgvTransactionLines.CurrentRow.IsNewRow == true)
+                        {
+                            dgvTransactionLines.AllowUserToAddRows = false;
+                        }
+                        frmItemSelector frmItemSelector = new frmItemSelector();
+                        frmItemSelector.db = db;
+                        frmItemSelector.txtFilter.Text = e.KeyChar.ToString();
+                        frmItemSelector.txtFilter.SelectedText = null;
+                        frmItemSelector.FormClosing += FrmItemSelector_FormClosing;
+                        CommonTasks.OpenForm(frmItemSelector);
+                    }
+                } else if (dgvTransactionLines.CurrentCell.ColumnIndex == Qty.Index | dgvTransactionLines.CurrentCell.ColumnIndex==SalePrice1.Index | dgvTransactionLines.CurrentCell.ColumnIndex == CostPrice1.Index | dgvTransactionLines.CurrentCell.ColumnIndex==AdditionExpense.Index)
+                {
+                    if (e.KeyChar == 8) 
+                    { 
+
+                    }
+                    else if (!char.IsDigit(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    } 
+                }
+            }
         }
     }
 }

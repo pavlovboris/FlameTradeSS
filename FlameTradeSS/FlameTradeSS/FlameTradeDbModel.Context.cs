@@ -108,5 +108,13 @@ namespace FlameTradeSS
         public virtual DbSet<Warehouses> Warehouses { get; set; }
         public virtual DbSet<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments { get; set; }
         public virtual DbSet<DocumentsRolesRestrictions> DocumentsRolesRestrictions { get; set; }
+        public virtual DbSet<AccountingCatalogs> AccountingCatalogs { get; set; }
+        public virtual DbSet<AccountingEntries> AccountingEntries { get; set; }
+        public virtual DbSet<AccountingEntriesModel> AccountingEntriesModel { get; set; }
+        public virtual DbSet<AccountingEntriesModelDetails> AccountingEntriesModelDetails { get; set; }
+        public virtual DbSet<Accounts> Accounts { get; set; }
+        public virtual DbSet<AccountsGroups> AccountsGroups { get; set; }
+        public virtual DbSet<AccountsType> AccountsType { get; set; }
+        public virtual DbSet<PaymentsType> PaymentsType { get; set; }
     }
 }

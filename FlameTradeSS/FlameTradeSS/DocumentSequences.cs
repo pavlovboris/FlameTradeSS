@@ -32,6 +32,7 @@ namespace FlameTradeSS
         public string SequenceDescription { get; set; }
         public int IsReal { get; set; }
         public int TypeID { get; set; }
+        public int IsGeneratingAccountingEntry { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documents> Documents { get; set; }

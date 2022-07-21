@@ -5,6 +5,79 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FlameTradeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountingCatalogs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="AccountingEntries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="OriginModelID" Type="int" />
+          <Property Name="DocumentsID" Type="int" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="CreditValue" Type="float" />
+          <Property Name="DebitValue" Type="float" />
+          <Property Name="IsVATEntry" Type="int" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="AccountingCatalogID" Type="int" Nullable="false" />
+          <Property Name="OriginModelDetailID" Type="int" />
+        </EntityType>
+        <EntityType Name="AccountingEntriesModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountingEntriesModelDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountingEntriesModelID" Type="int" Nullable="false" />
+          <Property Name="DebitAccountID" Type="int" Nullable="false" />
+          <Property Name="CreditAccountID" Type="int" Nullable="false" />
+          <Property Name="PercentOfValue" Type="float" Nullable="false" />
+          <Property Name="VATAccountID" Type="int" />
+          <Property Name="VATPercent" Type="float" />
+          <Property Name="VatType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="AccountDescription" Type="varchar" MaxLength="250" />
+          <Property Name="AccountLevel" Type="int" Nullable="false" />
+          <Property Name="AccountTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="AccountGroupID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountsGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupDescription" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="AccountsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeDescription" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="AutoStringDocuments">
           <Key>
             <PropertyRef Name="ID" />
@@ -88,6 +161,7 @@
           <Property Name="SequenceDescription" Type="varchar" MaxLength="250" />
           <Property Name="IsReal" Type="int" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="IsGeneratingAccountingEntry" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentSequencesProperties">
           <Key>
@@ -177,6 +251,7 @@
           <Property Name="TransactionSurfaceID" Type="int" />
           <Property Name="Comment" Type="varchar" MaxLength="250" />
           <Property Name="TransactionNumber" Type="varchar" MaxLength="50" />
+          <Property Name="AccountingEntryModelID" Type="int" />
         </EntityType>
         <EntityType Name="DocumentTransactionsComments">
           <Key>
@@ -480,6 +555,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PriceGroupName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeDescription" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Persons">
           <Key>
@@ -840,6 +923,7 @@
           <Property Name="IsFinancialType" Type="int" Nullable="false" />
           <Property Name="DefaultSurfaceTypeID" Type="int" Nullable="false" />
           <Property Name="DefaultReceiptModelID" Type="int" Nullable="false" />
+          <Property Name="DefaultAccountingEntryModelID" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -880,6 +964,150 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person_Name" Type="varchar" MaxLength="201" />
         </EntityType>
+        <Association Name="FK_AccountingEntries_AccountingCatalogs">
+          <End Role="AccountingCatalogs" Type="Self.AccountingCatalogs" Multiplicity="1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingCatalogs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="AccountingCatalogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_AccountingEntriesModel">
+          <End Role="AccountingEntriesModel" Type="Self.AccountingEntriesModel" Multiplicity="0..1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="OriginModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_AccountingEntriesModelDetails">
+          <End Role="AccountingEntriesModelDetails" Type="Self.AccountingEntriesModelDetails" Multiplicity="0..1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="OriginModelDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_Documents">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="0..1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="DocumentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_DocumentTransactions">
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="0..1" />
+          <End Role="AccountingEntries" Type="Self.AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_AccountingEntriesModel">
+          <End Role="AccountingEntriesModel" Type="Self.AccountingEntriesModel" Multiplicity="1" />
+          <End Role="AccountingEntriesModelDetails" Type="Self.AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="AccountingEntriesModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountingEntriesModelDetails" Type="Self.AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="CreditAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts1">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountingEntriesModelDetails" Type="Self.AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="DebitAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts2">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="AccountingEntriesModelDetails" Type="Self.AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="VATAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_AccountsGroups">
+          <End Role="AccountsGroups" Type="Self.AccountsGroups" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountsGroups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="AccountGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_AccountsType">
+          <End Role="AccountsType" Type="Self.AccountsType" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AutoStringDocuments_Documents">
           <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
           <End Role="AutoStringDocuments" Type="Self.AutoStringDocuments" Multiplicity="*" />
@@ -1117,6 +1345,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Principal>
             <Dependent Role="DocumentStringLines">
               <PropertyRef Name="DocumentStringID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactions_AccountingEntriesModel">
+          <End Role="AccountingEntriesModel" Type="Self.AccountingEntriesModel" Multiplicity="0..1" />
+          <End Role="DocumentTransactions" Type="Self.DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="AccountingEntryModelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2476,6 +2716,18 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransactionsType_AccountingEntriesModel">
+          <End Role="AccountingEntriesModel" Type="Self.AccountingEntriesModel" Multiplicity="0..1" />
+          <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionsType">
+              <PropertyRef Name="DefaultAccountingEntryModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionsType_LinesRelation">
           <End Role="LinesType" Type="Self.LinesType" Multiplicity="1" />
           <End Role="TransactionsType" Type="Self.TransactionsType" Multiplicity="*" />
@@ -2549,6 +2801,13 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FlameTradeDbModelStoreContainer">
+          <EntitySet Name="AccountingCatalogs" EntityType="Self.AccountingCatalogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingEntries" EntityType="Self.AccountingEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingEntriesModel" EntityType="Self.AccountingEntriesModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingEntriesModelDetails" EntityType="Self.AccountingEntriesModelDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsGroups" EntityType="Self.AccountsGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsType" EntityType="Self.AccountsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutoStringDocuments" EntityType="Self.AutoStringDocuments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CostingModels" EntityType="Self.CostingModels" Schema="dbo" store:Type="Tables" />
@@ -2595,6 +2854,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySet Name="PartnerPersons" EntityType="Self.PartnerPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PartnerStaticPriceGroup" EntityType="Self.PartnerStaticPriceGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsType" EntityType="Self.PaymentsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsRolesOfPersons" EntityType="Self.PersonsRolesOfPersons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonsType" EntityType="Self.PersonsType" Schema="dbo" store:Type="Tables" />
@@ -2637,6 +2897,54 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
     [PersonsFullNameView].[Person_Name] AS [Person_Name]
     FROM [dbo].[PersonsFullNameView] AS [PersonsFullNameView]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingCatalogs" Association="Self.FK_AccountingEntries_AccountingCatalogs">
+            <End Role="AccountingCatalogs" EntitySet="AccountingCatalogs" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingEntriesModel" Association="Self.FK_AccountingEntries_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingEntriesModelDetails" Association="Self.FK_AccountingEntries_AccountingEntriesModelDetails">
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_Accounts" Association="Self.FK_AccountingEntries_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_Documents" Association="Self.FK_AccountingEntries_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_DocumentTransactions" Association="Self.FK_AccountingEntries_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_AccountingEntriesModel" Association="Self.FK_AccountingEntriesModelDetails_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts" Association="Self.FK_AccountingEntriesModelDetails_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts1" Association="Self.FK_AccountingEntriesModelDetails_Accounts1">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts2" Association="Self.FK_AccountingEntriesModelDetails_Accounts2">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_AccountsGroups" Association="Self.FK_Accounts_AccountsGroups">
+            <End Role="AccountsGroups" EntitySet="AccountsGroups" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_AccountsType" Association="Self.FK_Accounts_AccountsType">
+            <End Role="AccountsType" EntitySet="AccountsType" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
           <AssociationSet Name="FK_AutoStringDocuments_Documents" Association="Self.FK_AutoStringDocuments_Documents">
             <End Role="Documents" EntitySet="Documents" />
             <End Role="AutoStringDocuments" EntitySet="AutoStringDocuments" />
@@ -2716,6 +3024,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <AssociationSet Name="FK_DocumentStringLines_DocumentsStrings" Association="Self.FK_DocumentStringLines_DocumentsStrings">
             <End Role="DocumentsStrings" EntitySet="DocumentsStrings" />
             <End Role="DocumentStringLines" EntitySet="DocumentStringLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactions_AccountingEntriesModel" Association="Self.FK_DocumentTransactions_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentTransactions_ColorID" Association="Self.FK_DocumentTransactions_ColorID">
             <End Role="Colors" EntitySet="Colors" />
@@ -3169,6 +3481,10 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
             <End Role="TransactionsTransformations" EntitySet="TransactionsTransformations" />
           </AssociationSet>
+          <AssociationSet Name="FK_TransactionsType_AccountingEntriesModel" Association="Self.FK_TransactionsType_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionsType_LinesRelation" Association="Self.FK_TransactionsType_LinesRelation">
             <End Role="LinesType" EntitySet="LinesType" />
             <End Role="TransactionsType" EntitySet="TransactionsType" />
@@ -3255,6 +3571,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="AutoStringDocuments" Relationship="FlameTradeDbModel.FK_AutoStringDocuments_Documents" FromRole="Documents" ToRole="AutoStringDocuments" />
           <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_Documents" FromRole="Documents" ToRole="TransactionNumbering" />
           <NavigationProperty Name="LogsEditRestrictedDocuments" Relationship="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents" FromRole="Documents" ToRole="LogsEditRestrictedDocuments" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_Documents" FromRole="Documents" ToRole="AccountingEntries" />
         </EntityType>
         <EntityType Name="DocumentsAttachments">
           <Key>
@@ -3284,6 +3601,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="PossibleSequenceTransofrmation1" Relationship="FlameTradeDbModel.FK_PossibleSequenceTransofrmation_DocumentSequences1" FromRole="DocumentSequences" ToRole="PossibleSequenceTransofrmation" />
           <NavigationProperty Name="DocumentStringLines" Relationship="FlameTradeDbModel.FK_DocumentStringLines_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentStringLines" />
           <NavigationProperty Name="DocumentsRolesRestrictions" Relationship="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences" FromRole="DocumentSequences" ToRole="DocumentsRolesRestrictions" />
+          <Property Name="IsGeneratingAccountingEntry" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentsProjects">
           <Key>
@@ -3340,6 +3658,9 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="DocumentTransactionsComments" Relationship="FlameTradeDbModel.FK_DocumentTransactionsComments_DocumentTransactions" FromRole="DocumentTransactions" ToRole="DocumentTransactionsComments" />
           <Property Name="TransactionNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_DocumentTransactions" FromRole="DocumentTransactions" ToRole="TransactionNumbering" />
+          <Property Name="AccountingEntryModelID" Type="Int32" />
+          <NavigationProperty Name="AccountingEntriesModel" Relationship="FlameTradeDbModel.FK_DocumentTransactions_AccountingEntriesModel" FromRole="DocumentTransactions" ToRole="AccountingEntriesModel" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_DocumentTransactions" FromRole="DocumentTransactions" ToRole="AccountingEntries" />
         </EntityType>
         <EntityType Name="DocumentTransformation">
           <Key>
@@ -3911,6 +4232,8 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <Property Name="DefaultReceiptModelID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ReceiptModels" Relationship="FlameTradeDbModel.FK_TransactionsType_ReceiptModels" FromRole="TransactionsType" ToRole="ReceiptModels" />
           <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" FromRole="TransactionsType" ToRole="TransactionNumbering" />
+          <Property Name="DefaultAccountingEntryModelID" Type="Int32" />
+          <NavigationProperty Name="AccountingEntriesModel" Relationship="FlameTradeDbModel.FK_TransactionsType_AccountingEntriesModel" FromRole="TransactionsType" ToRole="AccountingEntriesModel" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -5389,6 +5712,70 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             <End Role="Documents" EntitySet="Documents" />
             <End Role="LogsEditRestrictedDocuments" EntitySet="LogsEditRestrictedDocuments" />
           </AssociationSet>
+          <EntitySet Name="AccountingCatalogs" EntityType="FlameTradeDbModel.AccountingCatalogs" />
+          <EntitySet Name="AccountingEntries" EntityType="FlameTradeDbModel.AccountingEntries" />
+          <EntitySet Name="AccountingEntriesModel" EntityType="FlameTradeDbModel.AccountingEntriesModel" />
+          <EntitySet Name="AccountingEntriesModelDetails" EntityType="FlameTradeDbModel.AccountingEntriesModelDetails" />
+          <EntitySet Name="Accounts" EntityType="FlameTradeDbModel.Accounts" />
+          <EntitySet Name="AccountsGroups" EntityType="FlameTradeDbModel.AccountsGroups" />
+          <EntitySet Name="AccountsType" EntityType="FlameTradeDbModel.AccountsType" />
+          <EntitySet Name="PaymentsType" EntityType="FlameTradeDbModel.PaymentsType" />
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_AccountingEntriesModel" Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentTransactions_AccountingEntriesModel" Association="FlameTradeDbModel.FK_DocumentTransactions_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionsType_AccountingEntriesModel" Association="FlameTradeDbModel.FK_TransactionsType_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="TransactionsType" EntitySet="TransactionsType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts" Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts1" Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts1">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntriesModelDetails_Accounts2" Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts2">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_AccountsGroups" Association="FlameTradeDbModel.FK_Accounts_AccountsGroups">
+            <End Role="AccountsGroups" EntitySet="AccountsGroups" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_AccountsType" Association="FlameTradeDbModel.FK_Accounts_AccountsType">
+            <End Role="AccountsType" EntitySet="AccountsType" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingCatalogs" Association="FlameTradeDbModel.FK_AccountingEntries_AccountingCatalogs">
+            <End Role="AccountingCatalogs" EntitySet="AccountingCatalogs" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingEntriesModel" Association="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModel">
+            <End Role="AccountingEntriesModel" EntitySet="AccountingEntriesModel" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_Accounts" Association="FlameTradeDbModel.FK_AccountingEntries_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_Documents" Association="FlameTradeDbModel.FK_AccountingEntries_Documents">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_DocumentTransactions" Association="FlameTradeDbModel.FK_AccountingEntries_DocumentTransactions">
+            <End Role="DocumentTransactions" EntitySet="DocumentTransactions" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountingEntries_AccountingEntriesModelDetails" Association="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModelDetails">
+            <End Role="AccountingEntriesModelDetails" EntitySet="AccountingEntriesModelDetails" />
+            <End Role="AccountingEntries" EntitySet="AccountingEntries" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersLogInLogs">
           <Key>
@@ -6658,6 +7045,279 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccountingCatalogs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingCatalogs" FromRole="AccountingCatalogs" ToRole="AccountingEntries" />
+        </EntityType>
+        <EntityType Name="AccountingEntries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="OriginModelID" Type="Int32" />
+          <Property Name="DocumentsID" Type="Int32" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="CreditValue" Type="Double" />
+          <Property Name="DebitValue" Type="Double" />
+          <Property Name="IsVATEntry" Type="Int32" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccountingCatalogID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountingCatalogs" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingCatalogs" FromRole="AccountingEntries" ToRole="AccountingCatalogs" />
+          <NavigationProperty Name="AccountingEntriesModel" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModel" FromRole="AccountingEntries" ToRole="AccountingEntriesModel" />
+          <NavigationProperty Name="Accounts" Relationship="FlameTradeDbModel.FK_AccountingEntries_Accounts" FromRole="AccountingEntries" ToRole="Accounts" />
+          <NavigationProperty Name="Documents" Relationship="FlameTradeDbModel.FK_AccountingEntries_Documents" FromRole="AccountingEntries" ToRole="Documents" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_AccountingEntries_DocumentTransactions" FromRole="AccountingEntries" ToRole="DocumentTransactions" />
+          <Property Name="OriginModelDetailID" Type="Int32" />
+          <NavigationProperty Name="AccountingEntriesModelDetails" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModelDetails" FromRole="AccountingEntries" ToRole="AccountingEntriesModelDetails" />
+        </EntityType>
+        <EntityType Name="AccountingEntriesModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountingEntriesModelDetails" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_AccountingEntriesModel" FromRole="AccountingEntriesModel" ToRole="AccountingEntriesModelDetails" />
+          <NavigationProperty Name="DocumentTransactions" Relationship="FlameTradeDbModel.FK_DocumentTransactions_AccountingEntriesModel" FromRole="AccountingEntriesModel" ToRole="DocumentTransactions" />
+          <NavigationProperty Name="TransactionsType" Relationship="FlameTradeDbModel.FK_TransactionsType_AccountingEntriesModel" FromRole="AccountingEntriesModel" ToRole="TransactionsType" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModel" FromRole="AccountingEntriesModel" ToRole="AccountingEntries" />
+        </EntityType>
+        <EntityType Name="AccountingEntriesModelDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountingEntriesModelID" Type="Int32" Nullable="false" />
+          <Property Name="DebitAccountID" Type="Int32" Nullable="false" />
+          <Property Name="CreditAccountID" Type="Int32" Nullable="false" />
+          <Property Name="PercentOfValue" Type="Double" Nullable="false" />
+          <Property Name="VATAccountID" Type="Int32" />
+          <Property Name="VATPercent" Type="Double" />
+          <NavigationProperty Name="AccountingEntriesModel" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_AccountingEntriesModel" FromRole="AccountingEntriesModelDetails" ToRole="AccountingEntriesModel" />
+          <NavigationProperty Name="Accounts" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts" FromRole="AccountingEntriesModelDetails" ToRole="Accounts" />
+          <NavigationProperty Name="Accounts1" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts1" FromRole="AccountingEntriesModelDetails" ToRole="Accounts" />
+          <NavigationProperty Name="Accounts2" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts2" FromRole="AccountingEntriesModelDetails" ToRole="Accounts" />
+          <Property Name="VatType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModelDetails" FromRole="AccountingEntriesModelDetails" ToRole="AccountingEntries" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AccountDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AccountLevel" Type="Int32" Nullable="false" />
+          <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="AccountGroupID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountingEntriesModelDetails" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts" FromRole="Accounts" ToRole="AccountingEntriesModelDetails" />
+          <NavigationProperty Name="AccountingEntriesModelDetails1" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts1" FromRole="Accounts" ToRole="AccountingEntriesModelDetails" />
+          <NavigationProperty Name="AccountingEntriesModelDetails2" Relationship="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts2" FromRole="Accounts" ToRole="AccountingEntriesModelDetails" />
+          <NavigationProperty Name="AccountsGroups" Relationship="FlameTradeDbModel.FK_Accounts_AccountsGroups" FromRole="Accounts" ToRole="AccountsGroups" />
+          <NavigationProperty Name="AccountsType" Relationship="FlameTradeDbModel.FK_Accounts_AccountsType" FromRole="Accounts" ToRole="AccountsType" />
+          <NavigationProperty Name="AccountingEntries" Relationship="FlameTradeDbModel.FK_AccountingEntries_Accounts" FromRole="Accounts" ToRole="AccountingEntries" />
+        </EntityType>
+        <EntityType Name="AccountsGroups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="FlameTradeDbModel.FK_Accounts_AccountsGroups" FromRole="AccountsGroups" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="AccountsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="FlameTradeDbModel.FK_Accounts_AccountsType" FromRole="AccountsType" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="PaymentsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_AccountingEntriesModelDetails_AccountingEntriesModel">
+          <End Type="FlameTradeDbModel.AccountingEntriesModel" Role="AccountingEntriesModel" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AccountingEntriesModelDetails" Role="AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="AccountingEntriesModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentTransactions_AccountingEntriesModel">
+          <End Type="FlameTradeDbModel.AccountingEntriesModel" Role="AccountingEntriesModel" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DocumentTransactions">
+              <PropertyRef Name="AccountingEntryModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionsType_AccountingEntriesModel">
+          <End Type="FlameTradeDbModel.AccountingEntriesModel" Role="AccountingEntriesModel" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.TransactionsType" Role="TransactionsType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionsType">
+              <PropertyRef Name="DefaultAccountingEntryModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts">
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AccountingEntriesModelDetails" Role="AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="CreditAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts1">
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AccountingEntriesModelDetails" Role="AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="DebitAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntriesModelDetails_Accounts2">
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.AccountingEntriesModelDetails" Role="AccountingEntriesModelDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="VATAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_AccountsGroups">
+          <End Type="FlameTradeDbModel.AccountsGroups" Role="AccountsGroups" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountsGroups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="AccountGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_AccountsType">
+          <End Type="FlameTradeDbModel.AccountsType" Role="AccountsType" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_AccountingCatalogs">
+          <End Type="FlameTradeDbModel.AccountingCatalogs" Role="AccountingCatalogs" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingCatalogs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="AccountingCatalogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_AccountingEntriesModel">
+          <End Type="FlameTradeDbModel.AccountingEntriesModel" Role="AccountingEntriesModel" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="OriginModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_Accounts">
+          <End Type="FlameTradeDbModel.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_Documents">
+          <End Type="FlameTradeDbModel.Documents" Role="Documents" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="DocumentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_DocumentTransactions">
+          <End Type="FlameTradeDbModel.DocumentTransactions" Role="DocumentTransactions" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="TransactionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountingEntries_AccountingEntriesModelDetails">
+          <End Type="FlameTradeDbModel.AccountingEntriesModelDetails" Role="AccountingEntriesModelDetails" Multiplicity="0..1" />
+          <End Type="FlameTradeDbModel.AccountingEntries" Role="AccountingEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingEntriesModelDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountingEntries">
+              <PropertyRef Name="OriginModelDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6722,6 +7382,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentSequences">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentSequences">
               <MappingFragment StoreEntitySet="DocumentSequences">
+                <ScalarProperty Name="IsGeneratingAccountingEntry" ColumnName="IsGeneratingAccountingEntry" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SequenceName" ColumnName="SequenceName" />
                 <ScalarProperty Name="SequenceDescription" ColumnName="SequenceDescription" />
@@ -6742,6 +7403,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="DocumentTransactions">
             <EntityTypeMapping TypeName="FlameTradeDbModel.DocumentTransactions">
               <MappingFragment StoreEntitySet="DocumentTransactions">
+                <ScalarProperty Name="AccountingEntryModelID" ColumnName="AccountingEntryModelID" />
                 <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="TransactionSurfaceID" ColumnName="TransactionSurfaceID" />
@@ -7229,6 +7891,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionsType">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionsType">
               <MappingFragment StoreEntitySet="TransactionsType">
+                <ScalarProperty Name="DefaultAccountingEntryModelID" ColumnName="DefaultAccountingEntryModelID" />
                 <ScalarProperty Name="DefaultReceiptModelID" ColumnName="DefaultReceiptModelID" />
                 <ScalarProperty Name="DefaultSurfaceTypeID" ColumnName="DefaultSurfaceTypeID" />
                 <ScalarProperty Name="IsFinancialType" ColumnName="IsFinancialType" />
@@ -7616,6 +8279,95 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
                 <ScalarProperty Name="AllowEdits" ColumnName="AllowEdits" />
                 <ScalarProperty Name="DocumentSequenceID" ColumnName="DocumentSequenceID" />
                 <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingCatalogs">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountingCatalogs">
+              <MappingFragment StoreEntitySet="AccountingCatalogs">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingEntries">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountingEntries">
+              <MappingFragment StoreEntitySet="AccountingEntries">
+                <ScalarProperty Name="OriginModelDetailID" ColumnName="OriginModelDetailID" />
+                <ScalarProperty Name="AccountingCatalogID" ColumnName="AccountingCatalogID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="IsVATEntry" ColumnName="IsVATEntry" />
+                <ScalarProperty Name="DebitValue" ColumnName="DebitValue" />
+                <ScalarProperty Name="CreditValue" ColumnName="CreditValue" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="DocumentsID" ColumnName="DocumentsID" />
+                <ScalarProperty Name="OriginModelID" ColumnName="OriginModelID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingEntriesModel">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountingEntriesModel">
+              <MappingFragment StoreEntitySet="AccountingEntriesModel">
+                <ScalarProperty Name="EntryName" ColumnName="EntryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingEntriesModelDetails">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountingEntriesModelDetails">
+              <MappingFragment StoreEntitySet="AccountingEntriesModelDetails">
+                <ScalarProperty Name="VatType" ColumnName="VatType" />
+                <ScalarProperty Name="VATPercent" ColumnName="VATPercent" />
+                <ScalarProperty Name="VATAccountID" ColumnName="VATAccountID" />
+                <ScalarProperty Name="PercentOfValue" ColumnName="PercentOfValue" />
+                <ScalarProperty Name="CreditAccountID" ColumnName="CreditAccountID" />
+                <ScalarProperty Name="DebitAccountID" ColumnName="DebitAccountID" />
+                <ScalarProperty Name="AccountingEntriesModelID" ColumnName="AccountingEntriesModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountGroupID" ColumnName="AccountGroupID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+                <ScalarProperty Name="AccountLevel" ColumnName="AccountLevel" />
+                <ScalarProperty Name="AccountDescription" ColumnName="AccountDescription" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountsGroups">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountsGroups">
+              <MappingFragment StoreEntitySet="AccountsGroups">
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountsType">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.AccountsType">
+              <MappingFragment StoreEntitySet="AccountsType">
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsType">
+            <EntityTypeMapping TypeName="FlameTradeDbModel.PaymentsType">
+              <MappingFragment StoreEntitySet="PaymentsType">
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

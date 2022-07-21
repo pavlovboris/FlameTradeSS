@@ -227,6 +227,28 @@
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_DocumentSequences" />
         <AssociationConnector Association="FlameTradeDbModel.FK_DocumentsRolesRestrictions_Roles" />
         <AssociationConnector Association="FlameTradeDbModel.FK_LogsEditRestrictedDocuments_Documents" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountingCatalogs" Width="1.5" PointX="10.375" PointY="16.75" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountingEntries" Width="1.5" PointX="26.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountingEntriesModel" Width="1.5" PointX="25.625" PointY="23.75" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountingEntriesModelDetails" Width="1.5" PointX="27.875" PointY="19.25" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.Accounts" Width="1.5" PointX="25.625" PointY="19" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountsGroups" Width="1.5" PointX="23.375" PointY="32.875" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.AccountsType" Width="1.5" PointX="23.375" PointY="19.875" />
+        <EntityTypeShape EntityType="FlameTradeDbModel.PaymentsType" Width="1.5" PointX="23.375" PointY="0.75" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_AccountingEntriesModel" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_DocumentTransactions_AccountingEntriesModel" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_TransactionsType_AccountingEntriesModel" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts1" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntriesModelDetails_Accounts2" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Accounts_AccountsGroups" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_Accounts_AccountsType" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_AccountingCatalogs" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModel" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_Accounts" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_Documents" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_DocumentTransactions" />
+        <AssociationConnector Association="FlameTradeDbModel.FK_AccountingEntries_AccountingEntriesModelDetails" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

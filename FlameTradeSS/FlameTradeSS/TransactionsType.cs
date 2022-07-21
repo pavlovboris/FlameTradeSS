@@ -35,6 +35,7 @@ namespace FlameTradeSS
         public int IsFinancialType { get; set; }
         public int DefaultSurfaceTypeID { get; set; }
         public int DefaultReceiptModelID { get; set; }
+        public Nullable<int> DefaultAccountingEntryModelID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }
@@ -57,5 +58,6 @@ namespace FlameTradeSS
         public virtual ReceiptModels ReceiptModels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionNumbering> TransactionNumbering { get; set; }
+        public virtual AccountingEntriesModel AccountingEntriesModel { get; set; }
     }
 }

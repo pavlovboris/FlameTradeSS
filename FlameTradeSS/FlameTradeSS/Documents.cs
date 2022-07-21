@@ -27,6 +27,7 @@ namespace FlameTradeSS
             this.AutoStringDocuments = new HashSet<AutoStringDocuments>();
             this.TransactionNumbering = new HashSet<TransactionNumbering>();
             this.LogsEditRestrictedDocuments = new HashSet<LogsEditRestrictedDocuments>();
+            this.AccountingEntries = new HashSet<AccountingEntries>();
         }
     
         public int ID { get; set; }
@@ -67,5 +68,7 @@ namespace FlameTradeSS
         public virtual ICollection<TransactionNumbering> TransactionNumbering { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LogsEditRestrictedDocuments> LogsEditRestrictedDocuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountingEntries> AccountingEntries { get; set; }
     }
 }
