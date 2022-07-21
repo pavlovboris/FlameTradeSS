@@ -330,11 +330,15 @@ namespace FlameTradeSS
                                 await db.SaveChangesAsync();
                             }
                         }
-
-
+                        CommonTasks.PerformAccountingOperations(newDocument, db);
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                     }
 
+                    if (newDocument.DocumentSequences.SequenceType.NumberingReference == "none")
+                    {
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                        CommonTasks.PerformAccountingOperations(newDocument, db);
+                    }
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -485,10 +489,7 @@ namespace FlameTradeSS
                 newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
                 newfrmDocumentTransactions.Show();
 
-                //newDocument.IsBlocked = 1;
                 cmbDocumentSequence.Enabled = false;
-
-                //await db.SaveChangesAsync();
 
                 if (existingTransactionTypes.Where(trt => trt.Equals(selectedTransactionType)).SingleOrDefault()==null)
                 {
@@ -497,13 +498,6 @@ namespace FlameTradeSS
                 }
             }           
         }
-
-      /*  private void NewfrmDocumentTransactions_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            frmDocumentTransactions closingForm = (frmDocumentTransactions)sender;
-            e.Cancel = true;
-            closingForm.Hide();
-        }*/
 
         DocumentTransactions documentTransactions;
 
@@ -531,8 +525,6 @@ namespace FlameTradeSS
                     {
                         isOpened = true;
                         form.Show();
-                        //newfrmDocumentTransactions.Dispose();
-
 
                         foreach (TabPage tabPage in tabControlMain.TabPages)
                         {
@@ -564,7 +556,6 @@ namespace FlameTradeSS
 
                     newTabFrmDocumentTransactions.Name = newfrmDocumentTransactions.Name;
                     newTabFrmDocumentTransactions.Text = selectedTransactionType.TransactionsType.TypeName + " " + documentTransactions.tempID.ToString();
-                    //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
                     tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
                     newTabFrmDocumentTransactions.Parent = tabControlMain;
                     
@@ -572,7 +563,6 @@ namespace FlameTradeSS
                     newfrmDocumentTransactions.TabCtrl = tabControlMain;
                     newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
 
-                    //   newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
                     newfrmDocumentTransactions.Show();
                 } else
                 {                   
@@ -814,6 +804,7 @@ namespace FlameTradeSS
                                 await db.SaveChangesAsync();
                                 CommonTasks.SendInfoMsg("Документа е успешно издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
                                 CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                                CommonTasks.PerformAccountingOperations(newDocument, db);
                             }
                             catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                         }                        
@@ -887,7 +878,7 @@ namespace FlameTradeSS
                         }
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
-
+                        CommonTasks.PerformAccountingOperations(newDocument, db);
                     }
                     break;
             }
@@ -922,9 +913,7 @@ namespace FlameTradeSS
                     {
                         documentTransactionsBindingSource.DataSource = db.DocumentTransactions.Where(dt => dt.DocumentsID == newDocument.ID).ToList();
                     }
-
                 }
-
             }
             catch { }
         }
@@ -1021,10 +1010,7 @@ namespace FlameTradeSS
             newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
             newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
             newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
-            //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
-            //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
             newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
-            //newDocumentTransactions.IsReady = documentTransactions.IsReady;
 
             documentTransactionsBindingSource.Add(newDocumentTransactions);
             db.DocumentTransactions.Add(newDocumentTransactions);
@@ -1073,10 +1059,7 @@ namespace FlameTradeSS
                 newDocumentTransactions.ExpectedMatDate = documentTransactions.ExpectedMatDate;
                 newDocumentTransactions.NotForInvoice = documentTransactions.NotForInvoice;
                 newDocumentTransactions.ReceiptModels = newDocumentTransactions.TransactionsType.ReceiptModels;
-                //newDocumentTransactions.RequestedDeliveryDate = documentTransactions.RequestedDeliveryDate;
-                //newDocumentTransactions.RequestedDate = documentTransactions.RequestedDate;
                 newDocumentTransactions.ReceivedDate = documentTransactions.ReceivedDate;
-                //newDocumentTransactions.IsReady = documentTransactions.IsReady;
 
                 documentTransactionsBindingSource.Add(newDocumentTransactions);
                 db.DocumentTransactions.Add(newDocumentTransactions);
@@ -1086,13 +1069,7 @@ namespace FlameTradeSS
                 transactionsTransformations.DocumentTransactions1 = documentTransactions;
                 db.TransactionsTransformations.Add(transactionsTransformations);
 
-                //List<PossibleSequenceTransformationsProperties> possibleSequenceTransformationsProperties = new List<PossibleSequenceTransformationsProperties>();
-
-
-
                 PossibleSequenceTransformationsProperties newTransactionSettings = db.PossibleSequenceTransformationsProperties.Where(pstp => pstp.PossibleSequenceTransofrmation.DocumentSequenceID == newDocument.DocumentSequenceID && pstp.PossibleSequenceTransofrmation.PossibleDocumentSequenceID == newDocument.DocumentSequenceID && pstp.TransactionTypeID == documentTransactions.TransactionsType.ID && pstp.TransactionTypeIDTo == newDocumentTransactions.TransactionsType.ID).SingleOrDefault();
-
-                //   possibleSequenceTransformationsProperties.Add(newTransactionSettings);
 
                 foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
                 {
@@ -1157,12 +1134,10 @@ namespace FlameTradeSS
                     "2. Транзакцията която създавате трябва да бъде конфигурана в трансформациите на транзакцията от която създавате");
             }
         }
-
         private void contextMenuStripDocumentTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem == toolStripMenuSplitTransaction)
             {
-               // DocumentTransactions currentDocumentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
                 if (documentTransactions != null)
                 {
                     tempID = CurrentSessionData.Counter + 1;
@@ -1207,16 +1182,12 @@ namespace FlameTradeSS
 
                     CommonTasks.OpenForm(frmSplitTransactions);
                 }
-            } else if (e.ClickedItem == toolStripMenuCreateFrom)
-            {
-               
-            }
+            } 
         }
 
         private void FrmSplitTransactions_FormClosed(object sender, FormClosedEventArgs e)
         {
             Enabled = true;
-            //DocumentTransactions currentDocumentTransactions = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
             List<TransactionLines> linesList = new List<TransactionLines>();
 
             foreach (TransactionLines lines in documentTransactions.TransactionLines)
@@ -1270,7 +1241,6 @@ namespace FlameTradeSS
                             db.Inventory.Remove(inventoryForRemoving);
                         }
                     }
-
                     db.TransactionLines.Remove(emptyLine);
                 }
             }
@@ -1280,7 +1250,6 @@ namespace FlameTradeSS
         {
             if (dgvDocumentTransactions.CurrentRow.Index!=-1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
             {
-               // DocumentTransactions currentTransaction = dgvDocumentTransactions.CurrentRow.DataBoundItem as DocumentTransactions;
                 ReceiptModels receiptModels = documentTransactions.ReceiptModels;
                 
                 if (documentTransactions.ReceiptModelID!=1 && documentTransactions.ReceiptModelID!=0 && documentTransactions.TransactionSurfaceID!=0)
@@ -1354,10 +1323,8 @@ namespace FlameTradeSS
                                 
                                 newTransactionReceipt.SecondPartitionID = 1;
                                 
-
                                 db.TransactionReceipt.Add(newTransactionReceipt);
                                 
-
                                 foreach(ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID==newTransactionReceipt.ItemID).ToList())
                                 {
                                     foreach(ReceiptModelsItemsParameters receiptModelsItemsParameters in receiptModels.ReceiptModelsItemsParameters)
@@ -1704,97 +1671,18 @@ namespace FlameTradeSS
                                 transactionNumbering.DocumentTransactions = docTransactions;
 
                                 db.TransactionNumbering.Add(transactionNumbering);
-
-                                await db.SaveChangesAsync();
+                                try
+                                {
+                                    await db.SaveChangesAsync();
+                                } catch { CommonTasks.SendErrorMsg("Нещо се обърка, номерирането на транзакциите не приключи успешно");  }
                             }
                         }
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
-                    }
-
-                    if (newDocument.DocumentSequences.SequenceType.NumberingReference == "none")
+                        CommonTasks.PerformAccountingOperations(newDocument, db);
+                    } else if (newDocument.DocumentSequences.SequenceType.NumberingReference == "none")
                     {
-                        if (newDocument.DocumentSequences.IsGeneratingAccountingEntry == 1)
-                        {
-                            foreach (DocumentTransactions transactions in newDocument.DocumentTransactions)
-                            {
-                                if (transactions.AccountingEntriesModel != null)
-                                {
-                                    foreach (AccountingEntriesModelDetails modelDetails in transactions.AccountingEntriesModel.AccountingEntriesModelDetails)
-                                    {
-                                        if (modelDetails.Accounts != null)
-                                        {
-                                            AccountingEntries newDebitAccountEntries = new AccountingEntries();
-
-                                            bool exists = false; 
-
-                                            foreach(AccountingEntries existingEntries in transactions.AccountingEntries)
-                                            {
-                                                if (existingEntries.Accounts == modelDetails.Accounts)
-                                                {
-                                                    exists = true;
-                                                }
-                                            }
-
-                                            if (exists == true)
-                                            {
-                                                newDebitAccountEntries = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts.ID).SingleOrDefault();
-                                            }
-
-
-                                            newDebitAccountEntries.Accounts = modelDetails.Accounts;
-                                            newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue;
-                                            newDebitAccountEntries.EntryDate = DateTime.Now;
-                                            newDebitAccountEntries.Documents = newDocument;
-                                            newDebitAccountEntries.DocumentTransactions = transactions;
-                                            newDebitAccountEntries.AccountingCatalogID = 1;
-                                            newDebitAccountEntries.IsVATEntry = 0;
-                                            newDebitAccountEntries.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
-                                         
-                                            db.AccountingEntries.Add(newDebitAccountEntries);
-                                        }
-
-                                        if (modelDetails.Accounts1 != null)
-                                        {
-                                            AccountingEntries newCreditAccountEntries = new AccountingEntries();
-                                            newCreditAccountEntries.Accounts = modelDetails.Accounts1;
-                                            newCreditAccountEntries.CreditValue = 1 * modelDetails.PercentOfValue;
-                                            newCreditAccountEntries.EntryDate = DateTime.Now;
-                                            newCreditAccountEntries.Documents = newDocument;
-                                            newCreditAccountEntries.DocumentTransactions = transactions;
-                                            newCreditAccountEntries.AccountingCatalogID = 1;
-                                            newCreditAccountEntries.IsVATEntry = 0;
-                                            newCreditAccountEntries.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
-                                            db.AccountingEntries.Add(newCreditAccountEntries);
-                                        }
-
-                                        if (modelDetails.Accounts2 != null)
-                                        {
-                                            AccountingEntries newVATEntry = new AccountingEntries();
-                                            newVATEntry.Accounts = modelDetails.Accounts2;
-                                            newVATEntry.IsVATEntry = 1;
-                                            if (modelDetails.VatType == 1)
-                                            {
-                                                newVATEntry.DebitValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
-                                            }
-                                            else if (modelDetails.VatType == 2)
-                                            {
-                                                newVATEntry.CreditValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
-                                            }
-                                            newVATEntry.EntryDate = DateTime.Now;
-                                            newVATEntry.Documents = newDocument;
-                                            newVATEntry.DocumentTransactions = transactions;
-                                            newVATEntry.AccountingCatalogID = 1;
-                                            newVATEntry.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
-                                            db.AccountingEntries.Add(newVATEntry);
-                                        }
-                                    }
-                                }
-                            }
-                            try
-                            {
-                                await db.SaveChangesAsync();
-                            } catch { }
-                        }
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                        CommonTasks.PerformAccountingOperations(newDocument, db);
                     }
                 }
             }

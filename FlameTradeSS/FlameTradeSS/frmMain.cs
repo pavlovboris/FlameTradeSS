@@ -218,11 +218,11 @@ namespace FlameTradeSS
                 }
             }
 
-            Documents newDocument = new Documents();
-            newDocument.UserID = CurrentSessionData.CurrentUser.ID;
-            frmNewDocument.documentsBindingSource.DataSource = newDocument;
-            frmNewDocument.newDocument = newDocument;
-            frmNewDocument.dateTimeDocDate.Value = DateTime.Now;
+            //Documents newDocument = new Documents();
+            //newDocument.UserID = CurrentSessionData.CurrentUser.ID ;
+            //frmNewDocument.documentsBindingSource.DataSource = newDocument;
+            //frmNewDocument.newDocument = newDocument;
+            //frmNewDocument.dateTimeDocDate.Value = DateTime.Now;
             CommonTasks.OpenForm(frmNewDocument);
         }
 

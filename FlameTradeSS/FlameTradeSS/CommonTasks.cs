@@ -468,5 +468,176 @@ namespace FlameTradeSS
                 CommonTasks.SendErrorMsg("Нещо се обърка при запаметяване на операциите свързани със склада");
             }
         }
+
+        public static async void PerformAccountingOperations(Documents newDocument, FlameTradeDbEntities db)
+        {
+            try
+            {
+                    if (newDocument.DocumentSequences.IsGeneratingAccountingEntry == 1)
+                    {
+                        foreach (DocumentTransactions transactions in newDocument.DocumentTransactions)
+                        {
+                            if (transactions.AccountingEntriesModel != null)
+                            {
+                                foreach (AccountingEntriesModelDetails modelDetails in transactions.AccountingEntriesModel.AccountingEntriesModelDetails)
+                                {
+                                    if (modelDetails.Accounts1 != null)
+                                    {
+                                        AccountingEntries newDebitAccountEntries = new AccountingEntries();
+
+                                        bool exists = false;
+
+                                        foreach (AccountingEntries existingEntries in transactions.AccountingEntries)
+                                        {
+                                            if (existingEntries.Accounts == modelDetails.Accounts1 && existingEntries.AccountingEntriesModelDetails == modelDetails)
+                                            {
+                                                exists = true;
+                                            }
+                                        }
+
+                                        if (exists == true)
+                                        {
+                                            newDebitAccountEntries = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts.ID && ae.OriginModelDetailID == modelDetails.ID).SingleOrDefault();
+                                            if (modelDetails.VATAccountID != null & modelDetails.VatType == 2)
+                                            {
+                                                newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue + 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else
+                                            {
+                                                newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue;
+                                            }
+
+
+                                        }
+                                        else
+                                        {
+                                            newDebitAccountEntries.Accounts = modelDetails.Accounts1;
+                                            if (modelDetails.VATAccountID != null & modelDetails.VatType == 2)
+                                            {
+                                                newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue + 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else
+                                            {
+                                                newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue;
+                                            }
+                                            newDebitAccountEntries.EntryDate = DateTime.Now;
+                                            newDebitAccountEntries.Documents = newDocument;
+                                            newDebitAccountEntries.DocumentTransactions = transactions;
+                                            newDebitAccountEntries.AccountingCatalogID = 1;
+                                            newDebitAccountEntries.IsVATEntry = 0;
+                                            newDebitAccountEntries.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
+                                            newDebitAccountEntries.AccountingEntriesModelDetails = modelDetails;
+
+                                            db.AccountingEntries.Add(newDebitAccountEntries);
+                                        }
+
+
+
+                                    }
+
+                                    if (modelDetails.Accounts != null)
+                                    {
+                                        AccountingEntries newCreditAccountEntries = new AccountingEntries();
+
+
+                                        bool exists = false;
+
+                                        foreach (AccountingEntries existingEntries in transactions.AccountingEntries)
+                                        {
+                                            if (existingEntries.Accounts == modelDetails.Accounts && existingEntries.AccountingEntriesModelDetails == modelDetails)
+                                            {
+                                                exists = true;
+                                            }
+                                        }
+
+                                        if (exists == true)
+                                        {
+                                            newCreditAccountEntries = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts.ID && ae.OriginModelDetailID == modelDetails.ID).SingleOrDefault();
+                                            if (modelDetails.VATAccountID != null && modelDetails.VatType == 1)
+                                            {
+                                                newCreditAccountEntries.CreditValue = 1 * modelDetails.PercentOfValue + 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else
+                                            {
+                                                newCreditAccountEntries.CreditValue = 1 * modelDetails.PercentOfValue;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            newCreditAccountEntries.Accounts = modelDetails.Accounts;
+                                            if (modelDetails.VATAccountID != null && modelDetails.VatType == 1)
+                                            {
+                                                newCreditAccountEntries.CreditValue = 1 * modelDetails.PercentOfValue + 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else
+                                            {
+                                                newCreditAccountEntries.CreditValue = 1 * modelDetails.PercentOfValue;
+                                            }
+                                            newCreditAccountEntries.EntryDate = DateTime.Now;
+                                            newCreditAccountEntries.Documents = newDocument;
+                                            newCreditAccountEntries.DocumentTransactions = transactions;
+                                            newCreditAccountEntries.AccountingCatalogID = 1;
+                                            newCreditAccountEntries.IsVATEntry = 0;
+                                            newCreditAccountEntries.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
+                                            newCreditAccountEntries.AccountingEntriesModelDetails = modelDetails;
+                                            db.AccountingEntries.Add(newCreditAccountEntries);
+                                        }
+                                    }
+
+                                    if (modelDetails.Accounts2 != null)
+                                    {
+                                        AccountingEntries newVATEntry = new AccountingEntries();
+
+                                        bool exists = false;
+
+                                        foreach (AccountingEntries existingEntries in transactions.AccountingEntries)
+                                        {
+                                            if (existingEntries.Accounts == modelDetails.Accounts2 && existingEntries.AccountingEntriesModelDetails == modelDetails)
+                                            {
+                                                exists = true;
+                                            }
+                                        }
+
+                                        if (exists == true)
+                                        {
+                                            newVATEntry = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts2.ID && ae.OriginModelDetailID == modelDetails.ID).SingleOrDefault();
+                                            if (modelDetails.VatType == 1)
+                                            {
+                                                newVATEntry.DebitValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else if (modelDetails.VatType == 2)
+                                            {
+                                                newVATEntry.CreditValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            newVATEntry.Accounts = modelDetails.Accounts2;
+                                            newVATEntry.IsVATEntry = 1;
+                                            if (modelDetails.VatType == 1)
+                                            {
+                                                newVATEntry.DebitValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            else if (modelDetails.VatType == 2)
+                                            {
+                                                newVATEntry.CreditValue = 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
+                                            }
+                                            newVATEntry.EntryDate = DateTime.Now;
+                                            newVATEntry.Documents = newDocument;
+                                            newVATEntry.DocumentTransactions = transactions;
+                                            newVATEntry.AccountingCatalogID = 1;
+                                            newVATEntry.AccountingEntriesModel = modelDetails.AccountingEntriesModel;
+                                            newVATEntry.AccountingEntriesModelDetails = modelDetails;
+                                            db.AccountingEntries.Add(newVATEntry);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                            await db.SaveChangesAsync();
+                    }
+            } catch { CommonTasks.SendErrorMsg("Нещо се обърка, счетовордният запис не е запазен!!!"); }
+        }
     }
 }

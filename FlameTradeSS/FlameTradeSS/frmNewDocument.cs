@@ -29,6 +29,11 @@ namespace FlameTradeSS
 
             CommonTasks.RestoreForm(this, Properties.Settings.Default.frmNewDocumentSize, Properties.Settings.Default.frmNewDocumentState, Properties.Settings.Default.frmNewDocumentLocation);
 
+            newDocument = new Documents();
+            newDocument.DocumentDate = DateTime.Now;
+            newDocument.Users = db.Users.Where(u => u.ID == CurrentSessionData.CurrentUser.ID).SingleOrDefault();
+            documentsBindingSource.DataSource = newDocument;
+
             maxID = db.DocumentTransactions.Max(dt => (int)dt.tempID);
 
             CurrentSessionData.Counter = maxID;            
@@ -248,8 +253,12 @@ namespace FlameTradeSS
                 listBoxProjects.Enabled = true;
                 documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
                 DocumentSequences selectedDocumentSequence = cmbDocumentSequence.SelectedItem as DocumentSequences;
-
-
+               
+               /* if (selectedDocumentSequence != null)
+                {
+                    newDocument.DocumentSequences = selectedDocumentSequence;
+                }*/
+                
                 DgvOperations dgvOperations = new DgvOperations();
                 dgvDocumentTransactions = dgvOperations.ConfigureDgv(dgvDocumentTransactions, db, selectedDocumentSequence, new DocumentTransactions());
 
@@ -331,11 +340,12 @@ namespace FlameTradeSS
 
                 CurrentSessionData.Counter = tempID;
 
-                newDocumentTransaction.TransactionTypeID = selectedTransactionType.ID;
+                newDocumentTransaction.TransactionsType = selectedTransactionType;
                 newDocumentTransaction.Documents = newDocument;
                 newDocumentTransaction.UserID =CurrentSessionData.CurrentUser.ID;
                 newDocumentTransaction.CreationDateTime = DateTime.Now;
                 newDocumentTransaction.TransactionDate = DateTime.Now;
+                newDocumentTransaction.AccountingEntriesModel = selectedTransactionType.AccountingEntriesModel;
                 newDocumentTransaction.ReceiptModels = db.ReceiptModels.Where(rm => rm.ID == 1).SingleOrDefault(); ;
 
                 frmDocumentTransactions newfrmDocumentTransactions = new frmDocumentTransactions();
@@ -345,34 +355,25 @@ namespace FlameTradeSS
                 newfrmDocumentTransactions.documentTransactions = newDocumentTransaction;
                 newfrmDocumentTransactions.db = db;
                 db.DocumentTransactions.Add(newDocumentTransaction);
-                //await db.SaveChangesAsync();
-                // newfrmDocumentTransactions.documentTransactionsBindingSource.Add(newDocumentTransaction);
                 newfrmDocumentTransactions.transactionsTypeBindingSource.DataSource = db.TransactionsType.ToList();
                 newfrmDocumentTransactions.MdiParent = this;
                 documentTransactionsBindingSource.Add(newDocumentTransaction);
                 documentTransactionsBindingSource.MoveLast();
-                //newfrmDocumentTransactions.FormClosing += NewfrmDocumentTransactions_FormClosing;
 
                 TabPage newTabFrmDocumentTransactions = new TabPage();
 
                 newTabFrmDocumentTransactions.Name = newfrmDocumentTransactions.Name;
                 newTabFrmDocumentTransactions.Text = selectedTransactionType.TypeName + " " + tempID.ToString();
-                //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
                 tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
                 newTabFrmDocumentTransactions.Parent = tabControlMain;
 
                 newTabFrmDocumentTransactions.Show();
-                //tabControlMain.SelectedTab = newTabFrmDocumentTransactions;
 
                 newfrmDocumentTransactions.TabCtrl = tabControlMain;
                 newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
 
                 newfrmDocumentTransactions.Show();
-                //newDocument.IsBlocked = 1;
                 cmbDocumentSequence.Enabled = false;
-
-
-                //await db.SaveChangesAsync();
 
                 if (existingTransactionTypes.Where(trt => trt.Equals(selectedTransactionType)).SingleOrDefault() == null)
                 {
@@ -739,6 +740,7 @@ namespace FlameTradeSS
             if (Convert.ToInt32(cmbPartners.SelectedValue )!= 0)
             {
                 listBoxTransactionsAdd.Enabled = true;
+            //    newDocument.Partners = cmbPartners.SelectedItem as Partners;    
             } else
             {
                 listBoxTransactionsAdd.Enabled = false;
