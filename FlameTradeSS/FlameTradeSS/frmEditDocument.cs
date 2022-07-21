@@ -332,12 +332,14 @@ namespace FlameTradeSS
                         }
                         CommonTasks.PerformAccountingOperations(newDocument, db);
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                        await db.SaveChangesAsync();
                     }
 
                     if (newDocument.DocumentSequences.SequenceType.NumberingReference == "none")
                     {
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                         CommonTasks.PerformAccountingOperations(newDocument, db);
+                        await db.SaveChangesAsync();
                     }
                 }
                 else if (dialogResult == DialogResult.No)
@@ -805,6 +807,7 @@ namespace FlameTradeSS
                                 CommonTasks.SendInfoMsg("Документа е успешно издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName);
                                 CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                                 CommonTasks.PerformAccountingOperations(newDocument, db);
+                                await db.SaveChangesAsync();
                             }
                             catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден : " + newDocument.DocumentNumber.ToString() + "@" + newDocument.DocumentSequences.SequenceName); }
                         }                        
@@ -879,6 +882,7 @@ namespace FlameTradeSS
                         catch { CommonTasks.SendErrorMsg("Документа НЕ е издаден"); }
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                         CommonTasks.PerformAccountingOperations(newDocument, db);
+                        await db.SaveChangesAsync();
                     }
                     break;
             }
@@ -1677,12 +1681,14 @@ namespace FlameTradeSS
                                 } catch { CommonTasks.SendErrorMsg("Нещо се обърка, номерирането на транзакциите не приключи успешно");  }
                             }
                         }
-                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
+                        CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);                         
                         CommonTasks.PerformAccountingOperations(newDocument, db);
+                        await db.SaveChangesAsync();
                     } else if (newDocument.DocumentSequences.SequenceType.NumberingReference == "none")
                     {
                         CommonTasks.PerformInventoryTransactions(db, newDocument, documentTransactionsBindingSource);
                         CommonTasks.PerformAccountingOperations(newDocument, db);
+                        await db.SaveChangesAsync();
                     }
                 }
             }

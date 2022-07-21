@@ -322,7 +322,7 @@ namespace FlameTradeSS
             catch (Exception) { }
         }
 
-        public static async void PerformInventoryTransactions(FlameTradeDbEntities db, Documents document, BindingSource documentTransactionsBindingSource)
+        public static  void PerformInventoryTransactions(FlameTradeDbEntities db, Documents document, BindingSource documentTransactionsBindingSource)
         {
             try
             {
@@ -462,21 +462,21 @@ namespace FlameTradeSS
                         }
                     }
                 }
-                await db.SaveChangesAsync();
+               // await db.SaveChangesAsync();
             } catch 
             {
                 CommonTasks.SendErrorMsg("Нещо се обърка при запаметяване на операциите свързани със склада");
             }
         }
 
-        public static async void PerformAccountingOperations(Documents newDocument, FlameTradeDbEntities db)
-        {
+        public static void PerformAccountingOperations(Documents newDocument, FlameTradeDbEntities db)
+        {  
             try
             {
                     if (newDocument.DocumentSequences.IsGeneratingAccountingEntry == 1)
-                    {
-                        foreach (DocumentTransactions transactions in newDocument.DocumentTransactions)
-                        {
+                    {                           
+                         foreach (DocumentTransactions transactions in newDocument.DocumentTransactions)
+                         {
                             if (transactions.AccountingEntriesModel != null)
                             {
                                 foreach (AccountingEntriesModelDetails modelDetails in transactions.AccountingEntriesModel.AccountingEntriesModelDetails)
@@ -497,7 +497,7 @@ namespace FlameTradeSS
 
                                         if (exists == true)
                                         {
-                                            newDebitAccountEntries = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts.ID && ae.OriginModelDetailID == modelDetails.ID).SingleOrDefault();
+                                            newDebitAccountEntries = transactions.AccountingEntries.Where(ae => ae.AccountID == modelDetails.Accounts1.ID && ae.OriginModelDetailID == modelDetails.ID).SingleOrDefault();
                                             if (modelDetails.VATAccountID != null & modelDetails.VatType == 2)
                                             {
                                                 newDebitAccountEntries.DebitValue = 1 * modelDetails.PercentOfValue + 1 * modelDetails.PercentOfValue * modelDetails.VATPercent;
@@ -635,7 +635,7 @@ namespace FlameTradeSS
                                 }
                             }
                         }
-                            await db.SaveChangesAsync();
+                       //     await db.SaveChangesAsync();
                     }
             } catch { CommonTasks.SendErrorMsg("Нещо се обърка, счетовордният запис не е запазен!!!"); }
         }
