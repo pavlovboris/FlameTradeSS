@@ -20,7 +20,6 @@ namespace FlameTradeSS
         }
         int maxID;
 
-
         List<TransactionsType> existingTransactionTypes = new List<TransactionsType>();
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
@@ -35,6 +34,9 @@ namespace FlameTradeSS
 
             DgvOperations dgvOperations = new DgvOperations();
 
+            TransactionTypes_TransactionTypeID_TypeName_ID.Resizable = DataGridViewTriState.False;
+            
+
 
             partnersBindingSource.DataSource = db.Partners.ToList();
             documentsBindingSource.DataSource = newDocument;
@@ -47,7 +49,13 @@ namespace FlameTradeSS
             documentsAttachmentsBindingSource.DataSource = db.DocumentsAttachments.Where(da => da.DocumentsID == newDocument.ID).ToList();
             usersBindingSource.DataSource = db.Users.ToList();
             Surfaces_TransactionSurfaceID_SurfaceName_ID.ReadOnly = true;
-            
+
+            foreach (TransactionReceipt transactionReceipt in db.TransactionReceipt.ToList())
+            {
+                transactionReceipts.Add(transactionReceipt);
+            }
+
+
 
             transactionsTypeBindingSource1.Add(new TransactionsType() { TypeName = "Всички"});
             foreach(DataGridViewRow dgvr in dgvDocumentTransactions.Rows)
@@ -485,7 +493,7 @@ namespace FlameTradeSS
                 //newTabFrmDocumentTransactions.Click += NewTabFrmDocumentTransactions_Click;
                 tabControlMain.TabPages.Add(newTabFrmDocumentTransactions);
                 newTabFrmDocumentTransactions.Parent = tabControlMain;
-
+                newfrmDocumentTransactions.transactionReceiptBindingSource.DataSource = transactionReceipts;
                 newTabFrmDocumentTransactions.Show();
                 newfrmDocumentTransactions.TabCtrl = tabControlMain;
                 newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
@@ -564,7 +572,7 @@ namespace FlameTradeSS
                     newTabFrmDocumentTransactions.Show();
                     newfrmDocumentTransactions.TabCtrl = tabControlMain;
                     newfrmDocumentTransactions.TabPag = newTabFrmDocumentTransactions;
-
+                    newfrmDocumentTransactions.transactionReceiptBindingSource.DataSource = transactionReceipts;
                     newfrmDocumentTransactions.Show();
                 } else
                 {                   
@@ -1250,6 +1258,8 @@ namespace FlameTradeSS
             }
         }
 
+        List<TransactionReceipt> transactionReceipts = new List<TransactionReceipt>();
+
         private void btnApplyReceiptModel_Click(object sender, EventArgs e)
         {
             if (dgvDocumentTransactions.CurrentRow.Index!=-1 && dgvDocumentTransactions.CurrentRow.DataBoundItem != null)
@@ -1344,6 +1354,7 @@ namespace FlameTradeSS
                                 
                                 db.TransactionReceipt.Add(newTransactionReceipt);
                                 transactionReceiptsList.Add(newTransactionReceipt);
+                                transactionReceipts.Add(newTransactionReceipt);
                                 
                                 foreach(ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID==newTransactionReceipt.ItemID).ToList())
                                 {
@@ -1456,6 +1467,7 @@ namespace FlameTradeSS
 
                                 db.TransactionReceipt.Add(newTransactionReceipt);
                                 transactionReceiptsList.Add(newTransactionReceipt);
+                                transactionReceipts.Add(newTransactionReceipt);
 
                                 foreach (ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID == newTransactionReceipt.ItemID).ToList())
                                 {
@@ -1819,6 +1831,14 @@ namespace FlameTradeSS
                         await db.SaveChangesAsync();
                     }
                 }
+            }
+        }
+
+        private void dgvDocumentTransactions_ColumnDisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            if (e.Column == TransactionTypes_TransactionTypeID_TypeName_ID)
+            {
+               // e.Column.DisplayIndex= 0;
             }
         }
     }

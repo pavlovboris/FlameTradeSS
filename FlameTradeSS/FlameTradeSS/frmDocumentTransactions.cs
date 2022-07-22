@@ -108,7 +108,7 @@ namespace FlameTradeSS
                     Items_ItemID_Description_ID.Visible = true;
                     
                     itemsBindingSource.DataSource = db.Items.ToList();
-                    transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
+                    //transactionReceiptBindingSource.DataSource = db.TransactionReceipt.ToList();
                     surfacesBindingSource.DataSource = db.Surfaces.ToList();
                     partitionsBindingSource.DataSource = db.Partitions.ToList();
                     partitionsBindingSource1.DataSource = db.Partitions.ToList();

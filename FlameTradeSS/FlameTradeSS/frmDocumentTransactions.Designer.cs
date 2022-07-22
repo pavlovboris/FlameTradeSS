@@ -698,7 +698,6 @@
         public System.Windows.Forms.BindingSource transactionLinesBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
         private System.Windows.Forms.BindingSource muBindingSource;
-        private System.Windows.Forms.BindingSource transactionReceiptBindingSource;
         public System.Windows.Forms.DateTimePicker dateTimeTransactionDate;
         private System.Windows.Forms.Button btnTasks;
         private System.Windows.Forms.Button btnClose;
@@ -743,5 +742,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Warehouse_WH_WhCode_ID;
         private System.Windows.Forms.BindingSource warehousesBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
+        public System.Windows.Forms.BindingSource transactionReceiptBindingSource;
     }
 }

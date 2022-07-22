@@ -46,6 +46,7 @@
             this.lblDocumentDate = new System.Windows.Forms.Label();
             this.dateTimeDocDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnEdits = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnApplyReceiptModel = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@
             this.dgvDocumentTransactions = new System.Windows.Forms.DataGridView();
             this.TransactionTypes_TransactionTypeID_TypeName_ID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TransactionNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NotForInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TransactionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,7 +114,6 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.contextMenuTabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.documentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentSequencesBindingSource)).BeginInit();
@@ -250,6 +251,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1584, 239);
             this.panel1.TabIndex = 12;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(904, 91);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(175, 23);
+            this.btnSave.TabIndex = 33;
+            this.btnSave.Text = "Запамети";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdits
             // 
@@ -485,6 +496,7 @@
             // 
             this.dgvDocumentTransactions.AllowUserToAddRows = false;
             this.dgvDocumentTransactions.AllowUserToDeleteRows = false;
+            this.dgvDocumentTransactions.AllowUserToOrderColumns = true;
             this.dgvDocumentTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDocumentTransactions.AutoGenerateColumns = false;
@@ -493,6 +505,7 @@
             this.dgvDocumentTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDocumentTransactions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TransactionTypes_TransactionTypeID_TypeName_ID,
+            this.TransactionNumber,
             this.NotForInvoice,
             this.TransactionDate,
             this.Comment,
@@ -528,6 +541,7 @@
             this.dgvDocumentTransactions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentTransactions_CellClick);
             this.dgvDocumentTransactions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dgvDocumentTransactions.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDocumentTransactions_CellValueChanged);
+            this.dgvDocumentTransactions.ColumnDisplayIndexChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocumentTransactions_ColumnDisplayIndexChanged);
             this.dgvDocumentTransactions.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDocumentTransactions_ColumnWidthChanged);
             this.dgvDocumentTransactions.CurrentCellChanged += new System.EventHandler(this.dgvDocumentTransactions_CurrentCellChanged);
             // 
@@ -547,6 +561,13 @@
             // transactionsTypeBindingSource
             // 
             this.transactionsTypeBindingSource.DataSource = typeof(FlameTradeSS.TransactionsType);
+            // 
+            // TransactionNumber
+            // 
+            this.TransactionNumber.DataPropertyName = "TransactionNumber";
+            this.TransactionNumber.HeaderText = "Номер";
+            this.TransactionNumber.Name = "TransactionNumber";
+            this.TransactionNumber.ReadOnly = true;
             // 
             // NotForInvoice
             // 
@@ -832,16 +853,6 @@
             this.toolStripMenuClose.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuClose.Text = "Close";
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(904, 91);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(175, 23);
-            this.btnSave.TabIndex = 33;
-            this.btnSave.Text = "Запамети";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // frmEditDocument
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -923,7 +934,20 @@
         private System.Windows.Forms.BindingSource usersBindingSource;
         private System.Windows.Forms.BindingSource receiptModelsBindingSource;
         private System.Windows.Forms.BindingSource surfacesBindingSource;
+        private System.Windows.Forms.ComboBox cmbSequenceFilter;
+        private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripDocumentTransactions;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSplitTransaction;
+        private System.Windows.Forms.Button btnApplyReceiptModel;
+        private System.Windows.Forms.ContextMenuStrip contextMenuTabs;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuClose;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreateFrom;
+        private System.Windows.Forms.Button btnEdits;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewComboBoxColumn TransactionTypes_TransactionTypeID_TypeName_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TransactionNumber;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NotForInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
@@ -947,17 +971,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorID;
         private System.Windows.Forms.DataGridViewTextBoxColumn IsCanceled;
-        private System.Windows.Forms.ComboBox cmbSequenceFilter;
-        private System.Windows.Forms.BindingSource transactionsTypeBindingSource1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripDocumentTransactions;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSplitTransaction;
-        private System.Windows.Forms.Button btnApplyReceiptModel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuTabs;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuClose;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreateFrom;
-        private System.Windows.Forms.Button btnEdits;
-        private System.Windows.Forms.Button btnSave;
     }
 }
