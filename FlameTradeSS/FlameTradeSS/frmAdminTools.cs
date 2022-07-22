@@ -145,5 +145,11 @@ namespace FlameTradeSS
             frmSurfacesTypes frmSurfacesTypes = new frmSurfacesTypes();
             CommonTasks.OpenForm(frmSurfacesTypes);
         }
+
+        private void btnAccountingModels_Click(object sender, EventArgs e)
+        {
+            frmAccountingModels frmAccountingModels = new frmAccountingModels();
+            CommonTasks.OpenForm(frmAccountingModels);
+        }
     }
 }

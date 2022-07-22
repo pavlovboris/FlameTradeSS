@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Добави Артикул");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Списък с Артикули");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Артикули", new System.Windows.Forms.TreeNode[] {
@@ -41,39 +42,45 @@
             treeNode6,
             treeNode7});
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Повърхности");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Параметри");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
             treeNode4,
             treeNode5,
             treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Отчети");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Групи");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Ценови Групи");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Партньори-Хора");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
-            treeNode12,
+            treeNode9,
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Отчети");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Групи");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Ценови Групи");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Партньори-Хора");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Настройки", new System.Windows.Forms.TreeNode[] {
             treeNode13,
             treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Отчети");
+            treeNode15,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Отчети");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnAdminTools = new System.Windows.Forms.Button();
             this.treeViewInventory = new System.Windows.Forms.TreeView();
-            this.btnNewDocument = new System.Windows.Forms.Button();
-            this.btnProduction = new System.Windows.Forms.Button();
-            this.btnWarehouse = new System.Windows.Forms.Button();
-            this.btnProjects = new System.Windows.Forms.Button();
-            this.btnDocuments = new System.Windows.Forms.Button();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnMaximize = new System.Windows.Forms.Button();
             this.treeViewPartners = new System.Windows.Forms.TreeView();
-            this.btnPartnersMng = new System.Windows.Forms.Button();
-            this.btnFinancialPlans = new System.Windows.Forms.Button();
             this.lblCurrentUserName = new System.Windows.Forms.Label();
             this.lblCurentUserLabel = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuProduction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuReceiptModels = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnPartnersMng = new System.Windows.Forms.Button();
+            this.btnFinancialPlans = new System.Windows.Forms.Button();
+            this.btnNewDocument = new System.Windows.Forms.Button();
+            this.btnProduction = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnWarehouse = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnProjects = new System.Windows.Forms.Button();
+            this.btnDocuments = new System.Windows.Forms.Button();
+            this.contextMenuProduction.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdminTools
@@ -113,17 +120,131 @@
             treeNode8.Text = "Партиди";
             treeNode9.Name = "InventorySurfaces";
             treeNode9.Text = "Повърхности";
-            treeNode10.Name = "InventorySettings";
-            treeNode10.Text = "Настройки";
-            treeNode11.Name = "InventoryReports";
-            treeNode11.Text = "Отчети";
+            treeNode10.Name = "ItemsParameters";
+            treeNode10.Text = "Параметри";
+            treeNode11.Name = "InventorySettings";
+            treeNode11.Text = "Настройки";
+            treeNode12.Name = "InventoryReports";
+            treeNode12.Text = "Отчети";
             this.treeViewInventory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode3,
-            treeNode10,
-            treeNode11});
+            treeNode11,
+            treeNode12});
             this.treeViewInventory.Size = new System.Drawing.Size(195, 223);
             this.treeViewInventory.TabIndex = 35;
             this.treeViewInventory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewInventory_NodeMouseDoubleClick);
+            // 
+            // treeViewPartners
+            // 
+            this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeViewPartners.Location = new System.Drawing.Point(17, 109);
+            this.treeViewPartners.Name = "treeViewPartners";
+            treeNode13.Name = "PartnerGroup";
+            treeNode13.Text = "Групи";
+            treeNode14.Name = "PartnerCategory";
+            treeNode14.Text = "Категории";
+            treeNode15.Name = "PartnerStaticPriceGroup";
+            treeNode15.Text = "Ценови Групи";
+            treeNode16.Name = "PersonPartners";
+            treeNode16.Text = "Партньори-Хора";
+            treeNode17.Name = "PartnerSettings";
+            treeNode17.Text = "Настройки";
+            treeNode18.Name = "PartnerReports";
+            treeNode18.Text = "Отчети";
+            this.treeViewPartners.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18});
+            this.treeViewPartners.Size = new System.Drawing.Size(173, 146);
+            this.treeViewPartners.TabIndex = 29;
+            this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
+            // 
+            // lblCurrentUserName
+            // 
+            this.lblCurrentUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCurrentUserName.AutoSize = true;
+            this.lblCurrentUserName.Location = new System.Drawing.Point(135, 535);
+            this.lblCurrentUserName.Name = "lblCurrentUserName";
+            this.lblCurrentUserName.Size = new System.Drawing.Size(13, 13);
+            this.lblCurrentUserName.TabIndex = 18;
+            this.lblCurrentUserName.Text = "?";
+            // 
+            // lblCurentUserLabel
+            // 
+            this.lblCurentUserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCurentUserLabel.AutoSize = true;
+            this.lblCurentUserLabel.Location = new System.Drawing.Point(64, 535);
+            this.lblCurentUserLabel.Name = "lblCurentUserLabel";
+            this.lblCurentUserLabel.Size = new System.Drawing.Size(72, 13);
+            this.lblCurentUserLabel.TabIndex = 17;
+            this.lblCurentUserLabel.Text = "Current User :";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuProduction
+            // 
+            this.contextMenuProduction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuReceiptModels});
+            this.contextMenuProduction.Name = "contextMenuProduction";
+            this.contextMenuProduction.Size = new System.Drawing.Size(183, 26);
+            this.contextMenuProduction.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuProduction_ItemClicked);
+            // 
+            // toolStripMenuReceiptModels
+            // 
+            this.toolStripMenuReceiptModels.Name = "toolStripMenuReceiptModels";
+            this.toolStripMenuReceiptModels.Size = new System.Drawing.Size(182, 22);
+            this.toolStripMenuReceiptModels.Text = "Модели на Рецепти";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_076_Icon_48;
+            this.btnLogOut.Location = new System.Drawing.Point(10, 505);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(49, 47);
+            this.btnLogOut.TabIndex = 26;
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.pictureBoxLogout_Click);
+            // 
+            // btnPartnersMng
+            // 
+            this.btnPartnersMng.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPartnersMng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPartnersMng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnPartnersMng.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_109_Icon_48;
+            this.btnPartnersMng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPartnersMng.Location = new System.Drawing.Point(17, 51);
+            this.btnPartnersMng.Name = "btnPartnersMng";
+            this.btnPartnersMng.Size = new System.Drawing.Size(132, 52);
+            this.btnPartnersMng.TabIndex = 28;
+            this.btnPartnersMng.Text = "Партньори";
+            this.btnPartnersMng.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPartnersMng.UseVisualStyleBackColor = true;
+            this.btnPartnersMng.Click += new System.EventHandler(this.btnPartnersMng_Click);
+            // 
+            // btnFinancialPlans
+            // 
+            this.btnFinancialPlans.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnFinancialPlans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinancialPlans.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnFinancialPlans.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_power_Icon_48;
+            this.btnFinancialPlans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFinancialPlans.Location = new System.Drawing.Point(938, 73);
+            this.btnFinancialPlans.Name = "btnFinancialPlans";
+            this.btnFinancialPlans.Size = new System.Drawing.Size(199, 52);
+            this.btnFinancialPlans.TabIndex = 36;
+            this.btnFinancialPlans.Text = "Финансови Планове";
+            this.btnFinancialPlans.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFinancialPlans.UseVisualStyleBackColor = true;
+            this.btnFinancialPlans.Click += new System.EventHandler(this.btnFinancialPlans_Click);
+            this.btnFinancialPlans.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
+            this.btnFinancialPlans.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
+            this.btnFinancialPlans.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
             // btnNewDocument
             // 
@@ -146,6 +267,7 @@
             // 
             // btnProduction
             // 
+            this.btnProduction.ContextMenuStrip = this.contextMenuProduction;
             this.btnProduction.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -163,6 +285,19 @@
             this.btnProduction.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
             this.btnProduction.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
+            this.btnMaximize.Location = new System.Drawing.Point(1033, 12);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(49, 48);
+            this.btnMaximize.TabIndex = 24;
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
+            // 
             // btnWarehouse
             // 
             this.btnWarehouse.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -177,6 +312,32 @@
             this.btnWarehouse.Text = "Склад";
             this.btnWarehouse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnWarehouse.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.btnClose.Location = new System.Drawing.Point(1088, 12);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 48);
+            this.btnClose.TabIndex = 23;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
+            this.btnMinimize.Location = new System.Drawing.Point(978, 12);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(49, 48);
+            this.btnMinimize.TabIndex = 25;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
             // 
             // btnProjects
             // 
@@ -216,138 +377,6 @@
             this.btnDocuments.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
             this.btnDocuments.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
             // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
-            this.btnMinimize.Location = new System.Drawing.Point(978, 12);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(49, 48);
-            this.btnMinimize.TabIndex = 25;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(1088, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 48);
-            this.btnClose.TabIndex = 23;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.pictureBoxExit_Click);
-            // 
-            // btnMaximize
-            // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_037_Icon_48;
-            this.btnMaximize.Location = new System.Drawing.Point(1033, 12);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(49, 48);
-            this.btnMaximize.TabIndex = 24;
-            this.btnMaximize.UseVisualStyleBackColor = true;
-            this.btnMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
-            // 
-            // treeViewPartners
-            // 
-            this.treeViewPartners.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeViewPartners.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeViewPartners.Location = new System.Drawing.Point(17, 109);
-            this.treeViewPartners.Name = "treeViewPartners";
-            treeNode12.Name = "PartnerGroup";
-            treeNode12.Text = "Групи";
-            treeNode13.Name = "PartnerCategory";
-            treeNode13.Text = "Категории";
-            treeNode14.Name = "PartnerStaticPriceGroup";
-            treeNode14.Text = "Ценови Групи";
-            treeNode15.Name = "PersonPartners";
-            treeNode15.Text = "Партньори-Хора";
-            treeNode16.Name = "PartnerSettings";
-            treeNode16.Text = "Настройки";
-            treeNode17.Name = "PartnerReports";
-            treeNode17.Text = "Отчети";
-            this.treeViewPartners.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17});
-            this.treeViewPartners.Size = new System.Drawing.Size(173, 146);
-            this.treeViewPartners.TabIndex = 29;
-            this.treeViewPartners.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewPartners_NodeMouseDoubleClick);
-            // 
-            // btnPartnersMng
-            // 
-            this.btnPartnersMng.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPartnersMng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPartnersMng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnPartnersMng.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_109_Icon_48;
-            this.btnPartnersMng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPartnersMng.Location = new System.Drawing.Point(17, 51);
-            this.btnPartnersMng.Name = "btnPartnersMng";
-            this.btnPartnersMng.Size = new System.Drawing.Size(132, 52);
-            this.btnPartnersMng.TabIndex = 28;
-            this.btnPartnersMng.Text = "Партньори";
-            this.btnPartnersMng.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPartnersMng.UseVisualStyleBackColor = true;
-            this.btnPartnersMng.Click += new System.EventHandler(this.btnPartnersMng_Click);
-            // 
-            // btnFinancialPlans
-            // 
-            this.btnFinancialPlans.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnFinancialPlans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinancialPlans.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnFinancialPlans.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_power_Icon_48;
-            this.btnFinancialPlans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFinancialPlans.Location = new System.Drawing.Point(938, 73);
-            this.btnFinancialPlans.Name = "btnFinancialPlans";
-            this.btnFinancialPlans.Size = new System.Drawing.Size(199, 52);
-            this.btnFinancialPlans.TabIndex = 36;
-            this.btnFinancialPlans.Text = "Финансови Планове";
-            this.btnFinancialPlans.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFinancialPlans.UseVisualStyleBackColor = true;
-            this.btnFinancialPlans.Click += new System.EventHandler(this.btnFinancialPlans_Click);
-            this.btnFinancialPlans.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Control_MouseDown);
-            this.btnFinancialPlans.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Control_MouseMove);
-            this.btnFinancialPlans.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Control_MouseUp);
-            // 
-            // lblCurrentUserName
-            // 
-            this.lblCurrentUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCurrentUserName.AutoSize = true;
-            this.lblCurrentUserName.Location = new System.Drawing.Point(135, 535);
-            this.lblCurrentUserName.Name = "lblCurrentUserName";
-            this.lblCurrentUserName.Size = new System.Drawing.Size(13, 13);
-            this.lblCurrentUserName.TabIndex = 18;
-            this.lblCurrentUserName.Text = "?";
-            // 
-            // lblCurentUserLabel
-            // 
-            this.lblCurentUserLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCurentUserLabel.AutoSize = true;
-            this.lblCurentUserLabel.Location = new System.Drawing.Point(64, 535);
-            this.lblCurentUserLabel.Name = "lblCurentUserLabel";
-            this.lblCurentUserLabel.Size = new System.Drawing.Size(72, 13);
-            this.lblCurentUserLabel.TabIndex = 17;
-            this.lblCurentUserLabel.Text = "Current User :";
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogOut.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_076_Icon_48;
-            this.btnLogOut.Location = new System.Drawing.Point(10, 505);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(49, 47);
-            this.btnLogOut.TabIndex = 26;
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.pictureBoxLogout_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,6 +407,7 @@
             this.Text = "Main Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.contextMenuProduction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +430,8 @@
         private System.Windows.Forms.Label lblCurrentUserName;
         private System.Windows.Forms.Label lblCurentUserLabel;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.ContextMenuStrip contextMenuProduction;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuReceiptModels;
     }
 }

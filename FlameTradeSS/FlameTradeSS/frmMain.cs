@@ -255,6 +255,10 @@ namespace FlameTradeSS
                     frmSurfaces frmSurfaces = new frmSurfaces();
                     CommonTasks.OpenForm(frmSurfaces);
                     break;
+                case "ItemsParameters":
+                    frmItemsParameters frmItemsParameters = new frmItemsParameters();
+                    CommonTasks.OpenForm(frmItemsParameters);
+                    break;
             }
         }
 
@@ -346,6 +350,15 @@ namespace FlameTradeSS
         private void btnProduction_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void contextMenuProduction_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == toolStripMenuReceiptModels)
+            {
+                frmReceiptModels frmReceiptModels = new frmReceiptModels();
+                CommonTasks.OpenForm(frmReceiptModels);
+            }
         }
     }
 }

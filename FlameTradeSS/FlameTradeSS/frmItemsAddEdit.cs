@@ -195,5 +195,13 @@ namespace FlameTradeSS
         {
             openFileDialogChangePicture.ShowDialog();
         }
+
+        private void btnDynamicParameters_Click(object sender, EventArgs e)
+        {
+            frmItemsParametersItems frmItemsParametersItems = new frmItemsParametersItems();
+            frmItemsParametersItems.item = newItem;
+            frmItemsParametersItems.db = db;
+            CommonTasks.OpenForm(frmItemsParametersItems);
+        }
     }
 }

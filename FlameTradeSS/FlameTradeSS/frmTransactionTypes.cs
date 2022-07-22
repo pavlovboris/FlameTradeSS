@@ -61,6 +61,8 @@ namespace FlameTradeSS
             linesTypeBindingSource.Add(nullLinesType);
             receiptModelsBindingSource.DataSource = db.ReceiptModels.ToList();
             receiptModelsBindingSource.Add(new ReceiptModels());
+            accountingEntriesModelBindingSource.DataSource = db.AccountingEntriesModel.ToList();
+            accountingEntriesModelBindingSource.Add(new AccountingEntriesModel());
         }
 
         private void btnClose_Click(object sender, EventArgs e)

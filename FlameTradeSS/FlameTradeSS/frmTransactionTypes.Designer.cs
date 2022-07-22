@@ -34,21 +34,24 @@
             this.dgvTransactionTypes = new System.Windows.Forms.DataGridView();
             this.linesTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.surfaceTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.receiptModelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.receiptModelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.accountingEntriesModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.typeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionMultiplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.linesRelationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DefaultSurfaceTypeID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DefaultReceiptModelID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DefaultAccountingEntryModelID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountingEntriesModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -57,7 +60,7 @@
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
-            this.btnClose.Location = new System.Drawing.Point(601, 6);
+            this.btnClose.Location = new System.Drawing.Point(753, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(49, 53);
             this.btnClose.TabIndex = 9;
@@ -81,13 +84,14 @@
             this.transactionMultiplierDataGridViewTextBoxColumn,
             this.linesRelationDataGridViewTextBoxColumn,
             this.DefaultSurfaceTypeID,
-            this.DefaultReceiptModelID});
+            this.DefaultReceiptModelID,
+            this.DefaultAccountingEntryModelID});
             this.dgvTransactionTypes.DataSource = this.transactionsTypeBindingSource;
             this.dgvTransactionTypes.Location = new System.Drawing.Point(12, 65);
             this.dgvTransactionTypes.Name = "dgvTransactionTypes";
             this.dgvTransactionTypes.RowHeadersWidth = 20;
             this.dgvTransactionTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransactionTypes.Size = new System.Drawing.Size(632, 346);
+            this.dgvTransactionTypes.Size = new System.Drawing.Size(784, 346);
             this.dgvTransactionTypes.TabIndex = 10;
             // 
             // linesTypeBindingSource
@@ -97,6 +101,10 @@
             // surfaceTypesBindingSource
             // 
             this.surfaceTypesBindingSource.DataSource = typeof(FlameTradeSS.SurfaceTypes);
+            // 
+            // receiptModelsBindingSource
+            // 
+            this.receiptModelsBindingSource.DataSource = typeof(FlameTradeSS.ReceiptModels);
             // 
             // transactionsTypeBindingSource
             // 
@@ -144,7 +152,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::FlameTradeSS.Properties.Resources.Glossy_3d_blue_orbs2_045_Icon_48;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(551, 417);
+            this.btnSave.Location = new System.Drawing.Point(703, 417);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 52);
             this.btnSave.TabIndex = 13;
@@ -153,9 +161,9 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // receiptModelsBindingSource
+            // accountingEntriesModelBindingSource
             // 
-            this.receiptModelsBindingSource.DataSource = typeof(FlameTradeSS.ReceiptModels);
+            this.accountingEntriesModelBindingSource.DataSource = typeof(FlameTradeSS.AccountingEntriesModel);
             // 
             // typeNameDataGridViewTextBoxColumn
             // 
@@ -204,12 +212,22 @@
             this.DefaultReceiptModelID.Name = "DefaultReceiptModelID";
             this.DefaultReceiptModelID.ValueMember = "ID";
             // 
+            // DefaultAccountingEntryModelID
+            // 
+            this.DefaultAccountingEntryModelID.DataPropertyName = "DefaultAccountingEntryModelID";
+            this.DefaultAccountingEntryModelID.DataSource = this.accountingEntriesModelBindingSource;
+            this.DefaultAccountingEntryModelID.DisplayMember = "EntryName";
+            this.DefaultAccountingEntryModelID.HeaderText = "DefaultAccountingEntryModelID";
+            this.DefaultAccountingEntryModelID.Name = "DefaultAccountingEntryModelID";
+            this.DefaultAccountingEntryModelID.ValueMember = "ID";
+            this.DefaultAccountingEntryModelID.Width = 150;
+            // 
             // frmTransactionTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(656, 481);
+            this.ClientSize = new System.Drawing.Size(808, 481);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
@@ -218,7 +236,6 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(656, 481);
             this.MinimumSize = new System.Drawing.Size(656, 481);
             this.Name = "frmTransactionTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -229,8 +246,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.linesTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceTypesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptModelsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountingEntriesModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -245,11 +263,13 @@
         private System.Windows.Forms.BindingSource linesTypeBindingSource;
         private System.Windows.Forms.BindingSource transactionsTypeBindingSource;
         private System.Windows.Forms.BindingSource surfaceTypesBindingSource;
+        private System.Windows.Forms.BindingSource receiptModelsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionMultiplierDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn linesRelationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn DefaultSurfaceTypeID;
         private System.Windows.Forms.DataGridViewComboBoxColumn DefaultReceiptModelID;
-        private System.Windows.Forms.BindingSource receiptModelsBindingSource;
+        private System.Windows.Forms.DataGridViewComboBoxColumn DefaultAccountingEntryModelID;
+        private System.Windows.Forms.BindingSource accountingEntriesModelBindingSource;
     }
 }

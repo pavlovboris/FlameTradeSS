@@ -46,6 +46,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDocumentsList = new System.Windows.Forms.Button();
             this.btnSurfaceTypes = new System.Windows.Forms.Button();
+            this.btnAccountingModels = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsers
@@ -252,6 +253,18 @@
             this.btnSurfaceTypes.UseVisualStyleBackColor = true;
             this.btnSurfaceTypes.Click += new System.EventHandler(this.btnSurfaceTypes_Click);
             // 
+            // btnAccountingModels
+            // 
+            this.btnAccountingModels.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnAccountingModels.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccountingModels.Location = new System.Drawing.Point(534, 49);
+            this.btnAccountingModels.Name = "btnAccountingModels";
+            this.btnAccountingModels.Size = new System.Drawing.Size(82, 39);
+            this.btnAccountingModels.TabIndex = 36;
+            this.btnAccountingModels.Text = "Accounting entries model";
+            this.btnAccountingModels.UseVisualStyleBackColor = true;
+            this.btnAccountingModels.Click += new System.EventHandler(this.btnAccountingModels_Click);
+            // 
             // frmAdminTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +272,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(955, 338);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAccountingModels);
             this.Controls.Add(this.btnSurfaceTypes);
             this.Controls.Add(this.btnDocumentsList);
             this.Controls.Add(this.btnFinancialColors);
@@ -307,5 +321,6 @@
         private System.Windows.Forms.Button btnFinancialColors;
         private System.Windows.Forms.Button btnDocumentsList;
         private System.Windows.Forms.Button btnSurfaceTypes;
+        private System.Windows.Forms.Button btnAccountingModels;
     }
 }

@@ -429,6 +429,7 @@
             this.btnDynamicParameters.TabIndex = 48;
             this.btnDynamicParameters.Text = "Управление на Динамични Параметри";
             this.btnDynamicParameters.UseVisualStyleBackColor = true;
+            this.btnDynamicParameters.Click += new System.EventHandler(this.btnDynamicParameters_Click);
             // 
             // btnChangePicture
             // 

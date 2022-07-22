@@ -203,6 +203,36 @@
     <Compile Include="frmCreateFromTransaction.Designer.cs">
       <DependentUpon>frmCreateFromTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAccountingModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccountingModels.Designer.cs">
+      <DependentUpon>frmAccountingModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmItemsParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemsParameters.Designer.cs">
+      <DependentUpon>frmItemsParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmItemsParametersItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemsParametersItems.Designer.cs">
+      <DependentUpon>frmItemsParametersItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReceiptModelsParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceiptModelsParameters.Designer.cs">
+      <DependentUpon>frmReceiptModelsParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReceiptModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceiptModels.Designer.cs">
+      <DependentUpon>frmReceiptModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSplitTransactions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -767,6 +797,21 @@
     <EmbeddedResource Include="frmCreateFromTransaction.resx">
       <DependentUpon>frmCreateFromTransaction.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAccountingModels.resx">
+      <DependentUpon>frmAccountingModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItemsParameters.resx">
+      <DependentUpon>frmItemsParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItemsParametersItems.resx">
+      <DependentUpon>frmItemsParametersItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceiptModelsParameters.resx">
+      <DependentUpon>frmReceiptModelsParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceiptModels.resx">
+      <DependentUpon>frmReceiptModels.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSplitTransactions.resx">
       <DependentUpon>frmSplitTransactions.cs</DependentUpon>
     </EmbeddedResource>
@@ -918,6 +963,9 @@
       <DependentUpon>FlameTradeDbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AccountingEntriesModel.datasource" />
+    <None Include="Properties\DataSources\AccountingEntriesModelDetails.datasource" />
+    <None Include="Properties\DataSources\Accounts.datasource" />
     <None Include="Properties\DataSources\Colors.datasource" />
     <None Include="Properties\DataSources\CostingModels.datasource" />
     <None Include="Properties\DataSources\DgvFields.datasource" />
@@ -938,6 +986,7 @@
     <None Include="Properties\DataSources\Items.datasource" />
     <None Include="Properties\DataSources\ItemsGroups.datasource" />
     <None Include="Properties\DataSources\ItemsParameters.datasource" />
+    <None Include="Properties\DataSources\ItemsParametersItems.datasource" />
     <None Include="Properties\DataSources\LinesType.datasource" />
     <None Include="Properties\DataSources\Machines.datasource" />
     <None Include="Properties\DataSources\Mu.datasource" />
@@ -958,6 +1007,7 @@
     <None Include="Properties\DataSources\ProjectAttachments.datasource" />
     <None Include="Properties\DataSources\ReceiptLines.datasource" />
     <None Include="Properties\DataSources\ReceiptModels.datasource" />
+    <None Include="Properties\DataSources\ReceiptModelsItemsParameters.datasource" />
     <None Include="Properties\DataSources\RoleOfPersons.datasource" />
     <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SequencesTransactions.datasource" />

@@ -1258,15 +1258,30 @@ namespace FlameTradeSS
                 
                 if (documentTransactions.ReceiptModelID!=1 && documentTransactions.ReceiptModelID!=0 && documentTransactions.TransactionSurfaceID!=0)
                 {
+                    List<TransactionReceipt> transactionReceiptsList = new List<TransactionReceipt>();
                     foreach (TransactionLines transactionLines in documentTransactions.TransactionLines)
                     {
                         if (receiptModels.HasGeneralItems==1 && receiptModels.IsItemDirectRelated==0 && receiptModels.IsSurfaceDirectRelated==0 && receiptModels.IsColorDirectRelated==0 && receiptModels.IsSecondPartitionDirectRelated==0 && receiptModels.IsPartitionDIrectRelated==0)
                         {
                             TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID== documentTransactions.TransactionSurfaceID).SingleOrDefault();
 
+                            if (existingReceipt!= null)
+                            {
+                                transactionReceiptsList.Add(existingReceipt);
+                            }
+
+                            foreach (TransactionReceipt existingReceipts in transactionReceiptsList)
+                            {
+                                if (existingReceipts.ReceiptModelID == receiptModels.ID && existingReceipts.ItemID == transactionLines.ItemID && existingReceipts.SurfaceID == documentTransactions.TransactionSurfaceID)
+                                {
+                                    existingReceipt = existingReceipts;
+                                }
+                            }
+
                             if (existingReceipt != null)
                             {
-                                transactionLines.ReceiptID = existingReceipt.ID;
+
+                                transactionLines.TransactionReceipt = existingReceipt;
 
                                 List<ReceiptLines> existingReceiptLines = new List<ReceiptLines>();
                                 foreach (ReceiptLines receiptLines in existingReceipt.ReceiptLines)
@@ -1328,6 +1343,7 @@ namespace FlameTradeSS
                                 newTransactionReceipt.SecondPartitionID = 1;
                                 
                                 db.TransactionReceipt.Add(newTransactionReceipt);
+                                transactionReceiptsList.Add(newTransactionReceipt);
                                 
                                 foreach(ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID==newTransactionReceipt.ItemID).ToList())
                                 {
@@ -1340,6 +1356,118 @@ namespace FlameTradeSS
                                             receiptLines.Items = itemsParameters.Items1;
                                             receiptLines.ItemColorID = newTransactionReceipt.ColorID;
                                             receiptLines.ItemPartitionID = newTransactionReceipt.PartitionID;
+                                            receiptLines.SecondPartitionID = newTransactionReceipt.SecondPartitionID;
+                                            receiptLines.Surfaces = newTransactionReceipt.Surfaces;
+                                            receiptLines.ItemQTY = itemsParameters.ParameterValue;
+                                            receiptLines.ItemsParameters = itemsParameters.ItemsParameters;
+                                            db.ReceiptLines.Add(receiptLines);
+                                        }
+                                    }
+                                }
+                                transactionLines.TransactionReceipt = newTransactionReceipt;
+                            }
+                        } else if (receiptModels.HasGeneralItems == 1 && receiptModels.IsItemDirectRelated == 0 && receiptModels.IsSurfaceDirectRelated == 0 && receiptModels.IsColorDirectRelated == 0 && receiptModels.IsSecondPartitionDirectRelated == 0 && receiptModels.IsPartitionDIrectRelated == 1)
+                        {
+                            TransactionReceipt existingReceipt = db.TransactionReceipt.Where(tr => tr.ReceiptModelID == receiptModels.ID && tr.ItemID == transactionLines.ItemID && tr.SurfaceID == documentTransactions.TransactionSurfaceID && tr.PartitionID==transactionLines.Partitions.ID).SingleOrDefault();
+
+                            if (existingReceipt != null)
+                            {
+                                transactionReceiptsList.Add(existingReceipt);
+                            }
+
+                            foreach (TransactionReceipt existingReceipts in transactionReceiptsList)
+                            {
+                                if (existingReceipts.ReceiptModelID == receiptModels.ID && existingReceipts.ItemID == transactionLines.ItemID && existingReceipts.SurfaceID == documentTransactions.TransactionSurfaceID && existingReceipts.Partitions== transactionLines.Partitions) 
+                                {
+                                    existingReceipt = existingReceipts;
+                                }
+                            }
+
+                            if (existingReceipt != null)
+                            {
+                                transactionLines.TransactionReceipt = existingReceipt;
+
+                                List<ReceiptLines> existingReceiptLines = new List<ReceiptLines>();
+                                foreach (ReceiptLines receiptLines in existingReceipt.ReceiptLines)
+                                {
+                                    existingReceiptLines.Add(receiptLines);
+                                }
+
+                                if (existingReceiptLines.Count == 0)
+                                {
+                                    foreach (ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID == existingReceipt.ItemID).ToList())
+                                    {
+                                        foreach (ReceiptModelsItemsParameters receiptModelsItemsParameters in receiptModels.ReceiptModelsItemsParameters)
+                                        {
+                                            if (receiptModelsItemsParameters.ItemsParameterID == itemsParameters.ItemsParameterID)
+                                            {
+                                                ReceiptLines receiptLines = new ReceiptLines();
+                                                receiptLines.TransactionReceipt = existingReceipt;
+                                                receiptLines.Items = itemsParameters.Items1;
+                                                receiptLines.ItemColorID = existingReceipt.ColorID;
+                                                receiptLines.Partitions = existingReceipt.Partitions;
+                                                receiptLines.SecondPartitionID = existingReceipt.SecondPartitionID;
+                                                receiptLines.Surfaces = existingReceipt.Surfaces;
+                                                receiptLines.ItemQTY = itemsParameters.ParameterValue;
+                                                receiptLines.ItemsParameters = itemsParameters.ItemsParameters;
+                                                db.ReceiptLines.Add(receiptLines);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                TransactionReceipt newTransactionReceipt = new TransactionReceipt();
+                                newTransactionReceipt.Items = transactionLines.Items;
+                                newTransactionReceipt.Name = "A-" + receiptModels.ModelName + "-" + documentTransactions.Surfaces.SurfaceCode +"-"+transactionLines.Partitions.Code.ToString()+ "-" + transactionLines.Items.Code.ToString();
+
+                                newTransactionReceipt.ReceiptModels = receiptModels;
+
+                                if (documentTransactions.ColorID != null)
+                                {
+                                    newTransactionReceipt.ColorID = (int)documentTransactions.ColorID;
+                                }
+                                else
+                                {
+                                    newTransactionReceipt.ColorID = 1;
+                                }
+
+                                if (documentTransactions.Surfaces != null)
+                                {
+                                    newTransactionReceipt.Surfaces = documentTransactions.Surfaces;
+                                }
+                                else
+                                {
+                                    newTransactionReceipt.SurfaceID = 1;
+                                }
+
+                                if (transactionLines.Partitions!=null)
+                                {
+                                    newTransactionReceipt.Partitions = transactionLines.Partitions;
+                                } else
+                                {
+                                    newTransactionReceipt.PartitionID = 1;
+                                }
+
+                              
+
+                                newTransactionReceipt.SecondPartitionID = 1;
+
+                                db.TransactionReceipt.Add(newTransactionReceipt);
+                                transactionReceiptsList.Add(newTransactionReceipt);
+
+                                foreach (ItemsParametersItems itemsParameters in db.ItemsParametersItems.Where(ipi => ipi.ItemsID == newTransactionReceipt.ItemID).ToList())
+                                {
+                                    foreach (ReceiptModelsItemsParameters receiptModelsItemsParameters in receiptModels.ReceiptModelsItemsParameters)
+                                    {
+                                        if (receiptModelsItemsParameters.ItemsParameterID == itemsParameters.ItemsParameterID)
+                                        {
+                                            ReceiptLines receiptLines = new ReceiptLines();
+                                            receiptLines.TransactionReceipt = newTransactionReceipt;
+                                            receiptLines.Items = itemsParameters.Items1;
+                                            receiptLines.ItemColorID = newTransactionReceipt.ColorID;
+                                            receiptLines.Partitions = newTransactionReceipt.Partitions;
                                             receiptLines.SecondPartitionID = newTransactionReceipt.SecondPartitionID;
                                             receiptLines.Surfaces = newTransactionReceipt.Surfaces;
                                             receiptLines.ItemQTY = itemsParameters.ParameterValue;
