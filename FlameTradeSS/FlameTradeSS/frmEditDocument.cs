@@ -325,7 +325,7 @@ namespace FlameTradeSS
 
                                 }
 
-                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.Abbreviation.ToString() + "-" + (maxTransactionNumber + 1).ToString();
 
                                 TransactionNumbering transactionNumbering = new TransactionNumbering();
                                 transactionNumbering.TransactionsType = docTransactions.TransactionsType;
@@ -873,7 +873,7 @@ namespace FlameTradeSS
 
                                     }
 
-                                    docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+                                    docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.Abbreviation.ToString() + "-" + (maxTransactionNumber + 1).ToString();
 
                                     TransactionNumbering transactionNumbering = new TransactionNumbering();
                                     transactionNumbering.TransactionsType = docTransactions.TransactionsType;
@@ -1806,7 +1806,7 @@ namespace FlameTradeSS
 
                                 }
 
-                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.TypeName.ToString() + "-" + (maxTransactionNumber + 1).ToString();
+                                docTransactions.TransactionNumber = newDocument.DocumentNumber.ToString() + "-" + docTransactions.TransactionsType.Abbreviation.ToString() + "-" + (maxTransactionNumber + 1).ToString();
 
                                 TransactionNumbering transactionNumbering = new TransactionNumbering();
                                 transactionNumbering.TransactionsType = docTransactions.TransactionsType;

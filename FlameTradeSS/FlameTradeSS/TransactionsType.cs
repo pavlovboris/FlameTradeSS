@@ -36,6 +36,7 @@ namespace FlameTradeSS
         public int DefaultSurfaceTypeID { get; set; }
         public int DefaultReceiptModelID { get; set; }
         public Nullable<int> DefaultAccountingEntryModelID { get; set; }
+        public string Abbreviation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentTransactions> DocumentTransactions { get; set; }

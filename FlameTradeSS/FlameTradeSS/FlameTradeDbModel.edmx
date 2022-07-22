@@ -924,6 +924,7 @@
           <Property Name="DefaultSurfaceTypeID" Type="int" Nullable="false" />
           <Property Name="DefaultReceiptModelID" Type="int" Nullable="false" />
           <Property Name="DefaultAccountingEntryModelID" Type="int" />
+          <Property Name="Abbreviation" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -4234,6 +4235,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <NavigationProperty Name="TransactionNumbering" Relationship="FlameTradeDbModel.FK_TransactionNumbering_TransactionsType" FromRole="TransactionsType" ToRole="TransactionNumbering" />
           <Property Name="DefaultAccountingEntryModelID" Type="Int32" />
           <NavigationProperty Name="AccountingEntriesModel" Relationship="FlameTradeDbModel.FK_TransactionsType_AccountingEntriesModel" FromRole="TransactionsType" ToRole="AccountingEntriesModel" />
+          <Property Name="Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -7891,6 +7893,7 @@ warning 6002: The table/view 'FlameTradeDb.dbo.PersonsFullNameView' does not hav
           <EntitySetMapping Name="TransactionsType">
             <EntityTypeMapping TypeName="FlameTradeDbModel.TransactionsType">
               <MappingFragment StoreEntitySet="TransactionsType">
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
                 <ScalarProperty Name="DefaultAccountingEntryModelID" ColumnName="DefaultAccountingEntryModelID" />
                 <ScalarProperty Name="DefaultReceiptModelID" ColumnName="DefaultReceiptModelID" />
                 <ScalarProperty Name="DefaultSurfaceTypeID" ColumnName="DefaultSurfaceTypeID" />
